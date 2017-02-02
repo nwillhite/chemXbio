@@ -3,8 +3,7 @@ body {
   height: 100%;
 }
 
-
-
+/*
 #experiment {
   width: 100%;
   white-space: nowrap;
@@ -26,20 +25,42 @@ body {
   width: 50%;
   height: 50px;
 }
-
+*/
 
 /* Start */
 
 #operationsMenu {
   margin-left: 10px;
+  padding: 50px;
 }
 
+#subForm {
+  float: right;
+}
+
+#subForm input[type=text] {
+  width: 50px;
+  padding: 1px 2px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+
+
+
+#formMix {
+  float: right;
+}
 /* End */
 
 
 /* Start Button Style */
 
 button {
+  display: block;
   margin-top: 10px;
   line-height: 30px;
   font-weight: bold;
@@ -59,7 +80,7 @@ button:hover {
 /* Start Form Style */
 
 input[type=text] {
-  width: 25%;
+  width: 20%;
   padding: 1px 2px;
   margin: 8px 0;
   box-sizing: border-box;
@@ -75,15 +96,16 @@ input[type=text]:focus {
 }
 
 select {
-  width: 6%;
+  width: 12%;
   padding: 16px 20px;
   border: none;
   border-radius: 4px;
   background-color: #f1f1f1;
+  text-align: center;
 }
 
 #timeDuration {
-  width: 9%;
+  width: 70px;
 }
 
 /* End Form Style */
