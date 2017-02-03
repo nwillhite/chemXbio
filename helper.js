@@ -30,15 +30,18 @@ function showhidetoggle(id)
 
 }
 
+
 function resetForm(formId)
 {
   document.getElementById(formId).reset();
 }
 
+
 function toJson(input)
 {
-  document.getElementById('whereToPrint').innerHTML += JSON.stringify(input,null, 4);
+  document.getElementById('whereToPrint').innerHTML = JSON.stringify(input, null, 4);
 }
+
 
 function createID()
 {
@@ -46,27 +49,27 @@ function createID()
     return tmpId
 }
 
-function printExperiment(input)
-{
-  for (i = 0; i < experimentHolder.length; i++)
-  {
-    document.getElementById('whereToPrint').innerHTML = experimentHolder[i];
-  }
-}
+
+/**************************************************************************************
+
+                    Functions to help make forms dynamically
+
+ **************************************************************************************/
 
 
-// form functions
-
-function formInput()
+function formInput(num)
 {
     var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     var select = document.getElementById('numInputs');
 
-    for(var i = 0; i <= 10; i++)
+    var tmp = num + 1;
+    console.log(tmp);
+
+    for(var i = 0; i < tmp; i++)
     {
         var option = document.createElement('option');
-        option.innerHTML = numbers[i];
-        option.value = numbers[i];
+        option.innerHTML = i;
+        option.value = i;
         select.appendChild(option);
     }
 }

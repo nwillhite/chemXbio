@@ -11,153 +11,166 @@
   <link rel="stylesheet" type="text/css" href="mystyle.css">
 
   <script src = "mix.js"></script>
-  <!-- <script src = "class.js"></script> -->
   <script src = "helper.js"></script>
+  <script src = "Operation.js"></script>
 
 </head>
 
 
 <body>
-  <div id="experiment">
+<div id="experiment">
 
-    <div class="leftSide">
+  <div class="leftSide">
 
-      <button onclick="showhidetoggle('operationsMenu'); createExperiment()">Begin experiment</button>
+    <button onclick="showhidetoggle('operationsMenu'); createExperiment()">New experiment</button>
 
-      <div id="operationsMenu" style="display: none">
+    <div id="operationsMenu" style="display: none">
 
-        <button id="addSub" onclick="showhidetoggle('subForm')">Add Substance</button>
-        <button id="mixButton" onclick="showhidetoggle('formMix'); inputCreate()">Mix</button>
-        <button id="heatButton" onclick="">Heat</button>
-        <button id="splitButton" onclick="">Split</button>
-        <button id="outputButton" onclick="">Output</button>
-        <button id="quit" onclick="toJson(experimentHolder); hideDiv('operationsMenu'); showDiv('experiment')">Quit Experiment</button>
+      <button id="addSub" onclick="showhidetoggle('substanceform')">Add Substance</button>
+      <button id="mixButton" onclick="showhidetoggle('mixtureform'); inputCreate()">Mix</button>
+      <button id="heatButton" onclick="">Heat</button>
+      <button id="splitButton" onclick="">Split</button>
+      <button id="outputButton" onclick="">Output</button>
+      <button id="restButton" onclick="resetExperiment()">Reset Experiment</button>
+      <button id="quit" onclick="toJson(experimentHolder); hideDiv('operationsMenu'); showDiv('experiment');">Quit Experiment</button>
 
-        <script>
-            function createExperiment()
-            {
-                experimentHolder.push({EXPERIMENT: experiment});
-            }
+      <script>
+          function createExperiment()
+          {
+              if (experimentHolder.length === 0)
+              {
+                  experimentHolder.push(Experiment);
+              }
+          }
 
-            function addSub()
-            {
-                experiment.INPUTS.push(sublist);
-            }
+          function addSub()
+          {
+              Experiment.EXPERIMENT.INPUTS.push(substancelist);
+          }
 
-            function addMix() {
+          function addMix()
+          {
+              Experiment.EXPERIMENT.INSTRUCTIONS.push(operationList);
+          }
+      </script>
 
-                experiment.INSTRUCTIONS.push(optList);
-            }
-        </script>
-
-        <form id=subForm method="post" style="display: none">
+      <!-- Begin Substance Form -->
+      <div id='substanceform' style="display: none">
+        <form id='subForm' method='post'>
           <fieldset>
           <legend>Add Substance</legend>
             Input:
-            <input type="text" id="subName" name="" value="">
+            <input type='text' id='subName' name='' value=''>
             <br>
-            <input type="button" onclick="inputSub(document.getElementById('subName').value); " name="" value="Add Substance">
-            <input type="button" onclick="addSub(); showhidetoggle('subForm')" value="Done">
+            <input type="button" onclick="inputSub(document.getElementById('subName').value);" name="" value="Add Substance">
+            <input type="button" onclick="addSub(); showhidetoggle('subForm'); formInput(substances.length)" value="Done">
+            <br>
+            <br>
+            <div id="substancedisplay">
+              <script>
+                  // need to list the substances being used
+              </script>
+            </div> <!-- end the display of currently inputted substances -->
           </fieldset>
         </form>
+      </div>
+      <!-- End Substance Form -->
+
+      <!-- Begin Mixture Form -->
+      <div id="mixtureform" style="display: none">
+        <form id="mixForm" method="post">
+          <fieldset>
+            <legend>MIX</legend>
+            Name:
+            <input type="text" id="nameMix" name="" value="">
+            <br>
+            How many inputs for mixture?
+            <select id="numInputs" onchange="inputCreate()">
+              <option selected disabled hidden style='display: none' value=''></option>
+              <script>
+                formInput();
+              </script>
+            </select>
+            <br>
+            <br>
+            Enter Mixtures:<br>
+            <div id="inputMix">
+              <!-- container for dynamically making input fields -->
+            </div>
+            Enter Temp:
+            <input type="text" id="tempMix" name="" value="">
+            <select id="tempSign">
+              <option selected disabled hidden style='display: none' value=''></option>
+              <script>
+                formTemperature('tempSign');
+              </script>
+            </select>
+            <br>
+            Enter Time:
+            <input type="text" id="timeMix" name="" value="">
+            <select id="timeDuration">
+              <option selected disabled hidden style='display: none' value=''></option>
+              <script>
+                formTime('timeDuration');
+              </script>
+            </select>
+            <br>
+            <input type="button" onclick="createMix()" id="" name="" value="Add Mix">
+            <input type="button" onclick="addMix(); showhidetoggle('mixtureform')" value="Done">
+            </fieldset>
+        </form>
+      </div>
+      <!-- End Mixture Form -->
 
 
-        <!-- Mixture Form -->
-        <div id="formMix" style="display: none">
+      <script>
+      function createMix()
+      {
+        var opt = JSON.parse(JSON.stringify(OperationStructure));
 
-          <form id="mixForm" method="post">
-            <fieldset>
-              <legend>MIX</legend>
-              Name:
-              <input type="text" id="nameMix" name="" value="">
-              <br>
-              How many inputs for mixture?
-              <select id="numInputs" onchange="inputCreate()">
-                <option selected disabled hidden style='display: none' value=''></option>
-                <script>
-                  formInput('numInpus');
-                </script>
-              </select>
-              <br>
-              <br>
-              Enter Mixtures:<br>
-              <div id="inputMix">
-                <!-- container for dynamically making input fields -->
-              </div>
-              Enter Temp:
-              <input type="text" id="tempMix" name="" value="">
-              <select id="tempSign">
-                <option selected disabled hidden style='display: none' value=''></option>
-                <script>
-                  formTemperature('tempSign');
-                </script>
-              </select>
-              <br>
-              Enter Time:
-              <input type="text" id="timeMix" name="" value="">
-              <select id="timeDuration">
-                <option selected disabled hidden style='display: none' value=''></option>
-                <script>
-                  formTime('timeDuration');
-                </script>
-              </select>
-              <br>
-              <input type="button" onClick="createMix()" id="" name="" value="Add Mix">
-              <input type="button" onclick="addMix(); showhidetoggle('formMix')" value="Done">
-              </fieldset>
-          </form>
+        opt.NAME = document.getElementById('nameMix').value;
+        opt.ID = createID();
+        opt.CLASSIFICATION = 'MIX';
 
-        </div>
+        var num = substances.length;
 
-        <script>
-        function createMix()
+        for (i = 0; i < num; i++)
         {
-          var opt = JSON.parse(JSON.stringify(operation));
+            var tmpName = document.getElementById("input" + i).value;
+            console.log(tmpName);
+            var tmpVol = document.getElementById("inputvolume" + i).value;
+            console.log(tmpVol);
+            var tmpUnit = document.getElementById("inputvolumeUnits" + i).value;
+            console.log(tmpUnit);
 
-          opt.NAME = document.getElementById('nameMix').value;
-          opt.ID = createID();
-          opt.CLASSIFICATION = 'MIX';
-
-          var num = document.getElementById('numInputs').value;
-
-          for (i = 0; i < num; i++)
-          {
-              var temp = document.getElementById("input" + i).value;
-              //mixtest["mixSubstances" + (i + 1)] = document.getElementById("input" + i).value;
-              //mixtest["mixSubstances" + (i + 1)] = {Name : temp};
-          }
-
-          inputVar(opt,'water', "10", "UL");
-          inputVar(opt,'blood');
-
-          inputTemperature(opt, document.getElementById('tempMix').value, document.getElementById('tempSign').value);
-          inputTime(opt, document.getElementById('timeMix').value, document.getElementById('timeDuration').value);
-
-          optList.push({OPERATION: opt});
-
-          resetForm('mixForm');
-          inputCreate();
+            inputVar(opt, tmpName, tmpVol, tmpUnit);
         }
 
+        inputTemperature(opt, document.getElementById('tempMix').value, document.getElementById('tempSign').value);
+        inputTime(opt, document.getElementById('timeMix').value, document.getElementById('timeDuration').value);
+
+        operationList.push({OPERATION: opt});
+
+        resetForm('mixForm');
+        inputCreate();
+
+      }
+
+      </script>
+
+    </div>  <!-- End of operationsMenu-->
+
+  </div> <!-- End of left side -->
 
 
 
-        </script>
+  <div class="rightSide">
 
+    <pre id="whereToPrint"></pre>
 
-      </div>  <!-- End of operationsMenu-->
+  </div> <!-- End of right side -->
 
-    </div> <!-- End of left side -->
-
-
-
-    <div class="rightSide">
-
-      <pre id="whereToPrint"></pre>
-
-    </div> <!-- End of right side -->
-
-  </div> <!-- End of experiment -->
+</div> <!-- End of experiment -->
 
 </body>
 

@@ -1,66 +1,78 @@
-/*
-var mix = new Object();
+/**************************************************************************************
 
-mix.name = "testing";
-mix.inputOne = "";
-mix.inputTwo = "";
-mix.tempature = "";
-mix.duration = "";
+                Containers for holding all aspects of experiment creation
 
-function mix(name, input1, input2, temp, time)
-{
-  this.name = name;
-  this.inputOne = input1;
-  this.inputTwo = input2;
-  this.duration = time;
-};
+ **************************************************************************************/
 
-*/
-
-
+// holder for the BenchTop
+var benchtop = [];
 
 // holder for all experiment operations
 var experimentHolder = [];
 
+//holder for all user defined substances
+var substancelist = [];
+
+//holder for all operations
+var operationList = [];
+
+// holds defined substance to help populate selection for drop downs
+var substances = [];
 
 
-// Structure for mix operation
-var mix = {
-  mixName : "Mix1",
-  mixSubstances : "",
-  mixInput2 : "Blood",
-  mixTemp : "100 degrees",
-  mixDuration : "10 mins"
 
-};
+// helper function to clear experiment until a better way can be found
+function resetExperiment() {
+    experimentHolder.length = 0;
+    experiment.NAME = "";
+    experiment.INPUTS.length = 0;
+    experiment.INSTRUCTIONS.length = 0;
+    document.getElementById('whereToPrint').innerHTML = "";
+}
 
 
 //dynamically handles the input fields for mixing operations
 window.inputCreate = function()
 {
+    // pulls the number from selection of how many inputs wanted
     var num = document.getElementById('numInputs').value;
+
     var container = document.getElementById('inputMix');
 
+    // handles if the number is changed to a lower number than was previously selected
     while (container.hasChildNodes())
     {
         container.removeChild(container.lastChild);
     }
 
+    // creates the input entries based on number selected with # of inputs
     for (i = 0; i < num; i++)
     {
-        // creates the input entries based on number selected with # of inputs
+        // creates drop down boxes for defined substances
         container.appendChild(document.createTextNode("Input " + (i + 1) + ": "));
-        var inputs = document.createElement("input");
-        inputs.type = "text";
+        var inputs = document.createElement('select');
         inputs.id = "input" + i;
+        inputs.className = "substanceDrop";
         container.appendChild(inputs);
 
-        // creates the volume entries based on number selected with # of inputs
+        for(var s = 0; s < substances.length; s++)
+        {
+            var opt = document.createElement("option");
+            opt.innerHTML = substances[s];
+            opt.value = substances[s];
+            inputs.appendChild(opt);
+        }
+        // end drop down creation of defined substances
+
+
+        // creates the volume input entries
         container.appendChild((document.createTextNode(" Volume: " )));
         var volume = document.createElement("input");
         volume.type = "text";
         volume.id = "inputvolume" + i;
+        volume.className = "volumeInput";
         container.appendChild(volume);
+        // ends the volume input creation
 
         // creates the selection entries based on number selected with # of inputs
         container.appendChild((document.createTextNode(" Units: " )));
@@ -68,37 +80,86 @@ window.inputCreate = function()
         volumeUnits.id = "inputvolumeUnits" + i;
         container.appendChild(volumeUnits);
 
-        // creates the options for the selection entries
+
         var units = ["mL", "\u00B5L", "pL", "nL", "L"];
+        var unitVal = ["ML", "UL", "PL", "NL", "LITER"];
 
-        var option = document.createElement("option");
-        var option1 = document.createElement("option");
-        var option2 = document.createElement("option");
-        var option3 = document.createElement("option");
-        var option4 = document.createElement("option");
-
-        volumeUnits.appendChild(option);
-        option.innerHTML = units[0];
-        option.value = "ML";
-        volumeUnits.appendChild(option1);
-        option1.text = units[1];
-        option1.value = "UL";
-        volumeUnits.appendChild(option2);
-        option2.text = units[2];
-        option2.value = "PL";
-        volumeUnits.appendChild(option3);
-        option3.text = units[3];
-        option3.value = "NL";
-        volumeUnits.appendChild(option4);
-        option4.text = units[4];
-        option4.value = "LITRE";
+        for (var j = 0; j < units.length; j++)
+        {
+            var option = document.createElement("option");
+            option.innerHTML = units[j];
+            option.value = unitVal[j];
+            volumeUnits.appendChild(option);
+        }
+        // end drop down creation of volume units
 
         container.appendChild(document.createElement("br"));
     }
 };
 
 
-var sublist = [];
+/**************************************************************************************
+
+                                TO BE COMPLETED
+
+ **************************************************************************************/
+
+/*
+
+ Need to do OUTPUT
+
+
+ // structure to hold chemicals TO BE COMPLETED
+ var Chemical = {
+    INPUT_TYPE : "CHEMICAL",
+    CHEMICAL : {
+ NAME : "",
+ },
+ VOLUME : {
+ VALUE : "",
+ UNITS : ""
+ }
+ };
+
+
+ // structure to hold compounds TO BE COMPLETED
+ var Compound = {
+ CHEMICAL: {
+ NAME: "",
+ VOLUME: {
+ VALUE: "",
+ UNITS: ""
+ },
+ }
+ };
+
+ */
+
+
+/**************************************************************************************
+
+                    All structures of a complete experiment
+
+ **************************************************************************************/
+
+
+var BenchTop = {
+    BENCHTOP : {
+        INPUTS : [],
+        EXPERIMENTS : []
+    }
+};
+
+
+var Experiment = {
+    EXPERIMENT : {
+        NAME : "",
+        INPUTS : [],
+        INSTRUCTIONS: []
+    }
+
+};
+
 
 var Substance = {
     VARIABLE_DECLARATION : {
@@ -109,16 +170,7 @@ var Substance = {
 };
 
 
-var experiment = {
-    NAME : "",
-    INPUTS : [],
-    INSTRUCTIONS: []
-};
-
-
-var optList = []
-
-var operation = {
+var OperationStructure = {
     NAME : "",
     ID : "",
     CLASSIFICATION : "",
@@ -127,33 +179,18 @@ var operation = {
 };
 
 
-var Chemical = {
-    INPUT_TYPE : "CHEMICAL",
-    CHEMICAL : {
-        NAME : "",
-    },
-    VOLUME : {
-        VALUE : "",
-        UNITS : ""
-    }
-};
+/**************************************************************************************
+
+                    All structures to hold operation INPUT information
+
+ **************************************************************************************/
 
 
-var Compound = {
-    CHEMICAL: {
-        NAME: "",
-        VOLUME: {
-            VALUE: "",
-            UNITS: ""
-        },
-    }
-};
-
-
-var Variable = {
+// structure to hold user defined substances with their volume and volume units
+var VariableStructure = {
     INPUT_TYPE : "VARIABLE",
     VARIABLE : {
-        NAME: "blood",
+        NAME: "",
         VOLUME : {
             VALUE: "",
             UNITS: ""
@@ -161,7 +198,7 @@ var Variable = {
     }
 };
 
-
+// structure to hold temperature for operations
 var PropertyTemp = {
     INPUT_TYPE : "PROPERTY",
     TEMPERATURE : {
@@ -170,7 +207,7 @@ var PropertyTemp = {
     }
 };
 
-
+// structure to hold time for operations
 var PropertyTime = {
     INPUT_TYPE : "PROPERTY",
     TIME : {
@@ -180,21 +217,37 @@ var PropertyTime = {
 };
 
 
+/**************************************************************************************
+
+                    All functions to populate operation INPUT information
+
+ **************************************************************************************/
+
+
+// Functions for injecting inputs, volume, temperature in
+
 function inputSub (name) {
 
+    //creates an instance of the substance structure while keeping its JSON structure
     var tmpSub = JSON.parse(JSON.stringify(Substance));
 
     tmpSub.VARIABLE_DECLARATION.ID = tmpSub.VARIABLE_DECLARATION.NAME = name;
 
-    sublist.push(tmpSub);
+    //populates substance list for pushing into Experiment
+    substancelist.push(tmpSub);
 
-    resetForm('subForm')
+    //populates substance with names of user inputted substance for allowing user to pick from defined substances
+    substances.push(name);
+
+    resetForm('subForm'); // resets the substance entry form after each substance entered
+
 }
 
 
 function inputVar (obj, tmpname, tmpVal, tmpUnit) {
 
-    var input = JSON.parse(JSON.stringify(Variable));
+    //creates an instance of the variable structure while keeping its JSON structure
+    var input = JSON.parse(JSON.stringify(VariableStructure));
 
     input.VARIABLE.NAME = tmpname;
 
@@ -206,15 +259,18 @@ function inputVar (obj, tmpname, tmpVal, tmpUnit) {
     {
         input.VARIABLE.VOLUME.VALUE = tmpVal;
         input.VARIABLE.VOLUME.UNITS = tmpUnit;
-    }
 
-    obj.INPUTS.push(input);
+        //populates the INPUT array of operation structure with inputs with volumes and units
+        //operation obj being passed into function
+        obj.INPUTS.push(input);
+    }
 
 }
 
 
 function inputTemperature (obj, tmpVal, tmpUnit) {
 
+    //creates an instance of the temperature structure while keeping its JSON structure
     var tmp = JSON.parse(JSON.stringify(PropertyTemp));
 
     if(tmpVal === '' && tmpUnit === '')
@@ -226,6 +282,9 @@ function inputTemperature (obj, tmpVal, tmpUnit) {
     {
         tmp.TEMPERATURE.VALUE = tmpVal;
         tmp.TEMPERATURE.UNITS = tmpUnit;
+
+        //populates the INPUT array of operation structure with temperature values and units
+        //operation obj being passed into function
         obj.INPUTS.push(tmp);
     }
 
@@ -234,6 +293,7 @@ function inputTemperature (obj, tmpVal, tmpUnit) {
 
 function inputTime (obj, tmpVal, tmpUnit) {
 
+    //creates an instance of the time structure while keeping its JSON structure
     var time = JSON.parse(JSON.stringify(PropertyTime));
 
     if(tmpVal === '' && tmpUnit === '')
@@ -245,6 +305,9 @@ function inputTime (obj, tmpVal, tmpUnit) {
     {
         time.TIME.VALUE = tmpVal;
         time.TIME.UNITS = tmpUnit;
+
+        //populates the INPUT array of operation structure with time values and units using
+        //operation obj being passed into funtion
         obj.INPUTS.push(time);
     }
 
