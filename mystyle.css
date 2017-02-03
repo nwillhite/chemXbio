@@ -10,17 +10,17 @@ body {
   overflow: hidden;
 }
 
-.leftSide, .rightSide {
+.leftside, .rightside {
   display: inline-block;
   white-space: normal;
 }
 
-.leftSide {
+.leftside {
   background-color: gray;
   width: 50%;
 }
 
-.rightSide {
+.rightside {
   background-color: teal;
   width: 50%;
   height: 50px;

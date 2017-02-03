@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en-US">
 
 <head>
 
@@ -20,7 +20,7 @@
 <body>
 <div id="experiment">
 
-  <div class="leftSide">
+  <div class="leftside">
 
     <button onclick="showhidetoggle('operationsMenu'); createExperiment()">New experiment</button>
 
@@ -32,14 +32,15 @@
       <button id="splitButton" onclick="">Split</button>
       <button id="outputButton" onclick="">Output</button>
       <button id="restButton" onclick="resetExperiment()">Reset Experiment</button>
-      <button id="quit" onclick="toJson(experimentHolder); hideDiv('operationsMenu'); showDiv('experiment');">Quit Experiment</button>
+      <button id="quit" onclick="toJson(experimentHolder); hideDiv('operationsMenu');
+              showDiv('experiment');">Quit Experiment</button>
 
       <script>
           function createExperiment()
           {
               if (experimentHolder.length === 0)
               {
-                  experimentHolder.push(Experiment);
+                  experimentHolder.push(experimentStructure);
               }
           }
 
@@ -60,10 +61,12 @@
           <fieldset>
           <legend>Add Substance</legend>
             Input:
-            <input type='text' id='subName' name='' value=''>
+            <input type='text' id='substanceName' name='' value=''>
             <br>
-            <input type="button" onclick="inputSub(document.getElementById('subName').value);" name="" value="Add Substance">
-            <input type="button" onclick="addSub(); showhidetoggle('subForm'); formInput(substances.length)" value="Done">
+            <input type="button" onclick="inputSubstance(document.getElementById('subName').value);"
+                   name="" value="Add Substance">
+            <input type="button" onclick="addSub(); showhidetoggle('subForm'); formInput(substances.length)"
+                   value="Done">
             <br>
             <br>
             <div id="substancedisplay">
@@ -126,7 +129,7 @@
       <script>
       function createMix()
       {
-        var opt = JSON.parse(JSON.stringify(OperationStructure));
+        var opt = JSON.parse(JSON.stringify(operationStructure));
 
         opt.NAME = document.getElementById('nameMix').value;
         opt.ID = createID();
@@ -143,7 +146,7 @@
             var tmpUnit = document.getElementById("inputvolumeUnits" + i).value;
             console.log(tmpUnit);
 
-            inputVar(opt, tmpName, tmpVol, tmpUnit);
+            inputVariable(opt, tmpName, tmpVol, tmpUnit);
         }
 
         inputTemperature(opt, document.getElementById('tempMix').value, document.getElementById('tempSign').value);
@@ -164,7 +167,7 @@
 
 
 
-  <div class="rightSide">
+  <div class="rightside">
 
     <pre id="whereToPrint"></pre>
 

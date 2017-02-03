@@ -144,38 +144,38 @@ window.inputCreate = function()
 
 
 var BenchTop = {
-    BENCHTOP : {
-        INPUTS : [],
-        EXPERIMENTS : []
+    BENCHTOP: {
+        INPUTS: [],
+        EXPERIMENTS: []
     }
 };
 
 
-var Experiment = {
-    EXPERIMENT : {
-        NAME : "",
-        INPUTS : [],
+var experimentStructure = {
+    EXPERIMENT: {
+        NAME: "",
+        INPUTS: [],
         INSTRUCTIONS: []
     }
 
 };
 
 
-var Substance = {
-    VARIABLE_DECLARATION : {
-        ID : "",
-        NAME : "",
-        TYPE : "CHEMICAL"
+var substanceStructure = {
+    VARIABLE_DECLARATION: {
+        ID: "",
+        NAME: "",
+        TYPE: "CHEMICAL"
     }
 };
 
 
-var OperationStructure = {
-    NAME : "",
-    ID : "",
-    CLASSIFICATION : "",
-    INPUTS : [],
-    OUTPUTS : []
+var operationStructure = {
+    NAME: "",
+    ID: "",
+    CLASSIFICATION: "",
+    INPUTS: [],
+    OUTPUTS: []
 };
 
 
@@ -187,7 +187,7 @@ var OperationStructure = {
 
 
 // structure to hold user defined substances with their volume and volume units
-var VariableStructure = {
+var variableStructure = {
     INPUT_TYPE : "VARIABLE",
     VARIABLE : {
         NAME: "",
@@ -199,7 +199,7 @@ var VariableStructure = {
 };
 
 // structure to hold temperature for operations
-var PropertyTemp = {
+var propertyTemp = {
     INPUT_TYPE : "PROPERTY",
     TEMPERATURE : {
         VALUE : "",
@@ -208,7 +208,7 @@ var PropertyTemp = {
 };
 
 // structure to hold time for operations
-var PropertyTime = {
+var propertyTime = {
     INPUT_TYPE : "PROPERTY",
     TIME : {
         VALUE : "",
@@ -226,10 +226,10 @@ var PropertyTime = {
 
 // Functions for injecting inputs, volume, temperature in
 
-function inputSub (name) {
+function inputSubstance (name) {
 
     //creates an instance of the substance structure while keeping its JSON structure
-    var tmpSub = JSON.parse(JSON.stringify(Substance));
+    var tmpSub = JSON.parse(JSON.stringify(substanceStructure));
 
     tmpSub.VARIABLE_DECLARATION.ID = tmpSub.VARIABLE_DECLARATION.NAME = name;
 
@@ -244,19 +244,17 @@ function inputSub (name) {
 }
 
 
-function inputVar (obj, tmpname, tmpVal, tmpUnit) {
+function inputVariable (obj, tmpname, tmpVal, tmpUnit) {
 
     //creates an instance of the variable structure while keeping its JSON structure
-    var input = JSON.parse(JSON.stringify(VariableStructure));
+    var input = JSON.parse(JSON.stringify(variableStructure));
 
     input.VARIABLE.NAME = tmpname;
 
-    if (tmpVal === undefined && tmpUnit === undefined)
-    {
+    if (tmpVal === undefined && tmpUnit === undefined) {
         delete input.VARIABLE.VOLUME;
     }
-    else
-    {
+    else {
         input.VARIABLE.VOLUME.VALUE = tmpVal;
         input.VARIABLE.VOLUME.UNITS = tmpUnit;
 
@@ -271,15 +269,13 @@ function inputVar (obj, tmpname, tmpVal, tmpUnit) {
 function inputTemperature (obj, tmpVal, tmpUnit) {
 
     //creates an instance of the temperature structure while keeping its JSON structure
-    var tmp = JSON.parse(JSON.stringify(PropertyTemp));
+    var tmp = JSON.parse(JSON.stringify(propertyTemp));
 
-    if(tmpVal === '' && tmpUnit === '')
-    {
+    if(tmpVal === '' && tmpUnit === '') {
         delete tmp.INPUT_TYPE;
         delete tmp.TEMPERATURE;
     }
-    else
-    {
+    else {
         tmp.TEMPERATURE.VALUE = tmpVal;
         tmp.TEMPERATURE.UNITS = tmpUnit;
 
@@ -294,15 +290,13 @@ function inputTemperature (obj, tmpVal, tmpUnit) {
 function inputTime (obj, tmpVal, tmpUnit) {
 
     //creates an instance of the time structure while keeping its JSON structure
-    var time = JSON.parse(JSON.stringify(PropertyTime));
+    var time = JSON.parse(JSON.stringify(propertyTime));
 
-    if(tmpVal === '' && tmpUnit === '')
-    {
+    if(tmpVal === '' && tmpUnit === '') {
         delete time.INPUT_TYPE;
         delete time.TIME;
     }
-    else
-    {
+    else {
         time.TIME.VALUE = tmpVal;
         time.TIME.UNITS = tmpUnit;
 
