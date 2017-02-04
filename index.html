@@ -46,13 +46,15 @@
 
           function addSub()
           {
-              Experiment.EXPERIMENT.INPUTS.push(substancelist);
+              experimentStructure.EXPERIMENT.INPUTS.push(substancelist);
           }
 
           function addMix()
           {
-              Experiment.EXPERIMENT.INSTRUCTIONS.push(operationList);
+              experimentStructure.EXPERIMENT.INSTRUCTIONS.push(operationList);
           }
+
+        
       </script>
 
       <!-- Begin Substance Form -->
@@ -60,18 +62,18 @@
         <form id='subForm' method='post'>
           <fieldset>
           <legend>Add Substance</legend>
-            Input:
+            <label for="substanceName">Input:</label>
             <input type='text' id='substanceName' name='' value=''>
             <br>
-            <input type="button" onclick="inputSubstance(document.getElementById('subName').value);"
+            <input type="button" onclick="inputSubstance(document.getElementById('substanceName').value); formInput(substances.length); formRemove()"
                    name="" value="Add Substance">
-            <input type="button" onclick="addSub(); showhidetoggle('subForm'); formInput(substances.length)"
+            <input type="button" onclick="addSub(); showhidetoggle('substanceform')"
                    value="Done">
             <br>
             <br>
             <div id="substancedisplay">
               <script>
-                  // need to list the substances being used
+                  //toJson(substances);// need to list the substances being used
               </script>
             </div> <!-- end the display of currently inputted substances -->
           </fieldset>
@@ -79,15 +81,39 @@
       </div>
       <!-- End Substance Form -->
 
+
+      <!-- Begin Substance Removal Form -->
+      <div id="substanceremoval">
+        <form id="subRemoveForm" method="post">
+          <fieldset>
+          <legend>Remove Substance</legend>
+            <label for="removesubstanceName">Enter Substance to Remove:</label>
+            <select id="removesubstanceName">
+              <script>
+                removeSubstance();
+              </script>
+            </select>
+            <br>
+            <input type="button" onclick="removeSubstance()" value="Remove">
+          </fieldset>
+        </form>
+      </div>
+      <!-- End Substance Removal Form -->
+
+      <script>
+
+      </script>
+
+
       <!-- Begin Mixture Form -->
       <div id="mixtureform" style="display: none">
         <form id="mixForm" method="post">
           <fieldset>
             <legend>MIX</legend>
-            Name:
+            <label for="nameMix">Name:</label>
             <input type="text" id="nameMix" name="" value="">
             <br>
-            How many inputs for mixture?
+            <label for="numInputs">How many inputs for mixture?</label>
             <select id="numInputs" onchange="inputCreate()">
               <option selected disabled hidden style='display: none' value=''></option>
               <script>
@@ -96,11 +122,12 @@
             </select>
             <br>
             <br>
-            Enter Mixtures:<br>
+            <label for="inputMix">Enter Mixtures:</label>
+            <br>
             <div id="inputMix">
               <!-- container for dynamically making input fields -->
             </div>
-            Enter Temp:
+            <label for="tempMix">Enter Temp:</label>
             <input type="text" id="tempMix" name="" value="">
             <select id="tempSign">
               <option selected disabled hidden style='display: none' value=''></option>
@@ -109,7 +136,7 @@
               </script>
             </select>
             <br>
-            Enter Time:
+            <label for="timeMix">Enter Time:</label>
             <input type="text" id="timeMix" name="" value="">
             <select id="timeDuration">
               <option selected disabled hidden style='display: none' value=''></option>
@@ -158,7 +185,6 @@
         inputCreate();
 
       }
-
       </script>
 
     </div>  <!-- End of operationsMenu-->

@@ -31,12 +31,6 @@ function showhidetoggle(id)
 }
 
 
-function resetForm(formId)
-{
-  document.getElementById(formId).reset();
-}
-
-
 function toJson(input)
 {
   document.getElementById('whereToPrint').innerHTML = JSON.stringify(input, null, 4);
@@ -49,18 +43,37 @@ function createID()
     return tmpId
 }
 
+function resetForm(formId)
+{
+    document.getElementById(formId).reset();
+}
+
+
+function removeSubstance() {
+
+    var toRemove = document.getElementById('removesubstanceName').value;
+    var index = substances.indexOf(toRemove);
+    substances.splice(index,1);
+    formRemove(); // temp fix ----- make function to update all forms that use substances
+}
+
 
 /**************************************************************************************
 
-                    Functions to help make forms dynamically
+                    Functions to help make forms dynamic
 
  **************************************************************************************/
 
 
 function formInput(num)
 {
-    var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     var select = document.getElementById('numInputs');
+
+    // handles if the number is changed to a lower number than was previously selected
+    while (select.hasChildNodes())
+    {
+        select.removeChild(select.lastChild);
+    }
 
     var tmp = num + 1;
     console.log(tmp);
@@ -102,4 +115,27 @@ function formTime(form)
         option.value = displayValue[i];
         select.appendChild(option);
     }
+}
+
+// populates the Substance removal drop down
+function formRemove() {
+
+    var tmp = substances.length;
+
+    var container = document.getElementById('removesubstanceName');
+
+    // handles if the number is changed to a lower number than was previously selected
+    while (container.hasChildNodes())
+    {
+        container.removeChild(container.lastChild);
+    }
+
+    for (var i = 0; i < tmp; i++)
+    {
+        var option = document.createElement('option');
+        option.innerHTML = substances[i];
+        option.value = substances[i];
+        container.appendChild(option);
+    }
+
 }
