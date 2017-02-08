@@ -4,13 +4,14 @@ body {
 }
 
 /*
+
 #experiment {
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
 }
 
-.leftside, .rightside {
+.leftside {
   display: inline-block;
   white-space: normal;
 }
@@ -19,6 +20,7 @@ body {
   background-color: gray;
   width: 50%;
 }
+
 
 .rightside {
   background-color: teal;
@@ -34,11 +36,11 @@ body {
   padding: 50px;
 }
 
-#subForm {
+#subAddForm {
   float: right;
 }
 
-#subForm input[type=text] {
+#subAddFormForm input[type=text] {
   width: 50px;
   padding: 1px 2px;
   margin: 8px 0;
@@ -48,7 +50,6 @@ body {
   transition: 0.5s;
   outline: none;
 }
-
 
 
 #formMix {
@@ -78,6 +79,10 @@ button:hover {
 
 
 /* Start Form Style */
+
+#substanceremoval {
+  float: right;
+}
 
 .substanceDrop {
   width: 50px;

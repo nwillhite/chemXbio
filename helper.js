@@ -10,6 +10,7 @@ function showDiv(id)
   document.getElementById(id).style.display = 'block';
 }
 
+
 function hideDiv(id)
 {
   document.getElementById(id).style.display = 'none';
@@ -33,15 +34,15 @@ function showhidetoggle(id)
 
 function toJson(input)
 {
-  document.getElementById('whereToPrint').innerHTML = JSON.stringify(input, null, 4);
+  document.getElementById('whereToPrint').innerHTML = JSON.stringify(input, null, 2);
 }
 
 
 function createID()
 {
-    var tmpId = Math.floor((Math.random() * 1000000000) + 1);
-    return tmpId
+    return Math.floor((Math.random() * 1000000000) + 1);
 }
+
 
 function resetForm(formId)
 {
@@ -50,11 +51,20 @@ function resetForm(formId)
 
 
 function removeSubstance() {
-
     var toRemove = document.getElementById('removesubstanceName').value;
     var index = substances.indexOf(toRemove);
+
+    console.log(toRemove);
+
+    for(var i = 0; i < substancelist.length; i++)
+    {
+        if(substancelist[i].VARIABLE_DECLARATION.NAME === toRemove)
+        {
+            substancelist.splice(i, 1);
+        }
+    }
     substances.splice(index,1);
-    formRemove(); // temp fix ----- make function to update all forms that use substances
+    update();
 }
 
 
@@ -64,18 +74,18 @@ function removeSubstance() {
 
  **************************************************************************************/
 
-
-function formInput(num)
+// function controls the number of inputs for setting inputs into operations
+function formInput()
 {
-    var select = document.getElementById('numInputs');
+    var container = document.getElementById('numInputs');
 
     // handles if the number is changed to a lower number than was previously selected
-    while (select.hasChildNodes())
+    while (container.hasChildNodes())
     {
-        select.removeChild(select.lastChild);
+        container.removeChild(container.lastChild);
     }
-
-    var tmp = num + 1;
+    var tmp = substances.length;
+    tmp += 1;
     console.log(tmp);
 
     for(var i = 0; i < tmp; i++)
@@ -83,7 +93,7 @@ function formInput(num)
         var option = document.createElement('option');
         option.innerHTML = i;
         option.value = i;
-        select.appendChild(option);
+        container.appendChild(option);
     }
 }
 
@@ -138,4 +148,10 @@ function formRemove() {
         container.appendChild(option);
     }
 
+}
+
+function update() {
+    formInput();
+    formRemove();
+    document.getElementById('substancedisplay').innerHTML = " " + substances;
 }

@@ -20,14 +20,16 @@ var operationList = [];
 var substances = [];
 
 
-
 // helper function to clear experiment until a better way can be found
 function resetExperiment() {
     experimentHolder.length = 0;
-    experiment.NAME = "";
-    experiment.INPUTS.length = 0;
-    experiment.INSTRUCTIONS.length = 0;
-    document.getElementById('whereToPrint').innerHTML = "";
+    experimentStructure.EXPERIMENT.NAME = "";
+    experimentStructure.EXPERIMENT.INPUTS.length = 0;
+    experimentStructure.EXPERIMENT.INSTRUCTIONS.length = 0;
+    substancelist.length = 0;
+    operationList.length = 0;
+    substances.length = 0;
+    //document.getElementById('whereToPrint').innerHTML = "";
 }
 
 
@@ -55,11 +57,11 @@ window.inputCreate = function()
         inputs.className = "substanceDrop";
         container.appendChild(inputs);
 
-        for(var s = 0; s < substances.length; s++)
+        for(var s = 0; s < substancelist.length; s++)
         {
             var opt = document.createElement("option");
-            opt.innerHTML = substances[s];
-            opt.value = substances[s];
+            opt.innerHTML = substancelist[s].VARIABLE_DECLARATION.NAME;
+            opt.value = substancelist[s].VARIABLE_DECLARATION.NAME;
             inputs.appendChild(opt);
         }
         // end drop down creation of defined substances
@@ -79,7 +81,6 @@ window.inputCreate = function()
         var volumeUnits = document.createElement("select");
         volumeUnits.id = "inputvolumeUnits" + i;
         container.appendChild(volumeUnits);
-
 
         var units = ["mL", "\u00B5L", "pL", "nL", "L"];
         var unitVal = ["ML", "UL", "PL", "NL", "LITER"];
@@ -161,7 +162,7 @@ var experimentStructure = {
 };
 
 
-var substanceStructure = {
+var variableStructure = {
     VARIABLE_DECLARATION: {
         ID: "",
         NAME: "",
@@ -171,11 +172,13 @@ var substanceStructure = {
 
 
 var operationStructure = {
-    NAME: "",
-    ID: "",
-    CLASSIFICATION: "",
-    INPUTS: [],
-    OUTPUTS: []
+    OPERATION : {
+        NAME: "",
+        ID: "",
+        CLASSIFICATION: "",
+        INPUTS: [],
+        OUTPUTS: []
+    }
 };
 
 
@@ -187,32 +190,53 @@ var operationStructure = {
 
 
 // structure to hold user defined substances with their volume and volume units
-var variableStructure = {
-    INPUT_TYPE : "VARIABLE",
-    VARIABLE : {
-        NAME: "",
-        VOLUME : {
+var substanceStructure = {
+    INPUT_TYPE: "VARIABLE",
+    CHEMICAL: {
+        VARIABLE: {
+            NAME: "",
+        },
+        VOLUME: {
             VALUE: "",
             UNITS: ""
         },
     }
 };
 
-// structure to hold temperature for operations
-var propertyTemp = {
-    INPUT_TYPE : "PROPERTY",
-    TEMPERATURE : {
-        VALUE : "",
-        UNITS : "",
+
+var variableOutput = {
+    VARIABLE_DECLARATION: {
+        ID: "",
+        TYPE: "VARIABLE",
+        NAME: "",
     }
 };
 
+var sensorOutput = {
+    SENSOR_DECLARATION: {
+        ID: "",
+        NAME: "",
+        TYPE: "SENSOR",
+    }
+};
+
+
+// structure to hold temperature for operations
+var propertyTemp = {
+    INPUT_TYPE: "PROPERTY",
+    TEMPERATURE: {
+        VALUE: "",
+        UNITS: "",
+    }
+};
+
+
 // structure to hold time for operations
 var propertyTime = {
-    INPUT_TYPE : "PROPERTY",
-    TIME : {
-        VALUE : "",
-        UNITS : "",
+    INPUT_TYPE: "PROPERTY",
+    TIME: {
+        VALUE: "",
+        UNITS: "",
     }
 };
 
@@ -229,7 +253,7 @@ var propertyTime = {
 function inputSubstance (name) {
 
     //creates an instance of the substance structure while keeping its JSON structure
-    var tmpSub = JSON.parse(JSON.stringify(substanceStructure));
+    var tmpSub = JSON.parse(JSON.stringify(variableStructure));
 
     tmpSub.VARIABLE_DECLARATION.ID = tmpSub.VARIABLE_DECLARATION.NAME = name;
 
@@ -239,28 +263,52 @@ function inputSubstance (name) {
     //populates substance with names of user inputted substance for allowing user to pick from defined substances
     substances.push(name);
 
-    resetForm('subForm'); // resets the substance entry form after each substance entered
+    resetForm('subAddForm'); // resets the substance entry form after each substance entered
 
 }
 
+function inputOutput(obj, type, tmpName) {
 
-function inputVariable (obj, tmpname, tmpVal, tmpUnit) {
+    console.log(type);
+    console.log(tmpName);
+    if (type === 'variable')
+    {
+        var varOutput = JSON.parse(JSON.stringify(variableOutput));
+
+        varOutput.VARIABLE_DECLARATION.NAME = varOutput.VARIABLE_DECLARATION.ID = tmpName;
+
+        obj.OPERATION.OUTPUTS.push(varOutput);
+
+    }
+    else if (type === 'sensor')
+    {
+        console.log('entered sensor');
+        var sensor = JSON.parse(JSON.stringify(sensorOutput));
+
+        sensor.SENSOR_DECLARATION.NAME = sensor.SENSOR_DECLARATION.ID = tmpName;
+
+        obj.OPERATION.OUTPUTS.push(sensor);
+    }
+}
+
+
+function inputVariable (obj, tmpName, tmpVal, tmpUnit) {
 
     //creates an instance of the variable structure while keeping its JSON structure
-    var input = JSON.parse(JSON.stringify(variableStructure));
+    var input = JSON.parse(JSON.stringify(substanceStructure));
 
-    input.VARIABLE.NAME = tmpname;
+    input.CHEMICAL.VARIABLE.NAME = tmpName;
 
     if (tmpVal === undefined && tmpUnit === undefined) {
-        delete input.VARIABLE.VOLUME;
+        delete input.CHEMICAL.VARIABLE.VOLUME;
     }
     else {
-        input.VARIABLE.VOLUME.VALUE = tmpVal;
-        input.VARIABLE.VOLUME.UNITS = tmpUnit;
+        input.CHEMICAL.VOLUME.VALUE = tmpVal;
+        input.CHEMICAL.VOLUME.UNITS = tmpUnit;
 
         //populates the INPUT array of operation structure with inputs with volumes and units
         //operation obj being passed into function
-        obj.INPUTS.push(input);
+        obj.OPERATION.INPUTS.push(input);
     }
 
 }
@@ -281,7 +329,7 @@ function inputTemperature (obj, tmpVal, tmpUnit) {
 
         //populates the INPUT array of operation structure with temperature values and units
         //operation obj being passed into function
-        obj.INPUTS.push(tmp);
+        obj.OPERATION.INPUTS.push(tmp);
     }
 
 }
@@ -302,7 +350,7 @@ function inputTime (obj, tmpVal, tmpUnit) {
 
         //populates the INPUT array of operation structure with time values and units using
         //operation obj being passed into funtion
-        obj.INPUTS.push(time);
+        obj.OPERATION.INPUTS.push(time);
     }
 
 }

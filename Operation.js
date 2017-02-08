@@ -25,6 +25,7 @@ class Operation {
     get input () {return this.INPUTS};
 }
 
+
 class Inputs {
 
     constructor(type, name, volume, vunits, temp, tunits)
@@ -46,13 +47,3 @@ var inputVarb = {
         NAME : "blood"
     }
 };
-
-
-
-//var test = new Inputs('VARIABLE','sand');
-
-
-//Mix.INPUTS = test;
-
-//Mix.NAME = "testing";
-//Mix.ID = 18;

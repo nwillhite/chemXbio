@@ -26,56 +26,59 @@
 
     <div id="operationsMenu" style="display: none">
 
-      <button id="addSub" onclick="showhidetoggle('substanceform')">Add Substance</button>
+      <button id="addSub" onclick="showhidetoggle('substanceadd')">Add Substance</button>
+      <button id="removeSub" onclick="showhidetoggle('substanceremoval')">Remove Substance</button>
       <button id="mixButton" onclick="showhidetoggle('mixtureform'); inputCreate()">Mix</button>
       <button id="heatButton" onclick="">Heat</button>
       <button id="splitButton" onclick="">Split</button>
       <button id="outputButton" onclick="">Output</button>
       <button id="restButton" onclick="resetExperiment()">Reset Experiment</button>
+      <button id="startButton" onclick="">Start Experiment</button>
       <button id="quit" onclick="toJson(experimentHolder); hideDiv('operationsMenu');
-              showDiv('experiment');">Quit Experiment</button>
-
+              showDiv('experiment'); resetExperiment()">Quit Experiment</button>
       <script>
-          function createExperiment()
-          {
-              if (experimentHolder.length === 0)
-              {
+
+          function createExperiment() {
+
+              if (experimentHolder.length === 0) {
+
                   experimentHolder.push(experimentStructure);
               }
           }
 
-          function addSub()
-          {
-              experimentStructure.EXPERIMENT.INPUTS.push(substancelist);
+          function addSub() {
+              experimentStructure.EXPERIMENT.INPUTS = substancelist;
           }
 
-          function addMix()
-          {
-              experimentStructure.EXPERIMENT.INSTRUCTIONS.push(operationList);
+          function addMix() {
+
+              experimentStructure.EXPERIMENT.INSTRUCTIONS = operationList;
           }
 
-        
+          function startExperiment () {
+
+          }
+
+          // window.location.reload()
       </script>
 
       <!-- Begin Substance Form -->
-      <div id='substanceform' style="display: none">
-        <form id='subForm' method='post'>
+      <div id='substanceadd' style="display: none">
+        <form id='subAddForm' method='post'>
           <fieldset>
           <legend>Add Substance</legend>
             <label for="substanceName">Input:</label>
             <input type='text' id='substanceName' name='' value=''>
             <br>
-            <input type="button" onclick="inputSubstance(document.getElementById('substanceName').value); formInput(substances.length); formRemove()"
-                   name="" value="Add Substance">
-            <input type="button" onclick="addSub(); showhidetoggle('substanceform')"
+            <input type="button" onclick="inputSubstance(document.getElementById('substanceName').value);
+                   update();" name="" value="Add Substance">
+            <input type="button" onclick="addSub(); showhidetoggle('substanceadd')"
                    value="Done">
             <br>
             <br>
             <div id="substancedisplay">
-              <script>
-                  //toJson(substances);// need to list the substances being used
-              </script>
-            </div> <!-- end the display of currently inputted substances -->
+              <!-- shows list of currently entered user substances -->
+            </div>
           </fieldset>
         </form>
       </div>
@@ -83,7 +86,7 @@
 
 
       <!-- Begin Substance Removal Form -->
-      <div id="substanceremoval">
+      <div id="substanceremoval" style="display: none">
         <form id="subRemoveForm" method="post">
           <fieldset>
           <legend>Remove Substance</legend>
@@ -94,15 +97,12 @@
               </script>
             </select>
             <br>
-            <input type="button" onclick="removeSubstance()" value="Remove">
+            <input type="button" onclick="removeSubstance(); update()" value="Remove">
+            <input type="button" onclick="showhidetoggle('substanceremoval')" value="Done">
           </fieldset>
         </form>
       </div>
       <!-- End Substance Removal Form -->
-
-      <script>
-
-      </script>
 
 
       <!-- Begin Mixture Form -->
@@ -144,6 +144,13 @@
                 formTime('timeDuration');
               </script>
             </select>
+            <label for="mixOutput">Output:</label>
+            <input type="text" id="mixOutputName">
+            <select id="mixOutput" >
+              <option selected disabled hidden style="display: none" value=''></option>
+              <option value="variable">Variable</option>
+              <option id="mixOutSensor" value="sensor">Sensor</option>
+            </select>
             <br>
             <input type="button" onclick="createMix()" id="" name="" value="Add Mix">
             <input type="button" onclick="addMix(); showhidetoggle('mixtureform')" value="Done">
@@ -158,11 +165,13 @@
       {
         var opt = JSON.parse(JSON.stringify(operationStructure));
 
-        opt.NAME = document.getElementById('nameMix').value;
-        opt.ID = createID();
-        opt.CLASSIFICATION = 'MIX';
 
-        var num = substances.length;
+
+        opt.OPERATION.NAME = document.getElementById('nameMix').value;
+        opt.OPERATION.ID = createID();
+        opt.OPERATION.CLASSIFICATION = 'MIX';
+
+        var num = document.getElementById('numInputs').value;
 
         for (i = 0; i < num; i++)
         {
@@ -178,8 +187,11 @@
 
         inputTemperature(opt, document.getElementById('tempMix').value, document.getElementById('tempSign').value);
         inputTime(opt, document.getElementById('timeMix').value, document.getElementById('timeDuration').value);
+        console.log(document.getElementById('mixOutput').value);
+        console.log(document.getElementById('mixOutputName').value);
+        inputOutput(opt, document.getElementById('mixOutput').value, document.getElementById('mixOutputName').value);
 
-        operationList.push({OPERATION: opt});
+        operationList.push(opt);
 
         resetForm('mixForm');
         inputCreate();
