@@ -116,6 +116,7 @@ function formTime(form)
 {
     var display = ['Second(s)', 'Minute(s)', 'Hour(s)', 'Day(s)'];
     var displayValue = ['SECOND', 'MINUTE', 'HOUR', 'DAY'];
+    //var select = document.getElementById(form);
     var select = document.getElementById(form);
 
     for(var i = 0; i < display.length; i++)

@@ -39,7 +39,7 @@ window.inputCreate = function()
     // pulls the number from selection of how many inputs wanted
     var num = document.getElementById('numInputs').value;
 
-    var container = document.getElementById('inputMix');
+    var container = document.getElementById('mixInput');
 
     // handles if the number is changed to a lower number than was previously selected
     while (container.hasChildNodes())
@@ -203,7 +203,8 @@ var substanceStructure = {
     }
 };
 
-
+// might need in future, using variableStucture for the time being
+/*
 var variableOutput = {
     VARIABLE_DECLARATION: {
         ID: "",
@@ -211,6 +212,7 @@ var variableOutput = {
         NAME: "",
     }
 };
+*/
 
 var sensorOutput = {
     SENSOR_DECLARATION: {
@@ -269,13 +271,13 @@ function inputSubstance (name) {
 
 function inputOutput(obj, type, tmpName) {
 
-    console.log(type);
-    console.log(tmpName);
-    if (type === 'variable')
+    if (type === 'substance')
     {
-        var varOutput = JSON.parse(JSON.stringify(variableOutput));
+        var varOutput = JSON.parse(JSON.stringify(variableStructure));
 
         varOutput.VARIABLE_DECLARATION.NAME = varOutput.VARIABLE_DECLARATION.ID = tmpName;
+
+        varOutput.VARIABLE_DECLARATION.TYPE = 'VARIABLE';
 
         obj.OPERATION.OUTPUTS.push(varOutput);
 

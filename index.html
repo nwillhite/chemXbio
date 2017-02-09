@@ -26,16 +26,27 @@
 
     <div id="operationsMenu" style="display: none">
 
-      <button id="addSub" onclick="showhidetoggle('substanceadd')">Add Substance</button>
-      <button id="removeSub" onclick="showhidetoggle('substanceremoval')">Remove Substance</button>
-      <button id="mixButton" onclick="showhidetoggle('mixtureform'); inputCreate()">Mix</button>
-      <button id="heatButton" onclick="">Heat</button>
-      <button id="splitButton" onclick="">Split</button>
-      <button id="outputButton" onclick="">Output</button>
+      <table id="menu">
+        <tr>
+          <td><button id="addSub" onclick="showhidetoggle('substanceadd')">Add Substance</button></td>
+          <td><button id="removeSub" onclick="showhidetoggle('substanceremoval')">Remove Substance</button></td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <td><button id="mixButton" onclick="showhidetoggle('mixtureform'); inputCreate()">Mix</button></td>
+          <td><button id="heatButton" onclick="showhidetoggle('heat_coolform')">Heat</button></td>
+          <td><button id="splitButton" onclick="">Split</button></td>
+          <td><button id="outputButton" onclick="">Output</button></td>
+        </tr>
+      </table>
+
       <button id="restButton" onclick="resetExperiment()">Reset Experiment</button>
       <button id="startButton" onclick="">Start Experiment</button>
       <button id="quit" onclick="toJson(experimentHolder); hideDiv('operationsMenu');
               showDiv('experiment'); resetExperiment()">Quit Experiment</button>
+
       <script>
 
           function createExperiment() {
@@ -110,8 +121,9 @@
         <form id="mixForm" method="post">
           <fieldset>
             <legend>MIX</legend>
-            <label for="nameMix">Name:</label>
-            <input type="text" id="nameMix" name="" value="">
+            <label for="mixName">Name:</label>
+            <input type="text" id="mixName" name="" value="">
+            <br>
             <br>
             <label for="numInputs">How many inputs for mixture?</label>
             <select id="numInputs" onchange="inputCreate()">
@@ -122,42 +134,81 @@
             </select>
             <br>
             <br>
-            <label for="inputMix">Enter Mixtures:</label>
+            <label for="mixInput">Enter Mixtures:</label>
             <br>
-            <div id="inputMix">
+            <div id="mixInput">
               <!-- container for dynamically making input fields -->
             </div>
-            <label for="tempMix">Enter Temp:</label>
-            <input type="text" id="tempMix" name="" value="">
-            <select id="tempSign">
+            <label for="mixTemp">Enter Temp:</label>
+            <input type="text" id="mixTemp" name="" value="">
+            <select id="mixTempSign">
               <option selected disabled hidden style='display: none' value=''></option>
               <script>
-                formTemperature('tempSign');
+                formTemperature('mixTempSign');
               </script>
             </select>
             <br>
-            <label for="timeMix">Enter Time:</label>
-            <input type="text" id="timeMix" name="" value="">
-            <select id="timeDuration">
+            <label for="mixTime">Enter Time:</label>
+            <input type="text" id="mixTime" name="" value="">
+            <select id="mixDuration">
               <option selected disabled hidden style='display: none' value=''></option>
               <script>
-                formTime('timeDuration');
+                formTime('mixDuration');
               </script>
             </select>
-            <label for="mixOutput">Output:</label>
+            <br>
+            <label for="mixOutputname">Output Name:</label>
             <input type="text" id="mixOutputName">
-            <select id="mixOutput" >
-              <option selected disabled hidden style="display: none" value=''></option>
-              <option value="variable">Variable</option>
-              <option id="mixOutSensor" value="sensor">Sensor</option>
-            </select>
             <br>
-            <input type="button" onclick="createMix()" id="" name="" value="Add Mix">
+            <br>
+            <input type="button" onclick="createMix()" value="Add Mix">
             <input type="button" onclick="addMix(); showhidetoggle('mixtureform')" value="Done">
-            </fieldset>
+          </fieldset>
         </form>
       </div>
       <!-- End Mixture Form -->
+
+
+      <!-- Begin Heat Form -->
+      <div id="heat_coolform">
+        <form id="heatForm" post="post">
+          <fieldset>
+            <legend>Heat</legend>
+            <label for="nameHeat">Name:</label>
+            <input type="text" id="nameHeat">
+            <br>
+            <br>
+            <label for="inputHeat">Select Inputs:</label>
+            <select id="inputHeat">
+              <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
+            </select>
+            <br>
+            <br>
+            <label for="heatTemp">Enter Temp:</label>
+            <input type="text" id="heatTemp" name="" value="">
+            <select id="heatTempSign">
+              <option selected disabled hidden style='display: none' value=''></option>
+              <script>
+                  formTemperature('heatTempSign');
+              </script>
+            </select>
+            <br>
+            <label for="heatTime">Enter Time:</label>
+            <input type="text" id="heatTime">
+            <select id="heatDuration">
+              <option selected disabled hidden style='display: none' value=''></option>
+              <script>
+                  formTime('heatDuration');
+              </script>
+            </select>
+            <br>
+            <br>
+            <input type="button" onclick="" value="Add Heat">
+            <input type="button" onclick="showhidetoggle('heat_coolform')" value="Done">
+          </fieldset>
+        </form>
+      </div>
+      <!-- End Heat Form -->
 
 
       <script>
@@ -165,9 +216,7 @@
       {
         var opt = JSON.parse(JSON.stringify(operationStructure));
 
-
-
-        opt.OPERATION.NAME = document.getElementById('nameMix').value;
+        opt.OPERATION.NAME = document.getElementById('mixName').value;
         opt.OPERATION.ID = createID();
         opt.OPERATION.CLASSIFICATION = 'MIX';
 
@@ -185,11 +234,9 @@
             inputVariable(opt, tmpName, tmpVol, tmpUnit);
         }
 
-        inputTemperature(opt, document.getElementById('tempMix').value, document.getElementById('tempSign').value);
-        inputTime(opt, document.getElementById('timeMix').value, document.getElementById('timeDuration').value);
-        console.log(document.getElementById('mixOutput').value);
-        console.log(document.getElementById('mixOutputName').value);
-        inputOutput(opt, document.getElementById('mixOutput').value, document.getElementById('mixOutputName').value);
+        inputTemperature(opt, document.getElementById('mixTemp').value, document.getElementById('mixTempSign').value);
+        inputTime(opt, document.getElementById('mixTime').value, document.getElementById('mixDuration').value);
+        inputOutput(opt, 'substance', document.getElementById('mixOutputName').value);
 
         operationList.push(opt);
 
