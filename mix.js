@@ -34,10 +34,10 @@ function resetExperiment() {
 
 
 //dynamically handles the input fields for mixing operations
-window.inputCreate = function()
+function inputCreate()
 {
     // pulls the number from selection of how many inputs wanted
-    var num = document.getElementById('numInputs').value;
+    var num = document.getElementById('mixInputAmount').value;
 
     var container = document.getElementById('mixInput');
 
@@ -81,6 +81,13 @@ window.inputCreate = function()
         var volumeUnits = document.createElement("select");
         volumeUnits.id = "inputvolumeUnits" + i;
         container.appendChild(volumeUnits);
+
+        var option = document.createElement('option');
+        option.setAttribute('selected', 'selected');
+        option.setAttribute('disabled', 'disabled');
+        option.setAttribute('hidden', 'hidden');
+        option.setAttribute('style', 'display: none');
+        volumeUnits.appendChild(option);
 
         var units = ["mL", "\u00B5L", "pL", "nL", "L"];
         var unitVal = ["ML", "UL", "PL", "NL", "LITER"];
@@ -204,15 +211,13 @@ var substanceStructure = {
 };
 
 // might need in future, using variableStucture for the time being
-/*
-var variableOutput = {
-    VARIABLE_DECLARATION: {
-        ID: "",
-        TYPE: "VARIABLE",
+var variableInput = {
+    INPUT_TYPE: "VARIABLE",
+    VARIABLE: {
         NAME: "",
     }
 };
-*/
+
 
 var sensorOutput = {
     SENSOR_DECLARATION: {
@@ -269,7 +274,7 @@ function inputSubstance (name) {
 
 }
 
-function inputOutput(obj, type, tmpName) {
+function operationOutput(obj, type, tmpName) {
 
     if (type === 'substance')
     {
@@ -301,8 +306,10 @@ function inputVariable (obj, tmpName, tmpVal, tmpUnit) {
 
     input.CHEMICAL.VARIABLE.NAME = tmpName;
 
-    if (tmpVal === undefined && tmpUnit === undefined) {
-        delete input.CHEMICAL.VARIABLE.VOLUME;
+    if (tmpVal === '' && tmpUnit === '')
+    {
+        delete input.CHEMICAL.VOLUME;
+        obj.OPERATION.INPUTS.push(input);
     }
     else {
         input.CHEMICAL.VOLUME.VALUE = tmpVal;

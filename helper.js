@@ -51,10 +51,9 @@ function resetForm(formId)
 
 
 function removeSubstance() {
-    var toRemove = document.getElementById('removesubstanceName').value;
-    var index = substances.indexOf(toRemove);
 
-    console.log(toRemove);
+    var toRemove = document.getElementById('removesubstanceList').value;
+    //var index = substances.indexOf(toRemove);
 
     for(var i = 0; i < substancelist.length; i++)
     {
@@ -63,8 +62,23 @@ function removeSubstance() {
             substancelist.splice(i, 1);
         }
     }
-    substances.splice(index,1);
+
+    //substances.splice(index,1);
     update();
+}
+
+function removeOperation() {
+
+    var toRemove = document.getElementById('').value;
+
+    for(var i = 0; i < operationList.length; i++)
+    {
+        if(operationList[i].OPERATION.NAME === toRemove)
+        {
+            operationList.splice(i, 1);
+        }
+    }
+
 }
 
 
@@ -77,19 +91,26 @@ function removeSubstance() {
 // function controls the number of inputs for setting inputs into operations
 function formInput()
 {
-    var container = document.getElementById('numInputs');
+    var container = document.getElementById('mixInputAmount');
 
     // handles if the number is changed to a lower number than was previously selected
-    while (container.hasChildNodes())
-    {
+    while (container.hasChildNodes()) {
+
         container.removeChild(container.lastChild);
     }
-    var tmp = substances.length;
-    tmp += 1;
-    console.log(tmp);
 
-    for(var i = 0; i < tmp; i++)
-    {
+    var tmp = substancelist.length;
+    tmp += 1;
+
+    var option = document.createElement('option');
+    option.setAttribute('selected', 'selected');
+    option.setAttribute('disabled', 'disabled');
+    option.setAttribute('hidden', 'hidden');
+    option.setAttribute('style', 'display: none');
+    container.appendChild(option);
+
+    for(var i = 0; i < tmp; i++) {
+
         var option = document.createElement('option');
         option.innerHTML = i;
         option.value = i;
@@ -97,14 +118,54 @@ function formInput()
     }
 }
 
-function formTemperature(form)
+function operationInput() {
+
+    var container = document.getElementById('inputHeat');
+
+    while (container.hasChildNodes()) {
+
+        container.removeChild(container.lastChild);
+    }
+
+    var tmp = operationList.length;
+
+    var option = document.createElement('option');
+    option.setAttribute('selected', 'selected');
+    option.setAttribute('disabled', 'disabled');
+    option.setAttribute('hidden', 'hidden');
+    option.setAttribute('style', 'display: none');
+    container.appendChild(option);
+
+    // creates the input entries based on number selected with # of inputs
+    for (i = 0; i < tmp; i++) {
+
+        if(operationList[i].OPERATION.OUTPUTS != null) {
+
+            var option = document.createElement('option');
+            option.innerHTML = operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
+            option.value = operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
+            container.appendChild(option);
+        }
+    }
+}
+
+function formTemperature(formId)
 {
     var sign = ['\u2103', '\u2109', '\u212A'];
     var signValue = ['CELSIUS', 'FAHRENHEIT', 'KELVIN'];
-    var select = document.getElementById(form);
 
-    for(var i = 0; i < sign.length; i++)
-    {
+    var select = document.getElementById(formId);
+
+    var option = document.createElement('option');
+    option.setAttribute('selected', 'selected');
+    option.setAttribute('disabled', 'disabled');
+    option.setAttribute('hidden', 'hidden');
+    option.setAttribute('style', 'display: none');
+    select.appendChild(option);
+
+
+    for(var i = 0; i < sign.length; i++) {
+
         var option = document.createElement('option');
         option.innerHTML = sign[i];
         option.value = signValue[i];
@@ -112,12 +173,20 @@ function formTemperature(form)
     }
 }
 
-function formTime(form)
+function formTime(formId)
 {
     var display = ['Second(s)', 'Minute(s)', 'Hour(s)', 'Day(s)'];
     var displayValue = ['SECOND', 'MINUTE', 'HOUR', 'DAY'];
-    //var select = document.getElementById(form);
-    var select = document.getElementById(form);
+
+    var select = document.getElementById(formId);
+
+    var option = document.createElement('option');
+    option.setAttribute('selected', 'selected');
+    option.setAttribute('disabled', 'disabled');
+    option.setAttribute('hidden', 'hidden');
+    option.setAttribute('style', 'display: none');
+    select.appendChild(option);
+
 
     for(var i = 0; i < display.length; i++)
     {
@@ -129,11 +198,11 @@ function formTime(form)
 }
 
 // populates the Substance removal drop down
-function formRemove() {
+function substanceRemove() {
 
     var tmp = substances.length;
 
-    var container = document.getElementById('removesubstanceName');
+    var container = document.getElementById('removesubstanceList');
 
     // handles if the number is changed to a lower number than was previously selected
     while (container.hasChildNodes())
@@ -153,6 +222,7 @@ function formRemove() {
 
 function update() {
     formInput();
-    formRemove();
-    document.getElementById('substancedisplay').innerHTML = " " + substances;
+    substanceRemove();
+    operationInput();
+    document.getElementById('substanceDisplay').innerHTML = " " + substances;
 }
