@@ -128,6 +128,7 @@ function operationInput() {
     }
 
     var tmp = operationList.length;
+    var sublength = substancelist.length;
 
     var option = document.createElement('option');
     option.setAttribute('selected', 'selected');
@@ -147,7 +148,19 @@ function operationInput() {
             container.appendChild(option);
         }
     }
+
+    for (i = 0; i < sublength; i ++) {
+
+        var option = document.createElement('option');
+        option.innerHTML = substancelist[i].VARIABLE_DECLARATION.NAME;
+        option.value = substancelist[i].VARIABLE_DECLARATION.NAME;
+        container.appendChild(option);
+
+    }
 }
+
+
+
 
 function formTemperature(formId)
 {

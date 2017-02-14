@@ -59,7 +59,7 @@ function inputCreate()
 
         for(var s = 0; s < substancelist.length; s++)
         {
-            var opt = document.createElement("option");
+            var opt = document.createElement('option');
             opt.innerHTML = substancelist[s].VARIABLE_DECLARATION.NAME;
             opt.value = substancelist[s].VARIABLE_DECLARATION.NAME;
             inputs.appendChild(opt);
@@ -69,7 +69,7 @@ function inputCreate()
 
         // creates the volume input entries
         container.appendChild((document.createTextNode(" Volume: " )));
-        var volume = document.createElement("input");
+        var volume = document.createElement('input');
         volume.type = "text";
         volume.id = "inputvolume" + i;
         volume.className = "volumeInput";
@@ -94,14 +94,14 @@ function inputCreate()
 
         for (var j = 0; j < units.length; j++)
         {
-            var option = document.createElement("option");
+            var option = document.createElement('option');
             option.innerHTML = units[j];
             option.value = unitVal[j];
             volumeUnits.appendChild(option);
         }
         // end drop down creation of volume units
 
-        container.appendChild(document.createElement("br"));
+        container.appendChild(document.createElement('br'));
     }
 };
 
