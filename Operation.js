@@ -13,8 +13,8 @@ class Operation {
         this.INPUTS = [];
         this.INPUTS.push({OPERATION:inputs});
         this.OUTPUTS = [];
-
     }
+
     set name (name) {this.NAME = name};
     get name () {return this.NAME};
     set id (id) {this.ID = id};

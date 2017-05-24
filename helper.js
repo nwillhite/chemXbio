@@ -99,7 +99,7 @@ function formInput()
         container.removeChild(container.lastChild);
     }
 
-    var tmp = substancelist.length;
+    var tmp = substancelist.length + operationList.length;
     tmp += 1;
 
     var option = document.createElement('option');
@@ -128,6 +128,7 @@ function operationInput() {
     }
 
     var tmp = operationList.length;
+    var sublength = substancelist.length;
 
     var option = document.createElement('option');
     option.setAttribute('selected', 'selected');
@@ -143,11 +144,22 @@ function operationInput() {
 
             var option = document.createElement('option');
             option.innerHTML = operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
-            option.value = operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
+            option.value = 'output';//operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION;
             container.appendChild(option);
         }
     }
+
+    for (i = 0; i < sublength; i ++) {
+
+        var option = document.createElement('option');
+        option.innerHTML = substancelist[i].VARIABLE_DECLARATION.NAME;
+        option.value = substancelist[i].VARIABLE_DECLARATION.NAME;
+        option.className = 'substance';
+        container.appendChild(option);
+
+    }
 }
+
 
 function formTemperature(formId)
 {
