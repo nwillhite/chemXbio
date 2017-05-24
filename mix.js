@@ -66,7 +66,6 @@ function inputCreate()
         }
         // end drop down creation of defined substances
 
-
         // creates the volume input entries
         container.appendChild((document.createTextNode(" Volume: " )));
         var volume = document.createElement('input');
@@ -259,18 +258,20 @@ var propertyTime = {
 
 function inputSubstance (name) {
 
-    //creates an instance of the substance structure while keeping its JSON structure
-    var tmpSub = JSON.parse(JSON.stringify(variableStructure));
+    if (name != '') {
+        //creates an instance of the substance structure while keeping its JSON structure
+        var tmpSub = JSON.parse(JSON.stringify(variableStructure));
 
-    tmpSub.VARIABLE_DECLARATION.ID = tmpSub.VARIABLE_DECLARATION.NAME = name;
+        tmpSub.VARIABLE_DECLARATION.ID = tmpSub.VARIABLE_DECLARATION.NAME = name;
 
-    //populates substance list for pushing into Experiment
-    substancelist.push(tmpSub);
+        //populates substance list for pushing into Experiment
+        substancelist.push(tmpSub);
 
-    //populates substance with names of user inputted substance for allowing user to pick from defined substances
-    substances.push(name);
+        //populates substance with names of user inputted substance for allowing user to pick from defined substances
+        substances.push(name);
 
-    resetForm('subAddForm'); // resets the substance entry form after each substance entered
+        resetForm('subAddForm'); // resets the substance entry form after each substance entered
+    }
 
 }
 

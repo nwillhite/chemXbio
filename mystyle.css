@@ -79,13 +79,14 @@ button:hover {
 
 
 /* Start Form Style */
-
+/*
 #substanceremoval {
   float: right;
 }
+*/
 
 .substanceDrop {
-  width: 50px;
+  width: 75px;
   background-color: lightblue;
 }
 
@@ -94,7 +95,7 @@ input[type=text].volumeInput {
 }
 
 input[type=text] {
-  width: 75px;
+  width: 80px;
   padding: 1px 2px;
   margin: 8px 0;
   box-sizing: border-box;
@@ -110,7 +111,7 @@ input[type=text]:focus {
 }
 
 select {
-  width: 12%;
+  width: 75px;
   padding: 16px 20px;
   border: none;
   border-radius: 4px;

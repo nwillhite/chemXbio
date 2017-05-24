@@ -31,6 +31,47 @@
           <td><button id="addSub" onclick="showhidetoggle('substanceadd')">Add Substance</button></td>
           <td><button id="removeSub" onclick="showhidetoggle('substanceremoval')">Remove Substance</button></td>
         </tr>
+        <tr>
+          <td>
+            <!-- Begin Substance Form -->
+            <div id='substanceadd' style="display: none">
+              <form id='subAddForm' method='post'>
+                <fieldset>
+                  <legend>Add Substance</legend>
+                  <label for="substanceName">Input:</label>
+                  <input type='text' id='substanceName' autofocus><br>
+                  <input type="button" onclick="inputSubstance(document.getElementById('substanceName').value);
+                   update()" value="Add Substance">
+                  <input type="button" onclick="addSub(); showhidetoggle('substanceadd')"
+                         value="Done"><br><br>
+                  <div id="substanceDisplay">
+                    <!-- shows list of currently entered user substances -->
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+            <!-- End Substance Form -->
+          </td>
+          <td>
+            <!-- Begin Substance Removal Form -->
+            <div id="substanceremoval" style="display: none">
+              <form id="subRemoveForm" method="post">
+                <fieldset>
+                  <legend>Remove Substance</legend>
+                  <label for="removesubstanceList">Select to Remove:</label><br><br>
+                  <select id="removesubstanceList" class="substanceDrop">
+                    <script>
+                        substanceRemove();
+                    </script>
+                  </select><br><br>
+                  <input type="button" onclick="removeSubstance(); update()" value="Remove">
+                  <input type="button" onclick="showhidetoggle('substanceremoval')" value="Done">
+                </fieldset>
+              </form>
+            </div>
+            <!-- End Substance Removal Form -->
+          </td>
+        </tr>
       </table>
 
       <table>
@@ -62,61 +103,20 @@
               experimentStructure.EXPERIMENT.INPUTS = substancelist;
           }
 
-          function addMix() {
+          function addOperation() {
 
               experimentStructure.EXPERIMENT.INSTRUCTIONS = operationList;
 
               //console.log(JSON.stringify(experimentStructure.EXPERIMENT.INSTRUCTIONS, null, 2));
           }
 
-          function addHeat () {
-              experimentStructure.EXPERIMENT.INSTRUCTIONS = operationList;
-          }
-
           // window.location.reload()
       </script>
 
-      <!-- Begin Substance Form -->
-      <div id='substanceadd' style="display: none">
-        <form id='subAddForm' method='post'>
-          <fieldset>
-          <legend>Add Substance</legend>
-            <label for="substanceName">Input:</label>
-            <input type='text' id='substanceName'>
-            <br>
-            <input type="button" onclick="inputSubstance(document.getElementById('substanceName').value);
-                   update()" value="Add Substance">
-            <input type="button" onclick="addSub(); showhidetoggle('substanceadd')"
-                   value="Done">
-            <br>
-            <br>
-            <div id="substanceDisplay">
-              <!-- shows list of currently entered user substances -->
-            </div>
-          </fieldset>
-        </form>
-      </div>
-      <!-- End Substance Form -->
 
 
-      <!-- Begin Substance Removal Form -->
-      <div id="substanceremoval" style="display: none">
-        <form id="subRemoveForm" method="post">
-          <fieldset>
-          <legend>Remove Substance</legend>
-            <label for="removesubstanceList">Enter Substance to Remove:</label>
-            <select id="removesubstanceList">
-              <script>
-                  substanceRemove();
-              </script>
-            </select>
-            <br>
-            <input type="button" onclick="removeSubstance(); update()" value="Remove">
-            <input type="button" onclick="showhidetoggle('substanceremoval')" value="Done">
-          </fieldset>
-        </form>
-      </div>
-      <!-- End Substance Removal Form -->
+
+
 
 
       <!-- Begin Mixture Form -->
@@ -125,19 +125,14 @@
           <fieldset>
             <legend>MIX</legend>
             <label for="mixName">Name:</label>
-            <input type="text" id="mixName" name="" value="">
-            <br>
-            <br>
+            <input type="text" id="mixName" autofocus><br><br>
             <label for="mixInputAmount">How many inputs for mixture?</label>
             <select id="mixInputAmount" onchange="inputCreate()">
               <script>
                 formInput();
               </script>
-            </select>
-            <br>
-            <br>
-            <label for="mixInput">Enter Mixtures:</label>
-            <br>
+            </select><br><br>
+            <label for="mixInput">Enter Mixtures:</label><br>
             <div id="mixInput">
               <!-- container for dynamically making input fields -->
             </div>
@@ -147,27 +142,22 @@
               <script>
                 formTemperature('mixTempSign');
               </script>
-            </select>
-            <br>
+            </select><br>
             <label for="mixTime">Enter Time:</label>
             <input type="text" id="mixTime">
             <select id="mixDuration">
               <script>
                 formTime('mixDuration');
               </script>
-            </select>
-            <br>
+            </select><br>
             <label for="mixOutputname">Output Name:</label>
-            <input type="text" id="mixOutputName">
-            <br>
-            <br>
+            <input type="text" id="mixOutputName"><br><br>
             <input type="button" onclick="createMixture()" value="Add Mix">
-            <input type="button" onclick="addMix(); showhidetoggle('mixtureform')" value="Done">
+            <input type="button" onclick="addOperation(); showhidetoggle('mixtureform')" value="Done">
           </fieldset>
         </form>
       </div>
       <!-- End Mixture Form -->
-
 
       <!-- Begin Heat Form -->
       <div id="heat_coolform" style="display: none">
@@ -175,37 +165,30 @@
           <fieldset>
             <legend>Heat</legend>
             <label for="nameHeat">Name:</label>
-            <input type="text" id="nameHeat">
-            <br>
-            <br>
+            <input type="text" id="nameHeat" autofocus><br><br>
             <label for="inputHeat">Select Inputs:</label>
-            <select id="inputHeat">
+            <select id="inputHeat" onchange="test()">
               <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
               <script>
                 operationInput();
               </script>
-            </select>
-            <br>
-            <br>
+            </select><br><br>
             <label for="heatTemp">Enter Temp:</label>
-            <input type="text" id="heatTemp" name="" value="">
+            <input type="text" id="heatTemp">
             <select id="heatTempSign">
               <script>
                   formTemperature('heatTempSign');
               </script>
-            </select>
-            <br>
+            </select><br>
             <label for="heatTime">Enter Time:</label>
             <input type="text" id="heatTime">
             <select id="heatDuration">
               <script>
                   formTime('heatDuration');
               </script>
-            </select>
-            <br>
-            <br>
+            </select><br><br>
             <input type="button" onclick="createHeat()" value="Add Heat">
-            <input type="button" onclick="addHeat(); showhidetoggle('heat_coolform')" value="Done">
+            <input type="button" onclick="addOperation(); showhidetoggle('heat_coolform')" value="Done">
           </fieldset>
         </form>
       </div>
@@ -213,6 +196,18 @@
 
 
       <script>
+
+      function test() {
+
+        console.log(document.getElementById('inputHeat').text);
+        var selected = document.getElementById('inputHeat');
+        var test = selected.options[selected.selectedIndex].text;
+        var test2 = selected.options[selected.selectedIndex].value;
+        console.log(test);
+        console.log(test2);
+
+      }
+
 
       function createHeat() {
 
@@ -228,6 +223,7 @@
         input.VARIABLE.NAME = document.getElementById('inputHeat').value;
 
         operation.OPERATION.INPUTS.push(input);
+
 
         inputTemperature(operation, document.getElementById('heatTemp').value, document.getElementById('heatTempSign').value);
         inputTime(operation, document.getElementById('heatTime').value, document.getElementById('heatDuration').value);
