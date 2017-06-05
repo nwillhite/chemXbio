@@ -78,7 +78,7 @@
         <tr>
           <td><button id="mixButton" onclick="showhidetoggle('mixtureform'); inputCreate()">Mix</button></td>
           <td><button id="heatButton" onclick="showhidetoggle('heat_coolform'); update()">Heat</button></td>
-          <td><button id="splitButton" onclick="">Split</button></td>
+          <td><button id="splitButton" onclick="showhidetoggle('split_form')">Split</button></td>
           <td><button id="outputButton" onclick="">Output</button></td>
         </tr>
       </table>
@@ -194,6 +194,26 @@
       </div>
       <!-- End Heat Form -->
 
+      <!-- Begin Split Form -->
+      <div id="split_form" style="display: none">
+        <form id="splitForm" method="post">
+          <fieldset>
+            <legend>Heat</legend>
+            <label for="nameSplit">Name:</label>
+            <input type="text" id="nameSplit" autofocus><br><br>
+            <label for="inputSplit">Select Inputs:</label>
+            <select id="inputSplit" onchange="test()">
+              <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
+              <script>
+                  operationInput();
+              </script>
+            </select><br><br>
+            <input type="button" onclick="createHeat()" value="Add Split">
+            <input type="button" onclick="addOperation(); showhidetoggle('split_form')" value="Done">
+          </fieldset>
+        </form>
+      </div>
+      <!-- End Split Form -->
 
       <script>
 

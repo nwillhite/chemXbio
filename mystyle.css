@@ -52,6 +52,14 @@ body {
 }
 
 
+#mixtureform {
+  width: 25%;
+}
+
+#heat_coolform {
+  width: 25%;
+}
+
 #formMix {
   float: right;
 }
