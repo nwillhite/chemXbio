@@ -35,8 +35,7 @@ function resetExperiment() {
 
 
 //dynamically handles the input fields for mixing operations
-function inputCreate()
-{
+function inputCreate() {
     // pulls the number from selection of how many inputs wanted
     var num = document.getElementById('mixInputAmount').value;
 

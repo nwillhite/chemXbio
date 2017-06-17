@@ -183,7 +183,7 @@ function operationOutputInput() {
     }
 }
 
-function operationInput() {
+function operationMixInput() {
 
     var container = document.getElementById('inputHeat');
     console.log(container);
@@ -312,6 +312,50 @@ function operationStoreInput() {
     }
 }
 
+function operationSplitInput() {
+
+    var container = document.getElementById('inputSplit');
+
+    while (container.hasChildNodes()) {
+
+        container.removeChild(container.lastChild);
+    }
+
+    var tmp = operationList.length;
+    var sublength = substancelist.length;
+
+    var option = document.createElement('option');
+    option.setAttribute('selected', 'selected');
+    option.setAttribute('disabled', 'disabled');
+    option.setAttribute('hidden', 'hidden');
+    option.setAttribute('style', 'display: none');
+    container.appendChild(option);
+
+    // creates the input entries based on number selected with # of inputs
+    for (i = 0; i < tmp; i++) {
+
+        if(operationList[i].OPERATION.OUTPUTS != null) {
+
+            var option = document.createElement('option');
+            option.innerHTML = operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
+            option.value = 'output';
+            container.appendChild(option);
+        }
+    }
+
+    for (i = 0; i < sublength; i ++) {
+
+        var option = document.createElement('option');
+        option.innerHTML = substancelist[i].VARIABLE_DECLARATION.NAME;
+        option.value = substancelist[i].VARIABLE_DECLARATION.NAME;
+        option.className = 'substance';
+        container.appendChild(option);
+        console.log(container);
+
+    }
+}
+
+// populates the temperature for operations for forms
 function formTemperature(formId)
 {
     var sign = ['\u2103', '\u2109', '\u212A'];
@@ -336,6 +380,7 @@ function formTemperature(formId)
     }
 }
 
+// populates the timing for time operations for forms
 function formTime(formId)
 {
     var display = ['Second(s)', 'Minute(s)', 'Hour(s)', 'Day(s)'];
@@ -386,9 +431,10 @@ function substanceRemove() {
 function update() {
     formInput();
     substanceRemove();
+    operationSplitInput();
     operationOutputInput();
     operationDetectInput();
     operationStoreInput();
-    operationInput();
+    operationMixInput();
     document.getElementById('substanceDisplay').innerHTML = " " + substances;
 }
