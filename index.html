@@ -79,7 +79,7 @@
           <td><button id="mixButton" onclick="showhidetoggle('mixtureform'); inputCreate()">Mix</button></td>
           <td><button id="heatButton" onclick="showhidetoggle('heat_coolform'); update()">Heat</button></td>
           <td><button id="splitButton" onclick="showhidetoggle('split_form')">Split</button></td>
-          <td><button id="outputButton" onclick="">Output</button></td>
+          <td><button id="outputButton" onclick="showhidetoggle('output_form'); update()">Output</button></td>
         </tr>
       </table>
 
@@ -177,7 +177,7 @@
             <input type="text" id="heatTemp">
             <select id="heatTempSign">
               <script>
-                  formTemperature('heatTempSign');
+                  formTemperature();
               </script>
             </select><br>
             <label for="heatTime">Enter Time:</label>
@@ -215,6 +215,27 @@
       </div>
       <!-- End Split Form -->
 
+      <!-- Begin Output Form -->
+      <div id="output_form" style="display: none">
+        <form id="outputForm" method="post">
+          <fieldset>
+            <legend>Output</legend>
+            <label for="nameOutput">Name:</label>
+            <input type="text" id="nameOutput" autofocus><br><br>
+            <label for="inputOutput">Select Inputs:</label>
+            <select id="inputOutput">
+              <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
+              <script>
+                  operationOutputInput();
+              </script>
+            </select><br><br>
+            <input type="button" onclick="createOutput()" value="Add Output">
+            <input type="button" onclick="addOperation(); showhidetoggle('output_form')" value="Done">
+          </fieldset>
+        </form>
+      </div>
+      <!-- End Output Form -->
+
       <script>
 
       function test() {
@@ -227,6 +248,7 @@
         console.log(test2);
 
       }
+
 
 
       function createHeat() {
@@ -288,6 +310,28 @@
         inputCreate();
 
       }
+
+      function createOutput() {
+
+          var operation = JSON.parse(JSON.stringify(operationStructure));
+
+          operation.OPERATION.NAME = document.getElementById('nameOutput').value;
+          operation.OPERATION.ID = createID();
+          operation.OPERATION.CLASSIFICATION = 'OUTPUT';
+
+
+          var input = JSON.parse(JSON.stringify(variableInput));
+          input.VARIABLE.NAME = document.getElementById('inputOutput').value;
+
+          operation.OPERATION.INPUTS.push(input);
+
+
+          operationList.push(operation);
+
+          resetForm('outputForm');
+
+      }
+
       </script>
 
     </div>  <!-- End of operationsMenu-->

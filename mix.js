@@ -200,7 +200,7 @@ var substanceStructure = {
     INPUT_TYPE: "VARIABLE",
     CHEMICAL: {
         VARIABLE: {
-            NAME: "",
+            NAME: ""
         },
         VOLUME: {
             VALUE: "",
@@ -213,7 +213,7 @@ var substanceStructure = {
 var variableInput = {
     INPUT_TYPE: "VARIABLE",
     VARIABLE: {
-        NAME: "",
+        NAME: ""
     }
 };
 
@@ -222,7 +222,7 @@ var sensorOutput = {
     SENSOR_DECLARATION: {
         ID: "",
         NAME: "",
-        TYPE: "SENSOR",
+        TYPE: "SENSOR"
     }
 };
 
@@ -232,7 +232,7 @@ var propertyTemp = {
     INPUT_TYPE: "PROPERTY",
     TEMPERATURE: {
         VALUE: "",
-        UNITS: "",
+        UNITS: ""
     }
 };
 
@@ -242,7 +242,7 @@ var propertyTime = {
     INPUT_TYPE: "PROPERTY",
     TIME: {
         VALUE: "",
-        UNITS: "",
+        UNITS: ""
     }
 };
 
