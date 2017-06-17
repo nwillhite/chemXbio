@@ -63,6 +63,14 @@ body {
 #formMix {
   float: right;
 }
+
+#output_form {
+  width: 25%;
+}
+
+#detect_form {
+  width: 25%;
+}
 /* End */
 
 

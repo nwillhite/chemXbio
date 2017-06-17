@@ -81,6 +81,9 @@
           <td><button id="splitButton" onclick="showhidetoggle('split_form')">Split</button></td>
           <td><button id="outputButton" onclick="showhidetoggle('output_form'); update()">Output</button></td>
         </tr>
+        <tr>
+          <td><button id="dectectButton" onclick="showhidetoggle('detect_form'); update()">Detect</button></td>
+        </tr>
       </table>
 
       <button id="restButton" onclick="resetExperiment()">Reset Experiment</button>
@@ -167,7 +170,7 @@
             <label for="nameHeat">Name:</label>
             <input type="text" id="nameHeat" autofocus><br><br>
             <label for="inputHeat">Select Inputs:</label>
-            <select id="inputHeat" onchange="test()">
+            <select id="inputHeat"> <!--onchange="test()">
               <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
               <script>
                 operationInput();
@@ -215,6 +218,7 @@
       </div>
       <!-- End Split Form -->
 
+
       <!-- Begin Output Form -->
       <div id="output_form" style="display: none">
         <form id="outputForm" method="post">
@@ -223,10 +227,10 @@
             <label for="nameOutput">Name:</label>
             <input type="text" id="nameOutput" autofocus><br><br>
             <label for="inputOutput">Select Inputs:</label>
-            <select id="inputOutput">
-              <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
+            <select id="inputOutput" onchange="test()">
+              <!-- ADD Output INPUTS FOR SELECTION HERE -->
               <script>
-                  operationOutputInput();
+                  operationOutputInput("inputOutput");
               </script>
             </select><br><br>
             <input type="button" onclick="createOutput()" value="Add Output">
@@ -235,6 +239,29 @@
         </form>
       </div>
       <!-- End Output Form -->
+
+      <!-- Begin Detect Form -->
+      <div id="detect_form" style="display: none">
+        <form id="detectForm" method="post">
+          <fieldset>
+            <legend>Output</legend>
+            <label for="nameDetect">Name:</label>
+            <input type="text" id="nameDetect" autofocus><br><br>
+            <label for="inputDetect">Select Inputs:</label>
+            <select id="inputDetect">
+              <!-- ADD Output INPUTS FOR SELECTION HERE -->
+              <script>
+                  //operationOutputInput();
+              </script>
+            </select><br><br>
+            <label for="detectOutputname">Output Name:</label>
+            <input type="text" id="detectOutputName"><br><br>
+            <input type="button" onclick="createDetect()" value="Add Detect">
+            <input type="button" onclick="addOperation(); showhidetoggle('detect_form')" value="Done">
+          </fieldset>
+        </form>
+      </div>
+      <!-- End Detect Form -->
 
       <script>
 
@@ -324,6 +351,28 @@
           input.VARIABLE.NAME = document.getElementById('inputOutput').value;
 
           operation.OPERATION.INPUTS.push(input);
+
+
+          operationList.push(operation);
+
+          resetForm('outputForm');
+
+      }
+
+      function createDetect() {
+
+          var operation = JSON.parse(JSON.stringify(operationStructure));
+
+          operation.OPERATION.NAME = document.getElementById('nameDetect').value;
+          operation.OPERATION.ID = createID();
+          operation.OPERATION.CLASSIFICATION = 'DETECT';
+
+
+          var input = JSON.parse(JSON.stringify(variableInput));
+          input.VARIABLE.NAME = document.getElementById('inputOutput').value;
+
+          operation.OPERATION.INPUTS.push(input);
+          operationOutput(operation, 'sensor', document.getElementById('detectOutputName').value);
 
 
           operationList.push(operation);

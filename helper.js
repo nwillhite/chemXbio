@@ -156,6 +156,7 @@ function operationOutputInput() {
         option.value = substancelist[i].VARIABLE_DECLARATION.NAME;
         option.className = 'substance';
         container.appendChild(option);
+        console.log(container);
 
     }
 }
@@ -278,6 +279,7 @@ function substanceRemove() {
 function update() {
     formInput();
     substanceRemove();
+    operationOutputInput();
     operationInput();
     document.getElementById('substanceDisplay').innerHTML = " " + substances;
 }
