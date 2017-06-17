@@ -103,8 +103,36 @@ function inputCreate()
 
         container.appendChild(document.createElement('br'));
     }
-};
+}
 
+function outputCreate()
+{
+    // pulls the number from selection of how many inputs wanted
+    var num = document.getElementById('splitAmount').value;
+
+    var container = document.getElementById('splitInput');
+
+    // handles if the number is changed to a lower number than was previously selected
+    while (container.hasChildNodes())
+    {
+        container.removeChild(container.lastChild);
+    }
+
+    // creates the input entries based on number selected with # of inputs
+    for (i = 0; i < num; i++)
+    {
+
+        // creates the volume input entries
+        container.appendChild((document.createTextNode(" Output: " )));
+        var splitOut = document.createElement('input');
+        splitOut.type = "text";
+        splitOut.id = "splitOut" + i;
+        splitOut.className = "splitOut";
+        container.appendChild(splitOut);
+
+        container.appendChild(document.createElement('br'));
+    }
+}
 
 /**************************************************************************************
 

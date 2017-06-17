@@ -241,7 +241,7 @@
             <legend>Split</legend>
             <label for="nameSplit">Name:</label>
             <input type="text" id="nameSplit" autofocus><br><br>
-            <label for="inputSplit">Select Inputs:</label>
+            <label for="inputSplit">Select Input:</label>
             <select id="inputSplit" onchange="test()">
               <!-- ADD Split INPUTS FOR SELECTION HERE -->
               <script>
@@ -255,6 +255,16 @@
                   formTime('splitDuration');
               </script>
             </select><br><br>
+            <label for="splitAmount">How many outputs for split?</label>
+            <select id="splitAmount" onchange="outputCreate()">
+              <script>
+                  formSplit();
+              </script>
+            </select><br><br>
+            <label for="splitInput">Enter Outputs:</label><br>
+            <div id="splitInput">
+              <!-- container for dynamically making input fields -->
+            </div><br><br>
             <input type="button" onclick="createHeat()" value="Add Split">
             <input type="button" onclick="addOperation(); showhidetoggle('split_form')" value="Done">
           </fieldset>

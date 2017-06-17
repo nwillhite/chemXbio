@@ -118,6 +118,28 @@ function formInput()
     }
 }
 
+// function controls the numbe of outputs for setting outputs of split
+function formSplit() {
+
+    var container = document.getElementById('splitAmount');
+
+    var option = document.createElement('option');
+    option.setAttribute('selected', 'selected');
+    option.setAttribute('disabled', 'disabled');
+    option.setAttribute('hidden', 'hidden');
+    option.setAttribute('style', 'display: none');
+    container.appendChild(option);
+
+    for(var i = 0; i <= 10; i++) {
+
+        var option = document.createElement('option');
+        option.innerHTML = i;
+        option.value = i;
+        container.appendChild(option);
+    }
+
+}
+
 function operationOutputInput() {
 
     var container = document.getElementById('inputOutput');
