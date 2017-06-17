@@ -83,6 +83,7 @@
         </tr>
         <tr>
           <td><button id="dectectButton" onclick="showhidetoggle('detect_form'); update()">Detect</button></td>
+          <td><button id="storeButton" onclick="showhidetoggle('store_form'); update()">Store</button></td>
         </tr>
       </table>
 
@@ -218,6 +219,40 @@
       </div>
       <!-- End Split Form -->
 
+      <!-- Begin Store Form -->
+      <div id="store_form" style="display: none">
+        <form id="storeForm" method="post">
+          <fieldset>
+            <legend>Heat</legend>
+            <label for="nameStore">Name:</label>
+            <input type="text" id="nameStore" autofocus><br><br>
+            <label for="inputStore">Select Inputs:</label>
+            <select id="inputStore"> <!--onchange="test()">
+              <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
+              <script>
+                  operationInput();
+              </script>
+            </select><br><br>
+            <label for="storeTemp">Enter Temp:</label>
+            <input type="text" id="storeTemp">
+            <select id="storeTempSign">
+              <script>
+                  formTemperature();
+              </script>
+            </select><br>
+            <label for="storeTime">Enter Time:</label>
+            <input type="text" id="storeTime">
+            <select id="storeDuration">
+              <script>
+                  formTime('heatDuration');
+              </script>
+            </select><br><br>
+            <input type="button" onclick="createHeat()" value="Add Store">
+            <input type="button" onclick="addOperation(); showhidetoggle('store_form')" value="Done">
+          </fieldset>
+        </form>
+      </div>
+      <!-- End Store Form -->
 
       <!-- Begin Output Form -->
       <div id="output_form" style="display: none">
