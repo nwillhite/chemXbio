@@ -223,7 +223,7 @@
       <div id="store_form" style="display: none">
         <form id="storeForm" method="post">
           <fieldset>
-            <legend>Heat</legend>
+            <legend>Store</legend>
             <label for="nameStore">Name:</label>
             <input type="text" id="nameStore" autofocus><br><br>
             <label for="inputStore">Select Inputs:</label>
@@ -247,7 +247,7 @@
                   formTime('heatDuration');
               </script>
             </select><br><br>
-            <input type="button" onclick="createHeat()" value="Add Store">
+            <input type="button" onclick="createStore()" value="Add Store">
             <input type="button" onclick="addOperation(); showhidetoggle('store_form')" value="Done">
           </fieldset>
         </form>
@@ -311,7 +311,26 @@
 
       }
 
+      function createStore()
+      {
+          var operation = JSON.parse(JSON.stringify(operationStructure));
 
+          operation.OPERATION.NAME = document.getElementById('nameStore').value;
+          operation.OPERATION.ID = createID();
+          operation.OPERATION.CLASSIFICATION = 'STORAGE';
+
+          var input = JSON.parse(JSON.stringify(variableInput));
+          input.VARIABLE.NAME = document.getElementById('inputStore').value;
+
+          operation.OPERATION.INPUTS.push(input);
+
+          inputTemperature(operation, document.getElementById('storeTemp').value, document.getElementById('storeTempSign').value);
+          inputTime(operation, document.getElementById('storeTime').value, document.getElementById('storeDuration').value);
+
+          operationList.push(operation);
+
+          resetForm('storeForm');
+      }
 
       function createHeat() {
 
@@ -412,7 +431,7 @@
 
           operationList.push(operation);
 
-          resetForm('outputForm');
+          resetForm('detectForm');
 
       }
 
