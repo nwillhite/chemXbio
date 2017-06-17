@@ -77,12 +77,13 @@
       <table>
         <tr>
           <td><button id="mixButton" onclick="showhidetoggle('mixtureform'); inputCreate()">Mix</button></td>
-          <td><button id="heatButton" onclick="showhidetoggle('heat_coolform'); update()">Heat</button></td>
+          <td><button id="heatButton" onclick="showhidetoggle('heat_form'); update()">Heat</button></td>
           <td><button id="splitButton" onclick="showhidetoggle('split_form')">Split</button></td>
           <td><button id="outputButton" onclick="showhidetoggle('output_form'); update()">Output</button></td>
         </tr>
         <tr>
-          <td><button id="dectectButton" onclick="showhidetoggle('detect_form'); update()">Detect</button></td>
+          <td><button id="heatButton" onclick="showhidetoggle('cool_form'); update()">Cool</button></td>
+          <td><button id="detectButton" onclick="showhidetoggle('detect_form'); update()">Detect</button></td>
           <td><button id="storeButton" onclick="showhidetoggle('store_form'); update()">Store</button></td>
         </tr>
       </table>
@@ -164,7 +165,7 @@
       <!-- End Mixture Form -->
 
       <!-- Begin Heat Form -->
-      <div id="heat_coolform" style="display: none">
+      <div id="heat_form" style="display: none">
         <form id="heatForm" method="post">
           <fieldset>
             <legend>Heat</legend>
@@ -181,7 +182,7 @@
             <input type="text" id="heatTemp">
             <select id="heatTempSign">
               <script>
-                  formTemperature();
+                  formTemperature('heatTempSign');
               </script>
             </select><br>
             <label for="heatTime">Enter Time:</label>
@@ -192,7 +193,42 @@
               </script>
             </select><br><br>
             <input type="button" onclick="createHeat()" value="Add Heat">
-            <input type="button" onclick="addOperation(); showhidetoggle('heat_coolform')" value="Done">
+            <input type="button" onclick="addOperation(); showhidetoggle('heat_form')" value="Done">
+          </fieldset>
+        </form>
+      </div>
+      <!-- End Heat Form -->
+
+      <!-- Begin Heat Form -->
+      <div id="cool_form" style="display: none">
+        <form id="coolForm" method="post">
+          <fieldset>
+            <legend>Cool</legend>
+            <label for="nameCool">Name:</label>
+            <input type="text" id="nameCool" autofocus><br><br>
+            <label for="inputCool">Select Inputs:</label>
+            <select id="inputCool"> <!--onchange="test()">
+              <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
+              <script>
+                  operationInput();
+              </script>
+            </select><br><br>
+            <label for="coolTemp">Enter Temp:</label>
+            <input type="text" id="coolTemp">
+            <select id="coolTempSign">
+              <script>
+                  formTemperature('coolTempSign');
+              </script>
+            </select><br>
+            <label for="coolTime">Enter Time:</label>
+            <input type="text" id="coolTime">
+            <select id="coolDuration">
+              <script>
+                  formTime('coolDuration');
+              </script>
+            </select><br><br>
+            <input type="button" onclick="createHeat()" value="Add Cool">
+            <input type="button" onclick="addOperation(); showhidetoggle('cool_form')" value="Done">
           </fieldset>
         </form>
       </div>
@@ -202,14 +238,21 @@
       <div id="split_form" style="display: none">
         <form id="splitForm" method="post">
           <fieldset>
-            <legend>Heat</legend>
+            <legend>Split</legend>
             <label for="nameSplit">Name:</label>
             <input type="text" id="nameSplit" autofocus><br><br>
             <label for="inputSplit">Select Inputs:</label>
             <select id="inputSplit" onchange="test()">
-              <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
+              <!-- ADD Split INPUTS FOR SELECTION HERE -->
               <script>
                   operationInput();
+              </script>
+            </select><br><br>
+            <label for="splitTime">Enter Time:</label>
+            <input type="text" id="splitTime">
+            <select id="splitDuration">
+              <script>
+                  formTime('splitDuration');
               </script>
             </select><br><br>
             <input type="button" onclick="createHeat()" value="Add Split">
@@ -227,24 +270,24 @@
             <label for="nameStore">Name:</label>
             <input type="text" id="nameStore" autofocus><br><br>
             <label for="inputStore">Select Inputs:</label>
-            <select id="inputStore"> <!--onchange="test()">
+            <select id="inputStore">
               <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
               <script>
-                  operationInput();
+                  operationStoreInput();
               </script>
             </select><br><br>
             <label for="storeTemp">Enter Temp:</label>
             <input type="text" id="storeTemp">
             <select id="storeTempSign">
               <script>
-                  formTemperature();
+                  formTemperature('storeTempSign');
               </script>
             </select><br>
             <label for="storeTime">Enter Time:</label>
             <input type="text" id="storeTime">
             <select id="storeDuration">
               <script>
-                  formTime('heatDuration');
+                  formTime('storeDuration');
               </script>
             </select><br><br>
             <input type="button" onclick="createStore()" value="Add Store">
@@ -279,14 +322,14 @@
       <div id="detect_form" style="display: none">
         <form id="detectForm" method="post">
           <fieldset>
-            <legend>Output</legend>
+            <legend>Detect</legend>
             <label for="nameDetect">Name:</label>
             <input type="text" id="nameDetect" autofocus><br><br>
             <label for="inputDetect">Select Inputs:</label>
             <select id="inputDetect">
               <!-- ADD Output INPUTS FOR SELECTION HERE -->
               <script>
-                  //operationOutputInput();
+                  operationDetectInput();
               </script>
             </select><br><br>
             <label for="detectOutputname">Output Name:</label>
@@ -311,8 +354,7 @@
 
       }
 
-      function createStore()
-      {
+      function createStore() {
           var operation = JSON.parse(JSON.stringify(operationStructure));
 
           operation.OPERATION.NAME = document.getElementById('nameStore').value;
@@ -423,7 +465,7 @@
 
 
           var input = JSON.parse(JSON.stringify(variableInput));
-          input.VARIABLE.NAME = document.getElementById('inputOutput').value;
+          input.VARIABLE.NAME = document.getElementById('inputDetect').value;
 
           operation.OPERATION.INPUTS.push(input);
           operationOutput(operation, 'sensor', document.getElementById('detectOutputName').value);

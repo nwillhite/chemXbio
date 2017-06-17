@@ -204,6 +204,91 @@ function operationInput() {
     }
 }
 
+function operationDetectInput() {
+
+    var container = document.getElementById('inputDetect');
+
+    while (container.hasChildNodes()) {
+
+        container.removeChild(container.lastChild);
+    }
+
+    var tmp = operationList.length;
+    var sublength = substancelist.length;
+
+    var option = document.createElement('option');
+    option.setAttribute('selected', 'selected');
+    option.setAttribute('disabled', 'disabled');
+    option.setAttribute('hidden', 'hidden');
+    option.setAttribute('style', 'display: none');
+    container.appendChild(option);
+
+    // creates the input entries based on number selected with # of inputs
+    for (i = 0; i < tmp; i++) {
+
+        if(operationList[i].OPERATION.OUTPUTS != null) {
+
+            var option = document.createElement('option');
+            option.innerHTML = operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
+            option.value = 'output';
+            container.appendChild(option);
+        }
+    }
+
+    for (i = 0; i < sublength; i ++) {
+
+        var option = document.createElement('option');
+        option.innerHTML = substancelist[i].VARIABLE_DECLARATION.NAME;
+        option.value = substancelist[i].VARIABLE_DECLARATION.NAME;
+        option.className = 'substance';
+        container.appendChild(option);
+        console.log(container);
+
+    }
+}
+
+function operationStoreInput() {
+
+    var container = document.getElementById('inputStore');
+
+    while (container.hasChildNodes()) {
+
+        container.removeChild(container.lastChild);
+    }
+
+    var tmp = operationList.length;
+    var sublength = substancelist.length;
+
+    var option = document.createElement('option');
+    option.setAttribute('selected', 'selected');
+    option.setAttribute('disabled', 'disabled');
+    option.setAttribute('hidden', 'hidden');
+    option.setAttribute('style', 'display: none');
+    container.appendChild(option);
+
+    // creates the input entries based on number selected with # of inputs
+    for (i = 0; i < tmp; i++) {
+
+        if(operationList[i].OPERATION.OUTPUTS != null) {
+
+            var option = document.createElement('option');
+            option.innerHTML = operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
+            option.value = 'output';
+            container.appendChild(option);
+        }
+    }
+
+    for (i = 0; i < sublength; i ++) {
+
+        var option = document.createElement('option');
+        option.innerHTML = substancelist[i].VARIABLE_DECLARATION.NAME;
+        option.value = substancelist[i].VARIABLE_DECLARATION.NAME;
+        option.className = 'substance';
+        container.appendChild(option);
+        console.log(container);
+
+    }
+}
 
 function formTemperature(formId)
 {
@@ -280,6 +365,8 @@ function update() {
     formInput();
     substanceRemove();
     operationOutputInput();
+    operationDetectInput();
+    operationStoreInput();
     operationInput();
     document.getElementById('substanceDisplay').innerHTML = " " + substances;
 }

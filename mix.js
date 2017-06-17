@@ -29,6 +29,7 @@ function resetExperiment() {
     substancelist.length = 0;
     operationList.length = 0;
     substances.length = 0;
+    location.reload();
     //document.getElementById('whereToPrint').innerHTML = "";
 }
 
