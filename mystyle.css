@@ -3,6 +3,26 @@ body {
   height: 100%;
 }
 
+
+div.clearFlt {
+  clear:both;
+}
+
+
+div.leftside {
+  float:left;
+  width:49%;
+  border: 1px solid black;
+  height: 900px;
+}
+
+div.rightside {
+  float:left;
+  width:49%;
+  border: 1px solid black;
+  height: 900px;
+}
+
 /*
 
 #experiment {

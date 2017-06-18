@@ -21,12 +21,16 @@
 <div id="experiment">
 
   <div class="leftside">
+    <div class="clearfit">
 
     <button onclick="showhidetoggle('operationsMenu'); createExperiment()">New experiment</button>
 
     <div id="operationsMenu" style="display: none">
 
       <table id="menu">
+        <tr>
+          <label for="experimentName">Experiment Name:</label>
+          <input type='text' id='experimentName' autofocus></tr>
         <tr>
           <td><button id="addSub" onclick="showhidetoggle('substanceadd')">Add Substance</button></td>
           <td><button id="removeSub" onclick="showhidetoggle('substanceremoval')">Remove Substance</button></td>
@@ -88,19 +92,30 @@
         </tr>
       </table>
 
-      <button id="restButton" onclick="resetExperiment()">Reset Experiment</button>
-      <button id="startButton" onclick="">Start Experiment</button>
-      <button id="quit" onclick="toJson(experimentHolder); hideDiv('operationsMenu');
-              showDiv('experiment'); ">Quit Experiment</button>
+      <button id="resetButton" onclick="resetExperiment()">Reset Experiment</button>
+      <button id="startButton" onclick="toJson(experimentHolder); onclick=inputExperiment()">Start Experiment</button>
+      <button id="quit" onclick="hideDiv('operationsMenu');
+              showDiv('experiment'); addExperiment(); toJson(benchtop)">Quit Experiment</button>
 
       <script>
 
           function createExperiment() {
 
+              if (benchtop.length === 0) {
+
+                  benchtop = benchTopStructure;
+              }
+
               if (experimentHolder.length === 0) {
 
                   experimentHolder.push(experimentStructure);
               }
+          }
+
+          function addExperiment() {
+
+              benchTopStructure.BENCHTOP.EXPERIMENTS = experimentHolder;
+
           }
 
           function addSub() {
@@ -117,9 +132,6 @@
 
           // window.location.reload()
       </script>
-
-
-
 
 
 
@@ -515,16 +527,21 @@
       </script>
 
     </div>  <!-- End of operationsMenu-->
+    </div>
 
   </div> <!-- End of left side -->
 
 
 
   <div class="rightside">
+    <div class="clearfit">
+
 
     <pre id="whereToPrint"></pre>
 
+      </div>
   </div> <!-- End of right side -->
+
 
 </div> <!-- End of experiment -->
 

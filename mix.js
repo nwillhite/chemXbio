@@ -178,7 +178,7 @@ function outputCreate()
  **************************************************************************************/
 
 
-var BenchTop = {
+var benchTopStructure = {
     BENCHTOP: {
         INPUTS: [],
         EXPERIMENTS: []
@@ -192,7 +192,6 @@ var experimentStructure = {
         INPUTS: [],
         INSTRUCTIONS: []
     }
-
 };
 
 
@@ -281,6 +280,13 @@ var propertyTime = {
 
  **************************************************************************************/
 
+function inputExperiment () {
+
+    var experiment = JSON.parse(JSON.stringify(experimentStructure));
+
+    experiment.BENCHTOP.EXPERIMENTS.push(experimentHolder);
+
+}
 
 // Functions for injecting inputs, volume, temperature in
 
