@@ -12,7 +12,6 @@ function download(text, name, type) {
     a.download = name;
     a.click();
 }
-download(jsonData, 'test.txt', 'text/plain');
 
 function showDiv(id)
 {

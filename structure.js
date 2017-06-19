@@ -13,7 +13,6 @@ var benchtop = [];
 
 // holder for all experiment operations
 var experimentHolder = [];
-var experiment = {};
 
 //holder for all user defined substances
 var substancelist = [];
@@ -38,105 +37,6 @@ function resetExperiment() {
     //document.getElementById('whereToPrint').innerHTML = "";
 }
 
-
-//dynamically handles the input fields for mixing operations
-function inputCreate() {
-    // pulls the number from selection of how many inputs wanted
-    var num = document.getElementById('mixInputAmount').value;
-
-    var container = document.getElementById('mixInput');
-
-    // handles if the number is changed to a lower number than was previously selected
-    while (container.hasChildNodes())
-    {
-        container.removeChild(container.lastChild);
-    }
-
-    // creates the input entries based on number selected with # of inputs
-    for (i = 0; i < num; i++)
-    {
-        // creates drop down boxes for defined substances
-        container.appendChild(document.createTextNode("Input " + (i + 1) + ": "));
-        var inputs = document.createElement('select');
-        inputs.id = "input" + i;
-        inputs.className = "substanceDrop";
-        container.appendChild(inputs);
-
-        for(var s = 0; s < substancelist.length; s++)
-        {
-            var opt = document.createElement('option');
-            opt.innerHTML = substancelist[s].VARIABLE_DECLARATION.NAME;
-            opt.value = substancelist[s].VARIABLE_DECLARATION.NAME;
-            inputs.appendChild(opt);
-        }
-        // end drop down creation of defined substances
-
-        // creates the volume input entries
-        container.appendChild((document.createTextNode(" Volume: " )));
-        var volume = document.createElement('input');
-        volume.type = "text";
-        volume.id = "inputvolume" + i;
-        volume.className = "volumeInput";
-        container.appendChild(volume);
-        // ends the volume input creation
-
-        // creates the selection entries based on number selected with # of inputs
-        container.appendChild((document.createTextNode(" Units: " )));
-        var volumeUnits = document.createElement("select");
-        volumeUnits.id = "inputvolumeUnits" + i;
-        container.appendChild(volumeUnits);
-
-        var option = document.createElement('option');
-        option.setAttribute('selected', 'selected');
-        option.setAttribute('disabled', 'disabled');
-        option.setAttribute('hidden', 'hidden');
-        option.setAttribute('style', 'display: none');
-        volumeUnits.appendChild(option);
-
-        var units = ["mL", "\u00B5L", "pL", "nL", "L"];
-        var unitVal = ["ML", "UL", "PL", "NL", "LITER"];
-
-        for (var j = 0; j < units.length; j++)
-        {
-            var option = document.createElement('option');
-            option.innerHTML = units[j];
-            option.value = unitVal[j];
-            volumeUnits.appendChild(option);
-        }
-        // end drop down creation of volume units
-
-        container.appendChild(document.createElement('br'));
-    }
-}
-
-function outputCreate()
-{
-    // pulls the number from selection of how many inputs wanted
-    var num = document.getElementById('splitAmount').value;
-
-    var container = document.getElementById('splitInput');
-
-    // handles if the number is changed to a lower number than was previously selected
-    while (container.hasChildNodes())
-    {
-        container.removeChild(container.lastChild);
-    }
-
-    // creates the input entries based on number selected with # of inputs
-    for (i = 0; i < num; i++)
-    {
-
-        // creates the volume input entries
-        container.appendChild((document.createTextNode(" Output: " )));
-        var splitOut = document.createElement('input');
-        splitOut.type = "text";
-        splitOut.id = "splitOut" + i;
-        splitOut.className = "splitOut";
-        container.appendChild(splitOut);
-
-        container.appendChild(document.createElement('br'));
-    }
-}
 
 /**************************************************************************************
 
