@@ -5,6 +5,15 @@ window.onload = function()
 };
 */
 
+function download(text, name, type) {
+    var a = document.createElement("a");
+    var file = new Blob([text], {type: type});
+    a.href = URL.createObjectURL(file);
+    a.download = name;
+    a.click();
+}
+download(jsonData, 'test.txt', 'text/plain');
+
 function showDiv(id)
 {
   document.getElementById(id).style.display = 'block';

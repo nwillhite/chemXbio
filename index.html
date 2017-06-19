@@ -109,7 +109,8 @@
           <tr>
             <td><button id="resetButton" onclick="resetExperiment()">Reset Experiment</button></td>
             <td><button id="quit" onclick="hideDiv('operationsMenu');
-                showDiv('experiment'); addExperiment(); toJson(benchtop)">Quit Experiment</button></td>
+                showDiv('experiment'); addExperiment(); toJson(benchtop);
+                download(JSON.stringify(benchtop, null, 2), 'test.txt', 'text/plain');">Quit Experiment</button></td>
             <td></td>
           </tr>
         </table>

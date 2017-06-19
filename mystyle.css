@@ -1,6 +1,7 @@
 body {
   margin: 0;
   height: 100%;
+  overflow:hidden;
 }
 
 
@@ -21,6 +22,7 @@ div.rightside {
   width:49%;
   border: 1px solid black;
   height: 900px;
+  overflow:scroll;
 }
 
 /*
