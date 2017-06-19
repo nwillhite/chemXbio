@@ -15,6 +15,7 @@ div.leftside {
   width:49%;
   border: solid thin black;
   height: 900px;
+  overflow:scroll;
 }
 
 div.rightside {

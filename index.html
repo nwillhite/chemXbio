@@ -40,7 +40,8 @@
                 <legend>Start Experiment</legend>
                 <label for="experimentName">Name:</label>
                 <input type='text' id='experimentName' autofocus><br>
-                <input type="button" onclick="createExperiment(); update()" value="Start">
+                <input type="button" onclick="createExperiment(); update(); showhidetoggle('startExperiment');
+                showhidetoggle('')" value="Start">
               </fieldset>
             </form>
           </div>
@@ -124,7 +125,17 @@
 
             function createExperiment() {
 
-                experimentStructure.EXPERIMENT.NAME = document.getElementById('experimentName').value;
+                 //= document.getElementById('experimentName').value;
+
+                var name = document.getElementById('experimentName').value;
+
+                experimentStructure.EXPERIMENT.NAME = name;
+
+                var text = 'You have started an expriment named: ' + name;
+
+                text += " \n this is going to be a test";
+
+                document.getElementById('whereToPrint').innerHTML = text;
 
                 if (benchtop.length === 0) {
 
@@ -166,8 +177,6 @@
 
             // window.location.reload()
         </script>
-
-
 
 
         <!-- Begin Mixture Form -->
@@ -397,8 +406,8 @@
         </div>
         <!-- End Detect Form -->
 
-        <script>
 
+        <script>
         function test() {
 
           console.log(document.getElementById('inputHeat').text);
@@ -409,9 +418,6 @@
           console.log(test2);
 
         }
-
-
-
         </script>
 
       </div> <!-- End of operationsMenu-->

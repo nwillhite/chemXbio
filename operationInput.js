@@ -1,6 +1,6 @@
 /**************************************************************************************
 
-                    All functions to populate operation INPUT information
+                    All functions to populate operation INPUT/OUTPUT information
 
  **************************************************************************************/
 
