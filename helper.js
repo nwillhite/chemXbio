@@ -60,6 +60,7 @@ function removeSubstance() {
         if(substancelist[i].VARIABLE_DECLARATION.NAME === toRemove)
         {
             substancelist.splice(i, 1);
+            substances.splice(i, 1);
         }
     }
 
@@ -408,7 +409,7 @@ function formTime(formId)
 // populates the Substance removal drop down
 function substanceRemove() {
 
-    var tmp = substances.length;
+    var tmp = substancelist.length;//substances.length;
 
     var container = document.getElementById('removesubstanceList');
 
@@ -423,6 +424,8 @@ function substanceRemove() {
         var option = document.createElement('option');
         option.innerHTML = substances[i];
         option.value = substances[i];
+        //option.innerHTML = substances[i];
+        //option.value = substances[i];
         container.appendChild(option);
     }
 
@@ -436,5 +439,6 @@ function update() {
     operationDetectInput();
     operationStoreInput();
     operationMixInput();
+    document.getElementById('substanceDisplay').innerHTML = " ";
     document.getElementById('substanceDisplay').innerHTML = " " + substances;
 }

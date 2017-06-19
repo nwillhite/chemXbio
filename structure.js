@@ -13,6 +13,7 @@ var benchtop = [];
 
 // holder for all experiment operations
 var experimentHolder = [];
+var experiment = {};
 
 //holder for all user defined substances
 var substancelist = [];

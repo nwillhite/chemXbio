@@ -73,11 +73,11 @@ div.rightside {
 
 
 #mixtureform {
-  width: 25%;
+  width: 50%;
 }
 
 #heat_form {
-  width: 25%;
+  width: 50%;
 }
 
 #formMix {
@@ -85,19 +85,19 @@ div.rightside {
 }
 
 #store_form {
-  width: 25%;
+  width: 50%;
 }
 
 #output_form {
-  width: 25%;
+  width: 50%;
 }
 
 #split_form {
-  width: 25%;
+  width: 50%;
 }
 
 #detect_form {
-  width: 25%;
+  width: 50%;
 }
 /* End */
 

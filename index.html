@@ -25,523 +25,540 @@
   <div class="leftside">
     <div class="clearfit">
 
-    <button onclick="showhidetoggle('operationsMenu'); createExperiment()">New experiment</button>
+      <button onclick="showhidetoggle('operationsMenu'); createExperiment()">New experiment</button>
 
-    <div id="operationsMenu" style="display: none">
+      <div id="operationsMenu" style="display: none">
 
-      <table id="menu">
-        <tr>
-          <label for="experimentName">Experiment Name:</label>
-          <input type='text' id='experimentName' autofocus></tr>
-        <tr>
-          <td><button id="addSub" onclick="showhidetoggle('substanceadd')">Add Substance</button></td>
-          <td><button id="removeSub" onclick="showhidetoggle('substanceremoval')">Remove Substance</button></td>
-        </tr>
-        <tr>
-          <td>
-            <!-- Begin Substance Form -->
-            <div id='substanceadd' style="display: none">
-              <form id='subAddForm' method='post'>
-                <fieldset>
-                  <legend>Add Substance</legend>
-                  <label for="substanceName">Input:</label>
-                  <input type='text' id='substanceName' autofocus><br>
-                  <input type="button" onclick="inputSubstance(document.getElementById('substanceName').value);
-                   update()" value="Add Substance">
-                  <input type="button" onclick="addSub(); showhidetoggle('substanceadd')"
-                         value="Done"><br><br>
-                  <div id="substanceDisplay">
-                    <!-- shows list of currently entered user substances -->
-                  </div>
-                </fieldset>
-              </form>
-            </div>
-            <!-- End Substance Form -->
-          </td>
-          <td>
-            <!-- Begin Substance Removal Form -->
-            <div id="substanceremoval" style="display: none">
-              <form id="subRemoveForm" method="post">
-                <fieldset>
-                  <legend>Remove Substance</legend>
-                  <label for="removesubstanceList">Select to Remove:</label><br><br>
-                  <select id="removesubstanceList" class="substanceDrop">
-                    <script>
-                        substanceRemove();
-                    </script>
-                  </select><br><br>
-                  <input type="button" onclick="removeSubstance(); update()" value="Remove">
-                  <input type="button" onclick="showhidetoggle('substanceremoval')" value="Done">
-                </fieldset>
-              </form>
-            </div>
-            <!-- End Substance Removal Form -->
-          </td>
-        </tr>
-      </table>
-
-      <table>
-        <tr>
-          <td><button id="mixButton" onclick="showhidetoggle('mixtureform'); inputCreate()">Mix</button></td>
-          <td><button id="heatButton" onclick="showhidetoggle('heat_form'); update()">Heat</button></td>
-          <td><button id="splitButton" onclick="showhidetoggle('split_form')">Split</button></td>
-          <td><button id="outputButton" onclick="showhidetoggle('output_form'); update()">Output</button></td>
-        </tr>
-        <tr>
-          <td><button id="heatButton" onclick="showhidetoggle('cool_form'); update()">Cool</button></td>
-          <td><button id="detectButton" onclick="showhidetoggle('detect_form'); update()">Detect</button></td>
-          <td><button id="storeButton" onclick="showhidetoggle('store_form'); update()">Store</button></td>
-        </tr>
-      </table>
-
-      <button id="resetButton" onclick="resetExperiment()">Reset Experiment</button>
-      <button id="startButton" onclick="toJson(experimentHolder); onclick=inputExperiment()">Start Experiment</button>
-      <button id="quit" onclick="hideDiv('operationsMenu');
-              showDiv('experiment'); addExperiment(); toJson(benchtop)">Quit Experiment</button>
-
-      <script>
-
-          function createExperiment() {
-
-              if (benchtop.length === 0) {
-
-                  benchtop = benchTopStructure;
-              }
-
-              if (experimentHolder.length === 0) {
-
-                  experimentHolder.push(experimentStructure);
-              }
-          }
-
-          function addExperiment() {
-
-              benchTopStructure.BENCHTOP.EXPERIMENTS = experimentHolder;
-
-          }
-
-          function addSub() {
-
-              experimentStructure.EXPERIMENT.INPUTS = substancelist;
-          }
-
-          function addOperation() {
-
-              experimentStructure.EXPERIMENT.INSTRUCTIONS = operationList;
-
-              //console.log(JSON.stringify(experimentStructure.EXPERIMENT.INSTRUCTIONS, null, 2));
-          }
-
-          // window.location.reload()
-      </script>
+        <table id="menu">
 
 
+          <tr>
+            <td><button id="addSub" onclick="showhidetoggle('substanceadd'); update()">Add Substance</button></td>
+            <td><button id="removeSub" onclick="showhidetoggle('substanceremoval'); update()">Remove Substance</button></td>
+          </tr>
+          <tr>
+            <td>
+              <!-- Begin Substance Form -->
+              <div id='substanceadd' style="display: none">
+                <form id='subAddForm' method='post'>
+                  <fieldset>
+                    <legend>Add Substance</legend>
+                    <label for="substanceName">Input:</label>
+                    <input type='text' id='substanceName' autofocus><br>
+                    <input type="button" onclick="inputSubstance(document.getElementById('substanceName').value);
+                     update()" value="Add Substance">
+                    <input type="button" onclick="addSub(); showhidetoggle('substanceadd')"
+                           value="Done"><br><br>
+                    <div id="substanceDisplay">
+                      <!-- shows list of currently entered user substances -->
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+              <!-- End Substance Form -->
+            </td>
+            <td>
+              <!-- Begin Substance Removal Form -->
+              <div id="substanceremoval" style="display: none">
+                <form id="subRemoveForm" method="post">
+                  <fieldset>
+                    <legend>Remove Substance</legend>
+                    <label for="removesubstanceList">Select to Remove:</label><br><br>
+                    <select id="removesubstanceList" class="substanceDrop">
+                      <script>
+                          substanceRemove();
+                      </script>
+                    </select><br><br>
+                    <input type="button" onclick="removeSubstance(); update()" value="Remove">
+                    <input type="button" onclick="showhidetoggle('substanceremoval')" value="Done">
+                  </fieldset>
+                </form>
+              </div>
+              <!-- End Substance Removal Form -->
+            </td>
+          </tr>
+        </table>
+
+        <table>
+          <tr>
+            <td><button id="mixButton" onclick="showhidetoggle('mixtureform'); inputCreate()">Mix</button></td>
+            <td><button id="heatButton" onclick="showhidetoggle('heat_form'); update()">Heat</button></td>
+            <td><button id="splitButton" onclick="showhidetoggle('split_form')">Split</button></td>
+            <td><button id="outputButton" onclick="showhidetoggle('output_form'); update()">Output</button></td>
+          </tr>
+          <tr>
+            <td><button id="heatButton" onclick="showhidetoggle('cool_form'); update()">Cool</button></td>
+            <td><button id="detectButton" onclick="showhidetoggle('detect_form'); update()">Detect</button></td>
+            <td><button id="storeButton" onclick="showhidetoggle('store_form'); update()">Store</button></td>
+          </tr>
+          <tr>
+            <td><button id="resetButton" onclick="resetExperiment()">Reset Experiment</button></td>
+            <td><button id="quit" onclick="hideDiv('operationsMenu');
+                showDiv('experiment'); addExperiment(); toJson(benchtop)">Quit Experiment</button></td>
+            <td></td>
+          </tr>
+        </table>
 
 
-      <!-- Begin Mixture Form -->
-      <div id="mixtureform" style="display: none">
-        <form id="mixForm" method="post">
-          <fieldset>
-            <legend>MIX</legend>
-            <label for="mixName">Name:</label>
-            <input type="text" id="mixName" autofocus><br><br>
-            <label for="mixInputAmount">How many inputs for mixture?</label>
-            <select id="mixInputAmount" onchange="inputCreate()">
-              <script>
-                formInput();
-              </script>
-            </select><br><br>
-            <label for="mixInput">Enter Mixtures:</label><br>
-            <div id="mixInput">
-              <!-- container for dynamically making input fields -->
-            </div>
-            <label for="mixTemp">Enter Temp:</label>
-            <input type="text" id="mixTemp">
-            <select id="mixTempSign">
-              <script>
-                formTemperature('mixTempSign');
-              </script>
-            </select><br>
-            <label for="mixTime">Enter Time:</label>
-            <input type="text" id="mixTime">
-            <select id="mixDuration">
-              <script>
-                formTime('mixDuration');
-              </script>
-            </select><br>
-            <label for="mixOutputname">Output Name:</label>
-            <input type="text" id="mixOutputName"><br><br>
-            <input type="button" onclick="createMixture()" value="Add Mix">
-            <input type="button" onclick="addOperation(); showhidetoggle('mixtureform')" value="Done">
-          </fieldset>
-        </form>
-      </div>
-      <!-- End Mixture Form -->
+        <button id="startButton" onclick="toJson(experimentHolder)">Start Experiment</button>
 
-      <!-- Begin Heat Form -->
-      <div id="heat_form" style="display: none">
-        <form id="heatForm" method="post">
-          <fieldset>
-            <legend>Heat</legend>
-            <label for="nameHeat">Name:</label>
-            <input type="text" id="nameHeat" autofocus><br><br>
-            <label for="inputHeat">Select Inputs:</label>
-            <select id="inputHeat"> <!--onchange="test()">
-              <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
-              <script>
-                operationMixInput();
-              </script>
-            </select><br><br>
-            <label for="heatTemp">Enter Temp:</label>
-            <input type="text" id="heatTemp">
-            <select id="heatTempSign">
-              <script>
-                  formTemperature('heatTempSign');
-              </script>
-            </select><br>
-            <label for="heatTime">Enter Time:</label>
-            <input type="text" id="heatTime">
-            <select id="heatDuration">
-              <script>
-                  formTime('heatDuration');
-              </script>
-            </select><br><br>
-            <input type="button" onclick="createHeat()" value="Add Heat">
-            <input type="button" onclick="addOperation(); showhidetoggle('heat_form')" value="Done">
-          </fieldset>
-        </form>
-      </div>
-      <!-- End Heat Form -->
 
-      <!-- Begin Heat Form -->
-      <div id="cool_form" style="display: none">
-        <form id="coolForm" method="post">
-          <fieldset>
-            <legend>Cool</legend>
-            <label for="nameCool">Name:</label>
-            <input type="text" id="nameCool" autofocus><br><br>
-            <label for="inputCool">Select Inputs:</label>
-            <select id="inputCool"> <!--onchange="test()">
-              <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
-              <script>
-                  operationInput();
-              </script>
-            </select><br><br>
-            <label for="coolTemp">Enter Temp:</label>
-            <input type="text" id="coolTemp">
-            <select id="coolTempSign">
-              <script>
-                  formTemperature('coolTempSign');
-              </script>
-            </select><br>
-            <label for="coolTime">Enter Time:</label>
-            <input type="text" id="coolTime">
-            <select id="coolDuration">
-              <script>
-                  formTime('coolDuration');
-              </script>
-            </select><br><br>
-            <input type="button" onclick="createHeat()" value="Add Cool">
-            <input type="button" onclick="addOperation(); showhidetoggle('cool_form')" value="Done">
-          </fieldset>
-        </form>
-      </div>
-      <!-- End Heat Form -->
+        <script>
 
-      <!-- Begin Split Form -->
-      <div id="split_form" style="display: none">
-        <form id="splitForm" method="post">
-          <fieldset>
-            <legend>Split</legend>
-            <label for="nameSplit">Name:</label>
-            <input type="text" id="nameSplit" autofocus><br><br>
-            <label for="inputSplit">Select Input:</label>
-            <select id="inputSplit" onchange="test()">
-              <!-- ADD Split INPUTS FOR SELECTION HERE -->
-              <script>
-                  operationSplitInput();
-              </script>
-            </select><br><br>
-            <label for="splitTime">Enter Time:</label>
-            <input type="text" id="splitTime">
-            <select id="splitDuration">
-              <script>
-                  formTime('splitDuration');
-              </script>
-            </select><br><br>
-            <label for="splitAmount">How many outputs for split?</label>
-            <select id="splitAmount" onchange="outputCreate()">
-              <script>
-                  formSplit();
-              </script>
-            </select><br><br>
-            <label for="splitInput">Enter Outputs:</label><br>
-            <div id="splitInput">
-              <!-- container for dynamically making input fields -->
-            </div><br><br>
-            <input type="button" onclick="createSplit()" value="Add Split">
-            <input type="button" onclick="addOperation(); showhidetoggle('split_form')" value="Done">
-          </fieldset>
-        </form>
-      </div>
-      <!-- End Split Form -->
+            function createExperiment() {
 
-      <!-- Begin Store Form -->
-      <div id="store_form" style="display: none">
-        <form id="storeForm" method="post">
-          <fieldset>
-            <legend>Store</legend>
-            <label for="nameStore">Name:</label>
-            <input type="text" id="nameStore" autofocus><br><br>
-            <label for="inputStore">Select Inputs:</label>
-            <select id="inputStore">
-              <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
-              <script>
-                  operationStoreInput();
-              </script>
-            </select><br><br>
-            <label for="storeTemp">Enter Temp:</label>
-            <input type="text" id="storeTemp">
-            <select id="storeTempSign">
-              <script>
-                  formTemperature('storeTempSign');
-              </script>
-            </select><br>
-            <label for="storeTime">Enter Time:</label>
-            <input type="text" id="storeTime">
-            <select id="storeDuration">
-              <script>
-                  formTime('storeDuration');
-              </script>
-            </select><br><br>
-            <input type="button" onclick="createStore()" value="Add Store">
-            <input type="button" onclick="addOperation(); showhidetoggle('store_form')" value="Done">
-          </fieldset>
-        </form>
-      </div>
-      <!-- End Store Form -->
+                if (benchtop.length === 0) {
 
-      <!-- Begin Output Form -->
-      <div id="output_form" style="display: none">
-        <form id="outputForm" method="post">
-          <fieldset>
-            <legend>Output</legend>
-            <label for="nameOutput">Name:</label>
-            <input type="text" id="nameOutput" autofocus><br><br>
-            <label for="inputOutput">Select Inputs:</label>
-            <select id="inputOutput" onchange="test()">
-              <!-- ADD Output INPUTS FOR SELECTION HERE -->
-              <script>
-                  operationOutputInput("inputOutput");
-              </script>
-            </select><br><br>
-            <input type="button" onclick="createOutput()" value="Add Output">
-            <input type="button" onclick="addOperation(); showhidetoggle('output_form')" value="Done">
-          </fieldset>
-        </form>
-      </div>
-      <!-- End Output Form -->
+                    //benchtop = JSON.parse(JSON.stringify(benchTopStructure));
 
-      <!-- Begin Detect Form -->
-      <div id="detect_form" style="display: none">
-        <form id="detectForm" method="post">
-          <fieldset>
-            <legend>Detect</legend>
-            <label for="nameDetect">Name:</label>
-            <input type="text" id="nameDetect" autofocus><br><br>
-            <label for="inputDetect">Select Inputs:</label>
-            <select id="inputDetect">
-              <!-- ADD Output INPUTS FOR SELECTION HERE -->
-              <script>
-                  operationDetectInput();
-              </script>
-            </select><br><br>
-            <label for="detectOutputname">Output Name:</label>
-            <input type="text" id="detectOutputName"><br><br>
-            <input type="button" onclick="createDetect()" value="Add Detect">
-            <input type="button" onclick="addOperation(); showhidetoggle('detect_form')" value="Done">
-          </fieldset>
-        </form>
-      </div>
-      <!-- End Detect Form -->
+                    benchtop = benchTopStructure;
+                }
 
-      <script>
+                if (experimentHolder.length === 0) {
 
-      function test() {
+                    //experiment = JSON.parse(JSON.stringify(experimentStructure));
+                    //experimentStructure.EXPERIMENT.NAME = document.getElementById('experimentName').value;
+                    //experimentHolder.push(experiment);
 
-        console.log(document.getElementById('inputHeat').text);
-        var selected = document.getElementById('inputHeat');
-        var test = selected.options[selected.selectedIndex].text;
-        var test2 = selected.options[selected.selectedIndex].value;
-        console.log(test);
-        console.log(test2);
+                    experimentHolder.push(experimentStructure);
+                }
 
-      }
+            }
 
-      function createSplit() {
+            function addExperiment() {
+
+                benchTopStructure.BENCHTOP.EXPERIMENTS = experimentHolder;
+
+            }
+
+            function addSub() {
+
+                //experiment.EXPERIMENT.INPUTS = substancelist;
+                experimentStructure.EXPERIMENT.INPUTS = substancelist;
+            }
+
+            function addOperation() {
+
+                //experiment.EXPERIMENT.INSTRUCTIONS = operationList;
+                experimentStructure.EXPERIMENT.INSTRUCTIONS = operationList;
+
+                //console.log(JSON.stringify(experimentStructure.EXPERIMENT.INSTRUCTIONS, null, 2));
+            }
+
+            // window.location.reload()
+        </script>
+
+
+
+
+        <!-- Begin Mixture Form -->
+        <div id="mixtureform" style="display: none">
+          <form id="mixForm" method="post">
+            <fieldset>
+              <legend>MIX</legend>
+              <label for="mixName">Name:</label>
+              <input type="text" id="mixName" autofocus><br><br>
+              <label for="mixInputAmount">How many inputs for mixture?</label>
+              <select id="mixInputAmount" onchange="inputCreate()">
+                <script>
+                  formInput();
+                </script>
+              </select><br><br>
+              <label for="mixInput">Enter Mixtures:</label><br>
+              <div id="mixInput">
+                <!-- container for dynamically making input fields -->
+              </div>
+              <label for="mixTemp">Enter Temp:</label>
+              <input type="text" id="mixTemp">
+              <select id="mixTempSign">
+                <script>
+                  formTemperature('mixTempSign');
+                </script>
+              </select><br>
+              <label for="mixTime">Enter Time:</label>
+              <input type="text" id="mixTime">
+              <select id="mixDuration">
+                <script>
+                  formTime('mixDuration');
+                </script>
+              </select><br>
+              <label for="mixOutputname">Output Name:</label>
+              <input type="text" id="mixOutputName"><br><br>
+              <input type="button" onclick="createMixture()" value="Add Mix">
+              <input type="button" onclick="addOperation(); showhidetoggle('mixtureform')" value="Done">
+            </fieldset>
+          </form>
+        </div>
+        <!-- End Mixture Form -->
+
+        <!-- Begin Heat Form -->
+        <div id="heat_form" style="display: none">
+          <form id="heatForm" method="post">
+            <fieldset>
+              <legend>Heat</legend>
+              <label for="nameHeat">Name:</label>
+              <input type="text" id="nameHeat" autofocus><br><br>
+              <label for="inputHeat">Select Inputs:</label>
+              <select id="inputHeat"> <!--onchange="test()">
+                <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
+                <script>
+                  operationMixInput();
+                </script>
+              </select><br><br>
+              <label for="heatTemp">Enter Temp:</label>
+              <input type="text" id="heatTemp">
+              <select id="heatTempSign">
+                <script>
+                    formTemperature('heatTempSign');
+                </script>
+              </select><br>
+              <label for="heatTime">Enter Time:</label>
+              <input type="text" id="heatTime">
+              <select id="heatDuration">
+                <script>
+                    formTime('heatDuration');
+                </script>
+              </select><br><br>
+              <input type="button" onclick="createHeat()" value="Add Heat">
+              <input type="button" onclick="addOperation(); showhidetoggle('heat_form')" value="Done">
+            </fieldset>
+          </form>
+        </div>
+        <!-- End Heat Form -->
+
+        <!-- Begin Heat Form -->
+        <div id="cool_form" style="display: none">
+          <form id="coolForm" method="post">
+            <fieldset>
+              <legend>Cool</legend>
+              <label for="nameCool">Name:</label>
+              <input type="text" id="nameCool" autofocus><br><br>
+              <label for="inputCool">Select Inputs:</label>
+              <select id="inputCool"> <!--onchange="test()">
+                <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
+                <script>
+                    operationInput();
+                </script>
+              </select><br><br>
+              <label for="coolTemp">Enter Temp:</label>
+              <input type="text" id="coolTemp">
+              <select id="coolTempSign">
+                <script>
+                    formTemperature('coolTempSign');
+                </script>
+              </select><br>
+              <label for="coolTime">Enter Time:</label>
+              <input type="text" id="coolTime">
+              <select id="coolDuration">
+                <script>
+                    formTime('coolDuration');
+                </script>
+              </select><br><br>
+              <input type="button" onclick="createHeat()" value="Add Cool">
+              <input type="button" onclick="addOperation(); showhidetoggle('cool_form')" value="Done">
+            </fieldset>
+          </form>
+        </div>
+        <!-- End Heat Form -->
+
+        <!-- Begin Split Form -->
+        <div id="split_form" style="display: none">
+          <form id="splitForm" method="post">
+            <fieldset>
+              <legend>Split</legend>
+              <label for="nameSplit">Name:</label>
+              <input type="text" id="nameSplit" autofocus><br><br>
+              <label for="inputSplit">Select Input:</label>
+              <select id="inputSplit" onchange="test()">
+                <!-- ADD Split INPUTS FOR SELECTION HERE -->
+                <script>
+                    operationSplitInput();
+                </script>
+              </select><br><br>
+              <label for="splitTime">Enter Time:</label>
+              <input type="text" id="splitTime">
+              <select id="splitDuration">
+                <script>
+                    formTime('splitDuration');
+                </script>
+              </select><br><br>
+              <label for="splitAmount">How many outputs for split?</label>
+              <select id="splitAmount" onchange="outputCreate()">
+                <script>
+                    formSplit();
+                </script>
+              </select><br><br>
+              <label for="splitInput">Enter Outputs:</label><br>
+              <div id="splitInput">
+                <!-- container for dynamically making input fields -->
+              </div><br><br>
+              <input type="button" onclick="createSplit()" value="Add Split">
+              <input type="button" onclick="addOperation(); showhidetoggle('split_form')" value="Done">
+            </fieldset>
+          </form>
+        </div>
+        <!-- End Split Form -->
+
+        <!-- Begin Store Form -->
+        <div id="store_form" style="display: none">
+          <form id="storeForm" method="post">
+            <fieldset>
+              <legend>Store</legend>
+              <label for="nameStore">Name:</label>
+              <input type="text" id="nameStore" autofocus><br><br>
+              <label for="inputStore">Select Inputs:</label>
+              <select id="inputStore">
+                <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
+                <script>
+                    operationStoreInput();
+                </script>
+              </select><br><br>
+              <label for="storeTemp">Enter Temp:</label>
+              <input type="text" id="storeTemp">
+              <select id="storeTempSign">
+                <script>
+                    formTemperature('storeTempSign');
+                </script>
+              </select><br>
+              <label for="storeTime">Enter Time:</label>
+              <input type="text" id="storeTime">
+              <select id="storeDuration">
+                <script>
+                    formTime('storeDuration');
+                </script>
+              </select><br><br>
+              <input type="button" onclick="createStore()" value="Add Store">
+              <input type="button" onclick="addOperation(); showhidetoggle('store_form')" value="Done">
+            </fieldset>
+          </form>
+        </div>
+        <!-- End Store Form -->
+
+        <!-- Begin Output Form -->
+        <div id="output_form" style="display: none">
+          <form id="outputForm" method="post">
+            <fieldset>
+              <legend>Output</legend>
+              <label for="nameOutput">Name:</label>
+              <input type="text" id="nameOutput" autofocus><br><br>
+              <label for="inputOutput">Select Inputs:</label>
+              <select id="inputOutput" onchange="test()">
+                <!-- ADD Output INPUTS FOR SELECTION HERE -->
+                <script>
+                    operationOutputInput("inputOutput");
+                </script>
+              </select><br><br>
+              <input type="button" onclick="createOutput()" value="Add Output">
+              <input type="button" onclick="addOperation(); showhidetoggle('output_form')" value="Done">
+            </fieldset>
+          </form>
+        </div>
+        <!-- End Output Form -->
+
+        <!-- Begin Detect Form -->
+        <div id="detect_form" style="display: none">
+          <form id="detectForm" method="post">
+            <fieldset>
+              <legend>Detect</legend>
+              <label for="nameDetect">Name:</label>
+              <input type="text" id="nameDetect" autofocus><br><br>
+              <label for="inputDetect">Select Inputs:</label>
+              <select id="inputDetect">
+                <!-- ADD Output INPUTS FOR SELECTION HERE -->
+                <script>
+                    operationDetectInput();
+                </script>
+              </select><br><br>
+              <label for="detectOutputname">Output Name:</label>
+              <input type="text" id="detectOutputName"><br><br>
+              <input type="button" onclick="createDetect()" value="Add Detect">
+              <input type="button" onclick="addOperation(); showhidetoggle('detect_form')" value="Done">
+            </fieldset>
+          </form>
+        </div>
+        <!-- End Detect Form -->
+
+        <script>
+
+        function test() {
+
+          console.log(document.getElementById('inputHeat').text);
+          var selected = document.getElementById('inputHeat');
+          var test = selected.options[selected.selectedIndex].text;
+          var test2 = selected.options[selected.selectedIndex].value;
+          console.log(test);
+          console.log(test2);
+
+        }
+
+        function createSplit() {
+
+            var operation = JSON.parse(JSON.stringify(operationStructure));
+
+            operation.OPERATION.NAME = document.getElementById('nameSplit').value;
+            operation.OPERATION.ID = createID();
+            operation.OPERATION.CLASSIFICATION = 'Split';
+
+            var num = document.getElementById('splitAmount').value;
+            var tmpIn = document.getElementById("inputSplit").value;
+            inputVariable(operation, tmpIn, '', '');
+
+            for (i = 0; i < num; i++) {
+
+                var tmpName = document.getElementById("splitOut" + i).value;
+                operationOutput(operation, 'substance', tmpName);
+            }
+
+            operationList.push(operation);
+
+            resetForm('splitForm');
+            outputCreate();
+
+        }
+
+        function createStore() {
+            var operation = JSON.parse(JSON.stringify(operationStructure));
+
+            operation.OPERATION.NAME = document.getElementById('nameStore').value;
+            operation.OPERATION.ID = createID();
+            operation.OPERATION.CLASSIFICATION = 'STORAGE';
+
+            var input = JSON.parse(JSON.stringify(variableInput));
+            input.VARIABLE.NAME = document.getElementById('inputStore').value;
+
+            operation.OPERATION.INPUTS.push(input);
+
+            inputTemperature(operation, document.getElementById('storeTemp').value, document.getElementById('storeTempSign').value);
+            inputTime(operation, document.getElementById('storeTime').value, document.getElementById('storeDuration').value);
+
+            operationList.push(operation);
+
+            resetForm('storeForm');
+        }
+
+        function createHeat() {
 
           var operation = JSON.parse(JSON.stringify(operationStructure));
 
-          operation.OPERATION.NAME = document.getElementById('nameSplit').value;
+          operation.OPERATION.NAME = document.getElementById('nameHeat').value;
           operation.OPERATION.ID = createID();
-          operation.OPERATION.CLASSIFICATION = 'Split';
+          operation.OPERATION.CLASSIFICATION = 'HEAT';
 
-          var num = document.getElementById('splitAmount').value;
-          var tmpIn = document.getElementById("inputSplit").value;
-          inputVariable(operation, tmpIn, '', '');
+          //inputVariable(operation, document.getElementById('inputHeat').value);
+
+          var input = JSON.parse(JSON.stringify(variableInput));
+          input.VARIABLE.NAME = document.getElementById('inputHeat').value;
+
+          operation.OPERATION.INPUTS.push(input);
+
+
+          inputTemperature(operation, document.getElementById('heatTemp').value, document.getElementById('heatTempSign').value);
+          inputTime(operation, document.getElementById('heatTime').value, document.getElementById('heatDuration').value);
+
+          operationList.push(operation);
+
+          resetForm('heatForm');
+
+        }
+
+        function createMixture() {
+
+          var operation = JSON.parse(JSON.stringify(operationStructure));
+
+          operation.OPERATION.NAME = document.getElementById('mixName').value;
+          operation.OPERATION.ID = createID();
+          operation.OPERATION.CLASSIFICATION = 'MIX';
+
+          var num = document.getElementById('mixInputAmount').value;
 
           for (i = 0; i < num; i++) {
 
-              var tmpName = document.getElementById("splitOut" + i).value;
-              operationOutput(operation, 'substance', tmpName);
+              var tmpName = document.getElementById("input" + i).value;
+              console.log(tmpName);
+              var tmpVol = document.getElementById("inputvolume" + i).value;
+              console.log(tmpVol);
+              var tmpUnit = document.getElementById("inputvolumeUnits" + i).value;
+              console.log(tmpUnit);
+
+              inputVariable(operation, tmpName, tmpVol, tmpUnit);
           }
 
-          operationList.push(operation);
-
-          resetForm('splitForm');
-          outputCreate();
-
-      }
-
-      function createStore() {
-          var operation = JSON.parse(JSON.stringify(operationStructure));
-
-          operation.OPERATION.NAME = document.getElementById('nameStore').value;
-          operation.OPERATION.ID = createID();
-          operation.OPERATION.CLASSIFICATION = 'STORAGE';
-
-          var input = JSON.parse(JSON.stringify(variableInput));
-          input.VARIABLE.NAME = document.getElementById('inputStore').value;
-
-          operation.OPERATION.INPUTS.push(input);
-
-          inputTemperature(operation, document.getElementById('storeTemp').value, document.getElementById('storeTempSign').value);
-          inputTime(operation, document.getElementById('storeTime').value, document.getElementById('storeDuration').value);
+          inputTemperature(operation, document.getElementById('mixTemp').value, document.getElementById('mixTempSign').value);
+          inputTime(operation, document.getElementById('mixTime').value, document.getElementById('mixDuration').value);
+          operationOutput(operation, 'substance', document.getElementById('mixOutputName').value);
 
           operationList.push(operation);
 
-          resetForm('storeForm');
-      }
+          console.log(operationList[0].OPERATION.OUTPUTS[0].VARIABLE_DECLARATION.NAME);
 
-      function createHeat() {
+          resetForm('mixForm');
+          inputCreate();
 
-        var operation = JSON.parse(JSON.stringify(operationStructure));
-
-        operation.OPERATION.NAME = document.getElementById('nameHeat').value;
-        operation.OPERATION.ID = createID();
-        operation.OPERATION.CLASSIFICATION = 'HEAT';
-
-        //inputVariable(operation, document.getElementById('inputHeat').value);
-
-        var input = JSON.parse(JSON.stringify(variableInput));
-        input.VARIABLE.NAME = document.getElementById('inputHeat').value;
-
-        operation.OPERATION.INPUTS.push(input);
-
-
-        inputTemperature(operation, document.getElementById('heatTemp').value, document.getElementById('heatTempSign').value);
-        inputTime(operation, document.getElementById('heatTime').value, document.getElementById('heatDuration').value);
-
-        operationList.push(operation);
-
-        resetForm('heatForm');
-
-      }
-
-      function createMixture() {
-
-        var operation = JSON.parse(JSON.stringify(operationStructure));
-
-        operation.OPERATION.NAME = document.getElementById('mixName').value;
-        operation.OPERATION.ID = createID();
-        operation.OPERATION.CLASSIFICATION = 'MIX';
-
-        var num = document.getElementById('mixInputAmount').value;
-
-        for (i = 0; i < num; i++) {
-
-            var tmpName = document.getElementById("input" + i).value;
-            console.log(tmpName);
-            var tmpVol = document.getElementById("inputvolume" + i).value;
-            console.log(tmpVol);
-            var tmpUnit = document.getElementById("inputvolumeUnits" + i).value;
-            console.log(tmpUnit);
-
-            inputVariable(operation, tmpName, tmpVol, tmpUnit);
         }
 
-        inputTemperature(operation, document.getElementById('mixTemp').value, document.getElementById('mixTempSign').value);
-        inputTime(operation, document.getElementById('mixTime').value, document.getElementById('mixDuration').value);
-        operationOutput(operation, 'substance', document.getElementById('mixOutputName').value);
+        function createOutput() {
 
-        operationList.push(operation);
+            var operation = JSON.parse(JSON.stringify(operationStructure));
 
-        console.log(operationList[0].OPERATION.OUTPUTS[0].VARIABLE_DECLARATION.NAME);
-
-        resetForm('mixForm');
-        inputCreate();
-
-      }
-
-      function createOutput() {
-
-          var operation = JSON.parse(JSON.stringify(operationStructure));
-
-          operation.OPERATION.NAME = document.getElementById('nameOutput').value;
-          operation.OPERATION.ID = createID();
-          operation.OPERATION.CLASSIFICATION = 'OUTPUT';
+            operation.OPERATION.NAME = document.getElementById('nameOutput').value;
+            operation.OPERATION.ID = createID();
+            operation.OPERATION.CLASSIFICATION = 'OUTPUT';
 
 
-          var input = JSON.parse(JSON.stringify(variableInput));
-          input.VARIABLE.NAME = document.getElementById('inputOutput').value;
+            var input = JSON.parse(JSON.stringify(variableInput));
+            input.VARIABLE.NAME = document.getElementById('inputOutput').value;
 
-          operation.OPERATION.INPUTS.push(input);
-
-
-          operationList.push(operation);
-
-          resetForm('outputForm');
-
-      }
-
-      function createDetect() {
-
-          var operation = JSON.parse(JSON.stringify(operationStructure));
-
-          operation.OPERATION.NAME = document.getElementById('nameDetect').value;
-          operation.OPERATION.ID = createID();
-          operation.OPERATION.CLASSIFICATION = 'DETECT';
+            operation.OPERATION.INPUTS.push(input);
 
 
-          var input = JSON.parse(JSON.stringify(variableInput));
-          input.VARIABLE.NAME = document.getElementById('inputDetect').value;
+            operationList.push(operation);
 
-          operation.OPERATION.INPUTS.push(input);
-          operationOutput(operation, 'sensor', document.getElementById('detectOutputName').value);
+            resetForm('outputForm');
+
+        }
+
+        function createDetect() {
+
+            var operation = JSON.parse(JSON.stringify(operationStructure));
+
+            operation.OPERATION.NAME = document.getElementById('nameDetect').value;
+            operation.OPERATION.ID = createID();
+            operation.OPERATION.CLASSIFICATION = 'DETECT';
 
 
-          operationList.push(operation);
+            var input = JSON.parse(JSON.stringify(variableInput));
+            input.VARIABLE.NAME = document.getElementById('inputDetect').value;
 
-          resetForm('detectForm');
+            operation.OPERATION.INPUTS.push(input);
+            operationOutput(operation, 'sensor', document.getElementById('detectOutputName').value);
 
-      }
 
-      </script>
+            operationList.push(operation);
 
-    </div>  <!-- End of operationsMenu-->
-    </div>
+            resetForm('detectForm');
+
+        }
+
+        </script>
+
+      </div> <!-- End of operationsMenu-->
+
+    </div> <!-- End of clearfit side -->
 
   </div> <!-- End of left side -->
 
 
 
   <div class="rightside">
+
     <div class="clearfit">
 
 
     <pre id="whereToPrint"></pre>
 
-      </div>
+
+    </div> <!-- End of clearfit side -->
+
   </div> <!-- End of right side -->
 
 
