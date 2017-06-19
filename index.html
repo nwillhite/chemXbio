@@ -25,12 +25,27 @@
   <div class="leftside">
     <div class="clearfit">
 
-      <button onclick="showhidetoggle('operationsMenu'); createExperiment()">New experiment</button>
+      <button onclick="showhidetoggle('operationsMenu')">New experiment</button>
 
       <div id="operationsMenu" style="display: none">
 
         <table id="menu">
-
+          <tr>
+          <td>
+          <!-- Begin Start Experiment Form -->
+          <div id="startExperiment">
+            <form id="startForm" method="post">
+              <fieldset>
+                <legend>Start Experiment</legend>
+                <label for="experimentName">Name:</label>
+                <input type='text' id='experimentName' autofocus><br>
+                <input type="button" onclick="createExperiment(); update()" value="Start">
+              </fieldset>
+            </form>
+          </div>
+          <!-- End Start Experiment Form -->
+          </td>
+          </tr>
 
           <tr>
             <td><button id="addSub" onclick="showhidetoggle('substanceadd'); update()">Add Substance</button></td>
@@ -106,6 +121,8 @@
         <script>
 
             function createExperiment() {
+
+                experimentStructure.EXPERIMENT.NAME = document.getElementById('experimentName').value;
 
                 if (benchtop.length === 0) {
 
