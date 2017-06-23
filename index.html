@@ -186,9 +186,7 @@
                     experimentStructure.EXPERIMENT.INSTRUCTIONS.push(operationList);
 
                 }
-
                 //experimentStructure.EXPERIMENT.INSTRUCTIONS = operationList;
-
             }
 
             // window.location.reload()
@@ -200,6 +198,7 @@
           <form id="mixForm" method="post">
             <fieldset>
               <legend>MIX</legend>
+
               <label for="mixName">Name:</label>
               <input type="text" id="mixName" autofocus><br><br>
               <label for="mixInputAmount">How many inputs for mixture?</label>
@@ -208,10 +207,12 @@
                   formInput();
                 </script>
               </select><br><br>
+
               <label for="mixInput">Enter Mixtures:</label><br>
               <div id="mixInput">
                 <!-- container for dynamically making input fields -->
               </div>
+
               <label for="mixTemp">Enter Temp:</label>
               <input type="text" id="mixTemp">
               <select id="mixTempSign">
@@ -219,6 +220,7 @@
                   formTemperature('mixTempSign');
                 </script>
               </select><br>
+
               <label for="mixTime">Enter Time:</label>
               <input type="text" id="mixTime">
               <select id="mixDuration">
@@ -226,8 +228,18 @@
                   formTime('mixDuration');
                 </script>
               </select><br>
+
               <label for="mixOutputname">Output Name:</label>
-              <input type="text" id="mixOutputName"><br><br>
+              <input type="text" id="mixOutputName"><br>
+
+              <label for="mixRepeat">Repeat:</label>
+              <select id="mixRepeat">
+                <option value="false">No</option>
+                <option value="true">Yes</option>
+              </select>
+              <label for="mixRepeatNum">for:</label>
+              <input type="text" id="mixRepeatNum"><br><br>
+
               <input type="button" onclick="createMixture(); toJson(experimentHolder);" value="Add Mix">
               <input type="button" onclick="showhidetoggle('mixtureform')" value="Done">
             </fieldset>
@@ -424,14 +436,15 @@
 
 
         <script>
+
         function test() {
 
-          console.log(document.getElementById('inputHeat').text);
-          var selected = document.getElementById('inputHeat');
-          var test = selected.options[selected.selectedIndex].text;
-          var test2 = selected.options[selected.selectedIndex].value;
-          console.log(test);
-          console.log(test2);
+          //console.log(document.getElementById('inputHeat').text);
+          //var selected = document.getElementById('inputHeat');
+          //var test = selected.options[selected.selectedIndex].text;
+          //var test2 = selected.options[selected.selectedIndex].value;
+          //console.log(test);
+          //console.log(test2);
 
         }
         </script>
