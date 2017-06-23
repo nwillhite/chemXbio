@@ -254,8 +254,10 @@
           <form id="heatForm" method="post">
             <fieldset>
               <legend>Heat</legend>
+
               <label for="nameHeat">Name:</label>
               <input type="text" id="nameHeat" autofocus><br><br>
+
               <label for="inputHeat">Select Inputs:</label>
               <select id="inputHeat"> <!--onchange="test()">
                 <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
@@ -263,6 +265,7 @@
                   operationMixInput();
                 </script>
               </select><br><br>
+
               <label for="heatTemp">Enter Temp:</label>
               <input type="text" id="heatTemp">
               <select id="heatTempSign">
@@ -270,13 +273,26 @@
                     formTemperature('heatTempSign');
                 </script>
               </select><br>
+
               <label for="heatTime">Enter Time:</label>
               <input type="text" id="heatTime">
               <select id="heatDuration">
                 <script>
                     formTime('heatDuration');
                 </script>
-              </select><br><br>
+              </select><br>
+
+              <label for="heatRepeat">Repeat:</label>
+              <select id="heatRepeat">
+                <option value="false">No</option>
+                <option value="true">Yes</option>
+              </select>
+
+              <label for="heatRepeatNum">for:</label>
+              <input type="text" id="heatRepeatNum">
+              <label for="heatRepeatNum"> times</label>
+              <br><br>
+
               <input type="button" onclick="createHeat(); toJson(experimentHolder);" value="Add Heat">
               <input type="button" onclick="showhidetoggle('heat_form')" value="Done">
             </fieldset>

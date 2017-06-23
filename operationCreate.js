@@ -47,12 +47,29 @@ function createHeat() {
     inputTime(operation, document.getElementById('heatTime').value,
         document.getElementById('heatDuration').value);
 
-    operationList.push(operation);
-    addOperation();
+    if(document.getElementById('heatRepeat').value === 'true') {
+
+        var repeatOp = JSON.parse(JSON.stringify(operationStructure));
+
+        repeatOp.OPERATION.NAME = 'REPEAT';
+        repeatOp.OPERATION.ID = createID();
+        repeatOp.OPERATION.CLASSIFICATION = 'CFG_LOOP';
+        delete repeatOp.OPERATION.INPUTS;
+        delete repeatOp.OPERATION.OUTPUTS;
+        repeatOp.OPERATION.LOOP_NUMS = document.getElementById('heatRepeatNum').value;
+        repeatOp.OPERATION.OPERATIONS = [];
+
+        repeatOp.OPERATION.OPERATIONS.push(operation);
+
+        operationList.push(repeatOp);
+        addOperation();
+    }
+    else {
+        operationList.push(operation);
+        addOperation();
+    }
 
     resetForm('heatForm');
-
-
 
 }
 
@@ -102,7 +119,7 @@ function createMixture() {
         delete repeatOp.OPERATION.OUTPUTS;
         repeatOp.OPERATION.LOOP_NUMS = document.getElementById('mixRepeatNum').value;
         repeatOp.OPERATION.OPERATIONS = [];
-        
+
         repeatOp.OPERATION.OPERATIONS.push(operation);
 
         operationList.push(repeatOp);
