@@ -100,9 +100,9 @@ function createMixture() {
         repeatOp.OPERATION.CLASSIFICATION = 'CFG_LOOP';
         delete repeatOp.OPERATION.INPUTS;
         delete repeatOp.OPERATION.OUTPUTS;
-        repeatOp.OPERATION.LOOP_NUMS = 0;
+        repeatOp.OPERATION.LOOP_NUMS = document.getElementById('mixRepeatNum').value;
         repeatOp.OPERATION.OPERATIONS = [];
-
+        
         repeatOp.OPERATION.OPERATIONS.push(operation);
 
         operationList.push(repeatOp);
