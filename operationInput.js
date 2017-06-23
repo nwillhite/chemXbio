@@ -37,8 +37,11 @@ function inputSubstance (name) {
 
 function operationOutput(obj, type, tmpName) {
 
-    if (type === 'substance')
-    {
+    if (tmpName === '') {
+
+    }
+    else if (type === 'substance') {
+
         var varOutput = JSON.parse(JSON.stringify(variableStructure));
 
         varOutput.VARIABLE_DECLARATION.NAME = varOutput.VARIABLE_DECLARATION.ID = tmpName;
@@ -48,8 +51,7 @@ function operationOutput(obj, type, tmpName) {
         obj.OPERATION.OUTPUTS.push(varOutput);
 
     }
-    else if (type === 'sensor')
-    {
+    else if (type === 'sensor') {
         console.log('entered sensor');
         var sensor = JSON.parse(JSON.stringify(sensorOutput));
 
