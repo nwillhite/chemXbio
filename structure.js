@@ -107,7 +107,7 @@ var substanceStructure = {
         VOLUME: {
             VALUE: "",
             UNITS: ""
-        },
+        }
     }
 };
 
