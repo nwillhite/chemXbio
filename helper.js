@@ -440,15 +440,21 @@ function substanceRemove() {
 
 }
 
+function updateList() {
+
+    substanceRemove();
+    document.getElementById('substanceDisplay').innerHTML = JSON.stringify(substances, null, 2);
+    update();
+    //document.getElementById('substanceDisplay').innerHTML = " ";
+    //document.getElementById('substanceDisplay').innerHTML = " " + substances;
+}
+
+
 function update() {
     formInput();
-    substanceRemove();
     operationSplitInput();
     operationOutputInput();
     operationDetectInput();
     operationStoreInput();
     operationMixInput();
-    toJson(experimentHolder);
-    document.getElementById('substanceDisplay').innerHTML = " ";
-    document.getElementById('substanceDisplay').innerHTML = " " + substances;
 }
