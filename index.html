@@ -63,8 +63,8 @@
                     <label for="substanceName">Input:</label>
                     <input type='text' id='substanceName' autofocus><br>
                     <input type="button" onclick="inputSubstance(document.getElementById('substanceName').value);
-                     update()" value="Add Substance">
-                    <input type="button" onclick="addSub(); showhidetoggle('substanceadd')"
+                     addSub(); update();" value="Add Substance">
+                    <input type="button" onclick="showhidetoggle('substanceadd')"
                            value="Done"><br><br>
                     <div id="substanceDisplay">
                       <!-- shows list of currently entered user substances -->
@@ -131,11 +131,9 @@
 
                 experimentStructure.EXPERIMENT.NAME = name;
 
-                var text = 'You have started an expriment named: ' + name;
-
-                text += " \n this is going to be a test";
-
-                document.getElementById('whereToPrint').innerHTML = text;
+                //var text = 'You have started an expriment named: ' + name;
+                //text += " \n this is going to be a test";
+                //document.getElementById('whereToPrint').innerHTML = text;
 
                 if (benchtop.length === 0) {
 
@@ -212,8 +210,8 @@
               </select><br>
               <label for="mixOutputname">Output Name:</label>
               <input type="text" id="mixOutputName"><br><br>
-              <input type="button" onclick="createMixture()" value="Add Mix">
-              <input type="button" onclick="addOperation(); showhidetoggle('mixtureform')" value="Done">
+              <input type="button" onclick="createMixture(); addOperation(); update();" value="Add Mix">
+              <input type="button" onclick="showhidetoggle('mixtureform')" value="Done">
             </fieldset>
           </form>
         </div>
@@ -247,8 +245,8 @@
                     formTime('heatDuration');
                 </script>
               </select><br><br>
-              <input type="button" onclick="createHeat()" value="Add Heat">
-              <input type="button" onclick="addOperation(); showhidetoggle('heat_form')" value="Done">
+              <input type="button" onclick="createHeat(); addOperation(); update();" value="Add Heat">
+              <input type="button" onclick="showhidetoggle('heat_form')" value="Done">
             </fieldset>
           </form>
         </div>
@@ -320,8 +318,8 @@
               <div id="splitInput">
                 <!-- container for dynamically making input fields -->
               </div><br><br>
-              <input type="button" onclick="createSplit()" value="Add Split">
-              <input type="button" onclick="addOperation(); showhidetoggle('split_form')" value="Done">
+              <input type="button" onclick="createSplit(); addOperation(); update();" value="Add Split">
+              <input type="button" onclick="showhidetoggle('split_form')" value="Done">
             </fieldset>
           </form>
         </div>
@@ -355,8 +353,8 @@
                     formTime('storeDuration');
                 </script>
               </select><br><br>
-              <input type="button" onclick="createStore()" value="Add Store">
-              <input type="button" onclick="addOperation(); showhidetoggle('store_form')" value="Done">
+              <input type="button" onclick="createStore(); addOperation(); update();" value="Add Store">
+              <input type="button" onclick="showhidetoggle('store_form')" value="Done">
             </fieldset>
           </form>
         </div>
@@ -376,8 +374,8 @@
                     operationOutputInput("inputOutput");
                 </script>
               </select><br><br>
-              <input type="button" onclick="createOutput()" value="Add Output">
-              <input type="button" onclick="addOperation(); showhidetoggle('output_form')" value="Done">
+              <input type="button" onclick="createOutput(); addOperation(); update();" value="Add Output">
+              <input type="button" onclick="showhidetoggle('output_form')" value="Done">
             </fieldset>
           </form>
         </div>
@@ -399,8 +397,8 @@
               </select><br><br>
               <label for="detectOutputname">Output Name:</label>
               <input type="text" id="detectOutputName"><br><br>
-              <input type="button" onclick="createDetect()" value="Add Detect">
-              <input type="button" onclick="addOperation(); showhidetoggle('detect_form')" value="Done">
+              <input type="button" onclick="createDetect(); addOperation(); update();" value="Add Detect">
+              <input type="button" onclick="showhidetoggle('detect_form')" value="Done">
             </fieldset>
           </form>
         </div>

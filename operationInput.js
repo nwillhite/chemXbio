@@ -13,8 +13,8 @@ function inputExperiment () {
 
 }
 
-// Functions for injecting inputs, volume, temperature in
 
+// Functions for injecting inputs, volume, temperature in
 function inputSubstance (name) {
 
     if (name != '') {
@@ -33,6 +33,7 @@ function inputSubstance (name) {
     }
 
 }
+
 
 function operationOutput(obj, type, tmpName) {
 
@@ -123,6 +124,7 @@ function inputTime (obj, tmpVal, tmpUnit) {
     }
 
 }
+
 
 //dynamically handles the input fields for mixing operations
 function inputCreate() {

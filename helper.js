@@ -13,6 +13,7 @@ function download(text, name, type) {
     a.click();
 }
 
+
 function showDiv(id)
 {
   document.getElementById(id).style.display = 'block';
@@ -72,9 +73,9 @@ function removeSubstance() {
         }
     }
 
-    //substances.splice(index,1);
     update();
 }
+
 
 function removeOperation() {
 
@@ -108,7 +109,7 @@ function formInput()
         container.removeChild(container.lastChild);
     }
 
-    var tmp = substancelist.length + operationList.length;
+    var tmp = substancelist.length; //+ operationList.length;
     tmp += 1;
 
     var option = document.createElement('option');
@@ -447,6 +448,7 @@ function update() {
     operationDetectInput();
     operationStoreInput();
     operationMixInput();
+    toJson(experimentHolder);
     document.getElementById('substanceDisplay').innerHTML = " ";
     document.getElementById('substanceDisplay').innerHTML = " " + substances;
 }

@@ -1,5 +1,7 @@
 body {
-  margin: 0;
+  margin-top: 60px;
+  margin-left: 50px;
+  margin-right: 25px;
   height: 100%;
   overflow:hidden;
 }
@@ -13,16 +15,16 @@ div.clearFlt {
 div.leftside {
   float:left;
   width:49%;
-  border: solid thin black;
-  height: 900px;
+  border: solid thin darkgrey;
+  height: 850px;
   overflow:scroll;
 }
 
 div.rightside {
   float:left;
   width:49%;
-  border: solid thin black;
-  height: 900px;
+  border: solid thin darkgrey;
+  height: 850px;
   overflow:scroll;
 }
 

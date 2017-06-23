@@ -26,7 +26,6 @@ function createDetect() {
 }
 
 
-
 function createHeat() {
 
     var operation = JSON.parse(JSON.stringify(operationStructure));
