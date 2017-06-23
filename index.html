@@ -40,7 +40,7 @@
                 <legend>Start Experiment</legend>
                 <label for="experimentName">Name:</label>
                 <input type='text' id='experimentName' autofocus><br>
-                <input type="button" onclick="createExperiment(); update(); showhidetoggle('startExperiment');
+                <input type="button" onclick="createExperiment(); update(); toJson(experimentHolder); showhidetoggle('startExperiment');
                 showhidetoggle('')" value="Start">
               </fieldset>
             </form>
@@ -63,7 +63,7 @@
                     <label for="substanceName">Input:</label>
                     <input type='text' id='substanceName' autofocus><br>
                     <input type="button" onclick="inputSubstance(document.getElementById('substanceName').value);
-                     addSub(); update();" value="Add Substance">
+                     addSub(); updateList();" value="Add Substance">
                     <input type="button" onclick="showhidetoggle('substanceadd')"
                            value="Done"><br><br>
                     <div id="substanceDisplay">
@@ -86,7 +86,7 @@
                           substanceRemove();
                       </script>
                     </select><br><br>
-                    <input type="button" onclick="removeSubstance(); update()" value="Remove">
+                    <input type="button" onclick="removeSubstance(); updateList(); toJson(experimentHolder);" value="Remove">
                     <input type="button" onclick="showhidetoggle('substanceremoval')" value="Done">
                   </fieldset>
                 </form>
@@ -162,15 +162,33 @@
             function addSub() {
 
                 //experiment.EXPERIMENT.INPUTS = substancelist;
+                //if (experimentStructure.EXPERIMENT.INPUTS.length != 0)
+                //{
+                //    experimentStructure.EXPERIMENT.INPUTS = 0;
+                //
+                //}
+
                 experimentStructure.EXPERIMENT.INPUTS = substancelist;
+
+
             }
 
             function addOperation() {
 
-                //experiment.EXPERIMENT.INSTRUCTIONS = operationList;
-                experimentStructure.EXPERIMENT.INSTRUCTIONS = operationList;
+                if (experimentStructure.EXPERIMENT.INSTRUCTIONS != 0) {
 
-                //console.log(JSON.stringify(experimentStructure.EXPERIMENT.INSTRUCTIONS, null, 2));
+                    experimentStructure.EXPERIMENT.INSTRUCTIONS.length = 0;
+
+                    experimentStructure.EXPERIMENT.INSTRUCTIONS.push(operationList);
+                }
+                else {
+
+                    experimentStructure.EXPERIMENT.INSTRUCTIONS.push(operationList);
+
+                }
+
+                //experimentStructure.EXPERIMENT.INSTRUCTIONS = operationList;
+
             }
 
             // window.location.reload()
@@ -210,7 +228,7 @@
               </select><br>
               <label for="mixOutputname">Output Name:</label>
               <input type="text" id="mixOutputName"><br><br>
-              <input type="button" onclick="createMixture(); addOperation(); update();" value="Add Mix">
+              <input type="button" onclick="createMixture(); toJson(experimentHolder);" value="Add Mix">
               <input type="button" onclick="showhidetoggle('mixtureform')" value="Done">
             </fieldset>
           </form>
@@ -245,7 +263,7 @@
                     formTime('heatDuration');
                 </script>
               </select><br><br>
-              <input type="button" onclick="createHeat(); addOperation(); update();" value="Add Heat">
+              <input type="button" onclick="createHeat(); toJson(experimentHolder);" value="Add Heat">
               <input type="button" onclick="showhidetoggle('heat_form')" value="Done">
             </fieldset>
           </form>
