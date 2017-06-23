@@ -42,12 +42,17 @@ function createHeat() {
     operation.OPERATION.INPUTS.push(input);
 
 
-    inputTemperature(operation, document.getElementById('heatTemp').value, document.getElementById('heatTempSign').value);
-    inputTime(operation, document.getElementById('heatTime').value, document.getElementById('heatDuration').value);
+    inputTemperature(operation, document.getElementById('heatTemp').value,
+        document.getElementById('heatTempSign').value);
+    inputTime(operation, document.getElementById('heatTime').value,
+        document.getElementById('heatDuration').value);
 
     operationList.push(operation);
+    addOperation();
 
     resetForm('heatForm');
+
+
 
 }
 
@@ -74,13 +79,17 @@ function createMixture() {
         inputVariable(operation, tmpName, tmpVol, tmpUnit);
     }
 
-    inputTemperature(operation, document.getElementById('mixTemp').value, document.getElementById('mixTempSign').value);
-    inputTime(operation, document.getElementById('mixTime').value, document.getElementById('mixDuration').value);
-    operationOutput(operation, 'substance', document.getElementById('mixOutputName').value);
+    inputTemperature(operation, document.getElementById('mixTemp').value,
+        document.getElementById('mixTempSign').value);
+
+    inputTime(operation, document.getElementById('mixTime').value,
+        document.getElementById('mixDuration').value);
+
+    operationOutput(operation, 'substance',
+        document.getElementById('mixOutputName').value);
 
     operationList.push(operation);
-
-    console.log(operationList[0].OPERATION.OUTPUTS[0].VARIABLE_DECLARATION.NAME);
+    addOperation();
 
     resetForm('mixForm');
     inputCreate();
@@ -148,8 +157,11 @@ function createStore() {
 
     operation.OPERATION.INPUTS.push(input);
 
-    inputTemperature(operation, document.getElementById('storeTemp').value, document.getElementById('storeTempSign').value);
-    inputTime(operation, document.getElementById('storeTime').value, document.getElementById('storeDuration').value);
+    inputTemperature(operation, document.getElementById('storeTemp').value,
+        document.getElementById('storeTempSign').value);
+
+    inputTime(operation, document.getElementById('storeTime').value,
+        document.getElementById('storeDuration').value);
 
     operationList.push(operation);
 
