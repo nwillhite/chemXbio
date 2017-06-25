@@ -23,10 +23,16 @@
 <body>
 <div id="experiment">
 
+  <div class="header">
+
+    <button onclick="showhidetoggle('operationsMenu')">New</button>
+    <button id="resetButton" onclick="resetExperiment()">Reset</button>
+
+  </div>
+
   <div class="leftside">
     <div class="clearfit">
 
-      <button onclick="showhidetoggle('operationsMenu')">New experiment</button>
 
       <div id="operationsMenu" style="display: none">
 
@@ -109,7 +115,6 @@
             <td><button id="storeButton" onclick="showhidetoggle('store_form'); update()">Store</button></td>
           </tr>
           <tr>
-            <td><button id="resetButton" onclick="resetExperiment()">Reset Experiment</button></td>
             <td><button id="quit" onclick="hideDiv('operationsMenu');
                 showDiv('experiment'); addExperiment(); toJson(benchtop);
                 <!-- download(JSON.stringify(benchtop, null, 2), 'output.JSON', 'text/plain') -->">Quit Experiment</button></td>
