@@ -26,6 +26,7 @@ function hideDiv(id)
 }
 
 
+
 function showhidetoggle(id)
 {
   var tmp = document.getElementById(id);
@@ -41,16 +42,19 @@ function showhidetoggle(id)
 }
 
 
+// updates JSON output to the 'whereToPrint' which is the right side
 function toJson(input)
 {
   document.getElementById('whereToPrint').innerHTML = JSON.stringify(input, null, 2);
 }
 
 
+// randomly generates number for operation id
 function createID()
 {
     return Math.floor((Math.random() * 1000000000) + 1);
 }
+
 
 
 function resetForm(formId)
@@ -59,6 +63,7 @@ function resetForm(formId)
 }
 
 
+// allows to remove substance once they've been added
 function removeSubstance() {
 
     var toRemove = document.getElementById('removesubstanceList').value;
@@ -77,6 +82,7 @@ function removeSubstance() {
 }
 
 
+// allows to remove operation once they've been added
 function removeOperation() {
 
     var toRemove = document.getElementById('').value;
@@ -97,6 +103,7 @@ function removeOperation() {
                     Functions to help make forms dynamic
 
  **************************************************************************************/
+
 
 // function controls the number of inputs for setting inputs into operations
 function formInput()
@@ -128,7 +135,8 @@ function formInput()
     }
 }
 
-// function controls the numbe of outputs for setting outputs of split
+
+// function controls the number of outputs for setting outputs of split
 function formSplit() {
 
     var container = document.getElementById('splitAmount');
@@ -149,6 +157,7 @@ function formSplit() {
     }
 
 }
+
 
 function operationOutputInput() {
 
@@ -193,6 +202,7 @@ function operationOutputInput() {
     }
 }
 
+
 function operationMixInput() {
 
     var container = document.getElementById('inputHeat');
@@ -235,6 +245,7 @@ function operationMixInput() {
 
     }
 }
+
 
 function operationDetectInput() {
 
@@ -279,6 +290,7 @@ function operationDetectInput() {
     }
 }
 
+
 function operationStoreInput() {
 
     var container = document.getElementById('inputStore');
@@ -321,6 +333,7 @@ function operationStoreInput() {
 
     }
 }
+
 
 function operationSplitInput() {
 
@@ -365,6 +378,7 @@ function operationSplitInput() {
     }
 }
 
+
 // populates the temperature for operations for forms
 function formTemperature(formId)
 {
@@ -389,6 +403,7 @@ function formTemperature(formId)
         select.appendChild(option);
     }
 }
+
 
 // populates the timing for time operations for forms
 function formTime(formId)
@@ -415,6 +430,7 @@ function formTime(formId)
     }
 }
 
+
 // populates the Substance removal drop down
 function substanceRemove() {
 
@@ -440,10 +456,12 @@ function substanceRemove() {
 
 }
 
+
 function updateList() {
 
     substanceRemove();
     document.getElementById('substanceDisplay').innerHTML = JSON.stringify(substances, null, 2);
+    toJson(experimentHolder);
     update();
     //document.getElementById('substanceDisplay').innerHTML = " ";
     //document.getElementById('substanceDisplay').innerHTML = " " + substances;
