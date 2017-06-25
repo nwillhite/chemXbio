@@ -13,8 +13,8 @@ div.clearFlt {
 
 div.header {
   margin-bottom: 10px;
-
 }
+
 
 div.header button {
   display: inline;
@@ -118,6 +118,10 @@ div.rightside {
 
 #detect_form {
   width: 50%;
+}
+
+#startExperiment {
+  width: 10%;
 }
 /* End */
 

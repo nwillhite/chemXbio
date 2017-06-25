@@ -15,8 +15,7 @@
   <script src = "operationCreate.js"></script>
   <script src = "helper.js"></script>
   <script src = "Operation.js"></script>
-
-
+  
 </head>
 
 
@@ -25,8 +24,19 @@
 
   <div class="header">
 
-    <button onclick="showhidetoggle('operationsMenu')">New</button>
+    <button onclick="showhidetoggle('startExperiment')">New</button>
     <button id="resetButton" onclick="resetExperiment()">Reset</button>
+    <div id="startExperiment" style="display: none">
+      <form id="startForm" method="post">
+        <fieldset>
+          <legend>Start Experiment</legend>
+          <label for="experimentName">Name:</label>
+          <input type='text' id='experimentName' autofocus><br>
+          <input type="button" onclick="createExperiment(); update(); toJson(experimentHolder); showhidetoggle('startExperiment');
+                showhidetoggle('operationsMenu')" value="Start">
+        </fieldset>
+      </form>
+    </div>
 
   </div>
 
@@ -37,24 +47,6 @@
       <div id="operationsMenu" style="display: none">
 
         <table id="menu">
-          <tr>
-          <td>
-          <!-- Begin Start Experiment Form -->
-          <div id="startExperiment">
-            <form id="startForm" method="post">
-              <fieldset>
-                <legend>Start Experiment</legend>
-                <label for="experimentName">Name:</label>
-                <input type='text' id='experimentName' autofocus><br>
-                <input type="button" onclick="createExperiment(); update(); toJson(experimentHolder); showhidetoggle('startExperiment');
-                showhidetoggle('')" value="Start">
-              </fieldset>
-            </form>
-          </div>
-          <!-- End Start Experiment Form -->
-          </td>
-          </tr>
-
           <tr>
             <td><button id="addSub" onclick="showhidetoggle('substanceadd'); update()">Add Substance</button></td>
             <td><button id="removeSub" onclick="showhidetoggle('substanceremoval'); update()">Remove Substance</button></td>
