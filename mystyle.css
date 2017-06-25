@@ -1,5 +1,5 @@
 body {
-  margin-top: 60px;
+  margin-top: 25px;
   margin-left: 50px;
   margin-right: 25px;
   height: 100%;
@@ -11,6 +11,21 @@ div.clearFlt {
   clear:both;
 }
 
+div.header {
+  margin-bottom: 10px;
+
+}
+
+div.header button {
+  display: inline;
+  margin-top: 10px;
+  line-height: 20px;
+  font-weight: bold;
+  padding: 0 15px;
+  background: silver;
+  border: 1px solid darkslategray;
+  border-radius: 50px;
+}
 
 div.leftside {
   float:left;
@@ -78,7 +93,7 @@ div.rightside {
 
 
 #mixtureform {
-  width: 50%;
+  width: 60%;
 }
 
 #heat_form {
@@ -112,7 +127,7 @@ div.rightside {
 button {
   display: block;
   margin-top: 15px;
-  line-height: 30px;
+  line-height: 25px;
   font-weight: bold;
   padding: 0 20px;
   background: silver;
