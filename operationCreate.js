@@ -63,7 +63,6 @@ function createHeat() {
 
     operation.OPERATION.INPUTS.push(input);
 
-
     inputTemperature(operation, document.getElementById('heatTemp').value,
         document.getElementById('heatTempSign').value);
     inputTime(operation, document.getElementById('heatTime').value,
@@ -166,7 +165,6 @@ function createOutput() {
     operation.OPERATION.ID = createID();
     operation.OPERATION.CLASSIFICATION = 'OUTPUT';
 
-
     var input = JSON.parse(JSON.stringify(variableInput));
     input.VARIABLE.NAME = document.getElementById('inputOutput').value;
 
@@ -196,8 +194,7 @@ function createSplit() {
         var tmpName = document.getElementById("splitOut" + i).value;
         operationOutput(operation, 'substance', tmpName);
     }
-
-
+    
     if(document.getElementById('splitRepeat').value === 'true') {
 
         var repeatOp = JSON.parse(JSON.stringify(operationStructure));

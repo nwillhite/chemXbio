@@ -97,7 +97,7 @@
           <tr>
             <td><button id="mixButton" onclick="showhidetoggle('mixtureform'); inputCreate()">Mix</button></td>
             <td><button id="heatButton" onclick="showhidetoggle('heat_form'); update()">Heat</button></td>
-            <td><button id="splitButton" onclick="showhidetoggle('split_form')">Split</button></td>
+            <td><button id="splitButton" onclick="showhidetoggle('split_form'); update()">Split</button></td>
             <td><button id="outputButton" onclick="showhidetoggle('output_form'); update()">Output</button></td>
           </tr>
           <tr>
@@ -356,7 +356,7 @@
               <input type="text" id="nameSplit" autofocus><br><br>
 
               <label for="inputSplit">Select Input:</label>
-              <select id="inputSplit" onchange="test()">
+              <select id="inputSplit">
                 <!-- ADD Split INPUTS FOR SELECTION HERE -->
                 <script>
                     operationSplitInput();
@@ -392,7 +392,7 @@
               <input type="text" id="splitRepeatNum">
               <label for="splitRepeatNum"> times</label><br><br>
 
-              <input type="button" onclick="createSplit(); addOperation(); update();" value="Add Split">
+              <input type="button" onclick="createSplit(); update(); toJson(experimentHolder);" value="Add Split">
               <input type="button" onclick="showhidetoggle('split_form')" value="Done">
             </fieldset>
           </form>
@@ -471,7 +471,7 @@
                 </script>
               </select><br><br>
 
-              <label for="detectOutputname">Output Name:</label>
+              <label for="detectOutputName">Output Name:</label>
               <input type="text" id="detectOutputName"><br>
 
               <label for="coolRepeat">Repeat:</label>

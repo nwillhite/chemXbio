@@ -374,7 +374,6 @@ function operationSplitInput() {
         option.className = 'substance';
         container.appendChild(option);
         console.log(container);
-
     }
 }
 
@@ -469,6 +468,7 @@ function updateList() {
 
 
 function update() {
+
     formInput();
     operationSplitInput();
     operationOutputInput();
