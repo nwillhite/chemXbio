@@ -15,7 +15,7 @@
   <script src = "operationCreate.js"></script>
   <script src = "helper.js"></script>
   <script src = "Operation.js"></script>
-  
+
 </head>
 
 
@@ -42,7 +42,6 @@
 
   <div class="leftside">
     <div class="clearfit">
-
 
       <div id="operationsMenu" style="display: none">
 
@@ -115,7 +114,7 @@
         </table>
 
 
-        <button id="startButton" onclick="toJson(experimentHolder)">Start Experiment</button>
+        <!-- <button id="startButton" onclick="toJson(experimentHolder)">Start Experiment</button> -->
 
 
         <script>
@@ -302,8 +301,10 @@
           <form id="coolForm" method="post">
             <fieldset>
               <legend>Cool</legend>
+
               <label for="nameCool">Name:</label>
               <input type="text" id="nameCool" autofocus><br><br>
+
               <label for="inputCool">Select Inputs:</label>
               <select id="inputCool"> <!--onchange="test()">
                 <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
@@ -311,6 +312,7 @@
                     operationInput();
                 </script>
               </select><br><br>
+
               <label for="coolTemp">Enter Temp:</label>
               <input type="text" id="coolTemp">
               <select id="coolTempSign">
@@ -318,13 +320,25 @@
                     formTemperature('coolTempSign');
                 </script>
               </select><br>
+
               <label for="coolTime">Enter Time:</label>
               <input type="text" id="coolTime">
               <select id="coolDuration">
                 <script>
                     formTime('coolDuration');
                 </script>
-              </select><br><br>
+              </select><br>
+
+              <label for="coolRepeat">Repeat:</label>
+              <select id="coolRepeat">
+                <option value="false">No</option>
+                <option value="true">Yes</option>
+              </select>
+
+              <label for="coolRepeatNum">for:</label>
+              <input type="text" id="coolRepeatNum">
+              <label for="coolRepeatNum"> times</label><br><br>
+
               <input type="button" onclick="createHeat()" value="Add Cool">
               <input type="button" onclick="addOperation(); showhidetoggle('cool_form')" value="Done">
             </fieldset>
@@ -337,8 +351,10 @@
           <form id="splitForm" method="post">
             <fieldset>
               <legend>Split</legend>
+
               <label for="nameSplit">Name:</label>
               <input type="text" id="nameSplit" autofocus><br><br>
+
               <label for="inputSplit">Select Input:</label>
               <select id="inputSplit" onchange="test()">
                 <!-- ADD Split INPUTS FOR SELECTION HERE -->
@@ -346,6 +362,7 @@
                     operationSplitInput();
                 </script>
               </select><br><br>
+
               <label for="splitTime">Enter Time:</label>
               <input type="text" id="splitTime">
               <select id="splitDuration">
@@ -353,16 +370,28 @@
                     formTime('splitDuration');
                 </script>
               </select><br><br>
+
               <label for="splitAmount">How many outputs for split?</label>
               <select id="splitAmount" onchange="outputCreate()">
                 <script>
                     formSplit();
                 </script>
               </select><br><br>
+
               <label for="splitInput">Enter Outputs:</label><br>
               <div id="splitInput">
                 <!-- container for dynamically making input fields -->
-              </div><br><br>
+              </div><br>
+
+              <label for="splitRepeat">Repeat:</label>
+              <select id="splitRepeat">
+                <option value="false">No</option>
+                <option value="true">Yes</option>
+              </select>
+              <label for="splitRepeatNum">for:</label>
+              <input type="text" id="splitRepeatNum">
+              <label for="splitRepeatNum"> times</label><br><br>
+
               <input type="button" onclick="createSplit(); addOperation(); update();" value="Add Split">
               <input type="button" onclick="showhidetoggle('split_form')" value="Done">
             </fieldset>
@@ -433,6 +462,7 @@
               <legend>Detect</legend>
               <label for="nameDetect">Name:</label>
               <input type="text" id="nameDetect" autofocus><br><br>
+
               <label for="inputDetect">Select Inputs:</label>
               <select id="inputDetect">
                 <!-- ADD Output INPUTS FOR SELECTION HERE -->
@@ -440,9 +470,22 @@
                     operationDetectInput();
                 </script>
               </select><br><br>
+
               <label for="detectOutputname">Output Name:</label>
-              <input type="text" id="detectOutputName"><br><br>
-              <input type="button" onclick="createDetect(); addOperation(); update();" value="Add Detect">
+              <input type="text" id="detectOutputName"><br>
+
+              <label for="coolRepeat">Repeat:</label>
+              <select id="coolRepeat">
+                <option value="false">No</option>
+                <option value="true">Yes</option>
+              </select>
+
+              <label for="coolRepeatNum">for:</label>
+              <input type="text" id="coolRepeatNum">
+              <label for="coolRepeatNum"> times</label><br><br>
+
+              <input type="button" onclick="createDetect(); update();
+              toJson(experimentHolder);" value="Add Detect">
               <input type="button" onclick="showhidetoggle('detect_form')" value="Done">
             </fieldset>
           </form>

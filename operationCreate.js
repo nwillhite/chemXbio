@@ -21,7 +21,27 @@ function createDetect() {
     operationOutput(operation, 'sensor', document.getElementById('detectOutputName').value);
 
 
-    operationList.push(operation);
+    if(document.getElementById('detectRepeat').value === 'true') {
+
+        var repeatOp = JSON.parse(JSON.stringify(operationStructure));
+
+        repeatOp.OPERATION.NAME = 'REPEAT';
+        repeatOp.OPERATION.ID = createID();
+        repeatOp.OPERATION.CLASSIFICATION = 'CFG_LOOP';
+        delete repeatOp.OPERATION.INPUTS;
+        delete repeatOp.OPERATION.OUTPUTS;
+        repeatOp.OPERATION.LOOP_NUMS = document.getElementById('detectRepeatNum').value;
+        repeatOp.OPERATION.OPERATIONS = [];
+
+        repeatOp.OPERATION.OPERATIONS.push(operation);
+
+        operationList.push(repeatOp);
+        addOperation();
+    }
+    else {
+        operationList.push(operation);
+        addOperation();
+    }
 
     resetForm('detectForm');
 
@@ -152,7 +172,6 @@ function createOutput() {
 
     operation.OPERATION.INPUTS.push(input);
 
-
     operationList.push(operation);
 
     resetForm('outputForm');
@@ -178,7 +197,28 @@ function createSplit() {
         operationOutput(operation, 'substance', tmpName);
     }
 
-    operationList.push(operation);
+
+    if(document.getElementById('splitRepeat').value === 'true') {
+
+        var repeatOp = JSON.parse(JSON.stringify(operationStructure));
+
+        repeatOp.OPERATION.NAME = 'REPEAT';
+        repeatOp.OPERATION.ID = createID();
+        repeatOp.OPERATION.CLASSIFICATION = 'CFG_LOOP';
+        delete repeatOp.OPERATION.INPUTS;
+        delete repeatOp.OPERATION.OUTPUTS;
+        repeatOp.OPERATION.LOOP_NUMS = document.getElementById('splitRepeatNum').value;
+        repeatOp.OPERATION.OPERATIONS = [];
+
+        repeatOp.OPERATION.OPERATIONS.push(operation);
+
+        operationList.push(repeatOp);
+        addOperation();
+    }
+    else {
+        operationList.push(operation);
+        addOperation();
+    }
 
     resetForm('splitForm');
     outputCreate();
