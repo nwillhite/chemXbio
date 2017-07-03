@@ -171,6 +171,7 @@ function createOutput() {
     operation.OPERATION.INPUTS.push(input);
 
     operationList.push(operation);
+    addOperation();
 
     resetForm('outputForm');
 
