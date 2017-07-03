@@ -31,7 +31,7 @@
         <fieldset>
           <legend>Start Experiment</legend>
           <label for="experimentName">Name:</label>
-          <input type='text' id='experimentName' autofocus><br>
+          <input type='text' id='experimentName' value="test" autofocus><br>
           <input type="button" onclick="createExperiment(); update(); toJson(experimentHolder); showhidetoggle('startExperiment');
                 showhidetoggle('operationsMenu')" value="Start">
         </fieldset>
@@ -196,7 +196,7 @@
               <legend>MIX</legend>
 
               <label for="mixName">Name:</label>
-              <input type="text" id="mixName" autofocus><br><br>
+              <input type="text" id="mixName" value='Mix1' autofocus><br><br>
               <label for="mixInputAmount">How many inputs for mixture?</label>
               <select id="mixInputAmount" onchange="inputCreate()">
                 <script>
@@ -226,7 +226,7 @@
               </select><br>
 
               <label for="mixOutputname">Output Name:</label>
-              <input type="text" id="mixOutputName"><br>
+              <input type="text" id="mixOutputName" value='MixOne'><br>
 
               <label for="mixRepeat">Repeat:</label>
               <select id="mixRepeat">
@@ -353,7 +353,7 @@
               <legend>Split</legend>
 
               <label for="nameSplit">Name:</label>
-              <input type="text" id="nameSplit" autofocus><br><br>
+              <input type="text" id="nameSplit" value='Split1' autofocus><br><br>
 
               <label for="inputSplit">Select Input:</label>
               <select id="inputSplit">
@@ -449,7 +449,7 @@
                     operationOutputInput("inputOutput");
                 </script>
               </select><br><br>
-              <input type="button" onclick="createOutput(); addOperation(); update();" value="Add Output">
+              <input type="button" onclick="createOutput(); update(); toJson(experimentHolder);" value="Add Output">
               <input type="button" onclick="showhidetoggle('output_form')" value="Done">
             </fieldset>
           </form>
