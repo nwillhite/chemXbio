@@ -203,7 +203,7 @@ function operationOutputInput() {
 }
 
 
-function operationMixInput() {
+function operationHeatInput() {
 
     var container = document.getElementById('inputHeat');
     console.log(container);
@@ -224,14 +224,28 @@ function operationMixInput() {
     container.appendChild(option);
 
     // creates the input entries based on number selected with # of inputs
+    // adds the output of operations to input drop down list
     for (i = 0; i < tmp; i++) {
+
+        var innerlist = operationList[i].OPERATION.OUTPUTS.length;
 
         if(operationList[i].OPERATION.OUTPUTS != null) {
 
-            var option = document.createElement('option');
-            option.innerHTML = operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
-            option.value = 'output';//operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION;
-            container.appendChild(option);
+            if (operationList[i].OPERATION.OUTPUTS.length === 1) {
+
+                var option = document.createElement('option');
+                option.innerHTML = option.value = operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
+                container.appendChild(option);
+            }
+            else {
+
+                for (j = 0; j < innerlist; j++) {
+
+                    var option = document.createElement('option');
+                    option.innerHTML = option.value = operationList[i].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION.NAME;
+                    container.appendChild(option);
+                }
+            }
         }
     }
 
@@ -365,8 +379,7 @@ function operationSplitInput() {
             if (operationList[i].OPERATION.OUTPUTS.length === 1) {
 
                 var option = document.createElement('option');
-                option.innerHTML = operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
-                option.value = 'output';
+                option.innerHTML = option.value = operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
                 container.appendChild(option);
             }
             else {
@@ -374,8 +387,7 @@ function operationSplitInput() {
                 for (j = 0; j < innerlist; j++) {
 
                     var option = document.createElement('option');
-                    option.innerHTML = operationList[i].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION.NAME;
-                    option.value = 'output';
+                    option.innerHTML = option.value = operationList[i].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION.NAME;
                     container.appendChild(option);
                 }
             }
@@ -491,5 +503,5 @@ function update() {
     operationOutputInput();
     operationDetectInput();
     operationStoreInput();
-    operationMixInput();
+    operationHeatInput();
 }
