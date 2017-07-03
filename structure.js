@@ -22,6 +22,7 @@ var operationList = [];
 
 // holds defined substance to help populate selection for drop downs
 var substances = [];
+var outputs = [];
 
 
 // helper function to clear experiment until a better way can be found
@@ -33,6 +34,7 @@ function resetExperiment() {
     substancelist.length = 0;
     operationList.length = 0;
     substances.length = 0;
+    outputs.length = 0;
     location.reload();
     //document.getElementById('whereToPrint').innerHTML = "";
 }
