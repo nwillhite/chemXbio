@@ -355,17 +355,34 @@ function operationSplitInput() {
     container.appendChild(option);
 
     // creates the input entries based on number selected with # of inputs
+    // adds the output of operations to input drop down list
     for (i = 0; i < tmp; i++) {
+
+        var innerlist = operationList[i].OPERATION.OUTPUTS.length;
 
         if(operationList[i].OPERATION.OUTPUTS != null) {
 
-            var option = document.createElement('option');
-            option.innerHTML = operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
-            option.value = 'output';
-            container.appendChild(option);
+            if (operationList[i].OPERATION.OUTPUTS.length === 1) {
+
+                var option = document.createElement('option');
+                option.innerHTML = operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
+                option.value = 'output';
+                container.appendChild(option);
+            }
+            else {
+
+                for (j = 0; j < innerlist; j++) {
+
+                    var option = document.createElement('option');
+                    option.innerHTML = operationList[i].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION.NAME;
+                    option.value = 'output';
+                    container.appendChild(option);
+                }
+            }
         }
     }
 
+    // adds the user inputted substances to input drop down list
     for (i = 0; i < sublength; i ++) {
 
         var option = document.createElement('option');
@@ -373,7 +390,7 @@ function operationSplitInput() {
         option.value = substancelist[i].VARIABLE_DECLARATION.NAME;
         option.className = 'substance';
         container.appendChild(option);
-        console.log(container);
+        //console.log(container);
     }
 }
 

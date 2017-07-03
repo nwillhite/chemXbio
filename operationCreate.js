@@ -191,10 +191,23 @@ function createSplit() {
 
     for (i = 0; i < num; i++) {
 
+        var varOutput = JSON.parse(JSON.stringify(variableStructure));
         var tmpName = document.getElementById("splitOut" + i).value;
-        operationOutput(operation, 'substance', tmpName);
+
+        varOutput.VARIABLE_DECLARATION.NAME = varOutput.VARIABLE_DECLARATION.ID = tmpName;
+
+        varOutput.VARIABLE_DECLARATION.TYPE = 'VARIABLE';
+
+        operation.OPERATION.OUTPUTS.push(varOutput);
+
+        console.log(operation.OPERATION.OUTPUTS);
+
+        //var tmpName = document.getElementById("splitOut" + i).value;
+        //outputs.push(tmpName);
+        //operation.OPERATION.OUTPUTS.push(operationOutput(operation, 'substance', tmpName));
     }
-    
+    //console.log(outputs);
+
     if(document.getElementById('splitRepeat').value === 'true') {
 
         var repeatOp = JSON.parse(JSON.stringify(operationStructure));
@@ -220,7 +233,35 @@ function createSplit() {
     resetForm('splitForm');
     outputCreate();
 
+
+
+    //for (n = 0; n < operationList.length; n++) {
+
+        //console.log(operationList[n].OPERATION.OUTPUTS.length);
+
+
+        /*for (i = 0; i < operationList.length; i++) {
+
+            var tmp = operationList[i].OPERATION.OUTPUTS.length;
+
+            if (operationList[i].OPERATION.OUTPUTS.length === 1) {
+
+                console.log(operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION);
+
+            }
+            else {
+
+                for (j = 0; j < tmp; j++) {
+
+                    console.log(operationList[i].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION);
+                }
+            }
+        } */
+    //}
+
+
 }
+
 
 
 function createStore() {
