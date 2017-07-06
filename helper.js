@@ -252,22 +252,31 @@ function operationHeatInput() {
 
         var innerlist = operationList[i].OPERATION.OUTPUTS.length;
 
-        if(operationList[i].OPERATION.OUTPUTS != null) {
+        if(operationList[i].OPERATION.OUTPUTS[i] != null) {
 
-            if (operationList[i].OPERATION.OUTPUTS.length === 1) {
+            var varTest = operationList[i].OPERATION.OUTPUTS[i];
+            var isVariable = Object.keys(varTest);
 
-                var option = document.createElement('option');
-                option.innerHTML = option.value = operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
-                container.appendChild(option);
-            }
-            else {
+            if(isVariable[0] === 'VARIABLE_DECLARATION') {
 
-                for (j = 0; j < innerlist; j++) {
+                if (operationList[i].OPERATION.OUTPUTS.length === 1) {
 
                     var option = document.createElement('option');
-                    option.innerHTML = option.value = operationList[i].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION.NAME;
+                    option.innerHTML = option.value = operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
                     container.appendChild(option);
                 }
+                else {
+
+                    for (j = 0; j < innerlist; j++) {
+
+                        var option = document.createElement('option');
+                        option.innerHTML = option.value = operationList[i].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION.NAME;
+                        container.appendChild(option);
+                    }
+                }
+            }
+            else {
+                console.log('was sensor');
             }
         }
     }
