@@ -20,7 +20,6 @@ function createDetect() {
     operation.OPERATION.INPUTS.push(input);
     operationOutput(operation, 'sensor', document.getElementById('detectOutputName').value);
 
-
     if(document.getElementById('detectRepeat').value === 'true') {
 
         var repeatOp = JSON.parse(JSON.stringify(operationStructure));
@@ -234,18 +233,18 @@ function createSplit() {
     resetForm('splitForm');
     outputCreate();
 
-
-
     //for (n = 0; n < operationList.length; n++) {
 
-        //console.log(operationList[n].OPERATION.OUTPUTS.length);
+       // console.log(operationList[n].OPERATION.OUTPUTS.length);
 
 
-        /*for (i = 0; i < operationList.length; i++) {
+        for (i = 0; i < operationList.length; i++) {
 
             var tmp = operationList[i].OPERATION.OUTPUTS.length;
 
             if (operationList[i].OPERATION.OUTPUTS.length === 1) {
+
+                console.log(operationList[i].OPERATION.OUTPUTS[i].hasOwnProperty('VARIABLE_DECLARATION'));
 
                 console.log(operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION);
 
@@ -257,7 +256,7 @@ function createSplit() {
                     console.log(operationList[i].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION);
                 }
             }
-        } */
+        }
     //}
 
 
