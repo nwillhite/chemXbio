@@ -380,14 +380,37 @@ function operationStoreInput() {
     container.appendChild(option);
 
     // creates the input entries based on number selected with # of inputs
+    // adds the output of operations to input drop down list
     for (i = 0; i < tmp; i++) {
 
-        if(operationList[i].OPERATION.OUTPUTS != null) {
+        var innerlist = operationList[i].OPERATION.OUTPUTS.length;
 
-            var option = document.createElement('option');
-            option.innerHTML = operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
-            option.value = 'output';
-            container.appendChild(option);
+        if(operationList[i].OPERATION.OUTPUTS[i] != null) {
+
+            var varTest = operationList[i].OPERATION.OUTPUTS[i];
+            var isVariable = Object.keys(varTest);
+
+            if(isVariable[0] === 'VARIABLE_DECLARATION') {
+
+                if (operationList[i].OPERATION.OUTPUTS.length === 1) {
+
+                    var option = document.createElement('option');
+                    option.innerHTML = option.value = operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
+                    container.appendChild(option);
+                }
+                else {
+
+                    for (j = 0; j < innerlist; j++) {
+
+                        var option = document.createElement('option');
+                        option.innerHTML = option.value = operationList[i].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION.NAME;
+                        container.appendChild(option);
+                    }
+                }
+            }
+            else {
+                console.log('was sensor');
+            }
         }
     }
 
@@ -569,6 +592,6 @@ function update() {
     operationSplitInput();
     operationOutputInput();
     operationDetectInput();
-    //operationStoreInput();
+    operationStoreInput();
     operationHeatInput();
 }
