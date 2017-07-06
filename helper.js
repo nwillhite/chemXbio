@@ -184,22 +184,31 @@ function operationOutputInput() {
 
         var innerlist = operationList[i].OPERATION.OUTPUTS.length;
 
-        if(operationList[i].OPERATION.OUTPUTS != null) {
+        if(operationList[i].OPERATION.OUTPUTS[i] != null) {
 
-            if (operationList[i].OPERATION.OUTPUTS.length === 1) {
+            var varTest = operationList[i].OPERATION.OUTPUTS[i];
+            var isVariable = Object.keys(varTest);
 
-                var option = document.createElement('option');
-                option.innerHTML = option.value = operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
-                container.appendChild(option);
-            }
-            else {
+            if(isVariable[0] === 'VARIABLE_DECLARATION') {
 
-                for (j = 0; j < innerlist; j++) {
+                if (operationList[i].OPERATION.OUTPUTS.length === 1) {
 
                     var option = document.createElement('option');
-                    option.innerHTML = option.value = operationList[i].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION.NAME;
+                    option.innerHTML = option.value = operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
                     container.appendChild(option);
                 }
+                else {
+
+                    for (j = 0; j < innerlist; j++) {
+
+                        var option = document.createElement('option');
+                        option.innerHTML = option.value = operationList[i].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION.NAME;
+                        container.appendChild(option);
+                    }
+                }
+            }
+            else {
+                console.log('was sensor');
             }
         }
     }
@@ -295,14 +304,28 @@ function operationDetectInput() {
     container.appendChild(option);
 
     // creates the input entries based on number selected with # of inputs
+    // adds the output of operations to input drop down list
     for (i = 0; i < tmp; i++) {
+
+        var innerlist = operationList[i].OPERATION.OUTPUTS.length;
 
         if(operationList[i].OPERATION.OUTPUTS != null) {
 
-            var option = document.createElement('option');
-            option.innerHTML = operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
-            option.value = 'output';
-            container.appendChild(option);
+            if (operationList[i].OPERATION.OUTPUTS.length === 1) {
+
+                var option = document.createElement('option');
+                option.innerHTML = option.value = operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
+                container.appendChild(option);
+            }
+            else {
+
+                for (j = 0; j < innerlist; j++) {
+
+                    var option = document.createElement('option');
+                    option.innerHTML = option.value = operationList[i].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION.NAME;
+                    container.appendChild(option);
+                }
+            }
         }
     }
 
@@ -388,22 +411,34 @@ function operationSplitInput() {
 
         var innerlist = operationList[i].OPERATION.OUTPUTS.length;
 
-        if(operationList[i].OPERATION.OUTPUTS != null) {
+        //operationList[i].OPERATION.OUTPUTS[i].hasOwnProperty('VARIABLE_DECLARATION')
 
-            if (operationList[i].OPERATION.OUTPUTS.length === 1) {
+        if(operationList[i].OPERATION.OUTPUTS[i] != null) {
 
-                var option = document.createElement('option');
-                option.innerHTML = option.value = operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
-                container.appendChild(option);
-            }
-            else {
+            var varTest = operationList[i].OPERATION.OUTPUTS[i];
+            var isVariable = Object.keys(varTest);
 
-                for (j = 0; j < innerlist; j++) {
+            if (isVariable[0] === 'VARIABLE_DECLARATION') {
+
+                if (operationList[i].OPERATION.OUTPUTS.length === 1) {
 
                     var option = document.createElement('option');
-                    option.innerHTML = option.value = operationList[i].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION.NAME;
+                    option.innerHTML = option.value = operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
                     container.appendChild(option);
                 }
+                else {
+
+                    for (j = 0; j < innerlist; j++) {
+
+                        var option = document.createElement('option');
+                        option.innerHTML = option.value = operationList[i].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION.NAME;
+                        container.appendChild(option);
+                    }
+                }
+
+            }
+            else {
+                console.log('was sensor');
             }
         }
     }
@@ -515,7 +550,7 @@ function update() {
     formInput();
     operationSplitInput();
     operationOutputInput();
-    //operationDetectInput();
+    operationDetectInput();
     //operationStoreInput();
     operationHeatInput();
 }
