@@ -16,36 +16,35 @@ function download(text, name, type) {
 
 function showDiv(id)
 {
-  document.getElementById(id).style.display = 'block';
+    document.getElementById(id).style.display = 'block';
 }
 
 
 function hideDiv(id)
 {
-  document.getElementById(id).style.display = 'none';
+    document.getElementById(id).style.display = 'none';
 }
 
 
 
 function showhidetoggle(id)
 {
-  var tmp = document.getElementById(id);
-  if (tmp.style.display === 'none')
-  {
-    tmp.style.display = 'block';
-  }
-  else
-  {
-    tmp.style.display = 'none';
-  }
-
+    var tmp = document.getElementById(id);
+    if (tmp.style.display === 'none')
+    {
+        tmp.style.display = 'block';
+    }
+    else
+    {
+        tmp.style.display = 'none';
+    }
 }
 
 
 // updates JSON output to the 'whereToPrint' which is the right side
 function toJson(input)
 {
-  document.getElementById('whereToPrint').innerHTML = JSON.stringify(input, null, 2);
+    document.getElementById('whereToPrint').innerHTML = JSON.stringify(input, null, 2);
 }
 
 
@@ -94,7 +93,6 @@ function removeOperation() {
             operationList.splice(i, 1);
         }
     }
-
 }
 
 
@@ -155,7 +153,6 @@ function formSplit() {
         option.value = i;
         container.appendChild(option);
     }
-
 }
 
 
@@ -571,7 +568,6 @@ function substanceRemove() {
         //option.value = substances[i];
         container.appendChild(option);
     }
-
 }
 
 

@@ -10,7 +10,6 @@ function inputExperiment () {
     var experiment = JSON.parse(JSON.stringify(experimentStructure));
 
     experiment.BENCHTOP.EXPERIMENTS.push(experimentHolder);
-
 }
 
 
@@ -31,7 +30,6 @@ function inputSubstance (name) {
 
         resetForm('subAddForm'); // resets the substance entry form after each substance entered
     }
-
 }
 
 
@@ -49,7 +47,6 @@ function operationOutput(obj, type, tmpName) {
         varOutput.VARIABLE_DECLARATION.TYPE = 'VARIABLE';
 
         obj.OPERATION.OUTPUTS.push(varOutput);
-
     }
     else if (type === 'sensor') {
         console.log('entered sensor');
@@ -82,7 +79,6 @@ function inputVariable (obj, tmpName, tmpVal, tmpUnit) {
         //operation obj being passed into function
         obj.OPERATION.INPUTS.push(input);
     }
-
 }
 
 
@@ -103,7 +99,6 @@ function inputTemperature (obj, tmpVal, tmpUnit) {
         //operation obj being passed into function
         obj.OPERATION.INPUTS.push(tmp);
     }
-
 }
 
 
@@ -124,7 +119,6 @@ function inputTime (obj, tmpVal, tmpUnit) {
         //operation obj being passed into funtion
         obj.OPERATION.INPUTS.push(time);
     }
-
 }
 
 

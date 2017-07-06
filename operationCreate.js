@@ -43,7 +43,6 @@ function createDetect() {
     }
 
     resetForm('detectForm');
-
 }
 
 
@@ -90,7 +89,6 @@ function createHeat() {
     }
 
     resetForm('heatForm');
-
 }
 
 
@@ -152,7 +150,6 @@ function createMixture() {
 
     resetForm('mixForm');
     inputCreate();
-
 }
 
 
@@ -173,7 +170,6 @@ function createOutput() {
     addOperation();
 
     resetForm('outputForm');
-
 }
 
 
@@ -233,11 +229,7 @@ function createSplit() {
     resetForm('splitForm');
     outputCreate();
 
-    //for (n = 0; n < operationList.length; n++) {
-
-       // console.log(operationList[n].OPERATION.OUTPUTS.length);
-
-
+        /*
         for (i = 0; i < operationList.length; i++) {
 
             var tmp = operationList[i].OPERATION.OUTPUTS.length;
@@ -256,12 +248,8 @@ function createSplit() {
                     console.log(operationList[i].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION);
                 }
             }
-        }
-    //}
-
-
+        } */
 }
-
 
 
 function createStore() {
