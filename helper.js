@@ -155,7 +155,7 @@ function formSplit() {
     }
 }
 
-
+// function that populates the input selection of the output operation
 function operationOutputInput() {
 
     var container = document.getElementById('inputOutput');
@@ -183,10 +183,12 @@ function operationOutputInput() {
 
         if(operationList[i].OPERATION.OUTPUTS[i] != null) {
 
+            // used to make sure only variable outputs are populated
             var varTest = operationList[i].OPERATION.OUTPUTS[i];
             var isVariable = Object.keys(varTest);
 
-            if(isVariable[0] === 'VARIABLE_DECLARATION') {
+            // used to check the above vars to make sure it was a variable output
+            if (isVariable[0] === 'VARIABLE_DECLARATION') {
 
                 if (operationList[i].OPERATION.OUTPUTS.length === 1) {
 
@@ -223,6 +225,7 @@ function operationOutputInput() {
 }
 
 
+// function that populates the input selection of the heat operation
 function operationHeatInput() {
 
     var container = document.getElementById('inputHeat');
@@ -251,10 +254,12 @@ function operationHeatInput() {
 
         if(operationList[i].OPERATION.OUTPUTS[i] != null) {
 
+            // used to make sure only variable outputs are populated
             var varTest = operationList[i].OPERATION.OUTPUTS[i];
             var isVariable = Object.keys(varTest);
 
-            if(isVariable[0] === 'VARIABLE_DECLARATION') {
+            // used to check the above vars to make sure it was a variable output
+            if (isVariable[0] === 'VARIABLE_DECLARATION') {
 
                 if (operationList[i].OPERATION.OUTPUTS.length === 1) {
 
@@ -290,6 +295,7 @@ function operationHeatInput() {
 }
 
 
+// function that populates the input selection of the detect operation
 function operationDetectInput() {
 
     var container = document.getElementById('inputDetect');
@@ -317,10 +323,12 @@ function operationDetectInput() {
 
         if(operationList[i].OPERATION.OUTPUTS[i] != null) {
 
+            // used to make sure only variable outputs are populated
             var varTest = operationList[i].OPERATION.OUTPUTS[i];
             var isVariable = Object.keys(varTest);
 
-            if(isVariable[0] === 'VARIABLE_DECLARATION') {
+            // used to check the above vars to make sure it was a variable output
+            if (isVariable[0] === 'VARIABLE_DECLARATION') {
 
                 if (operationList[i].OPERATION.OUTPUTS.length === 1) {
 
@@ -357,6 +365,7 @@ function operationDetectInput() {
 }
 
 
+// function that populates the input selection of the store operation
 function operationStoreInput() {
 
     var container = document.getElementById('inputStore');
@@ -384,10 +393,12 @@ function operationStoreInput() {
 
         if(operationList[i].OPERATION.OUTPUTS[i] != null) {
 
+            // used to make sure only variable outputs are populated
             var varTest = operationList[i].OPERATION.OUTPUTS[i];
             var isVariable = Object.keys(varTest);
 
-            if(isVariable[0] === 'VARIABLE_DECLARATION') {
+            // used to check the above vars to make sure it was a variable output
+            if (isVariable[0] === 'VARIABLE_DECLARATION') {
 
                 if (operationList[i].OPERATION.OUTPUTS.length === 1) {
 
@@ -424,17 +435,21 @@ function operationStoreInput() {
 }
 
 
+// function that populates the input selection of the split operation
 function operationSplitInput() {
 
     var container = document.getElementById('inputSplit');
 
+    // clears out anything that is already in the input selection
     while (container.hasChildNodes()) {
 
         container.removeChild(container.lastChild);
     }
 
+    // lengths of arrays used later for the for loops
     var tmp = operationList.length;
     var sublength = substancelist.length;
+
 
     var option = document.createElement('option');
     option.setAttribute('selected', 'selected');
@@ -443,19 +458,20 @@ function operationSplitInput() {
     option.setAttribute('style', 'display: none');
     container.appendChild(option);
 
+
     // creates the input entries based on number selected with # of inputs
     // adds the output of operations to input drop down list
     for (i = 0; i < tmp; i++) {
 
         var innerlist = operationList[i].OPERATION.OUTPUTS.length;
 
-        //operationList[i].OPERATION.OUTPUTS[i].hasOwnProperty('VARIABLE_DECLARATION')
-
         if(operationList[i].OPERATION.OUTPUTS[i] != null) {
 
+            // used to make sure only variable outputs are populated
             var varTest = operationList[i].OPERATION.OUTPUTS[i];
             var isVariable = Object.keys(varTest);
 
+            // used to check the above vars to make sure it was a variable output
             if (isVariable[0] === 'VARIABLE_DECLARATION') {
 
                 if (operationList[i].OPERATION.OUTPUTS.length === 1) {
@@ -466,6 +482,7 @@ function operationSplitInput() {
                 }
                 else {
 
+                    // used for having more than one output for split outputs
                     for (j = 0; j < innerlist; j++) {
 
                         var option = document.createElement('option');
@@ -473,10 +490,9 @@ function operationSplitInput() {
                         container.appendChild(option);
                     }
                 }
-
             }
             else {
-                console.log('was sensor');
+                //console.log('was sensor');
             }
         }
     }
@@ -495,8 +511,7 @@ function operationSplitInput() {
 
 
 // populates the temperature for operations for forms
-function formTemperature(formId)
-{
+function formTemperature(formId) {
     var sign = ['\u2103', '\u2109', '\u212A'];
     var signValue = ['CELSIUS', 'FAHRENHEIT', 'KELVIN'];
 
