@@ -4,11 +4,12 @@ body {
     margin-right: 25px;
     height: 100%;
     overflow:hidden;
+    background-color:lavender;
 }
 
 #start {
     margin-top: 0px;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
 }
 
 #col1 {
@@ -29,7 +30,7 @@ body {
     overflow:scroll;
 }
 
-
+/*
 div.header button {
     display: inline;
     margin-top: 10px;

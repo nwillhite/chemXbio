@@ -36,31 +36,42 @@
 <div class="container-fluid">
 
     <div class="row">
-        <div id="start" class="col-sm-12" style="background-color:lightblue;">
+        <div id="start" class="col-sm-12" style="background-color:lavender;">
             <button type="button" class="btn btn-primary" onclick="showhidetoggle('startExperiment')">New</button>
             <button type="button" class="btn btn-primary" onclick="resetExperiment()">Reset</button>
+            <span id="finishbutton" style="display: none">
             <button type="button" class="btn btn-primary" onclick="addExperiment();
                     toJson(benchtop);">Finish</button>
+            </>
+
+            <div id="substanceDisplay" class="col-sm-offset-3" style="background-color:lavender;">
+                <!-- active substances populate here -->
+            </div>
         </div>
     </div> <!-- end top bar -->
 
+
     <div class="row">
 
-        <div id="col1" class="col-sm-2" style="background-color:lavender;">
+        <div id="col1" class="col-sm-3" style="background-color:lavender;">
             <h3>Vertical Button Group</h3>
-            <p>
-            <div id="startExperiment" class="col-sm-offset-0" style="display: none">
-                <form id="startForm">
+
+
+            <!-- begin start experiment form -->
+            <div id='startExperiment' class="col-sm-offset-2" style="display: none">
+                <form id='startForm'>
                     <h3>Start Experiment</h3>
                     <div class="form-group">
-                        <label for="experimentName">Name:</label>
-                        <input type="text" id="experimentName" placeholder="">
+                        <label for="experimentName">Input:</label>
+                        <input type="text" id="experimentName" placeholder="Enter Name">
                     </div>
-                    <button type="button" class="btn btn-primary" onclick="createExperiment(); update();
-                            toJson(experimentHolder); showhidetoggle('startExperiment')">Start</button>
+                    <button type="button" class="btn btn-primary"
+                            onclick="createExperiment(); update();
+                            toJson(experimentHolder); showhidetoggle('startExperiment');
+                            showDiv('finishbutton')">Add</button>
                 </form>
-            </div> <!-- end of start experiment div -->
-            </p>
+            </div> <br>
+            <!-- end of start experiment div -->
 
             <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('substanceadd');
                     update()">Add Substances</button>
@@ -82,7 +93,7 @@
 
         </div> <!-- end col 1 -->
 
-        <div id="col2" class="col-sm-6" style="background-color:darkslategray;">
+        <div id="col2" class="col-sm-6" style="background-color:lavender;">
 
             <!-- begin substanceadd form -->
             <div id='substanceadd' class="col-sm-offset-2" style="display: none">
@@ -459,7 +470,7 @@
 
         </div> <!-- end col 2 -->
 
-        <div id="col3" class="col-sm-4" style="background-color:lavender;">
+        <div id="col3" class="col-sm-3" style="background-color:lavender;">
 
             <pre id="whereToPrint"></pre>
 
