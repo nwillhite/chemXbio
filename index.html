@@ -24,19 +24,19 @@
 
   <div class="header">
 
-    <button onclick="showhidetoggle('startExperiment')">New</button>
+    <button onclick="showhidetoggle('startForm')">New</button>
     <button id="resetButton" onclick="resetExperiment()">Reset</button>
-    <div id="startExperiment" style="display: none">
-      <form id="startForm" method="post">
+    <!-- <div id="startExperiment" style="display: none"> -->
+      <form id="startForm" method="post" style="display: none">
         <fieldset>
-          <legend>Start Experiment</legend>
-          <label for="experimentName">Name:</label>
-          <input type='text' id='experimentName' value="test" autofocus><br>
-          <input type="button" onclick="createExperiment(); update(); toJson(experimentHolder); showhidetoggle('startExperiment');
-                showhidetoggle('operationsMenu')" value="Start">
+           <legend>Start Experiment</legend>
+           <label for="experimentName">Name:</label>
+           <input type='text' id='experimentName' value="test" autofocus>
+           <input type="button" onclick="createExperiment(); update(); toJson(experimentHolder); showhidetoggle('startForm');
+                 showhidetoggle('operationsMenu')" value="Start">
         </fieldset>
-      </form>
-    </div>
+       </form>
+     <!-- </div> -->
 
   </div>
 

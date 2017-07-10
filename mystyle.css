@@ -12,6 +12,7 @@ div.clearFlt {
 }
 
 div.header {
+  width: 50%;
   margin-bottom: 10px;
 }
 
@@ -25,6 +26,14 @@ div.header button {
   background: silver;
   border: 1px solid darkslategray;
   border-radius: 50px;
+}
+
+div.header #startForm {
+  display: none;
+  display: inline;
+  margin: 0;
+  padding: 0;
+  width: 30%;
 }
 
 div.leftside {
@@ -127,6 +136,8 @@ div.rightside {
 #startExperiment {
   width: 10%;
 }
+
+
 /* End */
 
 
