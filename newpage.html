@@ -76,13 +76,13 @@
                     update()">Store</button>
             <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('detect_form');
                     update()">Detect</button>
-            <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('store_form');
+            <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('output_form');
                     update()">Output</button>
 
 
         </div> <!-- end col 1 -->
 
-        <div id="col2" class="col-sm-6" style="background-color:lavenderblush;">
+        <div id="col2" class="col-sm-6" style="background-color:darkslategray;">
 
             <!-- begin substanceadd form -->
             <div id='substanceadd' class="col-sm-offset-2" style="display: none">
@@ -354,15 +354,38 @@
 
                         <label for="detectRepeatNum">for:</label>
                         <input type="text" id="detectRepeatNum">
-                        <label for="detectRepeatNum"> times</label><br><br>
+                        <label for="detectRepeatNum"> times</label>
                     </div>
 
-                    <button type="button" class="btn btn-default col-sm-offset-3"
+                    <button type="button" class="btn btn-default"
                             onclick="createDetect(); update(); toJson(experimentHolder);">Add Detect</button>
                     <button type="button" class="btn btn-default" onclick="showhidetoggle('detect_form')">Done</button>
                 </form>
             </div>
             <!-- End Detect Form -->
+
+            <!-- Begin Output Form -->
+            <div id="output_form" class="col-sm-offset-3" style="display: none">
+                <form id="outputForm" method="post">
+                    <h3>Output</h3>
+                    <div class="form-group">
+                        <label for="nameOutput">Name:</label>
+                        <input type="text" id="nameOutput" autofocus><br><br>
+                        <label for="inputOutput">Select Inputs:</label>
+                        <select id="inputOutput" onchange="test()">
+                            <!-- ADD Output INPUTS FOR SELECTION HERE -->
+                            <script>
+                                operationOutputInput("inputOutput");
+                            </script>
+                        </select>
+                    </div>
+
+                    <button type="button" class="btn btn-default col-sm-offset-3"
+                            onclick="createOutput(); update(); toJson(experimentHolder);">Add Output</button>
+                    <button type="button" class="btn btn-default" onclick="showhidetoggle('output_form')">Done</button>
+                </form>
+            </div>
+            <!-- End Output Form -->
 
             <script>
 
