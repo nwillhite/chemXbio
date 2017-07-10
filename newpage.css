@@ -1,0 +1,226 @@
+body {
+    margin-top: 25px;
+    margin-left: 50px;
+    margin-right: 25px;
+    height: 100%;
+    overflow:hidden;
+}
+
+#start {
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+#col1 {
+    height: 850px;
+    border: solid thin darkgrey;
+    overflow:scroll;
+}
+
+#col2 {
+    height: 850px;
+    border: solid thin darkgrey;
+    overflow:scroll;
+}
+
+#col3 {
+    height: 850px;
+    border: solid thin darkgrey;
+    overflow:scroll;
+}
+
+
+div.header button {
+    display: inline;
+    margin-top: 10px;
+    line-height: 20px;
+    font-weight: bold;
+    padding: 0 15px;
+    background: silver;
+    border: 1px solid darkslategray;
+    border-radius: 50px;
+}
+
+
+
+div.leftside {
+    float:left;
+    width:49%;
+    border: solid thin darkgrey;
+    height: 850px;
+    overflow:scroll;
+}
+
+div.rightside {
+    float:left;
+    width:49%;
+    border: solid thin darkgrey;
+    height: 850px;
+    overflow:scroll;
+}
+
+#menu {
+    margin-top: -25px;
+    margin-left: -50px;
+    display: block;
+    padding: 0;
+}
+
+
+/*
+
+#experiment {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.leftside {
+  display: inline-block;
+  white-space: normal;
+}
+
+.leftside {
+  background-color: gray;
+  width: 50%;
+}
+
+
+.rightside {
+  background-color: teal;
+  width: 50%;
+  height: 50px;
+}
+*/
+
+/* Start */
+
+#operationsMenu {
+    margin-left: 10px;
+    padding: 50px;
+}
+
+#subAddForm {
+    float: left;
+}
+
+#subAddFormForm input[type=text] {
+    width: 50px;
+    padding: 1px 2px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+
+
+#mixtureform {
+    width: 60%;
+}
+
+#heat_form {
+    width: 50%;
+}
+
+#cool_form {
+    width: 50%;
+}
+
+#formMix {
+    float: right;
+}
+
+#store_form {
+    width: 50%;
+}
+
+#output_form {
+    width: 50%;
+}
+
+#split_form {
+    width: 50%;
+}
+
+#detect_form {
+    width: 50%;
+}
+
+#startExperiment {
+    width: 10%;
+}
+
+
+/* End */
+
+
+/* Start Button Style */
+
+button {
+    display: block;
+    margin-top: 15px;
+    line-height: 25px;
+    font-weight: bold;
+    padding: 0 20px;
+    background: silver;
+    border: 1px solid darkslategray;
+    border-radius: 50px;
+}
+
+button:hover {
+    background: darkgray;
+}
+
+/* End Button Style */
+
+
+
+/* Start Form Style */
+/*
+#substanceremoval {
+  float: right;
+}
+*/
+
+.substanceDrop {
+    width: 75px;
+    background-color: lightblue;
+}
+
+input[type=text].volumeInput {
+    width: 30px;
+}
+
+input[type=text] {
+    /*width: 80px;*/
+    padding: 1px 2px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+
+input[type=text]:focus {
+    border: 3px solid #555;
+    background-color: lightblue;
+}
+
+select {
+    width: 75px;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    text-align: center;
+}
+
+#timeDuration {
+    width: 70px;
+}
+
+/* End Form Style */
+

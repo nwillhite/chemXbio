@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>chemXbio</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- style sheets -->
+    <link rel="stylesheet" type="text/css" href="newpage.css">
+
+    <!-- chemXbio javascript files -->
+    <script src = "structure.js"></script>
+    <script src = "operationInput.js"></script>
+    <script src = "operationCreate.js"></script>
+    <script src = "helper.js"></script>
+    <script src = "Operation.js"></script>
+
+    <!-- hardcoded links to bootstrap -->
+    <link rel="stylesheet" type="text/css" href="./bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+    <script src ="./bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+    <!-- web links to bootstrap -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+
+
+<body>
+
+<script>
+
+    function createExperiment() {
+
+        //= document.getElementById('experimentName').value;
+
+        var name = document.getElementById('experimentName').value;
+
+        experimentStructure.EXPERIMENT.NAME = name;
+
+        //var text = 'You have started an expriment named: ' + name;
+        //text += " \n this is going to be a test";
+        //document.getElementById('whereToPrint').innerHTML = text;
+
+        if (benchtop.length === 0) {
+
+            //benchtop = JSON.parse(JSON.stringify(benchTopStructure));
+
+            benchtop = benchTopStructure;
+        }
+
+        if (experimentHolder.length === 0) {
+
+            //experiment = JSON.parse(JSON.stringify(experimentStructure));
+            //experimentStructure.EXPERIMENT.NAME = document.getElementById('experimentName').value;
+            //experimentHolder.push(experiment);
+
+            experimentHolder.push(experimentStructure);
+        }
+
+    }
+
+    function addExperiment() {
+
+        benchTopStructure.BENCHTOP.EXPERIMENTS = experimentHolder;
+
+    }
+
+    function addSub() {
+
+        //experiment.EXPERIMENT.INPUTS = substancelist;
+        //if (experimentStructure.EXPERIMENT.INPUTS.length != 0)
+        //{
+        //    experimentStructure.EXPERIMENT.INPUTS = 0;
+        //
+        //}
+
+        experimentStructure.EXPERIMENT.INPUTS = substancelist;
+
+
+    }
+
+    function addOperation() {
+
+        if (experimentStructure.EXPERIMENT.INSTRUCTIONS != 0) {
+
+            experimentStructure.EXPERIMENT.INSTRUCTIONS.length = 0;
+
+            experimentStructure.EXPERIMENT.INSTRUCTIONS.push(operationList);
+        }
+        else {
+
+            experimentStructure.EXPERIMENT.INSTRUCTIONS.push(operationList);
+
+        }
+        //experimentStructure.EXPERIMENT.INSTRUCTIONS = operationList;
+    }
+
+</script>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div id="start" class="col-sm-12" style="background-color:lightblue;">
+            <button type="button" class="btn btn-primary" onclick="showhidetoggle('startExperiment')">New</button>
+            <button type="button" class="btn btn-primary" onclick="resetExperiment()">Reset</button>
+        </div>
+    </div> <!-- end top bar -->
+
+    <div class="row">
+
+        <div id="col1" class="col-sm-2" style="background-color:lavender;">
+            <h3>Vertical Button Group</h3>
+            <p>
+            <div id="startExperiment" class="col-sm-offset-0" style="display: none">
+                <form id="startForm">
+                    <h3>Start Experiment</h3>
+                    <div class="form-group">
+                        <label for="experimentName">Name:</label>
+                        <input type="text" id="experimentName" placeholder="">
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="createExperiment(); update();
+                            toJson(experimentHolder); showhidetoggle('startExperiment')">Start</button>
+                </form>
+            </div> <!-- end of start experiment div -->
+            </p>
+
+            <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('substanceadd');
+                    update()">Add Substances</button>
+            <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('substanceremoval');
+                    update()">Remove Substances</button>
+            <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('mixtureform');
+                    inputCreate()">Mix</button>
+
+        </div> <!-- end col 1 -->
+
+        <div id="col2" class="col-sm-6" style="background-color:lavenderblush;">
+
+            <!-- begin substanceadd form -->
+            <div id='substanceadd' class="col-sm-offset-2" style="display: none">
+                <form id='subAddForm'>
+                    <h3>Add Substance</h3>
+                    <div class="form-group">
+                        <label for="substanceName">Input:</label>
+                        <input type="text" id="substanceName" placeholder="Enter substance">
+                    </div>
+                    <button type="button" class="btn btn-default col-sm-offset-3"
+                            onclick="inputSubstance(document.getElementById('substanceName').value); addSub();
+                            updateList();">Add</button>
+                    <button type="button" class="btn btn-default" onclick="showhidetoggle('substanceadd')">Done</button>
+                    <div id="substanceDisplay">
+                        <!-- shows list of currently entered user substances -->
+                    </div>
+                </form>
+            </div>
+            <!-- end substanceadd form -->
+
+            <!-- begin substanceremoval form -->
+            <div id="substanceremoval" class="col-sm-offset-6" style="display: none">
+                <form id="subRemoveForm">
+                    <h3>Remove Substance</h3><br>
+                    <div class="form-group">
+                    <label for="removesubstanceList">Select to Remove:</label>
+                    <select id="removesubstanceList" class="substanceDrop">
+                        <script>
+                            substanceRemove();
+                        </script>
+                    </select>
+                    </div>
+                    <button type="button" class="btn btn-default col-sm-offset-1" onclick="removeSubstance();
+                            updateList(); toJson(experimentHolder);">Remove</button>
+                    <button type="button" class="btn btn-default"
+                            onclick="showhidetoggle('substanceremoval')">Done</button>
+                </form>
+            </div>
+            <!-- end substanceremoval form -->
+
+            <!-- begin mixture form -->
+            <div id="mixtureform" class="col-sm-offset-3" style="display: none">
+                <form id="mixForm">
+                    <h3>MIX</h3>
+                    <div class="form-group">
+                        <label for="mixName">Name:</label>
+                        <input type="text" id="mixName" value='Mix1' autofocus><br><br>
+                        <label for="mixInputAmount">How many inputs for mixture?</label>
+                        <select id="mixInputAmount" onchange="inputCreate()">
+                            <script>
+                                formInput();
+                            </script>
+                        </select><br><br>
+
+                        <label for="mixInput">Enter Mixtures:</label>
+                        <div id="mixInput">
+                            <!-- container for dynamically making input fields -->
+                        </div>
+
+                        <label for="mixTemp">Enter Temp:</label>
+                        <input type="text" id="mixTemp">
+                        <select id="mixTempSign">
+                            <script>
+                                formTemperature('mixTempSign');
+                            </script>
+                        </select><br>
+
+                        <label for="mixTime">Enter Time:</label>
+                        <input type="text" id="mixTime">
+                        <select id="mixDuration">
+                            <script>
+                                formTime('mixDuration');
+                            </script>
+                        </select><br>
+
+                        <label for="mixOutputname">Output Name:</label>
+                        <input type="text" id="mixOutputName" value='MixOne'><br>
+
+                        <label for="mixRepeat">Repeat:</label>
+                        <select id="mixRepeat">
+                            <option value="false">No</option>
+                            <option value="true">Yes</option>
+                        </select>
+                        <label for="mixRepeatNum">for:</label>
+                        <input type="text" id="mixRepeatNum">
+                        <label for="mixRepeatNum"> times</label>
+                        <br>
+                    </div>
+
+                    <button type="button" class="btn btn-default" onclick="createMixture();
+                            toJson(experimentHolder);">Add Mix</button>
+                    <button type="button" class="btn btn-default" onclick="showhidetoggle('mixtureform')">Done</button>
+
+                </form>
+            </div>
+            <!-- end mixture form -->
+
+
+        </div> <!-- end col 2 -->
+
+        <div id="col3" class="col-sm-4" style="background-color:lavender;">
+
+            <pre id="whereToPrint"></pre>
+
+        </div> <!-- end col 3 -->
+
+    </div> <!-- end class row -->
+</div>
+
+</body>
+</html>
