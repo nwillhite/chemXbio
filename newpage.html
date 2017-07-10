@@ -134,6 +134,10 @@
                     update()">Remove Substances</button>
             <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('mixtureform');
                     inputCreate()">Mix</button>
+            <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('heat_form');
+                    inputCreate()">Heat</button>
+            <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('split_form');
+                    inputCreate()">Split</button>
 
         </div> <!-- end col 1 -->
 
@@ -234,6 +238,112 @@
                 </form>
             </div>
             <!-- end mixture form -->
+
+            <!-- Begin Heat Form -->
+            <div id="heat_form" class="col-sm-offset-3" style="display: none">
+                <form id="heatForm">
+                        <h3>Heat</h3>
+                        <div class="form-group">
+                            <label for="nameHeat">Name:</label>
+                            <input type="text" id="nameHeat" autofocus><br><br>
+
+                            <label for="inputHeat">Select Inputs:</label>
+                            <select id="inputHeat"> <!--onchange="test()">
+                            <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
+                                <script>
+                                    operationHeatInput();
+                                </script>
+                            </select><br><br>
+
+                            <label for="heatTemp">Enter Temp:</label>
+                            <input type="text" id="heatTemp">
+                            <select id="heatTempSign">
+                                <script>
+                                    formTemperature('heatTempSign');
+                                </script>
+                            </select><br>
+
+                            <label for="heatTime">Enter Time:</label>
+                            <input type="text" id="heatTime">
+                            <select id="heatDuration">
+                                <script>
+                                    formTime('heatDuration');
+                                </script>
+                            </select><br>
+
+                            <label for="heatRepeat">Repeat:</label>
+                            <select id="heatRepeat">
+                                <option value="false">No</option>
+                                <option value="true">Yes</option>
+                            </select>
+
+                            <label for="heatRepeatNum">for:</label>
+                            <input type="text" id="heatRepeatNum">
+                            <label for="heatRepeatNum"> times</label>
+                            <br><br>
+                        </div>
+
+                        <button type="button" class="btn btn-default col-sm-offset-3"
+                                onclick="createHeat(); toJson(experimentHolder);">Add Heat</button>
+                        <button type="button" class="btn btn-default" onclick="showhidetoggle('heat_form')">Done</button>
+                </form>
+            </div>
+            <!-- End Heat Form -->
+
+            <!-- Begin Split Form -->
+            <div id="split_form" class="col-sm-offset-3" style="display: none">
+                <form id="splitForm">
+                    <h3>Split</h3>
+                    <div class="form-group">
+                        <label for="nameSplit">Name:</label>
+                        <input type="text" id="nameSplit" value='Split1' autofocus><br><br>
+
+                        <label for="inputSplit">Select Input:</label>
+                        <select id="inputSplit">
+                            <!-- ADD Split INPUTS FOR SELECTION HERE -->
+                            <script>
+                                operationSplitInput();
+                            </script>
+                        </select><br><br>
+
+                        <label for="splitTime">Enter Time:</label>
+                        <input type="text" id="splitTime">
+                        <select id="splitDuration">
+                            <script>
+                                formTime('splitDuration');
+                            </script>
+                        </select><br><br>
+
+                        <label for="splitAmount">How many outputs for split?</label>
+                        <select id="splitAmount" onchange="outputCreate()">
+                            <script>
+                                formSplit();
+                            </script>
+                        </select><br><br>
+
+                        <label for="splitInput">Enter Outputs:</label><br>
+                        <div id="splitInput">
+                            <!-- container for dynamically making input fields -->
+                        </div><br>
+
+                        <label for="splitRepeat">Repeat:</label>
+                        <select id="splitRepeat">
+                            <option value="false">No</option>
+                            <option value="true">Yes</option>
+                        </select>
+
+                        <label for="splitRepeatNum">for:</label>
+                        <input type="text" id="splitRepeatNum">
+                        <label for="splitRepeatNum"> times</label><br><br>
+                    </div>
+
+                    <button type="button" class="btn btn-default col-sm-offset-3"
+                            onclick="createSplit(); update(); toJson(experimentHolder);">Add Split</button>
+                    <button type="button" class="btn btn-default" onclick="showhidetoggle('split_form')">Done</button>
+
+                </form>
+            </div>
+            <!-- End Split Form -->
 
 
         </div> <!-- end col 2 -->
