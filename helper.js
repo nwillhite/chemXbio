@@ -16,7 +16,7 @@ function download(text, name, type) {
 
 function showDiv(id)
 {
-    document.getElementById(id).style.display = 'block';
+    document.getElementById(id).style.display = 'inline';
 }
 
 
@@ -589,7 +589,8 @@ function substanceRemove() {
 function updateList() {
 
     substanceRemove();
-    document.getElementById('substanceDisplay').innerHTML = JSON.stringify(substances, null, 2);
+    document.getElementById('substanceDisplay').innerHTML = "Active substances : " + substances;
+    //document.getElementById('substanceDisplay').innerHTML = JSON.stringify(substances, null, 2);
     toJson(experimentHolder);
     update();
     //document.getElementById('substanceDisplay').innerHTML = " ";
@@ -601,8 +602,8 @@ function update() {
 
     formInput();
     operationSplitInput();
-    operationOutputInput();
-    operationDetectInput();
-    operationStoreInput();
+    //operationOutputInput();
+    //operationDetectInput();
+    //operationStoreInput();
     operationHeatInput();
 }
