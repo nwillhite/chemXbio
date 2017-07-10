@@ -31,75 +31,7 @@
 
 <body>
 
-<script>
 
-    function createExperiment() {
-
-        //= document.getElementById('experimentName').value;
-
-        var name = document.getElementById('experimentName').value;
-
-        experimentStructure.EXPERIMENT.NAME = name;
-
-        //var text = 'You have started an expriment named: ' + name;
-        //text += " \n this is going to be a test";
-        //document.getElementById('whereToPrint').innerHTML = text;
-
-        if (benchtop.length === 0) {
-
-            //benchtop = JSON.parse(JSON.stringify(benchTopStructure));
-
-            benchtop = benchTopStructure;
-        }
-
-        if (experimentHolder.length === 0) {
-
-            //experiment = JSON.parse(JSON.stringify(experimentStructure));
-            //experimentStructure.EXPERIMENT.NAME = document.getElementById('experimentName').value;
-            //experimentHolder.push(experiment);
-
-            experimentHolder.push(experimentStructure);
-        }
-
-    }
-
-    function addExperiment() {
-
-        benchTopStructure.BENCHTOP.EXPERIMENTS = experimentHolder;
-
-    }
-
-    function addSub() {
-
-        //experiment.EXPERIMENT.INPUTS = substancelist;
-        //if (experimentStructure.EXPERIMENT.INPUTS.length != 0)
-        //{
-        //    experimentStructure.EXPERIMENT.INPUTS = 0;
-        //
-        //}
-
-        experimentStructure.EXPERIMENT.INPUTS = substancelist;
-
-
-    }
-
-    function addOperation() {
-
-        if (experimentStructure.EXPERIMENT.INSTRUCTIONS != 0) {
-
-            experimentStructure.EXPERIMENT.INSTRUCTIONS.length = 0;
-
-            experimentStructure.EXPERIMENT.INSTRUCTIONS.push(operationList);
-        }
-        else {
-
-            experimentStructure.EXPERIMENT.INSTRUCTIONS.push(operationList);
-
-        }
-        //experimentStructure.EXPERIMENT.INSTRUCTIONS = operationList;
-    }
-
-</script>
 
 <div class="container-fluid">
 
@@ -107,6 +39,8 @@
         <div id="start" class="col-sm-12" style="background-color:lightblue;">
             <button type="button" class="btn btn-primary" onclick="showhidetoggle('startExperiment')">New</button>
             <button type="button" class="btn btn-primary" onclick="resetExperiment()">Reset</button>
+            <button type="button" class="btn btn-primary" onclick="addExperiment();
+                    toJson(benchtop);">Finish</button>
         </div>
     </div> <!-- end top bar -->
 
@@ -135,9 +69,16 @@
             <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('mixtureform');
                     inputCreate()">Mix</button>
             <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('heat_form');
-                    inputCreate()">Heat</button>
+                    update()">Heat</button>
             <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('split_form');
-                    inputCreate()">Split</button>
+                    update()">Split</button>
+            <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('store_form');
+                    update()">Store</button>
+            <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('detect_form');
+                    update()">Detect</button>
+            <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('store_form');
+                    update()">Output</button>
+
 
         </div> <!-- end col 1 -->
 
@@ -345,6 +286,153 @@
             </div>
             <!-- End Split Form -->
 
+            <!-- Begin Store Form -->
+            <div id="store_form" class="col-sm-offset-3" style="display: none">
+                <form id="storeForm" method="post">
+                    <div class="form-group">
+                        <h3>Store</h3>
+                        <label for="nameStore">Name:</label>
+                        <input type="text" id="nameStore" autofocus><br><br>
+                        <label for="inputStore">Select Inputs:</label>
+                        <select id="inputStore">
+                            <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
+                            <script>
+                                operationStoreInput();
+                            </script>
+                        </select><br><br>
+                        <label for="storeTemp">Enter Temp:</label>
+                        <input type="text" id="storeTemp">
+                        <select id="storeTempSign">
+                            <script>
+                                formTemperature('storeTempSign');
+                            </script>
+                        </select><br>
+                        <label for="storeTime">Enter Time:</label>
+                        <input type="text" id="storeTime">
+                        <select id="storeDuration">
+                            <script>
+                                formTime('storeDuration');
+                            </script>
+                        </select><br><br>
+                    </div>
+
+                    <button type="button" class="btn btn-default col-sm-offset-3"
+                            onclick="createStore(); addOperation(); update();"">Add Store</button>
+                    <button type="button" class="btn btn-default" onclick="showhidetoggle('store_form')">Done</button>
+
+
+                        <input type="button" onclick="createStore(); addOperation(); update();" value="Add Store">
+                        <input type="button" onclick="showhidetoggle('store_form')" value="Done">
+                </form>
+            </div>
+            <!-- End Store Form -->
+
+            <!-- Begin Detect Form -->
+            <div id="detect_form" class="col-sm-offset-3" style="display: none">
+                <form id="detectForm" method="post">
+                    <h3>Detect</h3>
+                    <div class="form-group">
+                        <label for="nameDetect">Name:</label>
+                        <input type="text" id="nameDetect" value='detect1' autofocus><br><br>
+
+                        <label for="inputDetect">Select Inputs:</label>
+                        <select id="inputDetect">
+                            <!-- ADD Output INPUTS FOR SELECTION HERE -->
+                            <script>
+                                operationDetectInput();
+                            </script>
+                        </select><br><br>
+
+                        <label for="detectOutputName">Output Name:</label>
+                        <input type="text" id="detectOutputName" value='DetectOne'><br>
+
+                        <label for="detectRepeat">Repeat:</label>
+                        <select id="detectRepeat">
+                            <option value="false">No</option>
+                            <option value="true">Yes</option>
+                        </select>
+
+                        <label for="detectRepeatNum">for:</label>
+                        <input type="text" id="detectRepeatNum">
+                        <label for="detectRepeatNum"> times</label><br><br>
+                    </div>
+
+                    <button type="button" class="btn btn-default col-sm-offset-3"
+                            onclick="createDetect(); update(); toJson(experimentHolder);">Add Detect</button>
+                    <button type="button" class="btn btn-default" onclick="showhidetoggle('detect_form')">Done</button>
+                </form>
+            </div>
+            <!-- End Detect Form -->
+
+            <script>
+
+                function createExperiment() {
+
+                    //= document.getElementById('experimentName').value;
+
+                    var name = document.getElementById('experimentName').value;
+
+                    experimentStructure.EXPERIMENT.NAME = name;
+
+                    //var text = 'You have started an expriment named: ' + name;
+                    //text += " \n this is going to be a test";
+                    //document.getElementById('whereToPrint').innerHTML = text;
+
+                    if (benchtop.length === 0) {
+
+                        //benchtop = JSON.parse(JSON.stringify(benchTopStructure));
+
+                        benchtop = benchTopStructure;
+                    }
+
+                    if (experimentHolder.length === 0) {
+
+                        //experiment = JSON.parse(JSON.stringify(experimentStructure));
+                        //experimentStructure.EXPERIMENT.NAME = document.getElementById('experimentName').value;
+                        //experimentHolder.push(experiment);
+
+                        experimentHolder.push(experimentStructure);
+                    }
+
+                }
+
+                function addExperiment() {
+
+                    benchTopStructure.BENCHTOP.EXPERIMENTS = experimentHolder;
+
+                }
+
+                function addSub() {
+
+                    //experiment.EXPERIMENT.INPUTS = substancelist;
+                    //if (experimentStructure.EXPERIMENT.INPUTS.length != 0)
+                    //{
+                    //    experimentStructure.EXPERIMENT.INPUTS = 0;
+                    //
+                    //}
+
+                    experimentStructure.EXPERIMENT.INPUTS = substancelist;
+
+
+                }
+
+                function addOperation() {
+
+                    if (experimentStructure.EXPERIMENT.INSTRUCTIONS != 0) {
+
+                        experimentStructure.EXPERIMENT.INSTRUCTIONS.length = 0;
+
+                        experimentStructure.EXPERIMENT.INSTRUCTIONS.push(operationList);
+                    }
+                    else {
+
+                        experimentStructure.EXPERIMENT.INSTRUCTIONS.push(operationList);
+
+                    }
+                    //experimentStructure.EXPERIMENT.INSTRUCTIONS = operationList;
+                }
+
+            </script>
 
         </div> <!-- end col 2 -->
 
