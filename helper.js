@@ -589,12 +589,17 @@ function substanceRemove() {
 function updateList() {
 
     substanceRemove();
-    document.getElementById('substanceDisplay').innerHTML = "Active substances : " + substances;
+
+    if (substances.length != 0) {
+        document.getElementById('substanceDisplay').innerHTML = "Active substances : " + substances;
+    }
+    else {
+        document.getElementById('substanceDisplay').innerHTML = '';
+    }
+
     //document.getElementById('substanceDisplay').innerHTML = JSON.stringify(substances, null, 2);
     toJson(experimentHolder);
     update();
-    //document.getElementById('substanceDisplay').innerHTML = " ";
-    //document.getElementById('substanceDisplay').innerHTML = " " + substances;
 }
 
 
