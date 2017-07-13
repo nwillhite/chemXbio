@@ -36,16 +36,15 @@
 <div class="container-fluid">
 
     <div class="row">
-        <div id="start" class="col-sm-12" style="background-color:lavender;">
-            <button type="button" class="btn btn-primary" onclick="showhidetoggle('startExperiment');
-                    resetExperiment()">New</button>
+        <div id="start" class="col-sm-12" style="background-color:#F3F3F3;">
+            <button type="button" class="btn btn-primary" onclick="showhidetoggle('startExperiment')">New</button>
             <button type="button" class="btn btn-primary" onclick="resetExperiment()">Reset</button>
             <span id="finishbutton" style="display: none">
             <button type="button" class="btn btn-primary" onclick="addExperiment();
                     toJson(benchtop);">Finish</button>
             </>
 
-            <div id="substanceDisplay" class="col-sm-offset-3" style="background-color:lavender;">
+            <div id="substanceDisplay" class="col-sm-offset-3" style="background-color:#F3F3F3;">
                 <!-- active substances populate here -->
             </div>
         </div>
@@ -54,7 +53,7 @@
 
     <div class="row">
 
-        <div id="col1" class="col-sm-3" style="background-color:lavender;">
+        <div id="col1" class="col-sm-3" style="background-color:#F3F3F3;">
 
                 <!-- begin start experiment form -->
                 <div id='startExperiment' class="col-sm-offset-2" style="display: none">
@@ -78,12 +77,13 @@
                         update()">Add Substances</button>
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('substanceremoval');
                         update()">Remove Substances</button>
-
                 <h3>Operation Menu</h3>
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('detect_form');
                         update()">Detect</button>
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('heat_form');
                         update()">Heat</button>
+                <!-- <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('heat_form');
+                        update()">Incubate</button> -->
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('mixtureform');
                         inputCreate()">Mix</button>
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('output_form');
@@ -97,7 +97,7 @@
 
         </div> <!-- end col 1 -->
 
-        <div id="col2" class="col-sm-6" style="background-color:lavender;">
+        <div id="col2" class="col-sm-6" style="background-color:#F3F3F3;">
 
             <!-- begin substanceadd form -->
             <div id='substanceadd' class="col-sm-offset-3" style="display: none">
@@ -476,7 +476,7 @@
 
         </div> <!-- end col 2 -->
 
-        <div id="col3" class="col-sm-3" style="background-color:lavender;">
+        <div id="col3" class="col-sm-3" style="background-color:#F3F3F3;">
 
             <pre id="whereToPrint"></pre>
 

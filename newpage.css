@@ -4,7 +4,6 @@ body {
     margin-right: 25px;
     height: 100%;
     overflow:hidden;
-    background-color:lavender;
 }
 
 #start {
@@ -12,10 +11,29 @@ body {
     margin-bottom: 0px;
 }
 
+#start button {
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background: #8E8B82;
+    color: #343434;
+}
+
 #col1 {
     height: 850px;
     border: solid thin darkgrey;
     overflow:scroll;
+
+}
+
+#col1 h3 {
+    color: #343434;
+}
+
+#col1 button {
+    background: #8E8B82;
+    color: #343434;
+    margin-bottom: 10px;
 }
 
 #col2 {
