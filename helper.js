@@ -607,8 +607,8 @@ function update() {
 
     formInput();
     operationSplitInput();
-    //operationOutputInput();
-    //operationDetectInput();
-    //operationStoreInput();
+    operationOutputInput();
+    operationDetectInput();
+    operationStoreInput();
     operationHeatInput();
 }
