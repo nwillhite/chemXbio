@@ -35,11 +35,11 @@ function resetExperiment() {
     operationList.length = 0;
     substances.length = 0;
     outputs.length = 0;
-    //location.reload();
     hideDiv('startExperiment');
     hideDiv('operationsMenu');
     document.getElementById('whereToPrint').innerHTML = "";
     document.getElementById('substanceDisplay').innerHTML = "";
+    location.reload();
 
 }
 
