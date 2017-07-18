@@ -47,7 +47,7 @@
             <button type="button" class="btn btn-primary" onclick="addExperiment();
                     toJson(benchtop); showhidetoggle('forms'); hideDiv('startExperiment');
                     hideDiv('operationsMenu');">Finish</button>
-            </>
+            </span>
 
             <div id="substanceDisplay" class="col-sm-offset-3" style="background-color:#F3F3F3;">
                 <!-- active substances populate here -->
@@ -85,10 +85,6 @@
                 <h3>Operation Menu</h3>
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('detect_form');
                         update()">Detect</button>
-                <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('heat_form');
-                        update()">Heat</button>
-                <!-- <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('heat_form');
-                        update()">Incubate</button> -->
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('mixtureform');
                         inputCreate()">Mix</button>
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('output_form');
@@ -97,6 +93,13 @@
                         update()">Split</button>
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('store_form');
                         update()">Store</button>
+
+                <h3>Heat Menu</h3>
+                <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('heat_form');
+                        update()">Heat</button>
+                <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('incubate_form');
+                        update(); operationHeatInput('inputIncubate');">Incubate</button>
+
             </div>
 
 
@@ -106,308 +109,359 @@
 
             <div id="forms">
 
-            <!-- begin substanceadd form -->
-            <div id='substanceadd' class="col-sm-offset-3" style="display: none">
-                <form id='subAddForm'>
-                    <h3>Add Substance</h3>
-                    <div class="form-group">
-                        <label for="substanceName">Input:</label>
-                        <input type="text" id="substanceName" placeholder="Enter substance">
-                    </div>
-                    <button type="button" class="btn btn-default"
-                            onclick="inputSubstance(document.getElementById('substanceName').value); addSub();
-                            updateList();">Add</button>
-                    <button type="button" class="btn btn-default" onclick="showhidetoggle('substanceadd')">Done</button>
-                    <div id="substanceDisplay">
-                        <!-- shows list of currently entered user substances -->
-                    </div>
-                </form>
-            </div>
-            <!-- end substanceadd form -->
+                <!-- begin substanceadd form -->
+                <div id='substanceadd' class="col-sm-offset-3" style="display: none">
+                    <form id='subAddForm'>
+                        <h3>Add Substance</h3>
+                        <div class="form-group">
+                            <label for="substanceName">Input:</label>
+                            <input type="text" id="substanceName" placeholder="Enter substance">
+                        </div>
+                        <button type="button" class="btn btn-default"
+                                onclick="inputSubstance(document.getElementById('substanceName').value); addSub();
+                                updateList();">Add</button>
+                        <button type="button" class="btn btn-default" onclick="showhidetoggle('substanceadd')">Done</button>
+                        <div id="substanceDisplay">
+                            <!-- shows list of currently entered user substances -->
+                        </div>
+                    </form>
+                </div>
+                <!-- end substanceadd form -->
 
-            <!-- begin substanceremoval form -->
-            <div id="substanceremoval" class="col-sm-offset-3" style="display: none">
-                <form id="subRemoveForm">
-                    <h3>Remove Substance</h3><br>
-                    <div class="form-group">
-                    <label for="removesubstanceList">Select to Remove:</label>
-                    <select id="removesubstanceList" class="substanceDrop">
-                        <script>
-                            substanceRemove();
-                        </script>
-                    </select>
-                    </div>
-                    <button type="button" class="btn btn-default" onclick="removeSubstance();
-                            updateList(); toJson(experimentHolder);">Remove</button>
-                    <button type="button" class="btn btn-default"
-                            onclick="showhidetoggle('substanceremoval')">Done</button>
-                </form>
-            </div>
-            <!-- end substanceremoval form -->
-
-            <!-- Begin Detect Form -->
-            <div id="detect_form" class="col-sm-offset-3" style="display: none">
-                <form id="detectForm" method="post">
-                    <h3>Detect</h3>
-                    <div class="form-group">
-                        <label for="nameDetect">Name:</label>
-                        <input type="text" id="nameDetect" value='detect1' autofocus><br><br>
-
-                        <label for="inputDetect">Select Inputs:</label>
-                        <select id="inputDetect">
-                            <!-- ADD Output INPUTS FOR SELECTION HERE -->
+                <!-- begin substanceremoval form -->
+                <div id="substanceremoval" class="col-sm-offset-3" style="display: none">
+                    <form id="subRemoveForm">
+                        <h3>Remove Substance</h3><br>
+                        <div class="form-group">
+                        <label for="removesubstanceList">Select to Remove:</label>
+                        <select id="removesubstanceList" class="substanceDrop">
                             <script>
-                                operationDetectInput();
+                                substanceRemove();
                             </script>
-                        </select><br><br>
-
-                        <label for="detectOutputName">Output Name:</label>
-                        <input type="text" id="detectOutputName" value='DetectOne'><br>
-
-                        <label for="detectRepeat">Repeat:</label>
-                        <select id="detectRepeat">
-                            <option value="false">No</option>
-                            <option value="true">Yes</option>
                         </select>
+                        </div>
+                        <button type="button" class="btn btn-default" onclick="removeSubstance();
+                                updateList(); toJson(experimentHolder);">Remove</button>
+                        <button type="button" class="btn btn-default"
+                                onclick="showhidetoggle('substanceremoval')">Done</button>
+                    </form>
+                </div>
+                <!-- end substanceremoval form -->
 
-                        <label for="detectRepeatNum">for:</label>
-                        <input type="text" id="detectRepeatNum">
-                        <label for="detectRepeatNum"> times</label>
-                    </div>
+                <!-- Begin Detect Form -->
+                <div id="detect_form" class="col-sm-offset-3" style="display: none">
+                    <form id="detectForm" method="post">
+                        <h3>Detect</h3>
+                        <div class="form-group">
+                            <label for="nameDetect">Name:</label>
+                            <input type="text" id="nameDetect" value='detect1' autofocus><br><br>
 
-                    <button type="button" class="btn btn-default"
-                            onclick="createDetect(); update(); toJson(experimentHolder);">Add Detect</button>
-                    <button type="button" class="btn btn-default" onclick="showhidetoggle('detect_form')">Done</button>
-                </form>
-            </div>
-            <!-- End Detect Form -->
+                            <label for="inputDetect">Select Inputs:</label>
+                            <select id="inputDetect">
+                                <!-- ADD Output INPUTS FOR SELECTION HERE -->
+                                <script>
+                                    operationDetectInput();
+                                </script>
+                            </select><br><br>
 
-            <!-- Begin heat form -->
-            <div id="heat_form" class="col-sm-offset-3" style="display: none">
-                <form id="heatForm">
-                    <h3>Heat</h3>
-                    <div class="form-group">
-                        <label for="nameHeat">Name:</label>
-                        <input type="text" id="nameHeat" autofocus><br><br>
+                            <label for="detectOutputName">Output Name:</label>
+                            <input type="text" id="detectOutputName" value='DetectOne'><br>
 
-                        <label for="inputHeat">Select Inputs:</label>
-                        <select id="inputHeat"> <!--onchange="test()">
-                            <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
-                            <script>
-                                operationHeatInput();
-                            </script>
-                        </select><br><br>
+                            <label for="detectRepeat">Repeat:</label>
+                            <select id="detectRepeat">
+                                <option value="false">No</option>
+                                <option value="true">Yes</option>
+                            </select>
 
-                        <label for="heatTemp">Enter Temp:</label>
-                        <input type="text" id="heatTemp">
-                        <select id="heatTempSign">
-                            <script>
-                                formTemperature('heatTempSign');
-                            </script>
-                        </select><br>
-
-                        <label for="heatTime">Enter Time:</label>
-                        <input type="text" id="heatTime">
-                        <select id="heatDuration">
-                            <script>
-                                formTime('heatDuration');
-                            </script>
-                        </select><br>
-
-                        <label for="heatRepeat">Repeat:</label>
-                        <select id="heatRepeat">
-                            <option value="false">No</option>
-                            <option value="true">Yes</option>
-                        </select>
-
-                        <label for="heatRepeatNum">for:</label>
-                        <input type="text" id="heatRepeatNum">
-                        <label for="heatRepeatNum"> times</label>
-                        <br><br>
-                    </div>
-
-                    <button type="button" class="btn btn-default col-sm-offset-3"
-                            onclick="createHeat(); toJson(experimentHolder);">Add Heat</button>
-                    <button type="button" class="btn btn-default" onclick="showhidetoggle('heat_form')">Done</button>
-                </form>
-            </div>
-            <!-- End heat form -->
-
-            <!-- begin mixture form -->
-            <div id="mixtureform" class="col-sm-offset-3" style="display: none">
-                <form id="mixForm">
-                    <h3>MIX</h3>
-                    <div class="form-group">
-                        <label for="mixName">Name:</label>
-                        <input type="text" id="mixName" value='Mix1' autofocus><br><br>
-                        <label for="mixInputAmount">How many inputs for mixture?</label>
-                        <select id="mixInputAmount" onchange="inputCreate()">
-                            <script>
-                                formInput();
-                            </script>
-                        </select><br><br>
-
-                        <label for="mixInput">Enter Mixtures:</label>
-                        <div id="mixInput">
-                            <!-- container for dynamically making input fields -->
+                            <label for="detectRepeatNum">for:</label>
+                            <input type="text" id="detectRepeatNum">
+                            <label for="detectRepeatNum"> times</label>
                         </div>
 
-                        <label for="mixTemp">Enter Temp:</label>
-                        <input type="text" id="mixTemp">
-                        <select id="mixTempSign">
-                            <script>
-                                formTemperature('mixTempSign');
-                            </script>
-                        </select><br>
+                        <button type="button" class="btn btn-default"
+                                onclick="createDetect(); update(); toJson(experimentHolder);">Add Detect</button>
+                        <button type="button" class="btn btn-default" onclick="showhidetoggle('detect_form')">Done</button>
+                    </form>
+                </div>
+                <!-- End Detect Form -->
 
-                        <label for="mixTime">Enter Time:</label>
-                        <input type="text" id="mixTime">
-                        <select id="mixDuration">
-                            <script>
-                                formTime('mixDuration');
-                            </script>
-                        </select><br>
+                <!-- Begin heat form -->
+                <div id="heat_form" class="col-sm-offset-3" style="display: none">
+                    <form id="heatForm">
+                        <h3>Heat</h3>
+                        <div class="form-group">
+                            <label for="nameHeat">Name:</label>
+                            <input type="text" id="nameHeat" autofocus><br><br>
 
-                        <label for="mixOutputname">Output Name:</label>
-                        <input type="text" id="mixOutputName" value='MixOne'><br>
+                            <label for="inputHeat">Select Inputs:</label>
+                            <select id="inputHeat"> <!--onchange="test()">
+                                <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
+                                <script>
+                                    operationHeatInput();
+                                </script>
+                            </select><br><br>
 
-                        <label for="mixRepeat">Repeat:</label>
-                        <select id="mixRepeat">
-                            <option value="false">No</option>
-                            <option value="true">Yes</option>
-                        </select>
-                        <label for="mixRepeatNum">for:</label>
-                        <input type="text" id="mixRepeatNum">
-                        <label for="mixRepeatNum"> times</label>
-                        <br>
-                    </div>
+                            <label for="heatTemp">Enter Temp:</label>
+                            <input type="text" id="heatTemp">
+                            <select id="heatTempSign">
+                                <script>
+                                    formTemperature('heatTempSign');
+                                </script>
+                            </select><br>
 
-                    <button type="button" class="btn btn-default" onclick="createMixture();
-                            toJson(experimentHolder);">Add Mix</button>
-                    <button type="button" class="btn btn-default" onclick="showhidetoggle('mixtureform')">Done</button>
+                            <label for="heatTime">Enter Time:</label>
+                            <input type="text" id="heatTime">
+                            <select id="heatDuration">
+                                <script>
+                                    formTime('heatDuration');
+                                </script>
+                            </select><br>
 
-                </form>
-            </div>
-            <!-- end mixture form -->
+                            <label for="heatRepeat">Repeat:</label>
+                            <select id="heatRepeat">
+                                <option value="false">No</option>
+                                <option value="true">Yes</option>
+                            </select>
 
-            <!-- Begin Output Form -->
-            <div id="output_form" class="col-sm-offset-3" style="display: none">
-                <form id="outputForm" method="post">
-                    <h3>Output</h3>
-                    <div class="form-group">
-                        <label for="nameOutput">Name:</label>
-                        <input type="text" id="nameOutput" autofocus><br><br>
-                        <label for="inputOutput">Select Inputs:</label>
-                        <select id="inputOutput" onchange="test()">
-                            <!-- ADD Output INPUTS FOR SELECTION HERE -->
-                            <script>
-                                operationOutputInput("inputOutput");
-                            </script>
-                        </select>
-                    </div>
+                            <label for="heatRepeatNum">for:</label>
+                            <input type="text" id="heatRepeatNum">
+                            <label for="heatRepeatNum"> times</label>
+                            <br><br>
+                        </div>
 
-                    <button type="button" class="btn btn-default col-sm-offset-3"
-                            onclick="createOutput(); update(); toJson(experimentHolder);">Add Output</button>
-                    <button type="button" class="btn btn-default" onclick="showhidetoggle('output_form')">Done</button>
-                </form>
-            </div>
-            <!-- End Output Form -->
+                        <button type="button" class="btn btn-default col-sm-offset-3"
+                                onclick="createHeat(); toJson(experimentHolder);">Add Heat</button>
+                        <button type="button" class="btn btn-default" onclick="showhidetoggle('heat_form')">Done</button>
+                    </form>
+                </div>
+                <!-- End heat form -->
 
-            <!-- Begin Split Form -->
-            <div id="split_form" class="col-sm-offset-3" style="display: none">
-                <form id="splitForm">
-                    <h3>Split</h3>
-                    <div class="form-group">
-                        <label for="nameSplit">Name:</label>
-                        <input type="text" id="nameSplit" value='Split1' autofocus><br><br>
+                <!-- Begin heat form -->
+                <div id="incubate_form" class="col-sm-offset-3" style="display: none">
+                    <form id="incubateForm">
+                        <h3>Incubate</h3>
+                        <div class="form-group">
+                            <label for="nameIncubate">Name:</label>
+                            <input type="text" id="nameIncubate" autofocus><br><br>
 
-                        <label for="inputSplit">Select Input:</label>
-                        <select id="inputSplit">
-                            <!-- ADD Split INPUTS FOR SELECTION HERE -->
-                            <script>
-                                operationSplitInput();
-                            </script>
-                        </select><br><br>
+                            <label for="inputIncubate">Select Inputs:</label>
+                            <select id="inputIncubate">
+                                <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
+                                <script>
+                                    //operationHeatInput('inputIncubate');
+                                </script>
+                            </select><br><br>
 
-                        <label for="splitTime">Enter Time:</label>
-                        <input type="text" id="splitTime">
-                        <select id="splitDuration">
-                            <script>
-                                formTime('splitDuration');
-                            </script>
-                        </select><br><br>
+                            <label for="incubateTemp">Enter Temp:</label>
+                            <input type="text" id="incubateTemp">
+                            <select id="incubateTempSign">
+                                <script>
+                                    formTemperature('incubateTempSign');
+                                </script>
+                            </select><br>
 
-                        <label for="splitAmount">How many outputs for split?</label>
-                        <select id="splitAmount" onchange="outputCreate()">
-                            <script>
-                                formSplit();
-                            </script>
-                        </select><br><br>
+                            <label for="incubateTime">Enter Time:</label>
+                            <input type="text" id="incubateTime">
+                            <select id="incubateDuration">
+                                <script>
+                                    formTime('incubateDuration');
+                                </script>
+                            </select><br>
 
-                        <label for="splitInput">Enter Outputs:</label><br>
-                        <div id="splitInput">
-                            <!-- container for dynamically making input fields -->
-                        </div><br>
+                            <label for="incubateRepeat">Repeat:</label>
+                            <select id="incubateRepeat">
+                                <option value="false">No</option>
+                                <option value="true">Yes</option>
+                            </select>
 
-                        <label for="splitRepeat">Repeat:</label>
-                        <select id="splitRepeat">
-                            <option value="false">No</option>
-                            <option value="true">Yes</option>
-                        </select>
+                            <label for="incubateRepeatNum">for:</label>
+                            <input type="text" id="incubateRepeatNum">
+                            <label for="incubateRepeatNum"> times</label>
+                            <br><br>
+                        </div>
 
-                        <label for="splitRepeatNum">for:</label>
-                        <input type="text" id="splitRepeatNum">
-                        <label for="splitRepeatNum"> times</label><br><br>
-                    </div>
+                        <button type="button" class="btn btn-default col-sm-offset-3"
+                                onclick="createIncubate(); toJson(experimentHolder);">Add Incubate</button>
+                        <button type="button" class="btn btn-default" onclick="showhidetoggle('incubate_form')">Done</button>
+                    </form>
+                </div>
+                <!-- End heat form -->
 
-                    <button type="button" class="btn btn-default col-sm-offset-3"
-                            onclick="createSplit(); update(); toJson(experimentHolder);">Add Split</button>
-                    <button type="button" class="btn btn-default" onclick="showhidetoggle('split_form')">Done</button>
+                <!-- begin mixture form -->
+                <div id="mixtureform" class="col-sm-offset-3" style="display: none">
+                    <form id="mixForm">
+                        <h3>MIX</h3>
+                        <div class="form-group">
+                            <label for="mixName">Name:</label>
+                            <input type="text" id="mixName" value='Mix1' autofocus><br><br>
+                            <label for="mixInputAmount">How many inputs for mixture?</label>
+                            <select id="mixInputAmount" onchange="inputCreate()">
+                                <script>
+                                    formInput();
+                                </script>
+                            </select><br><br>
 
-                </form>
-            </div>
-            <!-- End Split Form -->
+                            <label for="mixInput">Enter Mixtures:</label>
+                            <div id="mixInput">
+                                <!-- container for dynamically making input fields -->
+                            </div>
 
-            <!-- Begin Store Form -->
-            <div id="store_form" class="col-sm-offset-3" style="display: none">
-                <form id="storeForm" method="post">
-                    <div class="form-group">
-                        <h3>Store</h3>
-                        <label for="nameStore">Name:</label>
-                        <input type="text" id="nameStore" autofocus><br><br>
-                        <label for="inputStore">Select Inputs:</label>
-                        <select id="inputStore">
-                            <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
-                            <script>
-                                operationStoreInput();
-                            </script>
-                        </select><br><br>
-                        <label for="storeTemp">Enter Temp:</label>
-                        <input type="text" id="storeTemp">
-                        <select id="storeTempSign">
-                            <script>
-                                formTemperature('storeTempSign');
-                            </script>
-                        </select><br>
-                        <label for="storeTime">Enter Time:</label>
-                        <input type="text" id="storeTime">
-                        <select id="storeDuration">
-                            <script>
-                                formTime('storeDuration');
-                            </script>
-                        </select><br><br>
-                    </div>
+                            <label for="mixTemp">Enter Temp:</label>
+                            <input type="text" id="mixTemp">
+                            <select id="mixTempSign">
+                                <script>
+                                    formTemperature('mixTempSign');
+                                </script>
+                            </select><br>
 
-                    <button type="button" class="btn btn-default col-sm-offset-3"
-                            onclick="createStore(); addOperation(); update();"">Add Store</button>
-                    <button type="button" class="btn btn-default" onclick="showhidetoggle('store_form')">Done</button>
+                            <label for="mixTime">Enter Time:</label>
+                            <input type="text" id="mixTime">
+                            <select id="mixDuration">
+                                <script>
+                                    formTime('mixDuration');
+                                </script>
+                            </select><br>
+
+                            <label for="mixOutputname">Output Name:</label>
+                            <input type="text" id="mixOutputName" value='MixOne'><br>
+
+                            <label for="mixRepeat">Repeat:</label>
+                            <select id="mixRepeat">
+                                <option value="false">No</option>
+                                <option value="true">Yes</option>
+                            </select>
+                            <label for="mixRepeatNum">for:</label>
+                            <input type="text" id="mixRepeatNum">
+                            <label for="mixRepeatNum"> times</label>
+                            <br>
+                        </div>
+
+                        <button type="button" class="btn btn-default" onclick="createMixture();
+                                toJson(experimentHolder);">Add Mix</button>
+                        <button type="button" class="btn btn-default" onclick="showhidetoggle('mixtureform')">Done</button>
+
+                    </form>
+                </div>
+                <!-- end mixture form -->
+
+                <!-- Begin Output Form -->
+                <div id="output_form" class="col-sm-offset-3" style="display: none">
+                    <form id="outputForm" method="post">
+                        <h3>Output</h3>
+                        <div class="form-group">
+                            <label for="nameOutput">Name:</label>
+                            <input type="text" id="nameOutput" autofocus><br><br>
+                            <label for="inputOutput">Select Inputs:</label>
+                            <select id="inputOutput" onchange="test()">
+                                <!-- ADD Output INPUTS FOR SELECTION HERE -->
+                                <script>
+                                    operationOutputInput("inputOutput");
+                                </script>
+                            </select>
+                        </div>
+
+                        <button type="button" class="btn btn-default col-sm-offset-3"
+                                onclick="createOutput(); update(); toJson(experimentHolder);">Add Output</button>
+                        <button type="button" class="btn btn-default" onclick="showhidetoggle('output_form')">Done</button>
+                    </form>
+                </div>
+                <!-- End Output Form -->
+
+                <!-- Begin Split Form -->
+                <div id="split_form" class="col-sm-offset-3" style="display: none">
+                    <form id="splitForm">
+                        <h3>Split</h3>
+                        <div class="form-group">
+                            <label for="nameSplit">Name:</label>
+                            <input type="text" id="nameSplit" value='Split1' autofocus><br><br>
+
+                            <label for="inputSplit">Select Input:</label>
+                            <select id="inputSplit">
+                                <!-- ADD Split INPUTS FOR SELECTION HERE -->
+                                <script>
+                                    operationSplitInput();
+                                </script>
+                            </select><br><br>
+
+                            <label for="splitTime">Enter Time:</label>
+                            <input type="text" id="splitTime">
+                            <select id="splitDuration">
+                                <script>
+                                    formTime('splitDuration');
+                                </script>
+                            </select><br><br>
+
+                            <label for="splitAmount">How many outputs for split?</label>
+                            <select id="splitAmount" onchange="outputCreate()">
+                                <script>
+                                    formSplit();
+                                </script>
+                            </select><br><br>
+
+                            <label for="splitInput">Enter Outputs:</label><br>
+                            <div id="splitInput">
+                                <!-- container for dynamically making input fields -->
+                            </div><br>
+
+                            <label for="splitRepeat">Repeat:</label>
+                            <select id="splitRepeat">
+                                <option value="false">No</option>
+                                <option value="true">Yes</option>
+                            </select>
+
+                            <label for="splitRepeatNum">for:</label>
+                            <input type="text" id="splitRepeatNum">
+                            <label for="splitRepeatNum"> times</label><br><br>
+                        </div>
+
+                        <button type="button" class="btn btn-default col-sm-offset-3"
+                                onclick="createSplit(); update(); toJson(experimentHolder);">Add Split</button>
+                        <button type="button" class="btn btn-default" onclick="showhidetoggle('split_form')">Done</button>
+
+                    </form>
+                </div>
+                <!-- End Split Form -->
+
+                <!-- Begin Store Form -->
+                <div id="store_form" class="col-sm-offset-3" style="display: none">
+                    <form id="storeForm" method="post">
+                        <div class="form-group">
+                            <h3>Store</h3>
+                            <label for="nameStore">Name:</label>
+                            <input type="text" id="nameStore" autofocus><br><br>
+                            <label for="inputStore">Select Inputs:</label>
+                            <select id="inputStore">
+                                <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
+                                <script>
+                                    operationStoreInput();
+                                </script>
+                            </select><br><br>
+                            <label for="storeTemp">Enter Temp:</label>
+                            <input type="text" id="storeTemp">
+                            <select id="storeTempSign">
+                                <script>
+                                    formTemperature('storeTempSign');
+                                </script>
+                            </select><br>
+                            <label for="storeTime">Enter Time:</label>
+                            <input type="text" id="storeTime">
+                            <select id="storeDuration">
+                                <script>
+                                    formTime('storeDuration');
+                                </script>
+                            </select><br><br>
+                        </div>
+
+                        <button type="button" class="btn btn-default col-sm-offset-3"
+                                onclick="createStore(); addOperation(); update();"">Add Store</button>
+                        <button type="button" class="btn btn-default" onclick="showhidetoggle('store_form')">Done</button>
 
 
-                        <input type="button" onclick="createStore(); addOperation(); update();" value="Add Store">
-                        <input type="button" onclick="showhidetoggle('store_form')" value="Done">
-                </form>
-            </div>
-            <!-- End Store Form -->
+                            <input type="button" onclick="createStore(); addOperation(); update();" value="Add Store">
+                            <input type="button" onclick="showhidetoggle('store_form')" value="Done">
+                    </form>
+                </div>
+                <!-- End Store Form -->
 
             </div>
 
