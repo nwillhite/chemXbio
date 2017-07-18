@@ -22,26 +22,24 @@ var operationList = [];
 
 // holds defined substance to help populate selection for drop downs
 var substances = [];
-var outputs = [];
 
 
 // helper function to clear experiment until a better way can be found
 function resetExperiment() {
-    experimentHolder.length = 0;
-    experimentStructure.EXPERIMENT.NAME = "";
-    experimentStructure.EXPERIMENT.INPUTS.length = 0;
-    experimentStructure.EXPERIMENT.INSTRUCTIONS.length = 0;
-    substancelist.length = 0;
-    operationList.length = 0;
-    substances.length = 0;
-    outputs.length = 0;
-    hideDiv('startExperiment');
-    hideDiv('operationsMenu');
-    hideDiv('forms');
-    document.getElementById('whereToPrint').innerHTML = "";
-    document.getElementById('substanceDisplay').innerHTML = "";
-    //location.reload();
-
+    //experimentHolder.length = 0;
+    //experimentStructure.EXPERIMENT.NAME = "";
+    //experimentStructure.EXPERIMENT.INPUTS.length = 0;
+    //experimentStructure.EXPERIMENT.INSTRUCTIONS.length = 0;
+    //substancelist.length = 0;
+    //operationList.length = 0;
+    //substances.length = 0;
+    //outputs.length = 0;
+    //hideDiv('startExperiment');
+    //hideDiv('operationsMenu');
+    //hideDiv('forms');
+    //document.getElementById('whereToPrint').innerHTML = "";
+    //document.getElementById('substanceDisplay').innerHTML = "";
+    location.reload();
 }
 
 
