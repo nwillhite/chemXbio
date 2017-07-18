@@ -158,7 +158,7 @@ function formSplit() {
 // function that populates the input selection of the output operation
 function operationOutputInput() {
 
-    var container = document.getElementById('inputOutput');
+    var container = document.getElementById('inputSave');
 
     while (container.hasChildNodes()) {
 

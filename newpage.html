@@ -87,8 +87,8 @@
                         update()">Detect</button>
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('mixtureform');
                         inputCreate()">Mix</button>
-                <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('output_form');
-                        update()">Output</button>
+                <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('save_form');
+                        update()">Save</button>
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('split_form');
                         update()">Split</button>
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('store_form');
@@ -345,14 +345,14 @@
                 <!-- end mixture form -->
 
                 <!-- Begin Output Form -->
-                <div id="output_form" class="col-sm-offset-3" style="display: none">
-                    <form id="outputForm" method="post">
-                        <h3>Output</h3>
+                <div id="save_form" class="col-sm-offset-3" style="display: none">
+                    <form id="saveForm" method="post">
+                        <h3>Save</h3>
                         <div class="form-group">
                             <label for="nameOutput">Name:</label>
-                            <input type="text" id="nameOutput" autofocus><br><br>
-                            <label for="inputOutput">Select Inputs:</label>
-                            <select id="inputOutput" onchange="test()">
+                            <input type="text" id="nameSave" autofocus><br><br>
+                            <label for="inputSave">Select Inputs:</label>
+                            <select id="inputSave" onchange="test()">
                                 <!-- ADD Output INPUTS FOR SELECTION HERE -->
                                 <script>
                                     operationOutputInput("inputOutput");
@@ -361,8 +361,8 @@
                         </div>
 
                         <button type="button" class="btn btn-default col-sm-offset-3"
-                                onclick="createOutput(); update(); toJson(experimentHolder);">Add Output</button>
-                        <button type="button" class="btn btn-default" onclick="showhidetoggle('output_form')">Done</button>
+                                onclick="createSave(); update(); toJson(experimentHolder);">Add Output</button>
+                        <button type="button" class="btn btn-default" onclick="showhidetoggle('save_form')">Done</button>
                     </form>
                 </div>
                 <!-- End Output Form -->

@@ -138,7 +138,6 @@ function createIncubate() {
 }
 
 
-
 function createMixture() {
 
     //var repeat = document.getElementById('mixRepeat').value;
@@ -200,23 +199,23 @@ function createMixture() {
 }
 
 
-function createOutput() {
+function createSave() {
 
     var operation = JSON.parse(JSON.stringify(operationStructure));
 
-    operation.OPERATION.NAME = document.getElementById('nameOutput').value;
+    operation.OPERATION.NAME = document.getElementById('nameSave').value;
     operation.OPERATION.ID = createID();
     operation.OPERATION.CLASSIFICATION = 'OUTPUT';
 
     var input = JSON.parse(JSON.stringify(variableInput));
-    input.VARIABLE.NAME = document.getElementById('inputOutput').value;
+    input.VARIABLE.NAME = document.getElementById('inputSave').value;
 
     operation.OPERATION.INPUTS.push(input);
 
     operationList.push(operation);
     addOperation();
 
-    resetForm('outputForm');
+    resetForm('saveForm');
 }
 
 
