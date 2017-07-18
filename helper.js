@@ -226,59 +226,65 @@ function operationOutputInput() {
 
 
 // function that populates the input selection of the heat operation
-function operationHeatInput() {
+function operationHeatInput(input) {
 
-    var container = document.getElementById('inputHeat');
-    console.log(container);
+    var container = document.getElementById(input);
+    //var container = document.getElementById('inputHeat');
+    console.log(input);
 
-    while (container.hasChildNodes()) {
+    if (container !== null) {
 
-        container.removeChild(container.lastChild);
-    }
+        while (container.hasChildNodes()) {
 
-    var tmp = operationList.length;
-    var sublength = substancelist.length;
+            container.removeChild(container.lastChild);
+        }
 
-    var option = document.createElement('option');
-    option.setAttribute('selected', 'selected');
-    option.setAttribute('disabled', 'disabled');
-    option.setAttribute('hidden', 'hidden');
-    option.setAttribute('style', 'display: none');
-    container.appendChild(option);
+        var tmp = operationList.length;
+        var sublength = substancelist.length;
 
-    // creates the input entries based on number selected with # of inputs
-    // adds the output of operations to input drop down list
-    for (i = 0; i < tmp; i++) {
+        var option = document.createElement('option');
+        option.setAttribute('selected', 'selected');
+        option.setAttribute('disabled', 'disabled');
+        option.setAttribute('hidden', 'hidden');
+        option.setAttribute('style', 'display: none');
+        container.appendChild(option);
 
-        var innerlist = operationList[i].OPERATION.OUTPUTS.length;
+        // creates the input entries based on number selected with # of inputs
+        // adds the output of operations to input drop down list
+        for (i = 0; i < tmp; i++) {
 
-        if(operationList[i].OPERATION.OUTPUTS[i] != null) {
+            var innerlist = operationList[i].OPERATION.OUTPUTS.length;
 
-            // used to make sure only variable outputs are populated
-            var varTest = operationList[i].OPERATION.OUTPUTS[i];
-            var isVariable = Object.keys(varTest);
+            if (operationList[i].OPERATION.OUTPUTS[i] != null) {
 
-            // used to check the above vars to make sure it was a variable output
-            if (isVariable[0] === 'VARIABLE_DECLARATION') {
+                // used to make sure only variable outputs are populated
+                var varTest = operationList[i].OPERATION.OUTPUTS[i];
+                var isVariable = Object.keys(varTest);
 
-                if (operationList[i].OPERATION.OUTPUTS.length === 1) {
+                // used to check the above vars to make sure it was a variable output
+                if (isVariable[0] === 'VARIABLE_DECLARATION') {
 
-                    var option = document.createElement('option');
-                    option.innerHTML = option.value = operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
-                    container.appendChild(option);
-                }
-                else {
-
-                    for (j = 0; j < innerlist; j++) {
+                    if (operationList[i].OPERATION.OUTPUTS.length === 1) {
 
                         var option = document.createElement('option');
-                        option.innerHTML = option.value = operationList[i].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION.NAME;
+                        option.innerHTML = option.value =
+                            operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
                         container.appendChild(option);
                     }
+                    else {
+
+                        for (j = 0; j < innerlist; j++) {
+
+                            var option = document.createElement('option');
+                            option.innerHTML = option.value =
+                                operationList[i].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION.NAME;
+                            container.appendChild(option);
+                        }
+                    }
                 }
-            }
-            else {
-                console.log('was sensor');
+                else {
+                    console.log('was sensor');
+                }
             }
         }
     }
