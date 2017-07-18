@@ -45,7 +45,8 @@
             <button type="button" class="btn btn-primary" onclick="resetExperiment()">Reset</button>
             <span id="finishbutton" style="display: none">
             <button type="button" class="btn btn-primary" onclick="addExperiment();
-                    toJson(benchtop);">Finish</button>
+                    toJson(benchtop); showhidetoggle('forms'); hideDiv('startExperiment');
+                    hideDiv('operationsMenu');">Finish</button>
             </>
 
             <div id="substanceDisplay" class="col-sm-offset-3" style="background-color:#F3F3F3;">
@@ -101,7 +102,9 @@
 
         </div> <!-- end col 1 -->
 
-        <div id="col2" class="col-sm-6">
+        <div id="col2" class="col-sm-5">
+
+            <div id="forms">
 
             <!-- begin substanceadd form -->
             <div id='substanceadd' class="col-sm-offset-3" style="display: none">
@@ -406,6 +409,7 @@
             </div>
             <!-- End Store Form -->
 
+            </div>
 
 
             <script>
@@ -480,7 +484,7 @@
 
         </div> <!-- end col 2 -->
 
-        <div id="col3" class="col-sm-3">
+        <div id="col3" class="col-sm-4">
 
             <pre id="whereToPrint"></pre>
 
