@@ -92,6 +92,53 @@ function createHeat() {
 }
 
 
+function createIncubate() {
+
+    var operation = JSON.parse(JSON.stringify(operationStructure));
+
+    operation.OPERATION.NAME = document.getElementById('nameIncubate').value;
+    operation.OPERATION.ID = createID();
+    operation.OPERATION.CLASSIFICATION = 'HEAT';
+
+    //inputVariable(operation, document.getElementById('inputHeat').value);
+
+    var input = JSON.parse(JSON.stringify(variableInput));
+    input.VARIABLE.NAME = document.getElementById('inputIncubate').value;
+
+    operation.OPERATION.INPUTS.push(input);
+
+    inputTemperature(operation, document.getElementById('incubateTemp').value,
+        document.getElementById('incubateTempSign').value);
+    inputTime(operation, document.getElementById('incubateTime').value,
+        document.getElementById('incubateDuration').value);
+
+    if(document.getElementById('incubateRepeat').value === 'true') {
+
+        var repeatOp = JSON.parse(JSON.stringify(operationStructure));
+
+        repeatOp.OPERATION.NAME = 'REPEAT';
+        repeatOp.OPERATION.ID = createID();
+        repeatOp.OPERATION.CLASSIFICATION = 'CFG_LOOP';
+        delete repeatOp.OPERATION.INPUTS;
+        delete repeatOp.OPERATION.OUTPUTS;
+        repeatOp.OPERATION.LOOP_NUMS = document.getElementById('incubateRepeatNum').value;
+        repeatOp.OPERATION.OPERATIONS = [];
+
+        repeatOp.OPERATION.OPERATIONS.push(operation);
+
+        operationList.push(repeatOp);
+        addOperation();
+    }
+    else {
+        operationList.push(operation);
+        addOperation();
+    }
+
+    resetForm('incubateForm');
+}
+
+
+
 function createMixture() {
 
     //var repeat = document.getElementById('mixRepeat').value;
