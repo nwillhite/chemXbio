@@ -37,9 +37,10 @@ function resetExperiment() {
     outputs.length = 0;
     hideDiv('startExperiment');
     hideDiv('operationsMenu');
+    hideDiv('forms');
     document.getElementById('whereToPrint').innerHTML = "";
     document.getElementById('substanceDisplay').innerHTML = "";
-    location.reload();
+    //location.reload();
 
 }
 
