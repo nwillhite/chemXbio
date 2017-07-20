@@ -14,21 +14,18 @@ function download(text, name, type) {
 }
 
 
-function showDiv(id)
-{
+function showDiv(id) {
     document.getElementById(id).style.display = 'inline';
 }
 
 
-function hideDiv(id)
-{
+function hideDiv(id) {
     document.getElementById(id).style.display = 'none';
 }
 
 
 
-function showhidetoggle(id)
-{
+function showhidetoggle(id) {
     var tmp = document.getElementById(id);
     if (tmp.style.display === 'none')
     {
@@ -42,22 +39,19 @@ function showhidetoggle(id)
 
 
 // updates JSON output to the 'whereToPrint' which is the right side
-function toJson(input)
-{
+function toJson(input) {
     document.getElementById('whereToPrint').innerHTML = JSON.stringify(input, null, 2);
 }
 
 
 // randomly generates number for operation id
-function createID()
-{
+function createID() {
     return Math.floor((Math.random() * 1000000000) + 1);
 }
 
 
 
-function resetForm(formId)
-{
+function resetForm(formId) {
     document.getElementById(formId).reset();
 }
 
@@ -104,8 +98,7 @@ function removeOperation() {
 
 
 // function controls the number of inputs for setting inputs into operations
-function formInput()
-{
+function formInput() {
     var container = document.getElementById('mixInputAmount');
 
     // handles if the number is changed to a lower number than was previously selected
