@@ -148,6 +148,83 @@ function formSplit() {
     }
 }
 
+
+// function that populates the input selection of the heat operation
+function operationInput(id) {
+
+    var container = document.getElementById(id);
+    //var container = document.getElementById('inputHeat');
+    //console.log(input);
+
+    if (container !== null) {
+
+        while (container.hasChildNodes()) {
+
+            container.removeChild(container.lastChild);
+        }
+
+        var tmp = operationList.length;
+        var sublength = substancelist.length;
+
+        var option = document.createElement('option');
+        option.setAttribute('selected', 'selected');
+        option.setAttribute('disabled', 'disabled');
+        option.setAttribute('hidden', 'hidden');
+        option.setAttribute('style', 'display: none');
+        container.appendChild(option);
+
+        // creates the input entries based on number selected with # of inputs
+        // adds the output of operations to input drop down list
+        for (i = 0; i < tmp; i++) {
+
+            var innerlist = operationList[i].OPERATION.OUTPUTS.length;
+
+            if (operationList[i].OPERATION.OUTPUTS[i] != null) {
+
+                // used to make sure only variable outputs are populated
+                var varTest = operationList[i].OPERATION.OUTPUTS[i];
+                var isVariable = Object.keys(varTest);
+
+                // used to check the above vars to make sure it was a variable output
+                if (isVariable[0] === 'VARIABLE_DECLARATION') {
+
+                    if (operationList[i].OPERATION.OUTPUTS.length === 1) {
+
+                        var option = document.createElement('option');
+                        option.innerHTML = option.value =
+                            operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
+                        container.appendChild(option);
+                    }
+                    else {
+
+                        for (j = 0; j < innerlist; j++) {
+
+                            var option = document.createElement('option');
+                            option.innerHTML = option.value =
+                                operationList[i].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION.NAME;
+                            container.appendChild(option);
+                        }
+                    }
+                }
+                else {
+                    console.log('was sensor');
+                }
+            }
+        }
+    }
+
+    for (i = 0; i < sublength; i ++) {
+
+        var option = document.createElement('option');
+        option.innerHTML = substancelist[i].VARIABLE_DECLARATION.NAME;
+        option.value = substancelist[i].VARIABLE_DECLARATION.NAME;
+        option.className = 'substance';
+        container.appendChild(option);
+
+    }
+}
+
+
 // function that populates the input selection of the output operation
 function operationOutputInput() {
 
@@ -219,11 +296,11 @@ function operationOutputInput() {
 
 
 // function that populates the input selection of the heat operation
-function operationHeatInput(input) {
+function operationHeatInput(id) {
 
-    var container = document.getElementById(input);
+    var container = document.getElementById(id);
     //var container = document.getElementById('inputHeat');
-    console.log(input);
+    //console.log(input);
 
     if (container !== null) {
 
@@ -605,9 +682,14 @@ function updateList() {
 function update() {
 
     formInput();
-    operationSplitInput();
-    operationOutputInput();
-    operationDetectInput();
-    operationStoreInput();
-    operationHeatInput();
+    operationInput('inputSplit');
+    //operationSplitInput();
+    operationInput('inputSave');
+    //operationOutputInput();
+    operationInput('inputDetect');
+    //operationDetectInput();
+    operationInput('inputStore');
+    //operationStoreInput();
+    operationInput('inputHeat');
+    //operationHeatInput();
 }

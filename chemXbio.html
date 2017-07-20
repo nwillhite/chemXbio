@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- style sheets -->
-    <link rel="stylesheet" type="text/css" href="newpage.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
 
     <!-- chemXbio javascript files -->
     <script src = "structure.js"></script>
@@ -32,7 +32,6 @@
 <body>
 
 
-
 <div class="container-fluid">
 
     <div class="row" id="title">
@@ -45,8 +44,8 @@
             <button type="button" class="btn btn-primary" onclick="resetExperiment()">Reset</button>
             <span id="finishbutton" style="display: none">
             <button type="button" class="btn btn-primary" onclick="addExperiment();
-                    toJson(benchtop); showhidetoggle('forms'); hideDiv('startExperiment');
-                    hideDiv('operationsMenu');">Finish</button>
+                    toJson(benchtop); hideDiv('forms'); hideDiv('startExperiment');
+                    hideDiv('operationsMenu'); document.body.scrollTop = 0;">Finish</button>
             </span>
 
             <div id="substanceDisplay" class="col-sm-offset-3" style="background-color:#F3F3F3;">
@@ -75,6 +74,7 @@
                     </form>
                 </div>
                 <!-- end of start experiment div -->
+
             <div id="operationsMenu" style="display: none">
 
                 <h3>Substance Menu</h3>
@@ -82,29 +82,33 @@
                         update()">Add Substances</button>
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('substanceremoval');
                         update()">Remove Substances</button>
-                <h3>Operation Menu</h3>
-                <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('detect_form');
-                        update()">Detect</button>
-                <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('save_form');
-                        update()">Save</button>
-                <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('split_form');
-                        update()">Split</button>
-                <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('store_form');
-                        update()">Store</button>
 
-                <h3>Heat Menu</h3>
+                <h3>Heat Operations</h3>
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('heat_form');
                         update()">Heat</button>
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('incubate_form');
                         update(); operationHeatInput('inputIncubate');">Incubate</button>
 
-                <h3>Mix Menu</h3>
-                <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('');
+                <h3>Mix Operations</h3>
+                <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('mixtureform');
+                        inputCreate(); update();">Mix</button>
+
+                <h3>Output Operations</h3>
+                <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('save_form');
+                        update()">Save</button>
+
+                <h3>Other Operations</h3>
+                <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('detect_form');
+                        update()">Detect</button>
+                <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('split_form');
+                        update()">Split</button>
+                <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('store_form');
+                        update()">Store</button>
+
+                <!-- <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('');
                         inputCreate()">Dissovle</button>
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('');
                         inputCreate()">Invert</button>
-                <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('mixtureform');
-                        inputCreate()">Mix</button>
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('');
                         inputCreate()">Pipet</button>
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('');
@@ -112,9 +116,7 @@
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('');
                         inputCreate()">Tap</button>
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('');
-                        inputCreate()">Vortex</button>
-
-
+                        inputCreate()">Vortex</button> -->
             </div>
 
 
@@ -175,7 +177,8 @@
                             <select id="inputDetect">
                                 <!-- ADD Output INPUTS FOR SELECTION HERE -->
                                 <script>
-                                    operationDetectInput();
+                                    //operationDetectInput();
+                                    operationInput('inputDetect');
                                 </script>
                             </select><br><br>
 
@@ -212,7 +215,8 @@
                             <select id="inputHeat"> <!--onchange="test()">
                                 <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
                                 <script>
-                                    operationHeatInput();
+                                    //operationHeatInput();
+                                    operationInput('inputHeat');
                                 </script>
                             </select><br><br>
 
@@ -353,7 +357,8 @@
 
                         <button type="button" class="btn btn-default" onclick="createMixture();
                                 toJson(experimentHolder);">Add Mix</button>
-                        <button type="button" class="btn btn-default" onclick="showhidetoggle('mixtureform')">Done</button>
+                        <button type="button" class="btn btn-default"
+                                onclick="showhidetoggle('mixtureform')">Done</button>
 
                     </form>
                 </div>
@@ -370,7 +375,8 @@
                             <select id="inputSave" onchange="test()">
                                 <!-- ADD Output INPUTS FOR SELECTION HERE -->
                                 <script>
-                                    operationOutputInput("inputOutput");
+                                    //operationOutputInput();
+                                    operationInput('inputSave');
                                 </script>
                             </select>
                         </div>
@@ -394,7 +400,8 @@
                             <select id="inputSplit">
                                 <!-- ADD Split INPUTS FOR SELECTION HERE -->
                                 <script>
-                                    operationSplitInput();
+                                    //operationSplitInput();
+                                    operationInput('inputSplit');
                                 </script>
                             </select><br><br>
 
@@ -448,7 +455,8 @@
                             <select id="inputStore">
                                 <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
                                 <script>
-                                    operationStoreInput();
+                                    //operationStoreInput();
+                                    operationInput('inputStore');
                                 </script>
                             </select><br><br>
                             <label for="storeTemp">Enter Temp:</label>
@@ -469,11 +477,8 @@
 
                         <button type="button" class="btn btn-default col-sm-offset-3"
                                 onclick="createStore(); addOperation(); update();"">Add Store</button>
-                        <button type="button" class="btn btn-default" onclick="showhidetoggle('store_form')">Done</button>
-
-
-                            <input type="button" onclick="createStore(); addOperation(); update();" value="Add Store">
-                            <input type="button" onclick="showhidetoggle('store_form')" value="Done">
+                        <button type="button" class="btn btn-default"
+                                onclick="showhidetoggle('store_form')">Done</button>
                     </form>
                 </div>
                 <!-- End Store Form -->
