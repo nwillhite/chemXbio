@@ -1,10 +1,8 @@
-body {
-    margin-top: 25px;
-    margin-left: 50px;
-    margin-right: 25px;
+#container-fluid {
+    margin: 0;
+    padding: 0;
     height: 100%;
-    overflow:hidden;
-    color: #73EEDC;
+    overflow:scroll;
 }
 
 #title {
@@ -12,10 +10,12 @@ body {
 }
 
 #title h1 {
-    margin-top: 5px;
+    margin: 0;
+    padding: 0;
     text-align: center;
     font-size: 450%;
     color: #5F1A37;
+    background-color: #F3F3F3;
 }
 
 
@@ -65,139 +65,8 @@ body {
 pre {
     overflow:scroll;
     white-space: pre;
-    margin-top: 10px;
-    overflow:scroll;
     background: #F3F3F3;
 }
-
-/*
-div.header button {
-    display: inline;
-    margin-top: 10px;
-    line-height: 20px;
-    font-weight: bold;
-    padding: 0 15px;
-    background: silver;
-    border: 1px solid darkslategray;
-    border-radius: 50px;
-}
-
-
-
-div.leftside {
-    float:left;
-    width:49%;
-    border: solid thin darkgrey;
-    height: 850px;
-    overflow:scroll;
-}
-
-div.rightside {
-    float:left;
-    width:49%;
-    border: solid thin darkgrey;
-    height: 850px;
-    overflow:scroll;
-}
-
-#menu {
-    margin-top: -25px;
-    margin-left: -50px;
-    display: block;
-    padding: 0;
-}
-
-
-/*
-
-#experiment {
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.leftside {
-  display: inline-block;
-  white-space: normal;
-}
-
-.leftside {
-  background-color: gray;
-  width: 50%;
-}
-
-
-.rightside {
-  background-color: teal;
-  width: 50%;
-  height: 50px;
-}
-*/
-
-/* Start */
-
-/*
-
-#operationsMenu {
-    margin-left: 10px;
-    padding: 50px;
-}
-
-#subAddForm {
-    float: left;
-}
-
-#subAddFormForm input[type=text] {
-    width: 50px;
-    padding: 1px 2px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 3px solid #ccc;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
-    outline: none;
-}
-
-
-#mixtureform {
-    width: 60%;
-}
-
-#heat_form {
-    width: 50%;
-}
-
-#cool_form {
-    width: 50%;
-}
-
-#formMix {
-    float: right;
-}
-
-#store_form {
-    width: 50%;
-}
-
-#output_form {
-    width: 50%;
-}
-
-#split_form {
-    width: 50%;
-}
-
-#detect_form {
-    width: 50%;
-}
-
-#startExperiment {
-    width: 10%;
-}
-
-
-/* End */
-
 
 /* Start Button Style */
 
