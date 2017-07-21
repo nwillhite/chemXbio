@@ -20,6 +20,7 @@
     <link rel="stylesheet" type="text/css" href="./bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
     <script src ="./bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
     <!-- web links to bootstrap -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
@@ -215,7 +216,7 @@
                             <select id="inputHeat"> <!--onchange="test()">
                                 <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
                                 <script>
-                                    //operationHeatInput();
+                                    //operationHeatInput('inputHeat');
                                     operationInput('inputHeat');
                                 </script>
                             </select><br><br>
@@ -249,8 +250,10 @@
                         </div>
 
                         <button type="button" class="btn btn-default col-sm-offset-3"
-                                onclick="createHeat(); toJson(experimentHolder);">Add Heat</button>
-                        <button type="button" class="btn btn-default" onclick="showhidetoggle('heat_form')">Done</button>
+                                onclick="createHeat(); toJson(experimentHolder);
+                                showhidetoggle('heat_form')">Add Heat</button>
+                        <!-- <button type="button" class="btn btn-default"
+                                     onclick="showhidetoggle('heat_form')">Done</button> -->
                     </form>
                 </div>
                 <!-- End heat form -->
