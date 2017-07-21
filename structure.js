@@ -39,6 +39,7 @@ function resetExperiment() {
     //hideDiv('forms');
     //document.getElementById('whereToPrint').innerHTML = "";
     //document.getElementById('substanceDisplay').innerHTML = "";
+    document.body.scrollTop = 0;
     location.reload();
 }
 
