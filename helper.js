@@ -153,8 +153,6 @@ function formSplit() {
 function operationInput(id) {
 
     var container = document.getElementById(id);
-    //var container = document.getElementById('inputHeat');
-    //console.log(input);
 
     if (container !== null) {
 
@@ -179,10 +177,10 @@ function operationInput(id) {
 
             var innerlist = operationList[i].OPERATION.OUTPUTS.length;
 
-            if (operationList[i].OPERATION.OUTPUTS[i] != null) {
+            if (operationList[i].OPERATION.OUTPUTS[0] != null) {
 
                 // used to make sure only variable outputs are populated
-                var varTest = operationList[i].OPERATION.OUTPUTS[i];
+                var varTest = operationList[i].OPERATION.OUTPUTS[0];
                 var isVariable = Object.keys(varTest);
 
                 // used to check the above vars to make sure it was a variable output
@@ -192,7 +190,7 @@ function operationInput(id) {
 
                         var option = document.createElement('option');
                         option.innerHTML = option.value =
-                            operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
+                            operationList[i].OPERATION.OUTPUTS[0].VARIABLE_DECLARATION.NAME;
                         container.appendChild(option);
                     }
                     else {
@@ -300,7 +298,6 @@ function operationHeatInput(id) {
 
     var container = document.getElementById(id);
     //var container = document.getElementById('inputHeat');
-    //console.log(input);
 
     if (container !== null) {
 
@@ -323,12 +320,16 @@ function operationHeatInput(id) {
         // adds the output of operations to input drop down list
         for (i = 0; i < tmp; i++) {
 
+            //console.log(tmp);
+            //console.log('step: ' + i);
+            //console.log(operationList[i].OPERATION.OUTPUTS[0]);
+
             var innerlist = operationList[i].OPERATION.OUTPUTS.length;
 
-            if (operationList[i].OPERATION.OUTPUTS[i] != null) {
+            if (operationList[i].OPERATION.OUTPUTS[0] != null) {
 
                 // used to make sure only variable outputs are populated
-                var varTest = operationList[i].OPERATION.OUTPUTS[i];
+                var varTest = operationList[i].OPERATION.OUTPUTS[0];
                 var isVariable = Object.keys(varTest);
 
                 // used to check the above vars to make sure it was a variable output
@@ -336,15 +337,19 @@ function operationHeatInput(id) {
 
                     if (operationList[i].OPERATION.OUTPUTS.length === 1) {
 
+                        //console.log(operationList[i].OPERATION.OUTPUTS.length);
+                        //console.log(operationList[i].OPERATION);
                         var option = document.createElement('option');
                         option.innerHTML = option.value =
-                            operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION.NAME;
+                            operationList[i].OPERATION.OUTPUTS[0].VARIABLE_DECLARATION.NAME;
                         container.appendChild(option);
                     }
                     else {
 
                         for (j = 0; j < innerlist; j++) {
 
+                            //console.log(operationList[i].OPERATION.OUTPUTS.length);
+                            //console.log(operationList[i].OPERATION);
                             var option = document.createElement('option');
                             option.innerHTML = option.value =
                                 operationList[i].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION.NAME;
@@ -612,8 +617,7 @@ function formTemperature(formId) {
 
 
 // populates the timing for time operations for forms
-function formTime(formId)
-{
+function formTime(formId) {
     var display = ['Second(s)', 'Minute(s)', 'Hour(s)', 'Day(s)'];
     var displayValue = ['SECOND', 'MINUTE', 'HOUR', 'DAY'];
 
@@ -682,14 +686,14 @@ function updateList() {
 function update() {
 
     formInput();
-    operationInput('inputSplit');
-    //operationSplitInput();
-    operationInput('inputSave');
-    //operationOutputInput();
-    operationInput('inputDetect');
-    //operationDetectInput();
-    operationInput('inputStore');
-    //operationStoreInput();
+    //operationInput('inputSplit');
+    operationSplitInput();
+    //operationInput('inputSave');
+    operationOutputInput();
+    //operationInput('inputDetect');
+    operationDetectInput();
+    //operationInput('inputStore');
+    operationStoreInput();
     operationInput('inputHeat');
-    //operationHeatInput();
+    //operationHeatInput('inputHeat');
 }
