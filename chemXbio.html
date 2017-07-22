@@ -86,9 +86,9 @@
 
                 <h3>Heat Operations</h3>
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('heat_form');
-                        update()">Heat</button>
+                        operationInput('inputHeat')">Heat</button>
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('incubate_form');
-                        update(); operationHeatInput('inputIncubate');">Incubate</button>
+                        operationInput('inputIncubate');">Incubate</button>
 
                 <h3>Mix Operations</h3>
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('mixtureform');
@@ -213,11 +213,10 @@
                             <input type="text" id="nameHeat" autofocus><br><br>
 
                             <label for="inputHeat">Select Inputs:</label>
-                            <select id="inputHeat"> <!--onchange="test()">
+                            <select id="inputHeat">
                                 <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
                                 <script>
                                     //operationHeatInput('inputHeat');
-                                    operationInput('inputHeat');
                                 </script>
                             </select><br><br>
 
@@ -303,8 +302,10 @@
                         </div>
 
                         <button type="button" class="btn btn-default col-sm-offset-3"
-                                onclick="createIncubate(); toJson(experimentHolder);">Add Incubate</button>
-                        <button type="button" class="btn btn-default" onclick="showhidetoggle('incubate_form')">Done</button>
+                                onclick="createIncubate(); toJson(experimentHolder);
+                                showhidetoggle('incubate_form')">Add Incubate</button>
+                        <!-- <button type="button" class="btn btn-default"
+                                onclick="showhidetoggle('incubate_form')">Done</button> -->
                     </form>
                 </div>
                 <!-- End heat form -->
