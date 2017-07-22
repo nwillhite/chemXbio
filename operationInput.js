@@ -33,6 +33,62 @@ function inputSubstance (name) {
 }
 
 
+// allows to remove substance once they've been added
+function removeSubstance() {
+
+    var toRemove = document.getElementById('removesubstanceList').value;
+    //var index = substances.indexOf(toRemove);
+
+    for(var i = 0; i < substancelist.length; i++)
+    {
+        if(substancelist[i].VARIABLE_DECLARATION.NAME === toRemove)
+        {
+            substancelist.splice(i, 1);
+            substances.splice(i, 1);
+        }
+    }
+
+    /*
+    var opLength = operationList.length;
+
+    // creates the input entries based on number selected with # of inputs
+    // adds the output of operations to input drop down list
+    for (i = 0; i < opLength; i++) {
+
+        var innerlist = operationList[i].OPERATION.INPUTS.length;
+
+        if (operationList[i].OPERATION.INPUTS[0] != null) {
+
+            // used to make sure only variable outputs are populated
+            //var varTest = operationList[i].OPERATION.INPUTS[0];
+            //var isVariable = Object.keys(varTest);
+
+            // used to check the above vars to make sure it was a variable output
+            //if (isVariable[0] === 'VARIABLE') {
+
+                if (operationList[i].OPERATION.INPUTS.length === 1) {
+
+                    if (operationList[i].OPERATION.INPUTS[0].CHEMICAL.VARIABLE.NAME === toRemove) {
+                        operationList.splice(i, 1);
+                    }
+                }
+                else {
+
+                    for (j = 0; j < innerlist; j++) {
+
+                        if (operationList[i].OPERATION.INPUTS[0].CHEMICAL.VARIABLE.NAME === toRemove) {
+                            operationList.splice(i, 1);
+                        }
+                    }
+                }
+            //}
+        }
+    } */
+
+    //update();
+}
+
+
 function operationOutput(obj, type, tmpName) {
 
     if (tmpName === '') {
@@ -194,8 +250,8 @@ function inputCreate() {
 
 
 // dynamically handles the output fields for split operations
-function outputCreate()
-{
+function outputCreate() {
+
     // pulls the number from selection of how many inputs wanted
     var num = document.getElementById('splitAmount').value;
 
