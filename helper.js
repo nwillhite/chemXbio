@@ -55,26 +55,6 @@ function resetForm(formId) {
     document.getElementById(formId).reset();
 }
 
-
-// allows to remove substance once they've been added
-function removeSubstance() {
-
-    var toRemove = document.getElementById('removesubstanceList').value;
-    //var index = substances.indexOf(toRemove);
-
-    for(var i = 0; i < substancelist.length; i++)
-    {
-        if(substancelist[i].VARIABLE_DECLARATION.NAME === toRemove)
-        {
-            substancelist.splice(i, 1);
-            substances.splice(i, 1);
-        }
-    }
-
-    update();
-}
-
-
 // allows to remove operation once they've been added
 function removeOperation() {
 
@@ -641,7 +621,7 @@ function formTime(formId) {
 }
 
 
-// populates the Substance removal drop down
+// populates the Substance removal form drop down
 function substanceRemove() {
 
     var tmp = substancelist.length;//substances.length;
