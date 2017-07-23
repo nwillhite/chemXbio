@@ -5,6 +5,7 @@
  **************************************************************************************/
 
 
+// pulls the information from the detect form to populate the structures for JSON output
 function createDetect() {
 
     var operation = JSON.parse(JSON.stringify(operationStructure));
@@ -48,6 +49,7 @@ function createDetect() {
 }
 
 
+// pulls the information from the heat form to populate the structures for JSON output
 function createHeat() {
 
     var operation = JSON.parse(JSON.stringify(operationStructure));
@@ -95,6 +97,7 @@ function createHeat() {
 }
 
 
+// pulls the information from the incubate form to populate the structures for JSON output
 function createIncubate() {
 
     var operation = JSON.parse(JSON.stringify(operationStructure));
@@ -142,6 +145,7 @@ function createIncubate() {
 }
 
 
+// pulls the information from the mix form to populate the structures for JSON output
 function createMixture() {
 
     //var repeat = document.getElementById('mixRepeat').value;
@@ -203,6 +207,7 @@ function createMixture() {
 }
 
 
+// pulls the information from the save form to populate the structures for JSON output
 function createSave() {
 
     var operation = JSON.parse(JSON.stringify(operationStructure));
@@ -225,6 +230,7 @@ function createSave() {
 }
 
 
+// pulls the information from the split form to populate the structures for JSON output
 function createSplit() {
 
     var operation = JSON.parse(JSON.stringify(operationStructure));
@@ -304,6 +310,7 @@ function createSplit() {
 }
 
 
+// pulls the information from the store form to populate the structures for JSON output
 function createStore() {
     var operation = JSON.parse(JSON.stringify(operationStructure));
 
