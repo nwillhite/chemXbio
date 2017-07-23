@@ -5,7 +5,7 @@
  **************************************************************************************/
 
 //not sure if needed yet... might be able to delete this
-function inputExperiment () {
+function inputExperiment() {
 
     var experiment = JSON.parse(JSON.stringify(experimentStructure));
 
@@ -14,9 +14,10 @@ function inputExperiment () {
 
 
 // Functions for injecting inputs, volume, temperature in
-function inputSubstance (name) {
+function inputSubstance(name) {
 
     if (name != '') {
+
         //creates an instance of the substance structure while keeping its JSON structure
         var tmpSub = JSON.parse(JSON.stringify(variableStructure));
 
@@ -92,6 +93,7 @@ function removeSubstance() {
 }
 
 
+// populates substance or sensor structure for outputs of operations
 function operationOutput(obj, type, tmpName) {
 
     if (tmpName === '') {
@@ -108,7 +110,7 @@ function operationOutput(obj, type, tmpName) {
         obj.OPERATION.OUTPUTS.push(varOutput);
     }
     else if (type === 'sensor') {
-        console.log('entered sensor');
+
         var sensor = JSON.parse(JSON.stringify(sensorOutput));
 
         sensor.SENSOR_DECLARATION.NAME = sensor.SENSOR_DECLARATION.ID = tmpName;
@@ -118,15 +120,16 @@ function operationOutput(obj, type, tmpName) {
 }
 
 
+// populates the variable or substance structure for inputs of operations based on input parameters
 function inputVariable (obj, tmpName, tmpVal, tmpUnit) {
 
     //creates an instance of the variable structure while keeping its JSON structure
     //var input = JSON.parse(JSON.stringify(substanceStructure));
-
     //input.CHEMICAL.VARIABLE.NAME = tmpName;
 
     if (tmpVal === '' && tmpUnit === '') {
 
+        //creates an instance of the variable structure while keeping its JSON structure
         var input = JSON.parse(JSON.stringify(variableInput));
 
         input.VARIABLE.NAME = tmpName;
@@ -137,6 +140,7 @@ function inputVariable (obj, tmpName, tmpVal, tmpUnit) {
     }
     else {
 
+        //creates an instance of the variable structure while keeping its JSON structure
         var input = JSON.parse(JSON.stringify(substanceStructure));
 
         input.CHEMICAL.VARIABLE.NAME = tmpName;
@@ -150,6 +154,7 @@ function inputVariable (obj, tmpName, tmpVal, tmpUnit) {
 }
 
 
+// populates substance structure temperature for inputs of operations
 function inputTemperature (obj, tmpVal, tmpUnit) {
 
     //creates an instance of the temperature structure while keeping its JSON structure
@@ -170,6 +175,7 @@ function inputTemperature (obj, tmpVal, tmpUnit) {
 }
 
 
+// populates substance structure timing for inputs of operations
 function inputTime (obj, tmpVal, tmpUnit) {
 
     //creates an instance of the time structure while keeping its JSON structure
@@ -191,7 +197,7 @@ function inputTime (obj, tmpVal, tmpUnit) {
 
 
 //dynamically handles the input fields for mixing operations
-function inputCreate() {
+function mixInputCreate() {
     // pulls the number from selection of how many inputs wanted
     var num = document.getElementById('mixInputAmount').value;
 
@@ -322,7 +328,7 @@ function mixInputChange() {
 
 
 // dynamically handles the output fields for split operations
-function outputCreate() {
+function splitOutputCreate() {
 
     // pulls the number from selection of how many inputs wanted
     var num = document.getElementById('splitAmount').value;
