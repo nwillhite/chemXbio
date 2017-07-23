@@ -234,8 +234,8 @@ function createSplit() {
     operation.OPERATION.CLASSIFICATION = 'Split';
 
     var num = document.getElementById('splitAmount').value;
-    var tmpIn = document.getElementById("inputSplit").value;
-    inputVariable(operation, tmpIn, '', '');
+    var tmpName = document.getElementById("inputSplit").value;
+    inputVariable(operation, tmpName, '', '');
 
     for (i = 0; i < num; i++) {
 
@@ -311,10 +311,12 @@ function createStore() {
     operation.OPERATION.ID = createID();
     operation.OPERATION.CLASSIFICATION = 'STORAGE';
 
-    var input = JSON.parse(JSON.stringify(variableInput));
-    input.VARIABLE.NAME = document.getElementById('inputStore').value;
+    //var input = JSON.parse(JSON.stringify(variableInput));
+    //input.VARIABLE.NAME = document.getElementById('inputStore').value;
+    //operation.OPERATION.INPUTS.push(input);
 
-    operation.OPERATION.INPUTS.push(input);
+    var tmpName = document.getElementById('inputStore').value;
+    inputVariable(operation, tmpName, '', '');
 
     inputTemperature(operation, document.getElementById('storeTemp').value,
         document.getElementById('storeTempSign').value);
