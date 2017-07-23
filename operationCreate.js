@@ -211,10 +211,12 @@ function createSave() {
     operation.OPERATION.ID = createID();
     operation.OPERATION.CLASSIFICATION = 'OUTPUT';
 
-    var input = JSON.parse(JSON.stringify(variableInput));
-    input.VARIABLE.NAME = document.getElementById('inputSave').value;
+    //var input = JSON.parse(JSON.stringify(variableInput));
+    //input.VARIABLE.NAME = document.getElementById('inputSave').value;
+    //operation.OPERATION.INPUTS.push(input);
 
-    operation.OPERATION.INPUTS.push(input);
+    var tmpName = document.getElementById('inputSave').value;
+    inputVariable(operation, tmpName, '', '');
 
     operationList.push(operation);
     addOperation();
