@@ -39,10 +39,8 @@ function removeSubstance() {
     var toRemove = document.getElementById('removesubstanceList').value;
     //var index = substances.indexOf(toRemove);
 
-    for(var i = 0; i < substancelist.length; i++)
-    {
-        if(substancelist[i].VARIABLE_DECLARATION.NAME === toRemove)
-        {
+    for(var i = 0; i < substancelist.length; i++) {
+        if(substancelist[i].VARIABLE_DECLARATION.NAME === toRemove) {
             substancelist.splice(i, 1);
             substances.splice(i, 1);
         }
@@ -127,8 +125,7 @@ function inputVariable (obj, tmpName, tmpVal, tmpUnit) {
 
     input.CHEMICAL.VARIABLE.NAME = tmpName;
 
-    if (tmpVal === '' && tmpUnit === '')
-    {
+    if (tmpVal === '' && tmpUnit === '') {
         delete input.CHEMICAL.VOLUME;
         obj.OPERATION.INPUTS.push(input);
     }
@@ -193,14 +190,13 @@ function inputCreate() {
     var opLength = operationList.length;
 
     // handles if the number is changed to a lower number than was previously selected
-    while (container.hasChildNodes())
-    {
+    while (container.hasChildNodes()) {
         container.removeChild(container.lastChild);
     }
 
     // creates the input entries based on number selected with # of inputs
-    for (i = 0; i < num; i++)
-    {
+    for (i = 0; i < num; i++) {
+
         // creates drop down boxes for defined substances
         container.appendChild(document.createTextNode("Input " + (i + 1) + ": "));
         var inputs = document.createElement('select');
@@ -208,8 +204,8 @@ function inputCreate() {
         inputs.className = "substanceDrop";
         container.appendChild(inputs);
 
-        for(var s = 0; s < substancelist.length; s++)
-        {
+        for(var s = 0; s < substancelist.length; s++) {
+
             var opt = document.createElement('option');
             opt.innerHTML =  opt.value = substancelist[s].VARIABLE_DECLARATION.NAME;
             inputs.appendChild(opt);
@@ -276,8 +272,7 @@ function inputCreate() {
         var units = ["mL", "\u00B5L", "pL", "nL", "L"];
         var unitVal = ["ML", "UL", "PL", "NL", "LITER"];
 
-        for (var j = 0; j < units.length; j++)
-        {
+        for (var j = 0; j < units.length; j++) {
             var option = document.createElement('option');
             option.innerHTML = units[j];
             option.value = unitVal[j];
