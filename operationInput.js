@@ -48,6 +48,11 @@ function removeSubstance() {
         }
     }
 
+    var varTest = operationList[0].OPERATION.INPUTS[0];
+    var isVariable = Object.keys(varTest);
+
+    console.log(isVariable);
+
     /*
     var opLength = operationList.length;
 
@@ -185,6 +190,8 @@ function inputCreate() {
 
     var container = document.getElementById('mixInput');
 
+    var opLength = operationList.length;
+
     // handles if the number is changed to a lower number than was previously selected
     while (container.hasChildNodes())
     {
@@ -204,9 +211,43 @@ function inputCreate() {
         for(var s = 0; s < substancelist.length; s++)
         {
             var opt = document.createElement('option');
-            opt.innerHTML = substancelist[s].VARIABLE_DECLARATION.NAME;
-            opt.value = substancelist[s].VARIABLE_DECLARATION.NAME;
+            opt.innerHTML =  opt.value = substancelist[s].VARIABLE_DECLARATION.NAME;
             inputs.appendChild(opt);
+        }
+
+        // adds the output of operations to input drop down list
+        for (n = 0; n < opLength; n++) {
+
+            var innerlist = operationList[n].OPERATION.OUTPUTS.length;
+
+            if (operationList[n].OPERATION.OUTPUTS[0] != null) {
+
+                // used to make sure only variable outputs are populated
+                var varTest = operationList[n].OPERATION.OUTPUTS[0];
+                var isVariable = Object.keys(varTest);
+
+                // used to check the above vars to make sure it was a variable output
+                if (isVariable[0] === 'VARIABLE_DECLARATION') {
+
+                    if (operationList[n].OPERATION.OUTPUTS.length === 1) {
+
+                        var option = document.createElement('option');
+                        option.innerHTML = option.value =
+                            operationList[n].OPERATION.OUTPUTS[0].VARIABLE_DECLARATION.NAME;
+                        inputs.appendChild(option);
+                    }
+                    else {
+
+                        for (j = 0; j < innerlist; j++) {
+
+                            var option = document.createElement('option');
+                            option.innerHTML = option.value =
+                                operationList[n].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION.NAME;
+                            inputs.appendChild(option);
+                        }
+                    }
+                }
+            }
         }
         // end drop down creation of defined substances
 
