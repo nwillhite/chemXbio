@@ -103,12 +103,13 @@ function createIncubate() {
     operation.OPERATION.ID = createID();
     operation.OPERATION.CLASSIFICATION = 'HEAT';
 
-    //inputVariable(operation, document.getElementById('inputHeat').value);
+    //var input = JSON.parse(JSON.stringify(variableInput));
+    //input.VARIABLE.NAME = document.getElementById('inputIncubate').value;
+    //operation.OPERATION.INPUTS.push(input);
 
-    var input = JSON.parse(JSON.stringify(variableInput));
-    input.VARIABLE.NAME = document.getElementById('inputIncubate').value;
+    var tmpName = document.getElementById('inputIncubate').value;
+    inputVariable(operation, tmpName, '', '');
 
-    operation.OPERATION.INPUTS.push(input);
 
     inputTemperature(operation, document.getElementById('incubateTemp').value,
         document.getElementById('incubateTempSign').value);
