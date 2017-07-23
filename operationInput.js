@@ -196,6 +196,63 @@ function inputTime (obj, tmpVal, tmpUnit) {
 }
 
 
+/**************************************************************************************
+
+ Functions to help make forms dynamic
+
+ **************************************************************************************/
+
+
+// populates the temperature for operations for forms
+function formTemperature(formId) {
+    var sign = ['\u2103', '\u2109', '\u212A'];
+    var signValue = ['CELSIUS', 'FAHRENHEIT', 'KELVIN'];
+
+    var select = document.getElementById(formId);
+
+    var option = document.createElement('option');
+    option.setAttribute('selected', 'selected');
+    option.setAttribute('disabled', 'disabled');
+    option.setAttribute('hidden', 'hidden');
+    option.setAttribute('style', 'display: none');
+    select.appendChild(option);
+
+
+    for(var i = 0; i < sign.length; i++) {
+
+        var option = document.createElement('option');
+        option.innerHTML = sign[i];
+        option.value = signValue[i];
+        select.appendChild(option);
+    }
+}
+
+
+// populates the timing for time operations for forms
+function formTime(formId) {
+    var display = ['Second(s)', 'Minute(s)', 'Hour(s)', 'Day(s)'];
+    var displayValue = ['SECOND', 'MINUTE', 'HOUR', 'DAY'];
+
+    var select = document.getElementById(formId);
+
+    var option = document.createElement('option');
+    option.setAttribute('selected', 'selected');
+    option.setAttribute('disabled', 'disabled');
+    option.setAttribute('hidden', 'hidden');
+    option.setAttribute('style', 'display: none');
+    select.appendChild(option);
+
+
+    for(var i = 0; i < display.length; i++)
+    {
+        var option = document.createElement('option');
+        option.innerHTML = display[i];
+        option.value = displayValue[i];
+        select.appendChild(option);
+    }
+}
+
+
 //dynamically handles the input fields for mixing operations
 function mixInputCreate() {
     // pulls the number from selection of how many inputs wanted
@@ -353,5 +410,30 @@ function splitOutputCreate() {
         container.appendChild(splitOut);
 
         container.appendChild(document.createElement('br'));
+    }
+}
+
+
+// populates the Substance removal form drop down
+function substanceRemove() {
+
+    var tmp = substancelist.length;//substances.length;
+
+    var container = document.getElementById('removesubstanceList');
+
+    // handles if the number is changed to a lower number than was previously selected
+    while (container.hasChildNodes())
+    {
+        container.removeChild(container.lastChild);
+    }
+
+    for (var i = 0; i < tmp; i++)
+    {
+        var option = document.createElement('option');
+        option.innerHTML = substances[i];
+        option.value = substances[i];
+        //option.innerHTML = substances[i];
+        //option.value = substances[i];
+        container.appendChild(option);
     }
 }
