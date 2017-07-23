@@ -251,8 +251,8 @@
                         <button type="button" class="btn btn-default col-sm-offset-3"
                                 onclick="createHeat(); toJson(experimentHolder);
                                 showhidetoggle('heat_form')">Add Heat</button>
-                        <!-- <button type="button" class="btn btn-default"
-                                     onclick="showhidetoggle('heat_form')">Done</button> -->
+                        <button type="button" class="btn btn-default"
+                                onclick="showhidetoggle('heat_form'); resetForm('heatForm')">Cancel</button>
                     </form>
                 </div>
                 <!-- End heat form -->
@@ -325,7 +325,7 @@
                             </select><br><br>
 
                             <label for="mixInput">Enter Mixtures:</label>
-                            <div id="mixInput">
+                            <div id="mixInput" onchange="mixInputChange()">
                                 <!-- container for dynamically making input fields -->
                             </div>
 
@@ -544,6 +544,9 @@
 
                 function addOperation() {
 
+                    experimentStructure.EXPERIMENT.INSTRUCTIONS = operationList;
+
+                    /*
                     if (experimentStructure.EXPERIMENT.INSTRUCTIONS != 0) {
 
                         experimentStructure.EXPERIMENT.INSTRUCTIONS.length = 0;
@@ -555,7 +558,7 @@
                         experimentStructure.EXPERIMENT.INSTRUCTIONS.push(operationList);
 
                     }
-                    //experimentStructure.EXPERIMENT.INSTRUCTIONS = operationList;
+                    //experimentStructure.EXPERIMENT.INSTRUCTIONS = operationList; */
                 }
 
             </script>
