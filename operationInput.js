@@ -121,15 +121,25 @@ function operationOutput(obj, type, tmpName) {
 function inputVariable (obj, tmpName, tmpVal, tmpUnit) {
 
     //creates an instance of the variable structure while keeping its JSON structure
-    var input = JSON.parse(JSON.stringify(substanceStructure));
+    //var input = JSON.parse(JSON.stringify(substanceStructure));
 
-    input.CHEMICAL.VARIABLE.NAME = tmpName;
+    //input.CHEMICAL.VARIABLE.NAME = tmpName;
 
     if (tmpVal === '' && tmpUnit === '') {
-        delete input.CHEMICAL.VOLUME;
+
+        var input = JSON.parse(JSON.stringify(variableInput));
+
+        input.VARIABLE.NAME = tmpName;
         obj.OPERATION.INPUTS.push(input);
+
+        //delete input.CHEMICAL.VOLUME;
+        //obj.OPERATION.INPUTS.push(input);
     }
     else {
+
+        var input = JSON.parse(JSON.stringify(substanceStructure));
+
+        input.CHEMICAL.VARIABLE.NAME = tmpName;
         input.CHEMICAL.VOLUME.VALUE = tmpVal;
         input.CHEMICAL.VOLUME.UNITS = tmpUnit;
 
@@ -281,6 +291,32 @@ function inputCreate() {
         // end drop down creation of volume units
 
         container.appendChild(document.createElement('br'));
+    }
+}
+
+
+//handles if input is substance or operation output and disables volume attributes
+function mixInputChange() {
+
+    // pulls number of inputs being used within mixture operation
+    var num = document.getElementById('mixInputAmount').value;
+
+    for(var i = 0; i < num; i++) {
+
+        // takes the value of the input selected at its given id
+        var substance = document.getElementById('input' + i).value;
+
+        // checks to see if the substance exists within the substances array
+        if (substances.indexOf(substance) != -1) {
+
+            console.log('is chem');
+        }
+        else {
+
+            // disables volume input options for non substances
+            document.getElementById('inputvolume' + i).setAttribute("disabled","disabled");
+            document.getElementById('inputvolumeUnits' + i).setAttribute("disabled","disabled");
+        }
     }
 }
 
