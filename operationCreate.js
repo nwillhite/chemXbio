@@ -54,13 +54,14 @@ function createHeat() {
     operation.OPERATION.ID = createID();
     operation.OPERATION.CLASSIFICATION = 'HEAT';
 
-    //inputVariable(operation, document.getElementById('inputHeat').value);
+    //var input = JSON.parse(JSON.stringify(variableInput));
+    //input.VARIABLE.NAME = document.getElementById('inputHeat').value;
+    //operation.OPERATION.INPUTS.push(input);
 
-    var input = JSON.parse(JSON.stringify(variableInput));
-    input.VARIABLE.NAME = document.getElementById('inputHeat').value;
+    var tmpName = document.getElementById('inputHeat').value;
+    inputVariable(operation, tmpName, '', '');
 
-    operation.OPERATION.INPUTS.push(input);
-
+    
     inputTemperature(operation, document.getElementById('heatTemp').value,
         document.getElementById('heatTempSign').value);
     inputTime(operation, document.getElementById('heatTime').value,
