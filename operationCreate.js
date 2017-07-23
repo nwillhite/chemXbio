@@ -13,11 +13,13 @@ function createDetect() {
     operation.OPERATION.ID = createID();
     operation.OPERATION.CLASSIFICATION = 'DETECT';
 
+    //var input = JSON.parse(JSON.stringify(variableInput));
+    //input.VARIABLE.NAME = document.getElementById('inputDetect').value;
+    //operation.OPERATION.INPUTS.push(input);
 
-    var input = JSON.parse(JSON.stringify(variableInput));
-    input.VARIABLE.NAME = document.getElementById('inputDetect').value;
+    var tmpName = document.getElementById('inputDetect').value;
+    inputVariable(operation, tmpName, '', '');
 
-    operation.OPERATION.INPUTS.push(input);
     operationOutput(operation, 'sensor', document.getElementById('detectOutputName').value);
 
     if(document.getElementById('detectRepeat').value === 'true') {
@@ -61,7 +63,7 @@ function createHeat() {
     var tmpName = document.getElementById('inputHeat').value;
     inputVariable(operation, tmpName, '', '');
 
-    
+
     inputTemperature(operation, document.getElementById('heatTemp').value,
         document.getElementById('heatTempSign').value);
     inputTime(operation, document.getElementById('heatTime').value,
