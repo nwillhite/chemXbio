@@ -198,7 +198,6 @@ function operationInput(id) {
         option.value = substancelist[i].VARIABLE_DECLARATION.NAME;
         option.className = 'substance';
         container.appendChild(option);
-
     }
 }
 
@@ -267,8 +266,6 @@ function operationOutputInput() {
         option.value = substancelist[i].VARIABLE_DECLARATION.NAME;
         option.className = 'substance';
         container.appendChild(option);
-        console.log(container);
-
     }
 }
 
@@ -420,8 +417,6 @@ function operationDetectInput() {
         option.value = substancelist[i].VARIABLE_DECLARATION.NAME;
         option.className = 'substance';
         container.appendChild(option);
-        console.log(container);
-
     }
 }
 
@@ -490,8 +485,6 @@ function operationStoreInput() {
         option.value = substancelist[i].VARIABLE_DECLARATION.NAME;
         option.className = 'substance';
         container.appendChild(option);
-        console.log(container);
-
     }
 }
 
@@ -566,7 +559,6 @@ function operationSplitInput() {
         option.value = substancelist[i].VARIABLE_DECLARATION.NAME;
         option.className = 'substance';
         container.appendChild(option);
-        //console.log(container);
     }
 }
 
