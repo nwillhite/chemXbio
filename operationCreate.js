@@ -162,11 +162,8 @@ function createMixture() {
     for (i = 0; i < num; i++) {
 
         var tmpName = document.getElementById("input" + i).value;
-        console.log(tmpName);
         var tmpVol = document.getElementById("inputvolume" + i).value;
-        console.log(tmpVol);
         var tmpUnit = document.getElementById("inputvolumeUnits" + i).value;
-        console.log(tmpUnit);
 
         inputVariable(operation, tmpName, tmpVol, tmpUnit);
     }
@@ -203,7 +200,7 @@ function createMixture() {
     }
 
     resetForm('mixForm');
-    inputCreate();
+    mixInputCreate();
 }
 
 
