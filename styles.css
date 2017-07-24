@@ -1,3 +1,5 @@
+/* Start Page Style */
+
 #container-fluid {
     margin: 0;
     padding: 0;
@@ -32,9 +34,9 @@
 }
 
 #col1 {
-    height: 750px;
+    height: 700px;
     border: solid thin darkgrey;
-    overflow:scroll;
+    overflow:hidden;
     background-color: #F3F3F3;
 }
 
@@ -49,14 +51,14 @@
 }
 
 #col2 {
-    height: 750px;
+    height: 700px;
     border: solid thin darkgrey;
     overflow:scroll;
     background-color: #F3F3F3;
 }
 
 #col3 {
-    height: 750px;
+    height: 700px;
     border: solid thin darkgrey;
     overflow:scroll;
     background-color: #F3F3F3;
@@ -68,36 +70,12 @@ pre {
     background: #F3F3F3;
 }
 
-/* Start Button Style */
-
-button {
-    display: block;
-    margin-top: 15px;
-    line-height: 25px;
-    font-weight: bold;
-    padding: 0 20px;
-    background: silver;
-    border: 1px solid darkslategray;
-    border-radius: 50px;
-}
-
-button:hover {
-    background: darkgray;
-}
-
-/* End Button Style */
-
+/* End Page Style */
 
 
 /* Start Form Style */
-/*
-#substanceremoval {
-  float: right;
-}
-*/
-
 .substanceDrop {
-    width: 75px;
+    width: 85px;
     background-color: lightblue;
 }
 
