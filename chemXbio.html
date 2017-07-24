@@ -92,7 +92,7 @@
 
                 <h3>Mix Operations</h3>
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('mixtureform');
-                        inputCreate(); update();">Mix</button>
+                        mixInputCreate(); update();">Mix</button>
 
                 <h3>Output Operations</h3>
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('save_form');
@@ -197,9 +197,10 @@
                             <label for="detectRepeatNum"> times</label>
                         </div>
 
-                        <button type="button" class="btn btn-default"
-                                onclick="createDetect(); update(); toJson(experimentHolder);">Add Detect</button>
-                        <button type="button" class="btn btn-default" onclick="showhidetoggle('detect_form')">Done</button>
+                        <button type="button" class="btn btn-default col-sm-offset-2"
+                                onclick="createDetect(); update(); toJson(experimentHolder);">Add</button>
+                        <button type="button" class="btn btn-default col-sm-offset-1"
+                                onclick="showhidetoggle('detect_form'); resetForm('detect_form')">Cancel</button>
                     </form>
                 </div>
                 <!-- End Detect Form -->
@@ -248,10 +249,10 @@
                             <br><br>
                         </div>
 
-                        <button type="button" class="btn btn-default col-sm-offset-3"
+                        <button type="button" class="btn btn-default col-sm-offset-2"
                                 onclick="createHeat(); toJson(experimentHolder);
-                                showhidetoggle('heat_form')">Add Heat</button>
-                        <button type="button" class="btn btn-default"
+                                showhidetoggle('heat_form')">Add</button>
+                        <button type="button" class="btn btn-default col-sm-offset-1"
                                 onclick="showhidetoggle('heat_form'); resetForm('heatForm')">Cancel</button>
                     </form>
                 </div>
@@ -301,11 +302,11 @@
                             <br><br>
                         </div>
 
-                        <button type="button" class="btn btn-default col-sm-offset-3"
+                        <button type="button" class="btn btn-default col-sm-offset-2"
                                 onclick="createIncubate(); toJson(experimentHolder);
-                                showhidetoggle('incubate_form')">Add Incubate</button>
-                        <!-- <button type="button" class="btn btn-default"
-                                onclick="showhidetoggle('incubate_form')">Done</button> -->
+                                showhidetoggle('incubate_form')">Add</button>
+                        <button type="button" class="btn btn-default col-sm-offset-1"
+                                onclick="showhidetoggle('incubate_form'); resetForm('incubate_form')">Cancel</button>
                     </form>
                 </div>
                 <!-- End heat form -->
@@ -359,10 +360,10 @@
                             <br>
                         </div>
 
-                        <button type="button" class="btn btn-default" onclick="createMixture();
-                                toJson(experimentHolder);">Add Mix</button>
-                        <button type="button" class="btn btn-default"
-                                onclick="showhidetoggle('mixtureform')">Done</button>
+                        <button type="button" class="btn btn-default col-sm-offset-2"
+                                onclick="createMixture(); toJson(experimentHolder);">Add</button>
+                        <button type="button" class="btn btn-default col-sm-offset-1"
+                                onclick="showhidetoggle('mixtureform'); resetForm('mixtureform')">Cancel</button>
 
                     </form>
                 </div>
@@ -385,9 +386,10 @@
                             </select>
                         </div>
 
-                        <button type="button" class="btn btn-default col-sm-offset-3"
-                                onclick="createSave(); update(); toJson(experimentHolder);">Add Output</button>
-                        <button type="button" class="btn btn-default" onclick="showhidetoggle('save_form')">Done</button>
+                        <button type="button" class="btn btn-default col-sm-offset-2"
+                                onclick="createSave(); update(); toJson(experimentHolder);">Add</button>
+                        <button type="button" class="btn btn-default col-sm-offset-1"
+                                onclick="showhidetoggle('save_form'); resetForm('save_form')">Cancel</button>
                     </form>
                 </div>
                 <!-- End Output Form -->
@@ -440,10 +442,10 @@
                             <label for="splitRepeatNum"> times</label><br><br>
                         </div>
 
-                        <button type="button" class="btn btn-default col-sm-offset-3"
-                                onclick="createSplit(); update(); toJson(experimentHolder);">Add Split</button>
-                        <button type="button" class="btn btn-default" onclick="showhidetoggle('split_form')">Done</button>
-
+                        <button type="button" class="btn btn-default col-sm-offset-2"
+                                onclick="createSplit(); update(); toJson(experimentHolder);">Add</button>
+                        <button type="button" class="btn btn-default col-sm-offset-1"
+                                onclick="showhidetoggle('split_form'); resetForm('split_form')">Cancel</button>
                     </form>
                 </div>
                 <!-- End Split Form -->
@@ -479,10 +481,10 @@
                             </select><br><br>
                         </div>
 
-                        <button type="button" class="btn btn-default col-sm-offset-3"
-                                onclick="createStore(); addOperation(); update();"">Add Store</button>
-                        <button type="button" class="btn btn-default"
-                                onclick="showhidetoggle('store_form')">Done</button>
+                        <button type="button" class="btn btn-default col-sm-offset-2"
+                                onclick="createStore(); addOperation(); update();">Add</button>
+                        <button type="button" class="btn btn-default col-sm-offset-1"
+                                onclick="showhidetoggle('store_form'); resetForm('store_form')">Cancel</button>
                     </form>
                 </div>
                 <!-- End Store Form -->
