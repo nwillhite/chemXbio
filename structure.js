@@ -23,6 +23,9 @@ var operationList = [];
 // holds defined substance to help populate selection for drop downs
 var substances = [];
 
+// holds instances of inputList
+var inputs = [];
+
 
 // helper function to clear experiment until a better way can be found
 function resetExperiment() {
@@ -57,6 +60,12 @@ function resetExperiment() {
  All structures of a complete experiment
 
  **************************************************************************************/
+
+// structure for look up of input and id tied to the inputs operation
+var inputList = {
+    ID: "",
+    NAME: ""
+};
 
 
 var benchTopStructure = {
