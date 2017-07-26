@@ -154,37 +154,42 @@ function operationInput(id) {
         // adds the output of operations to input drop down list
         for (i = 0; i < tmp; i++) {
 
-            var innerlist = operationList[i].OPERATION.OUTPUTS.length;
+            if(operationList[i].OPERATION.NAME === 'REPEAT') {
 
-            if (operationList[i].OPERATION.OUTPUTS[0] != null) {
+            }
+            else {
+                var innerlist = operationList[i].OPERATION.OUTPUTS.length;
 
-                // used to make sure only variable outputs are populated
-                var varTest = operationList[i].OPERATION.OUTPUTS[0];
-                var isVariable = Object.keys(varTest);
+                if (operationList[i].OPERATION.OUTPUTS[0] != null) {
 
-                // used to check the above vars to make sure it was a variable output
-                if (isVariable[0] === 'VARIABLE_DECLARATION') {
+                    // used to make sure only variable outputs are populated
+                    var varTest = operationList[i].OPERATION.OUTPUTS[0];
+                    var isVariable = Object.keys(varTest);
 
-                    if (operationList[i].OPERATION.OUTPUTS.length === 1) {
+                    // used to check the above vars to make sure it was a variable output
+                    if (isVariable[0] === 'VARIABLE_DECLARATION') {
 
-                        var option = document.createElement('option');
-                        option.innerHTML = option.value =
-                            operationList[i].OPERATION.OUTPUTS[0].VARIABLE_DECLARATION.NAME;
-                        container.appendChild(option);
-                    }
-                    else {
-
-                        for (j = 0; j < innerlist; j++) {
+                        if (operationList[i].OPERATION.OUTPUTS.length === 1) {
 
                             var option = document.createElement('option');
                             option.innerHTML = option.value =
-                                operationList[i].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION.NAME;
+                                operationList[i].OPERATION.OUTPUTS[0].VARIABLE_DECLARATION.NAME;
                             container.appendChild(option);
                         }
+                        else {
+
+                            for (j = 0; j < innerlist; j++) {
+
+                                var option = document.createElement('option');
+                                option.innerHTML = option.value =
+                                    operationList[i].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION.NAME;
+                                container.appendChild(option);
+                            }
+                        }
                     }
-                }
-                else {
-                    console.log('was sensor');
+                    else {
+                        console.log('was sensor');
+                    }
                 }
             }
         }
@@ -582,14 +587,9 @@ function updateList() {
 function update() {
 
     formInput();
-    //operationInput('inputSplit');
-    operationSplitInput();
-    //operationInput('inputSave');
-    operationOutputInput();
-    //operationInput('inputDetect');
-    operationDetectInput();
-    //operationInput('inputStore');
-    operationStoreInput();
+    operationInput('inputSplit');
+    operationInput('inputSave');
+    operationInput('inputDetect');
+    operationInput('inputStore');
     operationInput('inputHeat');
-    //operationHeatInput('inputHeat');
 }
