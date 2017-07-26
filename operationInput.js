@@ -47,21 +47,27 @@ function removeSubstance() {
         }
     }
 
-    
+    // tracks length of array that holds object of inputs
     var inputLength = inputs.length;
 
     for (j = 0; j < inputLength; j++) {
 
+        // tracks length of operations in use
         var opLength = operationList.length;
 
+        // checks if the input name and substance to be removed match
         if(inputs[j].NAME.indexOf(toRemove) != -1)
 
+            // grabs the id of the input to be removed
             var tmpId = inputs[j].ID;
+
 
             for (k = 0; k < opLength; k++) {
 
+                // check if the operstion ID and the input to be removed id match
                 if(operationList[k].OPERATION.ID === tmpId) {
 
+                    // removed the operation in the list at index k
                     operationList.splice(k, 1);
                     break;
                 }
