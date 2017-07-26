@@ -11,7 +11,8 @@ function createDetect() {
     var operation = JSON.parse(JSON.stringify(operationStructure));
 
     operation.OPERATION.NAME = document.getElementById('nameDetect').value;
-    operation.OPERATION.ID = createID();
+    var id = createID();
+    operation.OPERATION.ID = id;
     operation.OPERATION.CLASSIFICATION = 'DETECT';
 
     //var input = JSON.parse(JSON.stringify(variableInput));
@@ -20,6 +21,12 @@ function createDetect() {
 
     var tmpName = document.getElementById('inputDetect').value;
     inputVariable(operation, tmpName, '', '');
+
+    // used for removing of substance and operation that uses input
+    var input = JSON.parse(JSON.stringify(inputList));
+    input.ID = id;
+    input.NAME = tmpName;
+    inputs.push(input);
 
     operationOutput(operation, 'sensor', document.getElementById('detectOutputName').value);
 
@@ -55,7 +62,8 @@ function createHeat() {
     var operation = JSON.parse(JSON.stringify(operationStructure));
 
     operation.OPERATION.NAME = document.getElementById('nameHeat').value;
-    operation.OPERATION.ID = createID();
+    var id = createID();
+    operation.OPERATION.ID = id;
     operation.OPERATION.CLASSIFICATION = 'HEAT';
 
     //var input = JSON.parse(JSON.stringify(variableInput));
@@ -65,6 +73,11 @@ function createHeat() {
     var tmpName = document.getElementById('inputHeat').value;
     inputVariable(operation, tmpName, '', '');
 
+    // used for removing of substance and operation that uses input
+    var input = JSON.parse(JSON.stringify(inputList));
+    input.ID = id;
+    input.NAME = tmpName;
+    inputs.push(input);
 
     inputTemperature(operation, document.getElementById('heatTemp').value,
         document.getElementById('heatTempSign').value);
@@ -103,7 +116,8 @@ function createIncubate() {
     var operation = JSON.parse(JSON.stringify(operationStructure));
 
     operation.OPERATION.NAME = document.getElementById('nameIncubate').value;
-    operation.OPERATION.ID = createID();
+    var id = createID();
+    operation.OPERATION.ID = id;
     operation.OPERATION.CLASSIFICATION = 'HEAT';
 
     //var input = JSON.parse(JSON.stringify(variableInput));
@@ -113,6 +127,11 @@ function createIncubate() {
     var tmpName = document.getElementById('inputIncubate').value;
     inputVariable(operation, tmpName, '', '');
 
+    // used for removing of substance and operation that uses input
+    var input = JSON.parse(JSON.stringify(inputList));
+    input.ID = id;
+    input.NAME = tmpName;
+    inputs.push(input);
 
     inputTemperature(operation, document.getElementById('incubateTemp').value,
         document.getElementById('incubateTempSign').value);
@@ -154,10 +173,12 @@ function createMixture() {
     var operation = JSON.parse(JSON.stringify(operationStructure));
 
     operation.OPERATION.NAME = document.getElementById('mixName').value;
-    operation.OPERATION.ID = createID();
+    var id = createID();
+    operation.OPERATION.ID = id;
     operation.OPERATION.CLASSIFICATION = 'MIX';
 
     var num = document.getElementById('mixInputAmount').value;
+
 
     for (i = 0; i < num; i++) {
 
@@ -166,6 +187,12 @@ function createMixture() {
         var tmpUnit = document.getElementById("inputvolumeUnits" + i).value;
 
         inputVariable(operation, tmpName, tmpVol, tmpUnit);
+
+        // used for removing of substance and operation that uses input
+        var input = JSON.parse(JSON.stringify(inputList));
+        input.ID = id;
+        input.NAME = tmpName;
+        inputs.push(input);
     }
 
     inputTemperature(operation, document.getElementById('mixTemp').value,
@@ -176,6 +203,7 @@ function createMixture() {
 
     operationOutput(operation, 'substance',
         document.getElementById('mixOutputName').value);
+
 
     if(document.getElementById('mixRepeat').value === 'true') {
 
@@ -210,7 +238,8 @@ function createSave() {
     var operation = JSON.parse(JSON.stringify(operationStructure));
 
     operation.OPERATION.NAME = document.getElementById('nameSave').value;
-    operation.OPERATION.ID = createID();
+    var id = createID();
+    operation.OPERATION.ID = id;
     operation.OPERATION.CLASSIFICATION = 'OUTPUT';
 
     //var input = JSON.parse(JSON.stringify(variableInput));
@@ -219,6 +248,12 @@ function createSave() {
 
     var tmpName = document.getElementById('inputSave').value;
     inputVariable(operation, tmpName, '', '');
+
+    // used for removing of substance and operation that uses input
+    var input = JSON.parse(JSON.stringify(inputList));
+    input.ID = id;
+    input.NAME = tmpName;
+    inputs.push(input);
 
     operationList.push(operation);
     addOperation();
@@ -233,12 +268,20 @@ function createSplit() {
     var operation = JSON.parse(JSON.stringify(operationStructure));
 
     operation.OPERATION.NAME = document.getElementById('nameSplit').value;
-    operation.OPERATION.ID = createID();
+    var id = createID();
+    operation.OPERATION.ID = id;
     operation.OPERATION.CLASSIFICATION = 'Split';
 
     var num = document.getElementById('splitAmount').value;
+
     var tmpName = document.getElementById("inputSplit").value;
     inputVariable(operation, tmpName, '', '');
+
+    // used for removing of substance and operation that uses input
+    var input = JSON.parse(JSON.stringify(inputList));
+    input.ID = id;
+    input.NAME = tmpName;
+    inputs.push(input);
 
     for (i = 0; i < num; i++) {
 
@@ -312,7 +355,8 @@ function createStore() {
     var operation = JSON.parse(JSON.stringify(operationStructure));
 
     operation.OPERATION.NAME = document.getElementById('nameStore').value;
-    operation.OPERATION.ID = createID();
+    var id = createID();
+    operation.OPERATION.ID = id;
     operation.OPERATION.CLASSIFICATION = 'STORAGE';
 
     //var input = JSON.parse(JSON.stringify(variableInput));
@@ -321,6 +365,12 @@ function createStore() {
 
     var tmpName = document.getElementById('inputStore').value;
     inputVariable(operation, tmpName, '', '');
+
+    // used for removing of substance and operation that uses input
+    var input = JSON.parse(JSON.stringify(inputList));
+    input.ID = id;
+    input.NAME = tmpName;
+    inputs.push(input);
 
     inputTemperature(operation, document.getElementById('storeTemp').value,
         document.getElementById('storeTempSign').value);
