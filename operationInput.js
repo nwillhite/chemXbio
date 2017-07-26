@@ -47,19 +47,35 @@ function removeSubstance() {
         }
     }
 
-    var varTest = operationList[0].OPERATION.INPUTS[0];
-    var isVariable = Object.keys(varTest);
+    
+    var inputLength = inputs.length;
 
-    console.log(isVariable);
+    for (j = 0; j < inputLength; j++) {
 
-    /*
-    var opLength = operationList.length;
+        var opLength = operationList.length;
+
+        if(inputs[j].NAME.indexOf(toRemove) != -1)
+
+            var tmpId = inputs[j].ID;
+
+            for (k = 0; k < opLength; k++) {
+
+                if(operationList[k].OPERATION.ID === tmpId) {
+
+                    operationList.splice(k, 1);
+                    break;
+                }
+
+            }
+    }
 
     // creates the input entries based on number selected with # of inputs
     // adds the output of operations to input drop down list
-    for (i = 0; i < opLength; i++) {
+   /* for (i = 0; i < opLength; i++) {
 
         var innerlist = operationList[i].OPERATION.INPUTS.length;
+        console.log(operationList[i].OPERATION.INPUTS);
+        console.log(innerlist);
 
         if (operationList[i].OPERATION.INPUTS[0] != null) {
 
@@ -67,25 +83,52 @@ function removeSubstance() {
             //var varTest = operationList[i].OPERATION.INPUTS[0];
             //var isVariable = Object.keys(varTest);
 
-            // used to check the above vars to make sure it was a variable output
-            //if (isVariable[0] === 'VARIABLE') {
-
                 if (operationList[i].OPERATION.INPUTS.length === 1) {
 
-                    if (operationList[i].OPERATION.INPUTS[0].CHEMICAL.VARIABLE.NAME === toRemove) {
-                        operationList.splice(i, 1);
+                    var varTest = operationList[i].OPERATION.INPUTS[0];
+                    var isVariable = Object.keys(varTest);
+
+                    if(isVariable[1] === 'CHEMICAL')
+                    {
+                        if (operationList[i].OPERATION.INPUTS[0].CHEMICAL.VARIABLE.NAME === toRemove) {
+
+                            operationList.splice(i, 1);
+                        }
                     }
+                    else if(isVariable[1] === 'VARIABLE') {
+
+                        if (operationList[i].OPERATION.INPUTS[0].VARIABLE.NAME === toRemove) {
+
+                            operationList.splice(i, 1);
+                        }
+                    }
+
                 }
                 else {
 
                     for (j = 0; j < innerlist; j++) {
 
-                        if (operationList[i].OPERATION.INPUTS[0].CHEMICAL.VARIABLE.NAME === toRemove) {
-                            operationList.splice(i, 1);
+                        var varTest1 = operationList[i].OPERATION.INPUTS[j];
+                        console.log(varTest1);
+                        var isVariable1 = Object.keys(varTest1);
+                        console.log(isVariable1);
+
+                        if (isVariable1[1] === 'CHEMICAL') {
+
+                            if (operationList[i].OPERATION.INPUTS[j].CHEMICAL.VARIABLE.NAME === toRemove) {
+
+                                operationList.splice(i, 1);
+                            }
+                        }
+                        else if (isVariable1[1] === 'VARIABLE') {
+
+                            if (operationList[i].OPERATION.INPUTS[j].VARIABLE.NAME === toRemove) {
+
+                                operationList.splice(i, 1);
+                            }
                         }
                     }
                 }
-            //}
         }
     } */
 
