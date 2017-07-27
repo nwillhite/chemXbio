@@ -56,7 +56,7 @@ function removeSubstance() {
         var opLength = operationList.length;
 
         // checks if the input name and substance to be removed match
-        if(inputs[j].NAME.indexOf(toRemove) != -1)
+        if(inputs[j].NAME.indexOf(toRemove) != -1) {
 
             // grabs the id of the input to be removed
             var tmpId = inputs[j].ID;
@@ -65,14 +65,16 @@ function removeSubstance() {
             for (k = 0; k < opLength; k++) {
 
                 // check if the operstion ID and the input to be removed id match
-                if(operationList[k].OPERATION.ID === tmpId) {
+                if (operationList[k].OPERATION.ID === tmpId) {
 
                     // removed the operation in the list at index k
                     operationList.splice(k, 1);
                     break;
                 }
 
+
             }
+        }
     }
 
     // creates the input entries based on number selected with # of inputs
@@ -311,98 +313,102 @@ function mixInputCreate() {
 
     var opLength = operationList.length;
 
-    // handles if the number is changed to a lower number than was previously selected
-    while (container.hasChildNodes()) {
-        container.removeChild(container.lastChild);
-    }
+    if (container !== null) {
 
-    // creates the input entries based on number selected with # of inputs
-    for (i = 0; i < num; i++) {
-
-        // creates drop down boxes for defined substances
-        container.appendChild(document.createTextNode("Input " + (i + 1) + ": "));
-        var inputs = document.createElement('select');
-        inputs.id = "input" + i;
-        inputs.className = "substanceDrop";
-        container.appendChild(inputs);
-
-        for(var s = 0; s < substancelist.length; s++) {
-
-            var opt = document.createElement('option');
-            opt.innerHTML =  opt.value = substancelist[s].VARIABLE_DECLARATION.NAME;
-            inputs.appendChild(opt);
+        // handles if the number is changed to a lower number than was previously selected
+        while (container.hasChildNodes()) {
+            container.removeChild(container.lastChild);
         }
 
-        // adds the output of operations to input drop down list
-        for (n = 0; n < opLength; n++) {
+        // creates the input entries based on number selected with # of inputs
+        for (i = 0; i < num; i++) {
 
-            var innerlist = operationList[n].OPERATION.OUTPUTS.length;
+            // creates drop down boxes for defined substances
+            container.appendChild(document.createTextNode("Input " + (i + 1) + ": "));
+            var inputs = document.createElement('select');
+            inputs.id = "input" + i;
+            inputs.className = "substanceDrop";
+            container.appendChild(inputs);
 
-            if (operationList[n].OPERATION.OUTPUTS[0] != null) {
+            for (var s = 0; s < substancelist.length; s++) {
 
-                // used to make sure only variable outputs are populated
-                var varTest = operationList[n].OPERATION.OUTPUTS[0];
-                var isVariable = Object.keys(varTest);
+                var opt = document.createElement('option');
+                opt.innerHTML = opt.value = substancelist[s].VARIABLE_DECLARATION.NAME;
+                inputs.appendChild(opt);
+            }
 
-                // used to check the above vars to make sure it was a variable output
-                if (isVariable[0] === 'VARIABLE_DECLARATION') {
+            // adds the output of operations to input drop down list
+            for (n = 0; n < opLength; n++) {
 
-                    if (operationList[n].OPERATION.OUTPUTS.length === 1) {
+                //if (operationList[n].OPERATION.OUTPUTS[0] != null) {
+                if (operationList[n].OPERATION.OUTPUTS.length != 0) {
 
-                        var option = document.createElement('option');
-                        option.innerHTML = option.value =
-                            operationList[n].OPERATION.OUTPUTS[0].VARIABLE_DECLARATION.NAME;
-                        inputs.appendChild(option);
-                    }
-                    else {
+                    var innerlist = operationList[n].OPERATION.OUTPUTS.length;
 
-                        for (j = 0; j < innerlist; j++) {
+                    // used to make sure only variable outputs are populated
+                    var varTest = operationList[n].OPERATION.OUTPUTS[0];
+                    var isVariable = Object.keys(varTest);
+
+                    // used to check the above vars to make sure it was a variable output
+                    if (isVariable[0] === 'VARIABLE_DECLARATION') {
+
+                        if (operationList[n].OPERATION.OUTPUTS.length === 1) {
 
                             var option = document.createElement('option');
                             option.innerHTML = option.value =
-                                operationList[n].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION.NAME;
+                                operationList[n].OPERATION.OUTPUTS[0].VARIABLE_DECLARATION.NAME;
                             inputs.appendChild(option);
+                        }
+                        else {
+
+                            for (j = 0; j < innerlist; j++) {
+
+                                var option = document.createElement('option');
+                                option.innerHTML = option.value =
+                                    operationList[n].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION.NAME;
+                                inputs.appendChild(option);
+                            }
                         }
                     }
                 }
             }
-        }
-        // end drop down creation of defined substances
+            // end drop down creation of defined substances
 
-        // creates the volume input entries
-        container.appendChild((document.createTextNode(" Volume: " )));
-        var volume = document.createElement('input');
-        volume.type = "text";
-        volume.id = "inputvolume" + i;
-        volume.className = "volumeInput";
-        container.appendChild(volume);
-        // ends the volume input creation
+            // creates the volume input entries
+            container.appendChild((document.createTextNode(" Volume: ")));
+            var volume = document.createElement('input');
+            volume.type = "text";
+            volume.id = "inputvolume" + i;
+            volume.className = "volumeInput";
+            container.appendChild(volume);
+            // ends the volume input creation
 
-        // creates the selection entries based on number selected with # of inputs
-        container.appendChild((document.createTextNode(" Units: " )));
-        var volumeUnits = document.createElement("select");
-        volumeUnits.id = "inputvolumeUnits" + i;
-        container.appendChild(volumeUnits);
+            // creates the selection entries based on number selected with # of inputs
+            container.appendChild((document.createTextNode(" Units: ")));
+            var volumeUnits = document.createElement("select");
+            volumeUnits.id = "inputvolumeUnits" + i;
+            container.appendChild(volumeUnits);
 
-        var option = document.createElement('option');
-        option.setAttribute('selected', 'selected');
-        option.setAttribute('disabled', 'disabled');
-        option.setAttribute('hidden', 'hidden');
-        option.setAttribute('style', 'display: none');
-        volumeUnits.appendChild(option);
-
-        var units = ["mL", "\u00B5L", "pL", "nL", "L"];
-        var unitVal = ["ML", "UL", "PL", "NL", "LITER"];
-
-        for (var j = 0; j < units.length; j++) {
             var option = document.createElement('option');
-            option.innerHTML = units[j];
-            option.value = unitVal[j];
+            option.setAttribute('selected', 'selected');
+            option.setAttribute('disabled', 'disabled');
+            option.setAttribute('hidden', 'hidden');
+            option.setAttribute('style', 'display: none');
             volumeUnits.appendChild(option);
-        }
-        // end drop down creation of volume units
 
-        container.appendChild(document.createElement('br'));
+            var units = ["mL", "\u00B5L", "pL", "nL", "L"];
+            var unitVal = ["ML", "UL", "PL", "NL", "LITER"];
+
+            for (var j = 0; j < units.length; j++) {
+                var option = document.createElement('option');
+                option.innerHTML = units[j];
+                option.value = unitVal[j];
+                volumeUnits.appendChild(option);
+            }
+            // end drop down creation of volume units
+
+            container.appendChild(document.createElement('br'));
+        }
     }
 }
 
