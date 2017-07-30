@@ -1,14 +1,25 @@
 /* Start Page Style */
 
+body {
+    background-color: #F3F3F3;
+}
+
 #container-fluid {
     margin: 0;
-    padding: 0;
+    padding-top: 0;
     height: 100%;
     overflow:scroll;
 }
 
 #title {
     background-color: #F3F3F3;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
 }
 
 #title h1 {
@@ -20,6 +31,7 @@
     background-color: #F3F3F3;
 }
 
+
 #start {
     background-color: #F3F3F3;
 }
@@ -30,12 +42,18 @@
     margin-bottom: 10px;
     background: #768687;
     color: #04030F;
-}
+    line-height: 15px;
+    padding: 8px;
 
+}
+/* End Page Style*/
+
+
+/* Start Columns Style*/
 #col1 {
-    height: 700px;
+    height: 500px;
     border: solid thin darkgrey;
-    overflow:hidden;
+    overflow:scroll;
     background-color: #F3F3F3;
 }
 
@@ -50,14 +68,14 @@
 }
 
 #col2 {
-    height: 700px;
+    height: 500px;
     border: solid thin darkgrey;
     overflow:scroll;
     background-color: #F3F3F3;
 }
 
 #col3 {
-    height: 700px;
+    height: 500px;
     border: solid thin darkgrey;
     overflow:scroll;
     background-color: #F3F3F3;
@@ -78,8 +96,23 @@
     border: 1px solid #ccc;;
     border-radius: 4px;
 }
+/* End Columns Style*/
 
-/* End Page Style border: */
+
+/* Start Scrollbar Style*/
+#col1::-webkit-scrollbar, #col2::-webkit-scrollbar, #col3::-webkit-scrollbar {
+    width: 0;
+}
+
+#col1::-webkit-scrollbar-track, #col2::-webkit-scrollbar-track. #col3::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #F3F3F3;
+}
+
+#col1::-webkit-scrollbar-thumb, #col2::-webkit-scrollbar-thumb, #col3::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+}
+/* End Scrollbar Style*/
 
 
 /* Start Form Style */
