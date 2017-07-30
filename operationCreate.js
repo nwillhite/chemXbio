@@ -5,6 +5,71 @@
  **************************************************************************************/
 
 
+function createExperiment() {
+
+    //= document.getElementById('experimentName').value;
+
+    var name = document.getElementById('experimentName').value;
+
+    experimentStructure.EXPERIMENT.NAME = name;
+
+    //var text = 'You have started an expriment named: ' + name;
+    //text += " \n this is going to be a test";
+    //document.getElementById('whereToPrint').innerHTML = text;
+
+    if (benchtop.length === 0) {
+
+        //benchtop = JSON.parse(JSON.stringify(benchTopStructure));
+
+        benchtop = benchTopStructure;
+    }
+
+    if (experimentHolder.length === 0) {
+
+        //experiment = JSON.parse(JSON.stringify(experimentStructure));
+        //experimentStructure.EXPERIMENT.NAME = document.getElementById('experimentName').value;
+        //experimentHolder.push(experiment);
+
+        experimentHolder.push(experimentStructure);
+    }
+
+}
+
+// sets the bench top structures experiments to the contents of experimentHolder
+function addExperiment() {
+
+    benchTopStructure.BENCHTOP.EXPERIMENTS = experimentHolder;
+}
+
+
+// sets the experiment structure inputs to the contents of the substance list
+function addSub() {
+
+    experimentStructure.EXPERIMENT.INPUTS = substancelist;
+}
+
+
+// sets the experiment structure instructions to the contents of the operation list
+function addOperation() {
+
+    experimentStructure.EXPERIMENT.INSTRUCTIONS = operationList;
+
+    /*
+     if (experimentStructure.EXPERIMENT.INSTRUCTIONS != 0) {
+
+     experimentStructure.EXPERIMENT.INSTRUCTIONS.length = 0;
+
+     experimentStructure.EXPERIMENT.INSTRUCTIONS.push(operationList);
+     }
+     else {
+
+     experimentStructure.EXPERIMENT.INSTRUCTIONS.push(operationList);
+
+     }
+     //experimentStructure.EXPERIMENT.INSTRUCTIONS = operationList; */
+}
+
+
 // pulls the information from the detect form to populate the structures for JSON output
 function createDetect() {
 
@@ -192,8 +257,11 @@ function createMixture() {
         var input = JSON.parse(JSON.stringify(inputList));
         input.ID = id;
         input.NAME = tmpName;
+        input.OUTPUT = document.getElementById('mixOutputName').value;
         inputs.push(input);
     }
+
+    console.log(inputs);
 
     inputTemperature(operation, document.getElementById('mixTemp').value,
         document.getElementById('mixTempSign').value);
@@ -325,28 +393,7 @@ function createSplit() {
     }
 
     resetForm('splitForm');
-    outputCreate();
-
-        /*
-        for (i = 0; i < operationList.length; i++) {
-
-            var tmp = operationList[i].OPERATION.OUTPUTS.length;
-
-            if (operationList[i].OPERATION.OUTPUTS.length === 1) {
-
-                console.log(operationList[i].OPERATION.OUTPUTS[i].hasOwnProperty('VARIABLE_DECLARATION'));
-
-                console.log(operationList[i].OPERATION.OUTPUTS[i].VARIABLE_DECLARATION);
-
-            }
-            else {
-
-                for (j = 0; j < tmp; j++) {
-
-                    console.log(operationList[i].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION);
-                }
-            }
-        } */
+    splitOutputCreate();
 }
 
 
@@ -379,6 +426,7 @@ function createStore() {
         document.getElementById('storeDuration').value);
 
     operationList.push(operation);
+    addOperation();
 
     resetForm('storeForm');
 }
