@@ -2,12 +2,12 @@
 
 body {
     background-color: #F3F3F3;
+    overflow:scroll;
 }
 
 #container-fluid {
     margin: 0;
     padding-top: 0;
-    height: 100%;
     overflow:scroll;
 }
 
@@ -51,7 +51,7 @@ img {
 
 /* Start Columns Style*/
 #col1 {
-    height: 500px;
+    height : 100vh;
     border: solid thin darkgrey;
     overflow:scroll;
     background-color: #F3F3F3;
@@ -68,16 +68,16 @@ img {
 }
 
 #col2 {
-    height: 500px;
+    height : 100vh;
     border: solid thin darkgrey;
-    overflow:scroll;
+    overflow: scroll;
     background-color: #F3F3F3;
 }
 
 #col3 {
-    height: 500px;
+    height : 100vh;
     border: solid thin darkgrey;
-    overflow:scroll;
+    overflow: scroll;
     background-color: #F3F3F3;
 }
 
@@ -93,7 +93,7 @@ img {
     word-break: normal;
     word-wrap: break-word;
     background-color: transparent;
-    border: 1px solid #ccc;;
+    border: 1px solid #ccc;
     border-radius: 4px;
 }
 /* End Columns Style*/
@@ -116,6 +116,19 @@ img {
 
 
 /* Start Form Style */
+
+#substanceadd, #substanceremoval, #save_form {
+    padding: 25px;
+    margin: 25px 100px;
+    border: 1px solid #ccc;
+}
+
+#heat_form, #incubate_form, #mixtureform, #split_form, #store_form {
+    padding: 30px;
+    margin: 25px 50px;
+    border: 1px solid #ccc;
+}
+
 .substanceDrop {
     width: 85px;
     background-color: lightblue;
