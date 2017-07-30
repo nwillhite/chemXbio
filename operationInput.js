@@ -38,17 +38,18 @@ function inputSubstance(name) {
 function removeSubstance() {
 
     var toRemove = document.getElementById('removesubstanceList').value;
-    //var index = substances.indexOf(toRemove);
+    var tmpOp = [];
+
+    // tracks length of array that holds object of inputs
+    var inputLength = inputs.length;
 
     for(var i = 0; i < substancelist.length; i++) {
+
         if(substancelist[i].VARIABLE_DECLARATION.NAME === toRemove) {
             substancelist.splice(i, 1);
             substances.splice(i, 1);
         }
     }
-
-    // tracks length of array that holds object of inputs
-    var inputLength = inputs.length;
 
     for (j = 0; j < inputLength; j++) {
 
@@ -61,43 +62,95 @@ function removeSubstance() {
             // grabs the id of the input to be removed
             var tmpId = inputs[j].ID;
 
-
             for (k = 0; k < opLength; k++) {
 
-                // check if the operstion ID and the input to be removed id match
+                // check if the operation ID and the input to be removed id match
                 if (operationList[k].OPERATION.ID === tmpId) {
 
+                    if (inputs[j].OUTPUT != null) {
+
+                        console.log('has output');
+                        var output = inputs[j].OUTPUT;
+                        var tmpOut = checkOutputs(k, output, opLength);
+                    }
+
                     // removed the operation in the list at index k
-                    operationList.splice(k, 1);
-                    break;
+                    tmpOp.push(k);
                 }
-
-
             }
         }
     }
 
-    // creates the input entries based on number selected with # of inputs
-    // adds the output of operations to input drop down list
-   /* for (i = 0; i < opLength; i++) {
+    var opRemove = tmpOp.concat(tmpOut.filter( function (item) { return tmpOp.indexOf(item) < 0}));
 
-        var innerlist = operationList[i].OPERATION.INPUTS.length;
-        console.log(operationList[i].OPERATION.INPUTS);
-        console.log(innerlist);
+    console.log(opRemove);
+
+    for (var j = opRemove.length -1; j >= 0; j--) {
+
+        operationList.splice(opRemove[j],1);
+    }
+
+    //alert(JSON.stringify(operationList));
+}
+
+
+function checkOutputs(index, output, opLength) {
+
+    var tmpArray = [];
+
+    for (i = index + 1; i < opLength; i++) {
 
         if (operationList[i].OPERATION.INPUTS[0] != null) {
 
             // used to make sure only variable outputs are populated
-            //var varTest = operationList[i].OPERATION.INPUTS[0];
-            //var isVariable = Object.keys(varTest);
+            var varTest = operationList[i].OPERATION.INPUTS[0];
+            var isVariable = Object.keys(varTest);
+
+            if (operationList[i].OPERATION.INPUTS.length === 1) {
+
+                if (isVariable[1] === 'CHEMICAL') {
+                    if (operationList[i].OPERATION.INPUTS[0].CHEMICAL.VARIABLE.NAME === output) {
+
+                        tmpArray.push(i);
+                        //operationList.splice(i, 1);
+                    }
+                }
+                else if (isVariable[1] === 'VARIABLE') {
+
+                    if (operationList[i].OPERATION.INPUTS[0].VARIABLE.NAME === output) {
+
+                        tmpArray.push(i);
+                        //operationList.splice(i, 1);
+                    }
+                }
+            }
+        }
+    }
+    return tmpArray;
+}
+
+    /*
+    var opLength = operationList.length;
+
+    // creates the input entries based on number selected with # of inputs
+    // adds the output of operations to input drop down list
+    for (i = 0; i < opLength; i++) {
+
+        console.log(operationList[i].OPERATION.INPUTS);
+
+        //if (operationList[i].OPERATION.INPUTS[0] != null) {
+          if (operationList[i].OPERATION.INPUTS.length != 0) {
+
+            // used to make sure only variable outputs are populated
+            var varTest = operationList[i].OPERATION.INPUTS[0];
+            var isVariable = Object.keys(varTest);
 
                 if (operationList[i].OPERATION.INPUTS.length === 1) {
 
-                    var varTest = operationList[i].OPERATION.INPUTS[0];
-                    var isVariable = Object.keys(varTest);
+                    //var varTest = operationList[i].OPERATION.INPUTS[0];
+                    //var isVariable = Object.keys(varTest);
 
-                    if(isVariable[1] === 'CHEMICAL')
-                    {
+                    if(isVariable[1] === 'CHEMICAL') {
                         if (operationList[i].OPERATION.INPUTS[0].CHEMICAL.VARIABLE.NAME === toRemove) {
 
                             operationList.splice(i, 1);
@@ -113,22 +166,18 @@ function removeSubstance() {
 
                 }
                 else {
+                    var innerlist = operationList[i].OPERATION.INPUTS.length;
 
                     for (j = 0; j < innerlist; j++) {
 
-                        var varTest1 = operationList[i].OPERATION.INPUTS[j];
-                        console.log(varTest1);
-                        var isVariable1 = Object.keys(varTest1);
-                        console.log(isVariable1);
-
-                        if (isVariable1[1] === 'CHEMICAL') {
+                        if (isVariable[1] === 'CHEMICAL') {
 
                             if (operationList[i].OPERATION.INPUTS[j].CHEMICAL.VARIABLE.NAME === toRemove) {
 
                                 operationList.splice(i, 1);
                             }
                         }
-                        else if (isVariable1[1] === 'VARIABLE') {
+                        else if (isVariable[1] === 'VARIABLE') {
 
                             if (operationList[i].OPERATION.INPUTS[j].VARIABLE.NAME === toRemove) {
 
@@ -138,10 +187,10 @@ function removeSubstance() {
                     }
                 }
         }
+
+        opLength = operationList.length;
     } */
 
-    //update();
-}
 
 
 // populates substance or sensor structure for outputs of operations
@@ -340,8 +389,8 @@ function mixInputCreate() {
             // adds the output of operations to input drop down list
             for (n = 0; n < opLength; n++) {
 
-                //if (operationList[n].OPERATION.OUTPUTS[0] != null) {
-                if (operationList[n].OPERATION.OUTPUTS.length != 0) {
+                //if (operationList[n].OPERATION.OUTPUTS.length != 0) {
+                if (operationList[n].OPERATION.OUTPUTS[0] != null) {
 
                     var innerlist = operationList[n].OPERATION.OUTPUTS.length;
 
