@@ -135,10 +135,11 @@
                             <label for="substanceName">Input:</label>
                             <input type="text" id="substanceName" placeholder="Enter substance">
                         </div>
-                        <button type="button" class="btn btn-default"
+                        <button type="button" class="btn btn-default col-sm-offset-1"
                                 onclick="inputSubstance(document.getElementById('substanceName').value); addSub();
                                 updateList();">Add</button>
-                        <button type="button" class="btn btn-default" onclick="showhidetoggle('substanceadd')">Done</button>
+                        <button type="button" class="btn btn-default col-sm-offset-1"
+                                onclick="showhidetoggle('substanceadd')">Done</button>
                         <div id="substanceDisplay">
                             <!-- shows list of currently entered user substances -->
                         </div>
@@ -158,9 +159,9 @@
                             </script>
                         </select>
                         </div>
-                        <button type="button" class="btn btn-default" onclick="removeSubstance();
-                                updateList(); toJson(experimentHolder);">Remove</button>
-                        <button type="button" class="btn btn-default"
+                        <button type="button" class="btn btn-default col-sm-offset-1"
+                                onclick="removeSubstance(); updateList(); toJson(experimentHolder);">Remove</button>
+                        <button type="button" class="btn btn-default col-sm-offset-1"
                                 onclick="showhidetoggle('substanceremoval')">Done</button>
                     </form>
                 </div>
@@ -200,7 +201,7 @@
                         <button type="button" class="btn btn-default col-sm-offset-2"
                                 onclick="createDetect(); update(); toJson(experimentHolder);">Add</button>
                         <button type="button" class="btn btn-default col-sm-offset-1"
-                                onclick="showhidetoggle('detect_form'); resetForm('detect_form')">Cancel</button>
+                                onclick="showhidetoggle('detect_form'); resetForm('detectForm')">Cancel</button>
                     </form>
                 </div>
                 <!-- End Detect Form -->
@@ -306,7 +307,7 @@
                                 onclick="createIncubate(); toJson(experimentHolder);
                                 showhidetoggle('incubate_form')">Add</button>
                         <button type="button" class="btn btn-default col-sm-offset-1"
-                                onclick="showhidetoggle('incubate_form'); resetForm('incubate_form')">Cancel</button>
+                                onclick="showhidetoggle('incubate_form'); resetForm('incubateForm')">Cancel</button>
                     </form>
                 </div>
                 <!-- End heat form -->
@@ -361,9 +362,10 @@
                         </div>
 
                         <button type="button" class="btn btn-default col-sm-offset-2"
-                                onclick="createMixture(); toJson(experimentHolder);">Add</button>
+                                onclick="createMixture(); toJson(experimentHolder);
+                                showhidetoggle('mixtureform')">Add</button>
                         <button type="button" class="btn btn-default col-sm-offset-1"
-                                onclick="showhidetoggle('mixtureform'); resetForm('mixtureform')">Cancel</button>
+                                onclick="showhidetoggle('mixtureform'); resetForm('mixForm')">Cancel</button>
 
                     </form>
                 </div>
@@ -387,9 +389,10 @@
                         </div>
 
                         <button type="button" class="btn btn-default col-sm-offset-2"
-                                onclick="createSave(); update(); toJson(experimentHolder);">Add</button>
+                                onclick="createSave(); toJson(experimentHolder);
+                                showhidetoggle('save_form')">Add</button>
                         <button type="button" class="btn btn-default col-sm-offset-1"
-                                onclick="showhidetoggle('save_form'); resetForm('save_form')">Cancel</button>
+                                onclick="showhidetoggle('save_form'); resetForm('saveForm')">Cancel</button>
                     </form>
                 </div>
                 <!-- End Output Form -->
@@ -443,9 +446,10 @@
                         </div>
 
                         <button type="button" class="btn btn-default col-sm-offset-2"
-                                onclick="createSplit(); update(); toJson(experimentHolder);">Add</button>
+                                onclick="createSplit(); toJson(experimentHolder);
+                                showhidetoggle('split_form')">Add</button>
                         <button type="button" class="btn btn-default col-sm-offset-1"
-                                onclick="showhidetoggle('split_form'); resetForm('split_form')">Cancel</button>
+                                onclick="showhidetoggle('split_form'); resetForm('splitForm')">Cancel</button>
                     </form>
                 </div>
                 <!-- End Split Form -->
@@ -482,88 +486,16 @@
                         </div>
 
                         <button type="button" class="btn btn-default col-sm-offset-2"
-                                onclick="createStore(); addOperation(); update();">Add</button>
+                                onclick="createStore(); toJson(experimentHolder);
+                                showhidetoggle('store_form')">Add</button>
                         <button type="button" class="btn btn-default col-sm-offset-1"
-                                onclick="showhidetoggle('store_form'); resetForm('store_form')">Cancel</button>
+                                onclick="showhidetoggle('store_form'); resetForm('storeForm')">Cancel</button>
                     </form>
                 </div>
                 <!-- End Store Form -->
 
             </div>
 
-
-            <script>
-
-                function createExperiment() {
-
-                    //= document.getElementById('experimentName').value;
-
-                    var name = document.getElementById('experimentName').value;
-
-                    experimentStructure.EXPERIMENT.NAME = name;
-
-                    //var text = 'You have started an expriment named: ' + name;
-                    //text += " \n this is going to be a test";
-                    //document.getElementById('whereToPrint').innerHTML = text;
-
-                    if (benchtop.length === 0) {
-
-                        //benchtop = JSON.parse(JSON.stringify(benchTopStructure));
-
-                        benchtop = benchTopStructure;
-                    }
-
-                    if (experimentHolder.length === 0) {
-
-                        //experiment = JSON.parse(JSON.stringify(experimentStructure));
-                        //experimentStructure.EXPERIMENT.NAME = document.getElementById('experimentName').value;
-                        //experimentHolder.push(experiment);
-
-                        experimentHolder.push(experimentStructure);
-                    }
-
-                }
-
-                function addExperiment() {
-
-                    benchTopStructure.BENCHTOP.EXPERIMENTS = experimentHolder;
-
-                }
-
-                function addSub() {
-
-                    //experiment.EXPERIMENT.INPUTS = substancelist;
-                    //if (experimentStructure.EXPERIMENT.INPUTS.length != 0)
-                    //{
-                    //    experimentStructure.EXPERIMENT.INPUTS = 0;
-                    //
-                    //}
-
-                    experimentStructure.EXPERIMENT.INPUTS = substancelist;
-
-
-                }
-
-                function addOperation() {
-
-                    experimentStructure.EXPERIMENT.INSTRUCTIONS = operationList;
-
-                    /*
-                    if (experimentStructure.EXPERIMENT.INSTRUCTIONS != 0) {
-
-                        experimentStructure.EXPERIMENT.INSTRUCTIONS.length = 0;
-
-                        experimentStructure.EXPERIMENT.INSTRUCTIONS.push(operationList);
-                    }
-                    else {
-
-                        experimentStructure.EXPERIMENT.INSTRUCTIONS.push(operationList);
-
-                    }
-                    //experimentStructure.EXPERIMENT.INSTRUCTIONS = operationList; */
-                }
-
-            </script>
 
         </div> <!-- end col 2 -->
 
