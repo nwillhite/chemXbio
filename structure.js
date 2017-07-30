@@ -64,7 +64,8 @@ function resetExperiment() {
 // structure for look up of input and id tied to the inputs operation
 var inputList = {
     ID: "",
-    NAME: ""
+    NAME: "",
+    OUTPUT: []
 };
 
 
