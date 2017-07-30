@@ -39,6 +39,7 @@ function removeSubstance() {
 
     var toRemove = document.getElementById('removesubstanceList').value;
     var tmpOp = [];
+    var inputRemove = [];
 
     // tracks length of array that holds object of inputs
     var inputLength = inputs.length;
@@ -51,49 +52,71 @@ function removeSubstance() {
         }
     }
 
-    for (j = 0; j < inputLength; j++) {
+    if (operationList.length != 0) {
 
-        // tracks length of operations in use
-        var opLength = operationList.length;
+        for (j = 0; j < inputLength; j++) {
 
-        // checks if the input name and substance to be removed match
-        if(inputs[j].NAME.indexOf(toRemove) != -1) {
+            // tracks length of operations in use
+            var opLength = operationList.length;
 
-            // grabs the id of the input to be removed
-            var tmpId = inputs[j].ID;
+            // checks if the input name and substance to be removed match
+            if (inputs[j].NAME.indexOf(toRemove) != -1) {
 
-            for (k = 0; k < opLength; k++) {
+                // grabs the id of the input to be removed
+                var tmpId = inputs[j].ID;
 
-                // check if the operation ID and the input to be removed id match
-                if (operationList[k].OPERATION.ID === tmpId) {
+                for (k = 0; k < opLength; k++) {
 
-                    if (inputs[j].OUTPUT != null) {
+                    // check if the operation ID and the input to be removed id match
+                    if (operationList[k].OPERATION.ID === tmpId) {
 
-                        console.log('has output');
-                        var output = inputs[j].OUTPUT;
-                        var tmpOut = checkOutputs(k, output, opLength);
+                        //inputRemove.push(j);
+                        inputRemove = getAllIndexes(inputs, tmpId);
+
+                        if (inputs[j].OUTPUT != null) {
+                            var output = inputs[j].OUTPUT;
+                            var tmpOut = checkOutputs(k, output, opLength);
+                        }
+                        tmpOp.push(k);
                     }
-
-                    // removed the operation in the list at index k
-                    tmpOp.push(k);
                 }
             }
         }
+
+        // combines and filters out doubles of indices
+        var opRemove = tmpOp.concat(tmpOut.filter(function (item) {return tmpOp.indexOf(item) < 0}));
+
+
+        // removes in reverse order the indices of the operations using the substance to be removed
+        for (var j = opRemove.length - 1; j >= 0; j--) {
+
+            operationList.splice(opRemove[j], 1);
+        }
+
+        // removes in reverse order the indices of the inputs tied to operations using the substance to be removed
+        for (j = inputRemove.length - 1; j >= 0; j--) {
+
+            inputs.splice(inputRemove[j], 1);
+        }
     }
 
-    var opRemove = tmpOp.concat(tmpOut.filter( function (item) { return tmpOp.indexOf(item) < 0}));
-
-    console.log(opRemove);
-
-    for (var j = opRemove.length -1; j >= 0; j--) {
-
-        operationList.splice(opRemove[j],1);
-    }
-
-    //alert(JSON.stringify(operationList));
+    console.log(inputRemove);
+    alert(JSON.stringify(inputRemove));
+    console.log(inputs);
 }
 
 
+// helper function to removeSubstance function
+function getAllIndexes(arr, val) {
+    var indexes = [], i;
+    for(i = 0; i < arr.length; i++)
+        if (arr[i].ID === val)
+            indexes.push(i);
+    return indexes;
+}
+
+
+// helper function to removeSubstance function
 function checkOutputs(index, output, opLength) {
 
     var tmpArray = [];
@@ -112,7 +135,6 @@ function checkOutputs(index, output, opLength) {
                     if (operationList[i].OPERATION.INPUTS[0].CHEMICAL.VARIABLE.NAME === output) {
 
                         tmpArray.push(i);
-                        //operationList.splice(i, 1);
                     }
                 }
                 else if (isVariable[1] === 'VARIABLE') {
@@ -120,7 +142,6 @@ function checkOutputs(index, output, opLength) {
                     if (operationList[i].OPERATION.INPUTS[0].VARIABLE.NAME === output) {
 
                         tmpArray.push(i);
-                        //operationList.splice(i, 1);
                     }
                 }
             }
@@ -128,69 +149,6 @@ function checkOutputs(index, output, opLength) {
     }
     return tmpArray;
 }
-
-    /*
-    var opLength = operationList.length;
-
-    // creates the input entries based on number selected with # of inputs
-    // adds the output of operations to input drop down list
-    for (i = 0; i < opLength; i++) {
-
-        console.log(operationList[i].OPERATION.INPUTS);
-
-        //if (operationList[i].OPERATION.INPUTS[0] != null) {
-          if (operationList[i].OPERATION.INPUTS.length != 0) {
-
-            // used to make sure only variable outputs are populated
-            var varTest = operationList[i].OPERATION.INPUTS[0];
-            var isVariable = Object.keys(varTest);
-
-                if (operationList[i].OPERATION.INPUTS.length === 1) {
-
-                    //var varTest = operationList[i].OPERATION.INPUTS[0];
-                    //var isVariable = Object.keys(varTest);
-
-                    if(isVariable[1] === 'CHEMICAL') {
-                        if (operationList[i].OPERATION.INPUTS[0].CHEMICAL.VARIABLE.NAME === toRemove) {
-
-                            operationList.splice(i, 1);
-                        }
-                    }
-                    else if(isVariable[1] === 'VARIABLE') {
-
-                        if (operationList[i].OPERATION.INPUTS[0].VARIABLE.NAME === toRemove) {
-
-                            operationList.splice(i, 1);
-                        }
-                    }
-
-                }
-                else {
-                    var innerlist = operationList[i].OPERATION.INPUTS.length;
-
-                    for (j = 0; j < innerlist; j++) {
-
-                        if (isVariable[1] === 'CHEMICAL') {
-
-                            if (operationList[i].OPERATION.INPUTS[j].CHEMICAL.VARIABLE.NAME === toRemove) {
-
-                                operationList.splice(i, 1);
-                            }
-                        }
-                        else if (isVariable[1] === 'VARIABLE') {
-
-                            if (operationList[i].OPERATION.INPUTS[j].VARIABLE.NAME === toRemove) {
-
-                                operationList.splice(i, 1);
-                            }
-                        }
-                    }
-                }
-        }
-
-        opLength = operationList.length;
-    } */
-
 
 
 // populates substance or sensor structure for outputs of operations
