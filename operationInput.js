@@ -1,10 +1,10 @@
 /**************************************************************************************
 
-                    All functions to populate operation INPUT/OUTPUT information
+            All functions to populate operation INPUT/OUTPUT information
 
  **************************************************************************************/
 
-//not sure if needed yet... might be able to delete this
+// not sure if needed yet... might be able to delete this
 function inputExperiment() {
 
     var experiment = JSON.parse(JSON.stringify(experimentStructure));
@@ -41,7 +41,6 @@ function operationOutput(obj, type, tmpName) {
 
     }
     else if (type === 'substance') {
-
         var varOutput = JSON.parse(JSON.stringify(variableStructure));
 
         varOutput.VARIABLE_DECLARATION.NAME = varOutput.VARIABLE_DECLARATION.ID = tmpName;
@@ -51,7 +50,6 @@ function operationOutput(obj, type, tmpName) {
         obj.OPERATION.OUTPUTS.push(varOutput);
     }
     else if (type === 'sensor') {
-
         var sensor = JSON.parse(JSON.stringify(sensorOutput));
 
         sensor.SENSOR_DECLARATION.NAME = sensor.SENSOR_DECLARATION.ID = tmpName;
@@ -139,13 +137,11 @@ function inputTime (obj, tmpVal, tmpUnit) {
 
 // function that populates the input selection of the all operations
 function operationInput(id) {
-
     var container = document.getElementById(id);
 
     if (container !== null) {
 
         while (container.hasChildNodes()) {
-
             container.removeChild(container.lastChild);
         }
 
@@ -179,7 +175,6 @@ function operationInput(id) {
                     if (isVariable[0] === 'VARIABLE_DECLARATION') {
 
                         if (operationList[i].OPERATION.OUTPUTS.length === 1) {
-
                             var option = document.createElement('option');
                             option.innerHTML = option.value =
                                 operationList[i].OPERATION.OUTPUTS[0].VARIABLE_DECLARATION.NAME;
@@ -188,7 +183,6 @@ function operationInput(id) {
                         else {
 
                             for (j = 0; j < innerlist; j++) {
-
                                 var option = document.createElement('option');
                                 option.innerHTML = option.value =
                                     operationList[i].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION.NAME;
@@ -205,7 +199,6 @@ function operationInput(id) {
     }
 
     for (i = 0; i < sublength; i ++) {
-
         var option = document.createElement('option');
         option.innerHTML = substancelist[i].VARIABLE_DECLARATION.NAME;
         option.value = substancelist[i].VARIABLE_DECLARATION.NAME;
@@ -217,14 +210,13 @@ function operationInput(id) {
 
 /**************************************************************************************
 
- All functions to remove substance and operation INPUT information
+            All functions to remove substance and operation INPUT information
 
  **************************************************************************************/
 
 
 // allows to remove substance once they've been added
 function removeSubstance() {
-
     var toRemove = document.getElementById('removesubstanceList').value;
     var tmpOp = [];
     var inputRemove = [];
@@ -287,10 +279,9 @@ function removeSubstance() {
             inputs.splice(inputRemove[j], 1);
         }
     }
-
-    console.log(inputRemove);
-    alert(JSON.stringify(inputRemove));
-    console.log(inputs);
+    //console.log(inputRemove);
+    //alert(JSON.stringify(inputRemove));
+    //console.log(inputs);
 }
 
 
@@ -342,7 +333,7 @@ function checkOutputs(index, output, opLength) {
 
 /**************************************************************************************
 
- Functions to help make forms dynamic
+                        Functions to help make forms dynamic
 
  **************************************************************************************/
 
@@ -353,7 +344,6 @@ function formInput() {
 
     // handles if the number is changed to a lower number than was previously selected
     while (container.hasChildNodes()) {
-
         container.removeChild(container.lastChild);
     }
 
@@ -368,7 +358,6 @@ function formInput() {
     container.appendChild(option);
 
     for(var i = 0; i < tmp; i++) {
-
         var option = document.createElement('option');
         option.innerHTML = i;
         option.value = i;
@@ -379,7 +368,6 @@ function formInput() {
 
 // function controls the number of outputs for setting outputs of split
 function formSplit() {
-
     var container = document.getElementById('splitAmount');
 
     var option = document.createElement('option');
@@ -390,7 +378,6 @@ function formSplit() {
     container.appendChild(option);
 
     for(var i = 0; i <= 10; i++) {
-
         var option = document.createElement('option');
         option.innerHTML = i;
         option.value = i;
@@ -413,9 +400,7 @@ function formTemperature(formId) {
     option.setAttribute('style', 'display: none');
     select.appendChild(option);
 
-
     for(var i = 0; i < sign.length; i++) {
-
         var option = document.createElement('option');
         option.innerHTML = sign[i];
         option.value = signValue[i];
@@ -438,9 +423,7 @@ function formTime(formId) {
     option.setAttribute('style', 'display: none');
     select.appendChild(option);
 
-
-    for(var i = 0; i < display.length; i++)
-    {
+    for(var i = 0; i < display.length; i++) {
         var option = document.createElement('option');
         option.innerHTML = display[i];
         option.value = displayValue[i];
@@ -449,8 +432,9 @@ function formTime(formId) {
 }
 
 
-//dynamically handles the input fields for mixing operations
+// dynamically handles the input fields for mixing operations
 function mixInputCreate() {
+
     // pulls the number from selection of how many inputs wanted
     var num = document.getElementById('mixInputAmount').value;
 
@@ -476,7 +460,6 @@ function mixInputCreate() {
             container.appendChild(inputs);
 
             for (var s = 0; s < substancelist.length; s++) {
-
                 var opt = document.createElement('option');
                 opt.innerHTML = opt.value = substancelist[s].VARIABLE_DECLARATION.NAME;
                 inputs.appendChild(opt);
@@ -498,16 +481,13 @@ function mixInputCreate() {
                     if (isVariable[0] === 'VARIABLE_DECLARATION') {
 
                         if (operationList[n].OPERATION.OUTPUTS.length === 1) {
-
                             var option = document.createElement('option');
                             option.innerHTML = option.value =
                                 operationList[n].OPERATION.OUTPUTS[0].VARIABLE_DECLARATION.NAME;
                             inputs.appendChild(option);
                         }
                         else {
-
                             for (j = 0; j < innerlist; j++) {
-
                                 var option = document.createElement('option');
                                 option.innerHTML = option.value =
                                     operationList[n].OPERATION.OUTPUTS[j].VARIABLE_DECLARATION.NAME;
@@ -516,8 +496,7 @@ function mixInputCreate() {
                         }
                     }
                 }
-            }
-            // end drop down creation of defined substances
+            } // end drop down creation of defined substances
 
             // creates the volume input entries
             container.appendChild((document.createTextNode(" Volume: ")));
@@ -549,8 +528,7 @@ function mixInputCreate() {
                 option.innerHTML = units[j];
                 option.value = unitVal[j];
                 volumeUnits.appendChild(option);
-            }
-            // end drop down creation of volume units
+            } // end drop down creation of volume units
 
             container.appendChild(document.createElement('br'));
         }
@@ -558,7 +536,7 @@ function mixInputCreate() {
 }
 
 
-//handles if input is substance or operation output and disables volume attributes
+// handles if input is substance or operation output and disables volume attributes
 function mixInputChange() {
 
     // pulls number of inputs being used within mixture operation
@@ -571,7 +549,6 @@ function mixInputChange() {
 
         // checks to see if the substance exists within the substances array
         if (substances.indexOf(substance) != -1) {
-
             console.log('is chem');
         }
         else {
@@ -593,14 +570,13 @@ function splitOutputCreate() {
     var container = document.getElementById('splitInput');
 
     // handles if the number is changed to a lower number than was previously selected
-    while (container.hasChildNodes())
-    {
+    while (container.hasChildNodes()) {
         container.removeChild(container.lastChild);
     }
 
     // creates the output entries based on number selected with # of outputs
-    for (i = 0; i < num; i++)
-    {
+    for (i = 0; i < num; i++) {
+
         // creates the output entries
         container.appendChild((document.createTextNode(" Output: " )));
         var splitOut = document.createElement('input');
@@ -622,13 +598,11 @@ function substanceRemove() {
     var container = document.getElementById('removesubstanceList');
 
     // handles if the number is changed to a lower number than was previously selected
-    while (container.hasChildNodes())
-    {
+    while (container.hasChildNodes()) {
         container.removeChild(container.lastChild);
     }
 
-    for (var i = 0; i < tmp; i++)
-    {
+    for (var i = 0; i < tmp; i++) {
         var option = document.createElement('option');
         option.innerHTML = substances[i];
         option.value = substances[i];
