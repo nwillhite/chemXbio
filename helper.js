@@ -1,9 +1,8 @@
-/*
-window.onload = function()
-{
-  document.getElementById('operationsMenu').style.visibility = 'hidden';
-};
-*/
+/**************************************************************************************
+
+                                All helper functions
+
+ **************************************************************************************/
 
 function download(text, name, type) {
     var a = document.createElement("a");
@@ -26,12 +25,11 @@ function hideDiv(id) {
 
 function showhidetoggle(id) {
     var tmp = document.getElementById(id);
-    if (tmp.style.display === 'none')
-    {
+
+    if (tmp.style.display === 'none') {
         tmp.style.display = 'block';
     }
-    else
-    {
+    else {
         tmp.style.display = 'none';
     }
 }
@@ -56,13 +54,11 @@ function resetForm(formId) {
 
 // allows to remove operation once they've been added
 function removeOperation() {
-
     var toRemove = document.getElementById('').value;
 
-    for(var i = 0; i < operationList.length; i++)
-    {
-        if(operationList[i].OPERATION.NAME === toRemove)
-        {
+    for(var i = 0; i < operationList.length; i++) {
+
+        if(operationList[i].OPERATION.NAME === toRemove) {
             operationList.splice(i, 1);
         }
     }
@@ -70,7 +66,6 @@ function removeOperation() {
 
 
 function updateList() {
-
     substanceRemove();
 
     if (substances.length != 0) {
@@ -87,7 +82,6 @@ function updateList() {
 
 
 function update() {
-
     formInput();
     operationInput('inputSplit');
     operationInput('inputSave');
