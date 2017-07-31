@@ -1,6 +1,6 @@
 /**************************************************************************************
 
-                    Functions to create operations
+                        Functions to setup experiment
 
  **************************************************************************************/
 
@@ -18,40 +18,36 @@ function createExperiment() {
     //document.getElementById('whereToPrint').innerHTML = text;
 
     if (benchtop.length === 0) {
+        benchtop = benchTopStructure;
 
         //benchtop = JSON.parse(JSON.stringify(benchTopStructure));
-
-        benchtop = benchTopStructure;
     }
 
     if (experimentHolder.length === 0) {
+        experimentHolder.push(experimentStructure);
 
         //experiment = JSON.parse(JSON.stringify(experimentStructure));
         //experimentStructure.EXPERIMENT.NAME = document.getElementById('experimentName').value;
         //experimentHolder.push(experiment);
-
-        experimentHolder.push(experimentStructure);
     }
 
 }
 
+
 // sets the bench top structures experiments to the contents of experimentHolder
 function addExperiment() {
-
     benchTopStructure.BENCHTOP.EXPERIMENTS = experimentHolder;
 }
 
 
 // sets the experiment structure inputs to the contents of the substance list
 function addSub() {
-
     experimentStructure.EXPERIMENT.INPUTS = substancelist;
 }
 
 
 // sets the experiment structure instructions to the contents of the operation list
 function addOperation() {
-
     experimentStructure.EXPERIMENT.INSTRUCTIONS = operationList;
 
     /*
@@ -70,9 +66,15 @@ function addOperation() {
 }
 
 
+/**************************************************************************************
+
+                        Functions to create operations
+
+ **************************************************************************************/
+
+
 // pulls the information from the detect form to populate the structures for JSON output
 function createDetect() {
-
     var operation = JSON.parse(JSON.stringify(operationStructure));
 
     operation.OPERATION.NAME = document.getElementById('nameDetect').value;
@@ -80,9 +82,6 @@ function createDetect() {
     operation.OPERATION.ID = id;
     operation.OPERATION.CLASSIFICATION = 'DETECT';
 
-    //var input = JSON.parse(JSON.stringify(variableInput));
-    //input.VARIABLE.NAME = document.getElementById('inputDetect').value;
-    //operation.OPERATION.INPUTS.push(input);
 
     var tmpName = document.getElementById('inputDetect').value;
     inputVariable(operation, tmpName, '', '');
@@ -123,7 +122,6 @@ function createDetect() {
 
 // pulls the information from the heat form to populate the structures for JSON output
 function createHeat() {
-
     var operation = JSON.parse(JSON.stringify(operationStructure));
 
     operation.OPERATION.NAME = document.getElementById('nameHeat').value;
@@ -131,9 +129,6 @@ function createHeat() {
     operation.OPERATION.ID = id;
     operation.OPERATION.CLASSIFICATION = 'HEAT';
 
-    //var input = JSON.parse(JSON.stringify(variableInput));
-    //input.VARIABLE.NAME = document.getElementById('inputHeat').value;
-    //operation.OPERATION.INPUTS.push(input);
 
     var tmpName = document.getElementById('inputHeat').value;
     inputVariable(operation, tmpName, '', '');
@@ -177,7 +172,6 @@ function createHeat() {
 
 // pulls the information from the incubate form to populate the structures for JSON output
 function createIncubate() {
-
     var operation = JSON.parse(JSON.stringify(operationStructure));
 
     operation.OPERATION.NAME = document.getElementById('nameIncubate').value;
@@ -185,9 +179,6 @@ function createIncubate() {
     operation.OPERATION.ID = id;
     operation.OPERATION.CLASSIFICATION = 'HEAT';
 
-    //var input = JSON.parse(JSON.stringify(variableInput));
-    //input.VARIABLE.NAME = document.getElementById('inputIncubate').value;
-    //operation.OPERATION.INPUTS.push(input);
 
     var tmpName = document.getElementById('inputIncubate').value;
     inputVariable(operation, tmpName, '', '');
@@ -231,10 +222,6 @@ function createIncubate() {
 
 // pulls the information from the mix form to populate the structures for JSON output
 function createMixture() {
-
-    //var repeat = document.getElementById('mixRepeat').value;
-    //console.log(document.getElementById('mixRepeat').value);
-
     var operation = JSON.parse(JSON.stringify(operationStructure));
 
     operation.OPERATION.NAME = document.getElementById('mixName').value;
@@ -302,7 +289,6 @@ function createMixture() {
 
 // pulls the information from the save form to populate the structures for JSON output
 function createSave() {
-
     var operation = JSON.parse(JSON.stringify(operationStructure));
 
     operation.OPERATION.NAME = document.getElementById('nameSave').value;
@@ -310,9 +296,6 @@ function createSave() {
     operation.OPERATION.ID = id;
     operation.OPERATION.CLASSIFICATION = 'OUTPUT';
 
-    //var input = JSON.parse(JSON.stringify(variableInput));
-    //input.VARIABLE.NAME = document.getElementById('inputSave').value;
-    //operation.OPERATION.INPUTS.push(input);
 
     var tmpName = document.getElementById('inputSave').value;
     inputVariable(operation, tmpName, '', '');
@@ -332,7 +315,6 @@ function createSave() {
 
 // pulls the information from the split form to populate the structures for JSON output
 function createSplit() {
-
     var operation = JSON.parse(JSON.stringify(operationStructure));
 
     operation.OPERATION.NAME = document.getElementById('nameSplit').value;
@@ -354,9 +336,9 @@ function createSplit() {
     for (i = 0; i < num; i++) {
 
         var varOutput = JSON.parse(JSON.stringify(variableStructure));
-        var tmpName = document.getElementById("splitOut" + i).value;
+        var outName = document.getElementById("splitOut" + i).value;
 
-        varOutput.VARIABLE_DECLARATION.NAME = varOutput.VARIABLE_DECLARATION.ID = tmpName;
+        varOutput.VARIABLE_DECLARATION.NAME = varOutput.VARIABLE_DECLARATION.ID = outName;
 
         varOutput.VARIABLE_DECLARATION.TYPE = 'VARIABLE';
 
@@ -368,7 +350,6 @@ function createSplit() {
         //outputs.push(tmpName);
         //operation.OPERATION.OUTPUTS.push(operationOutput(operation, 'substance', tmpName));
     }
-    //console.log(outputs);
 
     if(document.getElementById('splitRepeat').value === 'true') {
 
@@ -406,9 +387,6 @@ function createStore() {
     operation.OPERATION.ID = id;
     operation.OPERATION.CLASSIFICATION = 'STORAGE';
 
-    //var input = JSON.parse(JSON.stringify(variableInput));
-    //input.VARIABLE.NAME = document.getElementById('inputStore').value;
-    //operation.OPERATION.INPUTS.push(input);
 
     var tmpName = document.getElementById('inputStore').value;
     inputVariable(operation, tmpName, '', '');
