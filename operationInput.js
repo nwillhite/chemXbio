@@ -34,6 +34,116 @@ function inputSubstance(name) {
 }
 
 
+// populates substance or sensor structure for outputs of operations
+function operationOutput(obj, type, tmpName) {
+
+    if (tmpName === '') {
+
+    }
+    else if (type === 'substance') {
+
+        var varOutput = JSON.parse(JSON.stringify(variableStructure));
+
+        varOutput.VARIABLE_DECLARATION.NAME = varOutput.VARIABLE_DECLARATION.ID = tmpName;
+
+        varOutput.VARIABLE_DECLARATION.TYPE = 'VARIABLE';
+
+        obj.OPERATION.OUTPUTS.push(varOutput);
+    }
+    else if (type === 'sensor') {
+
+        var sensor = JSON.parse(JSON.stringify(sensorOutput));
+
+        sensor.SENSOR_DECLARATION.NAME = sensor.SENSOR_DECLARATION.ID = tmpName;
+
+        obj.OPERATION.OUTPUTS.push(sensor);
+    }
+}
+
+
+// populates the variable or substance structure for inputs of operations based on input parameters
+function inputVariable (obj, tmpName, tmpVal, tmpUnit) {
+
+    //creates an instance of the variable structure while keeping its JSON structure
+    //var input = JSON.parse(JSON.stringify(substanceStructure));
+    //input.CHEMICAL.VARIABLE.NAME = tmpName;
+
+    if (tmpVal === '' && tmpUnit === '') {
+
+        //creates an instance of the variable structure while keeping its JSON structure
+        var input = JSON.parse(JSON.stringify(variableInput));
+
+        input.VARIABLE.NAME = tmpName;
+        obj.OPERATION.INPUTS.push(input);
+
+        //delete input.CHEMICAL.VOLUME;
+        //obj.OPERATION.INPUTS.push(input);
+    }
+    else {
+
+        //creates an instance of the variable structure while keeping its JSON structure
+        var input = JSON.parse(JSON.stringify(substanceStructure));
+
+        input.CHEMICAL.VARIABLE.NAME = tmpName;
+        input.CHEMICAL.VOLUME.VALUE = tmpVal;
+        input.CHEMICAL.VOLUME.UNITS = tmpUnit;
+
+        //populates the INPUT array of operation structure with inputs with volumes and units
+        //operation obj being passed into function
+        obj.OPERATION.INPUTS.push(input);
+    }
+}
+
+
+// populates substance structure temperature for inputs of operations
+function inputTemperature (obj, tmpVal, tmpUnit) {
+
+    //creates an instance of the temperature structure while keeping its JSON structure
+    var tmp = JSON.parse(JSON.stringify(propertyTemp));
+
+    if(tmpVal === '' && tmpUnit === '') {
+        delete tmp.INPUT_TYPE;
+        delete tmp.TEMPERATURE;
+    }
+    else {
+        tmp.TEMPERATURE.VALUE = tmpVal;
+        tmp.TEMPERATURE.UNITS = tmpUnit;
+
+        //populates the INPUT array of operation structure with temperature values and units
+        //operation obj being passed into function
+        obj.OPERATION.INPUTS.push(tmp);
+    }
+}
+
+
+// populates substance structure timing for inputs of operations
+function inputTime (obj, tmpVal, tmpUnit) {
+
+    //creates an instance of the time structure while keeping its JSON structure
+    var time = JSON.parse(JSON.stringify(propertyTime));
+
+    if(tmpVal === '' && tmpUnit === '') {
+        delete time.INPUT_TYPE;
+        delete time.TIME;
+    }
+    else {
+        time.TIME.VALUE = tmpVal;
+        time.TIME.UNITS = tmpUnit;
+
+        //populates the INPUT array of operation structure with time values and units using
+        //operation obj being passed into funtion
+        obj.OPERATION.INPUTS.push(time);
+    }
+}
+
+
+/**************************************************************************************
+
+ All functions to remove substance and operation INPUT information
+
+ **************************************************************************************/
+
+
 // allows to remove substance once they've been added
 function removeSubstance() {
 
@@ -150,108 +260,6 @@ function checkOutputs(index, output, opLength) {
     return tmpArray;
 }
 
-
-// populates substance or sensor structure for outputs of operations
-function operationOutput(obj, type, tmpName) {
-
-    if (tmpName === '') {
-
-    }
-    else if (type === 'substance') {
-
-        var varOutput = JSON.parse(JSON.stringify(variableStructure));
-
-        varOutput.VARIABLE_DECLARATION.NAME = varOutput.VARIABLE_DECLARATION.ID = tmpName;
-
-        varOutput.VARIABLE_DECLARATION.TYPE = 'VARIABLE';
-
-        obj.OPERATION.OUTPUTS.push(varOutput);
-    }
-    else if (type === 'sensor') {
-
-        var sensor = JSON.parse(JSON.stringify(sensorOutput));
-
-        sensor.SENSOR_DECLARATION.NAME = sensor.SENSOR_DECLARATION.ID = tmpName;
-
-        obj.OPERATION.OUTPUTS.push(sensor);
-    }
-}
-
-
-// populates the variable or substance structure for inputs of operations based on input parameters
-function inputVariable (obj, tmpName, tmpVal, tmpUnit) {
-
-    //creates an instance of the variable structure while keeping its JSON structure
-    //var input = JSON.parse(JSON.stringify(substanceStructure));
-    //input.CHEMICAL.VARIABLE.NAME = tmpName;
-
-    if (tmpVal === '' && tmpUnit === '') {
-
-        //creates an instance of the variable structure while keeping its JSON structure
-        var input = JSON.parse(JSON.stringify(variableInput));
-
-        input.VARIABLE.NAME = tmpName;
-        obj.OPERATION.INPUTS.push(input);
-
-        //delete input.CHEMICAL.VOLUME;
-        //obj.OPERATION.INPUTS.push(input);
-    }
-    else {
-
-        //creates an instance of the variable structure while keeping its JSON structure
-        var input = JSON.parse(JSON.stringify(substanceStructure));
-
-        input.CHEMICAL.VARIABLE.NAME = tmpName;
-        input.CHEMICAL.VOLUME.VALUE = tmpVal;
-        input.CHEMICAL.VOLUME.UNITS = tmpUnit;
-
-        //populates the INPUT array of operation structure with inputs with volumes and units
-        //operation obj being passed into function
-        obj.OPERATION.INPUTS.push(input);
-    }
-}
-
-
-// populates substance structure temperature for inputs of operations
-function inputTemperature (obj, tmpVal, tmpUnit) {
-
-    //creates an instance of the temperature structure while keeping its JSON structure
-    var tmp = JSON.parse(JSON.stringify(propertyTemp));
-
-    if(tmpVal === '' && tmpUnit === '') {
-        delete tmp.INPUT_TYPE;
-        delete tmp.TEMPERATURE;
-    }
-    else {
-        tmp.TEMPERATURE.VALUE = tmpVal;
-        tmp.TEMPERATURE.UNITS = tmpUnit;
-
-        //populates the INPUT array of operation structure with temperature values and units
-        //operation obj being passed into function
-        obj.OPERATION.INPUTS.push(tmp);
-    }
-}
-
-
-// populates substance structure timing for inputs of operations
-function inputTime (obj, tmpVal, tmpUnit) {
-
-    //creates an instance of the time structure while keeping its JSON structure
-    var time = JSON.parse(JSON.stringify(propertyTime));
-
-    if(tmpVal === '' && tmpUnit === '') {
-        delete time.INPUT_TYPE;
-        delete time.TIME;
-    }
-    else {
-        time.TIME.VALUE = tmpVal;
-        time.TIME.UNITS = tmpUnit;
-
-        //populates the INPUT array of operation structure with time values and units using
-        //operation obj being passed into funtion
-        obj.OPERATION.INPUTS.push(time);
-    }
-}
 
 
 /**************************************************************************************
