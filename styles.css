@@ -1,4 +1,6 @@
-/* Start Page Style */
+/*
+* === Start Page Style ===
+*/
 
 body {
     background-color: #F3F3F3;
@@ -31,7 +33,6 @@ img {
     background-color: #F3F3F3;
 }
 
-
 #start {
     background-color: #F3F3F3;
 }
@@ -46,10 +47,16 @@ img {
     padding: 8px;
 
 }
-/* End Page Style*/
+/*
+* === End Page Style ===
+*/
 
 
-/* Start Columns Style*/
+
+/*
+* — Start Columns Style —
+*/
+
 #col1 {
     height : 100vh;
     border: solid thin darkgrey;
@@ -93,13 +100,19 @@ img {
     word-break: normal;
     word-wrap: break-word;
     background-color: transparent;
-    border: 1px solid #ccc;
+    /*border: 1px solid #ccc;*/
     border-radius: 4px;
 }
-/* End Columns Style*/
+/*
+* — End Columns Style —
+*/
 
 
-/* Start Scrollbar Style*/
+
+/*
+* — Start Scrollbar Style —
+*/
+
 #col1::-webkit-scrollbar, #col2::-webkit-scrollbar, #col3::-webkit-scrollbar {
     width: 0;
 }
@@ -112,10 +125,15 @@ img {
     background-color: darkgrey;
     outline: 1px solid slategrey;
 }
-/* End Scrollbar Style*/
+/*
+* — End Scrollbar Style —
+*/
 
 
-/* Start Form Style */
+
+/*
+* — Start Form Style —
+*/
 
 #substanceadd, #substanceremoval, #save_form {
     padding: 25px;
@@ -166,6 +184,6 @@ select {
 #timeDuration {
     width: 70px;
 }
-
-/* End Form Style */
-
+/*
+* — End Form Style —
+*/
