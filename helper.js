@@ -40,6 +40,7 @@ function showhidetoggle(id) {
 // updates JSON output to the 'whereToPrint' which is the right side
 function toJson(input) {
     document.getElementById('whereToPrint').innerHTML = JSON.stringify(input, null, 2);
+    document.getElementById('whereToPrint').scrollIntoView(false);
 }
 
 
