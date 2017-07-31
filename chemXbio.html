@@ -37,7 +37,7 @@
 
     <div class="row" id="title">
         <!-- <h1>chemXbio</h1> -->
-        <img src="./images/chemXbioTitle.png" alt="chemXbio" style="width:628px;height:94px;" align="middle">
+        <img src="./images/chemXbioTitle.png" alt="chemXbio" style="width:694px;height:113px;" align="middle">
     </div>
 
     <div class="row">
@@ -63,7 +63,7 @@
 
                 <!-- begin start experiment form -->
                 <div id='startExperiment' class="col-sm-offset-2" style="display: none">
-                    <form id='startForm'>
+                    <form id='startForm' onsubmit="return false">
                         <h3>Name Experiment</h3>
                         <div class="form-group">
                             <label for="experimentName">Name:</label>
@@ -130,7 +130,7 @@
 
                 <!-- begin substanceadd form -->
                 <div id='substanceadd' class="col-sm-offset-3" style="display: none">
-                    <form id='subAddForm'>
+                    <form id='subAddForm' onsubmit="return false">
                         <h3>Add Substance</h3>
                         <div class="form-group">
                             <label for="substanceName">Input:</label>
@@ -150,7 +150,7 @@
 
                 <!-- begin substanceremoval form -->
                 <div id="substanceremoval" class="col-sm-offset-3" style="display: none">
-                    <form id="subRemoveForm">
+                    <form id="subRemoveForm" onsubmit="return false">
                         <h3>Remove Substance</h3><br>
                         <div class="form-group">
                         <label for="removesubstanceList">Select to Remove:</label>
@@ -200,7 +200,8 @@
                         </div>
 
                         <button type="button" class="btn btn-default col-sm-offset-2"
-                                onclick="createDetect(); update(); toJson(experimentHolder);">Add</button>
+                                onclick="createDetect(); toJson(experimentHolder);
+                                showhidetoggle('detect_form');">Add</button>
                         <button type="button" class="btn btn-default col-sm-offset-1"
                                 onclick="showhidetoggle('detect_form'); resetForm('detectForm')">Cancel</button>
                     </form>
