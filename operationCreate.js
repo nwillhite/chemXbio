@@ -6,9 +6,6 @@
 
 
 function createExperiment() {
-
-    //= document.getElementById('experimentName').value;
-
     var name = document.getElementById('experimentName').value;
 
     experimentStructure.EXPERIMENT.NAME = name;
