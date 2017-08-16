@@ -90,7 +90,8 @@
                             update()">Add Substances</button>
                     <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('substanceremoval');
                             update()">Remove Substances</button>
-                    <h4 onclick="showhidetoggle('substanceMenu')">close</h4>
+                    <h4 onclick="showhidetoggle('substanceMenu'); hideDiv('substanceadd');
+                        hideDiv('substanceremoval')">close</h4>
                 </div>
 
                 <h3 onclick="showhidetoggle('heatOperations')">Heat Operations</h3>
@@ -99,7 +100,8 @@
                             operationInput('inputHeat')">Heat</button>
                     <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('incubate_form');
                             operationInput('inputIncubate');">Incubate</button>
-                    <h4 onclick="showhidetoggle('heatOperations')">close</h4>
+                    <h4 onclick="showhidetoggle('heatOperations'); hideDiv('heat_form');
+                        hideDiv('incubate_form')">close</h4>
                 </div>
 
 
@@ -107,14 +109,14 @@
                 <div id="mixOperations" style="display: none">
                     <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('mixtureform');
                             mixInputCreate(); update();">Mix</button>
-                    <h4 onclick="showhidetoggle('mixOperations')">close</h4>
+                    <h4 onclick="showhidetoggle('mixOperations'); hideDiv('mixtureform')">close</h4>
                 </div>
 
                 <h3 onclick="showhidetoggle('outputOperations')">Output Operations</h3>
                 <div id="outputOperations" style="display: none">
                     <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('save_form');
                             update()">Save</button>
-                    <h4 onclick="showhidetoggle('outputOperations')">close</h4>
+                    <h4 onclick="showhidetoggle('outputOperations'); hideDiv('save_form')">close</h4>
                 </div>
 
                 <h3 onclick="showhidetoggle('otherOperations')">Other Operations</h3>
@@ -125,7 +127,8 @@
                             update()">Split</button>
                     <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('store_form');
                             update()">Store</button>
-                    <h4 onclick="showhidetoggle('otherOperations')">close</h4>
+                    <h4 onclick="showhidetoggle('otherOperations'); hideDiv('detect_form');
+                        hideDiv('split_form'); hideDiv('store_form')">close</h4>
                 </div>
 
                 <!-- <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('');
