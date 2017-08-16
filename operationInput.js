@@ -62,10 +62,6 @@ function operationOutput(obj, type, tmpName) {
 // populates the variable or substance structure for inputs of operations based on input parameters
 function inputVariable (obj, tmpName, tmpVal, tmpUnit) {
 
-    //creates an instance of the variable structure while keeping its JSON structure
-    //var input = JSON.parse(JSON.stringify(substanceStructure));
-    //input.CHEMICAL.VARIABLE.NAME = tmpName;
-
     if (tmpVal === '' && tmpUnit === '') {
 
         //creates an instance of the variable structure while keeping its JSON structure
