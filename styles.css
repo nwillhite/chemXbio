@@ -25,6 +25,12 @@ img {
     margin: 0 auto;
 }
 
+.mainButton {
+    background: green !important;
+    color: #04030F;
+    margin-bottom: 10px;
+}
+
 #title h1 {
     margin: 0;
     padding: 0;
@@ -46,7 +52,6 @@ img {
     color: #04030F;
     line-height: 15px;
     padding: 8px;
-
 }
 /*
 * === End Page Style ===
@@ -57,6 +62,20 @@ img {
 /*
 * — Start Columns Style —
 */
+
+#operationsMenu {
+    padding: 9.5px;
+    margin: 10px 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+#operationsMenu h3 {
+    padding: 9.5px;
+    margin: 10px 0 10px;
+    text-align: center;
+}
 
 #col1 {
     height : 100vh;
@@ -101,8 +120,9 @@ img {
     word-break: normal;
     word-wrap: break-word;
     background-color: transparent;
-    /*border: 1px solid #ccc;*/
+    border: 1px solid #ccc;
     border-radius: 4px;
+
 }
 /*
 * — End Columns Style —

@@ -42,7 +42,9 @@
 
     <div class="row">
         <div id="start" class="col-sm-12">
-            <button type="button" class="btn btn-primary" onclick="showhidetoggle('startExperiment')">New</button>
+            <span id="newButton" style="display: inline">
+                <button type="button" class="btn btn-primary" onclick="showhidetoggle('startExperiment')">New</button>
+            </span>
             <button type="button" class="btn btn-primary" onclick="resetExperiment()">Reset</button>
             <span id="finishbutton" style="display: none">
             <button type="button" class="btn btn-primary" onclick="addExperiment();
@@ -72,40 +74,59 @@
                         <button type="button" class="btn btn-primary"
                                 onclick="createExperiment(); update();
                                 toJson(experimentHolder); showhidetoggle('startExperiment');
-                                showDiv('finishbutton'); showhidetoggle('operationsMenu')">Add</button>
+                                showDiv('finishbutton'); hideDiv('newButton');
+                                showhidetoggle('operationsMenu')">Start</button>
                     </form>
                 </div>
                 <!-- end of start experiment div -->
 
             <div id="operationsMenu" style="display: none">
 
-                <h3>Substance Menu</h3>
-                <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('substanceadd');
-                        update()">Add Substances</button>
-                <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('substanceremoval');
-                        update()">Remove Substances</button>
+                <h3 onclick="showhidetoggle('substanceMenu')">Substance Menu</h3>
+                <!-- <button type="button" class="btn btn-primary btn-lg btn-block" onclick="showhidetoggle('substanceMenu');
+                        update()">Substance Menu</button> -->
+                <div id="substanceMenu" style="display: none">
+                    <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('substanceadd');
+                            update()">Add Substances</button>
+                    <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('substanceremoval');
+                            update()">Remove Substances</button>
+                    <h4 onclick="showhidetoggle('substanceMenu')">close</h4>
+                </div>
 
-                <h3>Heat Operations</h3>
-                <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('heat_form');
-                        operationInput('inputHeat')">Heat</button>
-                <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('incubate_form');
-                        operationInput('inputIncubate');">Incubate</button>
+                <h3 onclick="showhidetoggle('heatOperations')">Heat Operations</h3>
+                <div id="heatOperations" style="display: none">
+                    <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('heat_form');
+                            operationInput('inputHeat')">Heat</button>
+                    <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('incubate_form');
+                            operationInput('inputIncubate');">Incubate</button>
+                    <h4 onclick="showhidetoggle('heatOperations')">close</h4>
+                </div>
 
-                <h3>Mix Operations</h3>
-                <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('mixtureform');
-                        mixInputCreate(); update();">Mix</button>
 
-                <h3>Output Operations</h3>
-                <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('save_form');
-                        update()">Save</button>
+                <h3 onclick="showhidetoggle('mixOperations')">Mix Operations</h3>
+                <div id="mixOperations" style="display: none">
+                    <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('mixtureform');
+                            mixInputCreate(); update();">Mix</button>
+                    <h4 onclick="showhidetoggle('mixOperations')">close</h4>
+                </div>
 
-                <h3>Other Operations</h3>
-                <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('detect_form');
-                        update()">Detect</button>
-                <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('split_form');
-                        update()">Split</button>
-                <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('store_form');
-                        update()">Store</button>
+                <h3 onclick="showhidetoggle('outputOperations')">Output Operations</h3>
+                <div id="outputOperations" style="display: none">
+                    <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('save_form');
+                            update()">Save</button>
+                    <h4 onclick="showhidetoggle('outputOperations')">close</h4>
+                </div>
+
+                <h3 onclick="showhidetoggle('otherOperations')">Other Operations</h3>
+                <div id="otherOperations" style="display: none">
+                    <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('detect_form');
+                            update()">Detect</button>
+                    <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('split_form');
+                            update()">Split</button>
+                    <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('store_form');
+                            update()">Store</button>
+                    <h4 onclick="showhidetoggle('otherOperations')">close</h4>
+                </div>
 
                 <!-- <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('');
                         inputCreate()">Dissovle</button>
