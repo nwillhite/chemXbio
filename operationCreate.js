@@ -9,13 +9,10 @@ function createExperiment() {
 
     var name = document.getElementById('experimentName').value;
 
-    if (name === '')
-    {
+    if (name === '') {
         alert("You input an invalid experiment name");
     }
     else {
-
-
         experimentStructure.EXPERIMENT.NAME = name;
 
         //var text = 'You have started an expriment named: ' + name;
@@ -42,7 +39,6 @@ function createExperiment() {
         hideDiv('newButton');
         showhidetoggle('operationsMenu')
     }
-
 }
 
 
@@ -136,49 +132,55 @@ function createDetect() {
 function createHeat() {
     var operation = JSON.parse(JSON.stringify(operationStructure));
 
-    operation.OPERATION.NAME = document.getElementById('nameHeat').value;
-    var id = createID();
-    operation.OPERATION.ID = id;
-    operation.OPERATION.CLASSIFICATION = 'HEAT';
-
-
-    var tmpName = document.getElementById('inputHeat').value;
-    inputVariable(operation, tmpName, '', '');
-
-    // used for removing of substance and operation that uses input
-    var input = JSON.parse(JSON.stringify(inputList));
-    input.ID = id;
-    input.NAME = tmpName;
-    inputs.push(input);
-
-    inputTemperature(operation, document.getElementById('heatTemp').value,
-        document.getElementById('heatTempSign').value);
-    inputTime(operation, document.getElementById('heatTime').value,
-        document.getElementById('heatDuration').value);
-
-    if(document.getElementById('heatRepeat').value === 'true') {
-
-        var repeatOp = JSON.parse(JSON.stringify(operationStructure));
-
-        repeatOp.OPERATION.NAME = 'REPEAT';
-        repeatOp.OPERATION.ID = createID();
-        repeatOp.OPERATION.CLASSIFICATION = 'CFG_LOOP';
-        delete repeatOp.OPERATION.INPUTS;
-        delete repeatOp.OPERATION.OUTPUTS;
-        repeatOp.OPERATION.LOOP_NUMS = document.getElementById('heatRepeatNum').value;
-        repeatOp.OPERATION.OPERATIONS = [];
-
-        repeatOp.OPERATION.OPERATIONS.push(operation);
-
-        operationList.push(repeatOp);
-        addOperation();
+    if (document.getElementById('nameHeat').value === '') {
+        alert("You input an invalid Operation name");
     }
     else {
-        operationList.push(operation);
-        addOperation();
-    }
+        operation.OPERATION.NAME = document.getElementById('nameHeat').value;
+        var id = createID();
+        operation.OPERATION.ID = id;
+        operation.OPERATION.CLASSIFICATION = 'HEAT';
 
-    resetForm('heatForm');
+
+        var tmpName = document.getElementById('inputHeat').value;
+        inputVariable(operation, tmpName, '', '');
+
+        // used for removing of substance and operation that uses input
+        var input = JSON.parse(JSON.stringify(inputList));
+        input.ID = id;
+        input.NAME = tmpName;
+        inputs.push(input);
+
+        inputTemperature(operation, document.getElementById('heatTemp').value,
+            document.getElementById('heatTempSign').value);
+        inputTime(operation, document.getElementById('heatTime').value,
+            document.getElementById('heatDuration').value);
+
+        if (document.getElementById('heatRepeat').value === 'true') {
+
+            var repeatOp = JSON.parse(JSON.stringify(operationStructure));
+
+            repeatOp.OPERATION.NAME = 'REPEAT';
+            repeatOp.OPERATION.ID = createID();
+            repeatOp.OPERATION.CLASSIFICATION = 'CFG_LOOP';
+            delete repeatOp.OPERATION.INPUTS;
+            delete repeatOp.OPERATION.OUTPUTS;
+            repeatOp.OPERATION.LOOP_NUMS = document.getElementById('heatRepeatNum').value;
+            repeatOp.OPERATION.OPERATIONS = [];
+
+            repeatOp.OPERATION.OPERATIONS.push(operation);
+
+            operationList.push(repeatOp);
+            addOperation();
+        }
+        else {
+            operationList.push(operation);
+            addOperation();
+        }
+
+        resetForm('heatForm');
+        showhidetoggle('heat_form');
+    }
 }
 
 
