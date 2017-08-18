@@ -6,26 +6,41 @@
 
 
 function createExperiment() {
+
     var name = document.getElementById('experimentName').value;
 
-    experimentStructure.EXPERIMENT.NAME = name;
-
-    //var text = 'You have started an expriment named: ' + name;
-    //text += " \n this is going to be a test";
-    //document.getElementById('whereToPrint').innerHTML = text;
-
-    if (benchtop.length === 0) {
-        benchtop = benchTopStructure;
-
-        //benchtop = JSON.parse(JSON.stringify(benchTopStructure));
+    if (name === '')
+    {
+        alert("You input an invalid experiment name");
     }
+    else {
 
-    if (experimentHolder.length === 0) {
-        experimentHolder.push(experimentStructure);
 
-        //experiment = JSON.parse(JSON.stringify(experimentStructure));
-        //experimentStructure.EXPERIMENT.NAME = document.getElementById('experimentName').value;
-        //experimentHolder.push(experiment);
+        experimentStructure.EXPERIMENT.NAME = name;
+
+        //var text = 'You have started an expriment named: ' + name;
+        //text += " \n this is going to be a test";
+        //document.getElementById('whereToPrint').innerHTML = text;
+
+        if (benchtop.length === 0) {
+            benchtop = benchTopStructure;
+
+            //benchtop = JSON.parse(JSON.stringify(benchTopStructure));
+        }
+
+        if (experimentHolder.length === 0) {
+            experimentHolder.push(experimentStructure);
+
+            //experiment = JSON.parse(JSON.stringify(experimentStructure));
+            //experimentStructure.EXPERIMENT.NAME = document.getElementById('experimentName').value;
+            //experimentHolder.push(experiment);
+        }
+
+        toJson(experimentHolder);
+        showhidetoggle('startExperiment');
+        showDiv('finishbutton');
+        hideDiv('newButton');
+        showhidetoggle('operationsMenu')
     }
 
 }
