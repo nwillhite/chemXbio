@@ -85,46 +85,53 @@ function addOperation() {
 function createDetect() {
     var operation = JSON.parse(JSON.stringify(operationStructure));
 
-    operation.OPERATION.NAME = document.getElementById('nameDetect').value;
-    var id = createID();
-    operation.OPERATION.ID = id;
-    operation.OPERATION.CLASSIFICATION = 'DETECT';
-
-
-    var tmpName = document.getElementById('inputDetect').value;
-    inputVariable(operation, tmpName, '', '');
-
-    // used for removing of substance and operation that uses input
-    var input = JSON.parse(JSON.stringify(inputList));
-    input.ID = id;
-    input.NAME = tmpName;
-    inputs.push(input);
-
-    operationOutput(operation, 'sensor', document.getElementById('detectOutputName').value);
-
-    if(document.getElementById('detectRepeat').value === 'true') {
-
-        var repeatOp = JSON.parse(JSON.stringify(operationStructure));
-
-        repeatOp.OPERATION.NAME = 'REPEAT';
-        repeatOp.OPERATION.ID = createID();
-        repeatOp.OPERATION.CLASSIFICATION = 'CFG_LOOP';
-        delete repeatOp.OPERATION.INPUTS;
-        delete repeatOp.OPERATION.OUTPUTS;
-        repeatOp.OPERATION.LOOP_NUMS = document.getElementById('detectRepeatNum').value;
-        repeatOp.OPERATION.OPERATIONS = [];
-
-        repeatOp.OPERATION.OPERATIONS.push(operation);
-
-        operationList.push(repeatOp);
-        addOperation();
+    if (document.getElementById('nameDetect').value === '') {
+        alert("You input an invalid Operation name");
     }
     else {
-        operationList.push(operation);
-        addOperation();
-    }
+        operation.OPERATION.NAME = document.getElementById('nameDetect').value;
+        var id = createID();
+        operation.OPERATION.ID = id;
+        operation.OPERATION.CLASSIFICATION = 'DETECT';
 
-    resetForm('detectForm');
+
+        var tmpName = document.getElementById('inputDetect').value;
+        inputVariable(operation, tmpName, '', '');
+
+        // used for removing of substance and operation that uses input
+        var input = JSON.parse(JSON.stringify(inputList));
+        input.ID = id;
+        input.NAME = tmpName;
+        inputs.push(input);
+
+        operationOutput(operation, 'sensor', document.getElementById('detectOutputName').value);
+
+        if (document.getElementById('detectRepeat').value === 'true') {
+
+            var repeatOp = JSON.parse(JSON.stringify(operationStructure));
+
+            repeatOp.OPERATION.NAME = 'REPEAT';
+            repeatOp.OPERATION.ID = createID();
+            repeatOp.OPERATION.CLASSIFICATION = 'CFG_LOOP';
+            delete repeatOp.OPERATION.INPUTS;
+            delete repeatOp.OPERATION.OUTPUTS;
+            repeatOp.OPERATION.LOOP_NUMS = document.getElementById('detectRepeatNum').value;
+            repeatOp.OPERATION.OPERATIONS = [];
+
+            repeatOp.OPERATION.OPERATIONS.push(operation);
+
+            operationList.push(repeatOp);
+            addOperation();
+        }
+        else {
+            operationList.push(operation);
+            addOperation();
+        }
+
+        resetForm('detectForm');
+        showhidetoggle('detect_form');
+        toJson(experimentHolder);
+    }
 }
 
 
@@ -180,6 +187,7 @@ function createHeat() {
 
         resetForm('heatForm');
         showhidetoggle('heat_form');
+        toJson(experimentHolder);
     }
 }
 
@@ -188,49 +196,56 @@ function createHeat() {
 function createIncubate() {
     var operation = JSON.parse(JSON.stringify(operationStructure));
 
-    operation.OPERATION.NAME = document.getElementById('nameIncubate').value;
-    var id = createID();
-    operation.OPERATION.ID = id;
-    operation.OPERATION.CLASSIFICATION = 'HEAT';
-
-
-    var tmpName = document.getElementById('inputIncubate').value;
-    inputVariable(operation, tmpName, '', '');
-
-    // used for removing of substance and operation that uses input
-    var input = JSON.parse(JSON.stringify(inputList));
-    input.ID = id;
-    input.NAME = tmpName;
-    inputs.push(input);
-
-    inputTemperature(operation, document.getElementById('incubateTemp').value,
-        document.getElementById('incubateTempSign').value);
-    inputTime(operation, document.getElementById('incubateTime').value,
-        document.getElementById('incubateDuration').value);
-
-    if(document.getElementById('incubateRepeat').value === 'true') {
-
-        var repeatOp = JSON.parse(JSON.stringify(operationStructure));
-
-        repeatOp.OPERATION.NAME = 'REPEAT';
-        repeatOp.OPERATION.ID = createID();
-        repeatOp.OPERATION.CLASSIFICATION = 'CFG_LOOP';
-        delete repeatOp.OPERATION.INPUTS;
-        delete repeatOp.OPERATION.OUTPUTS;
-        repeatOp.OPERATION.LOOP_NUMS = document.getElementById('incubateRepeatNum').value;
-        repeatOp.OPERATION.OPERATIONS = [];
-
-        repeatOp.OPERATION.OPERATIONS.push(operation);
-
-        operationList.push(repeatOp);
-        addOperation();
+    if (document.getElementById('nameIncubate').value === '') {
+        alert("You input an invalid Operation name");
     }
     else {
-        operationList.push(operation);
-        addOperation();
-    }
+        operation.OPERATION.NAME = document.getElementById('nameIncubate').value;
+        var id = createID();
+        operation.OPERATION.ID = id;
+        operation.OPERATION.CLASSIFICATION = 'HEAT';
 
-    resetForm('incubateForm');
+
+        var tmpName = document.getElementById('inputIncubate').value;
+        inputVariable(operation, tmpName, '', '');
+
+        // used for removing of substance and operation that uses input
+        var input = JSON.parse(JSON.stringify(inputList));
+        input.ID = id;
+        input.NAME = tmpName;
+        inputs.push(input);
+
+        inputTemperature(operation, document.getElementById('incubateTemp').value,
+            document.getElementById('incubateTempSign').value);
+        inputTime(operation, document.getElementById('incubateTime').value,
+            document.getElementById('incubateDuration').value);
+
+        if (document.getElementById('incubateRepeat').value === 'true') {
+
+            var repeatOp = JSON.parse(JSON.stringify(operationStructure));
+
+            repeatOp.OPERATION.NAME = 'REPEAT';
+            repeatOp.OPERATION.ID = createID();
+            repeatOp.OPERATION.CLASSIFICATION = 'CFG_LOOP';
+            delete repeatOp.OPERATION.INPUTS;
+            delete repeatOp.OPERATION.OUTPUTS;
+            repeatOp.OPERATION.LOOP_NUMS = document.getElementById('incubateRepeatNum').value;
+            repeatOp.OPERATION.OPERATIONS = [];
+
+            repeatOp.OPERATION.OPERATIONS.push(operation);
+
+            operationList.push(repeatOp);
+            addOperation();
+        }
+        else {
+            operationList.push(operation);
+            addOperation();
+        }
+
+        resetForm('incubateForm');
+        showhidetoggle('incubate_form');
+        toJson(experimentHolder);
+    }
 }
 
 
@@ -238,66 +253,73 @@ function createIncubate() {
 function createMixture() {
     var operation = JSON.parse(JSON.stringify(operationStructure));
 
-    operation.OPERATION.NAME = document.getElementById('mixName').value;
-    var id = createID();
-    operation.OPERATION.ID = id;
-    operation.OPERATION.CLASSIFICATION = 'MIX';
-
-    var num = document.getElementById('mixInputAmount').value;
-
-
-    for (i = 0; i < num; i++) {
-
-        var tmpName = document.getElementById("input" + i).value;
-        var tmpVol = document.getElementById("inputvolume" + i).value;
-        var tmpUnit = document.getElementById("inputvolumeUnits" + i).value;
-
-        inputVariable(operation, tmpName, tmpVol, tmpUnit);
-
-        // used for removing of substance and operation that uses input
-        var input = JSON.parse(JSON.stringify(inputList));
-        input.ID = id;
-        input.NAME = tmpName;
-        input.OUTPUT = document.getElementById('mixOutputName').value;
-        inputs.push(input);
-    }
-
-    console.log(inputs);
-
-    inputTemperature(operation, document.getElementById('mixTemp').value,
-        document.getElementById('mixTempSign').value);
-
-    inputTime(operation, document.getElementById('mixTime').value,
-        document.getElementById('mixDuration').value);
-
-    operationOutput(operation, 'substance',
-        document.getElementById('mixOutputName').value);
-
-
-    if(document.getElementById('mixRepeat').value === 'true') {
-
-        var repeatOp = JSON.parse(JSON.stringify(operationStructure));
-
-        repeatOp.OPERATION.NAME = 'REPEAT';
-        repeatOp.OPERATION.ID = createID();
-        repeatOp.OPERATION.CLASSIFICATION = 'CFG_LOOP';
-        delete repeatOp.OPERATION.INPUTS;
-        delete repeatOp.OPERATION.OUTPUTS;
-        repeatOp.OPERATION.LOOP_NUMS = document.getElementById('mixRepeatNum').value;
-        repeatOp.OPERATION.OPERATIONS = [];
-
-        repeatOp.OPERATION.OPERATIONS.push(operation);
-
-        operationList.push(repeatOp);
-        addOperation();
+    if (document.getElementById('mixName').value === '') {
+        alert("You input an invalid Operation name");
     }
     else {
-        operationList.push(operation);
-        addOperation();
-    }
+        operation.OPERATION.NAME = document.getElementById('mixName').value;
+        var id = createID();
+        operation.OPERATION.ID = id;
+        operation.OPERATION.CLASSIFICATION = 'MIX';
 
-    resetForm('mixForm');
-    mixInputCreate();
+        var num = document.getElementById('mixInputAmount').value;
+
+
+        for (i = 0; i < num; i++) {
+
+            var tmpName = document.getElementById("input" + i).value;
+            var tmpVol = document.getElementById("inputvolume" + i).value;
+            var tmpUnit = document.getElementById("inputvolumeUnits" + i).value;
+
+            inputVariable(operation, tmpName, tmpVol, tmpUnit);
+
+            // used for removing of substance and operation that uses input
+            var input = JSON.parse(JSON.stringify(inputList));
+            input.ID = id;
+            input.NAME = tmpName;
+            input.OUTPUT = document.getElementById('mixOutputName').value;
+            inputs.push(input);
+        }
+
+        console.log(inputs);
+
+        inputTemperature(operation, document.getElementById('mixTemp').value,
+            document.getElementById('mixTempSign').value);
+
+        inputTime(operation, document.getElementById('mixTime').value,
+            document.getElementById('mixDuration').value);
+
+        operationOutput(operation, 'substance',
+            document.getElementById('mixOutputName').value);
+
+
+        if (document.getElementById('mixRepeat').value === 'true') {
+
+            var repeatOp = JSON.parse(JSON.stringify(operationStructure));
+
+            repeatOp.OPERATION.NAME = 'REPEAT';
+            repeatOp.OPERATION.ID = createID();
+            repeatOp.OPERATION.CLASSIFICATION = 'CFG_LOOP';
+            delete repeatOp.OPERATION.INPUTS;
+            delete repeatOp.OPERATION.OUTPUTS;
+            repeatOp.OPERATION.LOOP_NUMS = document.getElementById('mixRepeatNum').value;
+            repeatOp.OPERATION.OPERATIONS = [];
+
+            repeatOp.OPERATION.OPERATIONS.push(operation);
+
+            operationList.push(repeatOp);
+            addOperation();
+        }
+        else {
+            operationList.push(operation);
+            addOperation();
+        }
+
+        resetForm('mixForm');
+        mixInputCreate();
+        showhidetoggle('mixtureform');
+        toJson(experimentHolder);
+    }
 }
 
 
@@ -305,25 +327,32 @@ function createMixture() {
 function createSave() {
     var operation = JSON.parse(JSON.stringify(operationStructure));
 
-    operation.OPERATION.NAME = document.getElementById('nameSave').value;
-    var id = createID();
-    operation.OPERATION.ID = id;
-    operation.OPERATION.CLASSIFICATION = 'OUTPUT';
+    if (document.getElementById('nameSave').value === '') {
+        alert("You input an invalid Operation name");
+    }
+    else {
+        operation.OPERATION.NAME = document.getElementById('nameSave').value;
+        var id = createID();
+        operation.OPERATION.ID = id;
+        operation.OPERATION.CLASSIFICATION = 'OUTPUT';
 
 
-    var tmpName = document.getElementById('inputSave').value;
-    inputVariable(operation, tmpName, '', '');
+        var tmpName = document.getElementById('inputSave').value;
+        inputVariable(operation, tmpName, '', '');
 
-    // used for removing of substance and operation that uses input
-    var input = JSON.parse(JSON.stringify(inputList));
-    input.ID = id;
-    input.NAME = tmpName;
-    inputs.push(input);
+        // used for removing of substance and operation that uses input
+        var input = JSON.parse(JSON.stringify(inputList));
+        input.ID = id;
+        input.NAME = tmpName;
+        inputs.push(input);
 
-    operationList.push(operation);
-    addOperation();
+        operationList.push(operation);
+        addOperation();
 
-    resetForm('saveForm');
+        resetForm('saveForm');
+        showhidetoggle('save_form');
+        toJson(experimentHolder);
+    }
 }
 
 
@@ -331,64 +360,71 @@ function createSave() {
 function createSplit() {
     var operation = JSON.parse(JSON.stringify(operationStructure));
 
-    operation.OPERATION.NAME = document.getElementById('nameSplit').value;
-    var id = createID();
-    operation.OPERATION.ID = id;
-    operation.OPERATION.CLASSIFICATION = 'Split';
-
-    var num = document.getElementById('splitAmount').value;
-
-    var tmpName = document.getElementById("inputSplit").value;
-    inputVariable(operation, tmpName, '', '');
-
-    // used for removing of substance and operation that uses input
-    var input = JSON.parse(JSON.stringify(inputList));
-    input.ID = id;
-    input.NAME = tmpName;
-    inputs.push(input);
-
-    for (i = 0; i < num; i++) {
-
-        var varOutput = JSON.parse(JSON.stringify(variableStructure));
-        var outName = document.getElementById("splitOut" + i).value;
-
-        varOutput.VARIABLE_DECLARATION.NAME = varOutput.VARIABLE_DECLARATION.ID = outName;
-
-        varOutput.VARIABLE_DECLARATION.TYPE = 'VARIABLE';
-
-        operation.OPERATION.OUTPUTS.push(varOutput);
-
-        console.log(operation.OPERATION.OUTPUTS);
-
-        //var tmpName = document.getElementById("splitOut" + i).value;
-        //outputs.push(tmpName);
-        //operation.OPERATION.OUTPUTS.push(operationOutput(operation, 'substance', tmpName));
-    }
-
-    if(document.getElementById('splitRepeat').value === 'true') {
-
-        var repeatOp = JSON.parse(JSON.stringify(operationStructure));
-
-        repeatOp.OPERATION.NAME = 'REPEAT';
-        repeatOp.OPERATION.ID = createID();
-        repeatOp.OPERATION.CLASSIFICATION = 'CFG_LOOP';
-        delete repeatOp.OPERATION.INPUTS;
-        delete repeatOp.OPERATION.OUTPUTS;
-        repeatOp.OPERATION.LOOP_NUMS = document.getElementById('splitRepeatNum').value;
-        repeatOp.OPERATION.OPERATIONS = [];
-
-        repeatOp.OPERATION.OPERATIONS.push(operation);
-
-        operationList.push(repeatOp);
-        addOperation();
+    if (document.getElementById('nameSplit').value === '') {
+        alert("You input an invalid Operation name");
     }
     else {
-        operationList.push(operation);
-        addOperation();
-    }
+        operation.OPERATION.NAME = document.getElementById('nameSplit').value;
+        var id = createID();
+        operation.OPERATION.ID = id;
+        operation.OPERATION.CLASSIFICATION = 'Split';
 
-    resetForm('splitForm');
-    splitOutputCreate();
+        var num = document.getElementById('splitAmount').value;
+
+        var tmpName = document.getElementById("inputSplit").value;
+        inputVariable(operation, tmpName, '', '');
+
+        // used for removing of substance and operation that uses input
+        var input = JSON.parse(JSON.stringify(inputList));
+        input.ID = id;
+        input.NAME = tmpName;
+        inputs.push(input);
+
+        for (i = 0; i < num; i++) {
+
+            var varOutput = JSON.parse(JSON.stringify(variableStructure));
+            var outName = document.getElementById("splitOut" + i).value;
+
+            varOutput.VARIABLE_DECLARATION.NAME = varOutput.VARIABLE_DECLARATION.ID = outName;
+
+            varOutput.VARIABLE_DECLARATION.TYPE = 'VARIABLE';
+
+            operation.OPERATION.OUTPUTS.push(varOutput);
+
+            console.log(operation.OPERATION.OUTPUTS);
+
+            //var tmpName = document.getElementById("splitOut" + i).value;
+            //outputs.push(tmpName);
+            //operation.OPERATION.OUTPUTS.push(operationOutput(operation, 'substance', tmpName));
+        }
+
+        if (document.getElementById('splitRepeat').value === 'true') {
+
+            var repeatOp = JSON.parse(JSON.stringify(operationStructure));
+
+            repeatOp.OPERATION.NAME = 'REPEAT';
+            repeatOp.OPERATION.ID = createID();
+            repeatOp.OPERATION.CLASSIFICATION = 'CFG_LOOP';
+            delete repeatOp.OPERATION.INPUTS;
+            delete repeatOp.OPERATION.OUTPUTS;
+            repeatOp.OPERATION.LOOP_NUMS = document.getElementById('splitRepeatNum').value;
+            repeatOp.OPERATION.OPERATIONS = [];
+
+            repeatOp.OPERATION.OPERATIONS.push(operation);
+
+            operationList.push(repeatOp);
+            addOperation();
+        }
+        else {
+            operationList.push(operation);
+            addOperation();
+        }
+
+        resetForm('splitForm');
+        splitOutputCreate();
+        showhidetoggle('split_form');
+        toJson(experimentHolder);
+    }
 }
 
 
@@ -396,29 +432,36 @@ function createSplit() {
 function createStore() {
     var operation = JSON.parse(JSON.stringify(operationStructure));
 
-    operation.OPERATION.NAME = document.getElementById('nameStore').value;
-    var id = createID();
-    operation.OPERATION.ID = id;
-    operation.OPERATION.CLASSIFICATION = 'STORAGE';
+    if (document.getElementById('nameStore').value === '') {
+        alert("You input an invalid Operation name");
+    }
+    else {
+        operation.OPERATION.NAME = document.getElementById('nameStore').value;
+        var id = createID();
+        operation.OPERATION.ID = id;
+        operation.OPERATION.CLASSIFICATION = 'STORAGE';
 
 
-    var tmpName = document.getElementById('inputStore').value;
-    inputVariable(operation, tmpName, '', '');
+        var tmpName = document.getElementById('inputStore').value;
+        inputVariable(operation, tmpName, '', '');
 
-    // used for removing of substance and operation that uses input
-    var input = JSON.parse(JSON.stringify(inputList));
-    input.ID = id;
-    input.NAME = tmpName;
-    inputs.push(input);
+        // used for removing of substance and operation that uses input
+        var input = JSON.parse(JSON.stringify(inputList));
+        input.ID = id;
+        input.NAME = tmpName;
+        inputs.push(input);
 
-    inputTemperature(operation, document.getElementById('storeTemp').value,
-        document.getElementById('storeTempSign').value);
+        inputTemperature(operation, document.getElementById('storeTemp').value,
+            document.getElementById('storeTempSign').value);
 
-    inputTime(operation, document.getElementById('storeTime').value,
-        document.getElementById('storeDuration').value);
+        inputTime(operation, document.getElementById('storeTime').value,
+            document.getElementById('storeDuration').value);
 
-    operationList.push(operation);
-    addOperation();
+        operationList.push(operation);
+        addOperation();
 
-    resetForm('storeForm');
+        resetForm('storeForm');
+        showhidetoggle('store_form');
+        toJson(experimentHolder);
+    }
 }
