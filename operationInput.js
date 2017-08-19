@@ -16,8 +16,10 @@ function inputExperiment() {
 // Functions for injecting inputs, volume, temperature in
 function inputSubstance(name) {
 
-    if (name != '') {
-
+    if (name === '') {
+        alert("You input an invalid substance name");
+    }
+    else {
         //creates an instance of the substance structure while keeping its JSON structure
         var tmpSub = JSON.parse(JSON.stringify(variableStructure));
 
@@ -38,23 +40,26 @@ function inputSubstance(name) {
 function operationOutput(obj, type, tmpName) {
 
     if (tmpName === '') {
-
+        // no output
     }
-    else if (type === 'substance') {
-        var varOutput = JSON.parse(JSON.stringify(variableStructure));
+    else {
 
-        varOutput.VARIABLE_DECLARATION.NAME = varOutput.VARIABLE_DECLARATION.ID = tmpName;
+        if (type === 'substance') {
+            var varOutput = JSON.parse(JSON.stringify(variableStructure));
 
-        varOutput.VARIABLE_DECLARATION.TYPE = 'VARIABLE';
+            varOutput.VARIABLE_DECLARATION.NAME = varOutput.VARIABLE_DECLARATION.ID = tmpName;
 
-        obj.OPERATION.OUTPUTS.push(varOutput);
-    }
-    else if (type === 'sensor') {
-        var sensor = JSON.parse(JSON.stringify(sensorOutput));
+            varOutput.VARIABLE_DECLARATION.TYPE = 'VARIABLE';
 
-        sensor.SENSOR_DECLARATION.NAME = sensor.SENSOR_DECLARATION.ID = tmpName;
+            obj.OPERATION.OUTPUTS.push(varOutput);
+        }
+        else if (type === 'sensor') {
+            var sensor = JSON.parse(JSON.stringify(sensorOutput));
 
-        obj.OPERATION.OUTPUTS.push(sensor);
+            sensor.SENSOR_DECLARATION.NAME = sensor.SENSOR_DECLARATION.ID = tmpName;
+
+            obj.OPERATION.OUTPUTS.push(sensor);
+        }
     }
 }
 
@@ -74,7 +79,6 @@ function inputVariable (obj, tmpName, tmpVal, tmpUnit) {
         //obj.OPERATION.INPUTS.push(input);
     }
     else {
-
         //creates an instance of the variable structure while keeping its JSON structure
         var input = JSON.parse(JSON.stringify(substanceStructure));
 
