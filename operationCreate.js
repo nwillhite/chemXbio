@@ -37,7 +37,7 @@ function createExperiment() {
         showhidetoggle('startExperiment');
         showDiv('finishbutton');
         hideDiv('newButton');
-        showhidetoggle('operationsMenu')
+        resetForm('startForm');
     }
 }
 
