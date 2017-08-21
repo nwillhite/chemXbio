@@ -48,6 +48,10 @@ function finish() {
 
     document.getElementById('substanceDisplay').innerHTML = "";
     document.body.scrollTop = 0;
+    hideDiv('operationsMenu');
+    hideDiv('forms');
+    hideDiv('finishbutton');
+    showDiv('newButton');
 
     //document.getElementById('whereToPrint').innerHTML = "";
     //download(JSON.stringify(benchtop, null, 2), 'output.JSON', 'text/plain');
@@ -62,11 +66,6 @@ function finish() {
     substances.length = 0;
     inputs.length = 0;
     outputs.length = 0;
-
-    hideDiv('operationsMenu');
-    hideDiv('forms');
-    hideDiv('finishbutton');
-    showDiv('newButton');
 }
 
 
