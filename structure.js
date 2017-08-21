@@ -42,6 +42,34 @@ function resetExperiment() {
     location.reload();
 }
 
+function finish() {
+    addExperiment();
+    toJson(benchtop);
+
+    document.getElementById('substanceDisplay').innerHTML = "";
+    document.body.scrollTop = 0;
+
+    //document.getElementById('whereToPrint').innerHTML = "";
+    //download(JSON.stringify(benchtop, null, 2), 'output.JSON', 'text/plain');
+
+    benchtop.length = 0;
+    experimentHolder.length = 0;
+    experimentStructure.EXPERIMENT.NAME = "";
+    experimentStructure.EXPERIMENT.INPUTS.length = 0;
+    experimentStructure.EXPERIMENT.INSTRUCTIONS.length = 0;
+    substancelist.length = 0;
+    operationList.length = 0;
+    substances.length = 0;
+    inputs.length = 0;
+    outputs.length = 0;
+
+    hideDiv('operationsMenu');
+    hideDiv('forms');
+    hideDiv('finishbutton');
+    showDiv('newButton');
+}
+
+
 
 /**************************************************************************************
 
