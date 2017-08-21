@@ -9,6 +9,8 @@
     <!-- style sheets -->
     <link rel="stylesheet" type="text/css" href="styles.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
     <!-- chemXbio javascript files -->
     <script src = "structure.js"></script>
     <script src = "operationInput.js"></script>
@@ -20,7 +22,6 @@
     <link rel="stylesheet" type="text/css" href="./bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
     <script src ="./bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
     <!-- web links to bootstrap -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
@@ -43,15 +44,13 @@
     <div class="row">
         <div id="start" class="col-sm-12">
             <span id="newButton" style="display: inline">
-                <button type="button" class="btn btn-primary" onclick="showhidetoggle('startExperiment')">New</button>
+                <button type="button" class="btn btn-primary" onclick="showhidetoggle('startExperiment');
+                document.getElementById('whereToPrint').innerHTML = ''; ">New</button>
             </span>
             <button type="button" class="btn btn-primary" onclick="resetExperiment()">Reset</button>
             <span id="finishbutton" style="display: none">
-            <button type="button" class="btn btn-primary" onclick="addExperiment();
-                    toJson(benchtop); hideDiv('forms'); hideDiv('startExperiment');
-                    hideDiv('operationsMenu'); document.body.scrollTop = 0;">Finish</button>
+            <button type="button" class="btn btn-primary" onclick="finish()">Finish</button>
             </span>
-
             <div id="substanceDisplay" class="col-sm-offset-3" style="background-color:#F3F3F3;">
                 <!-- active substances populate here -->
             </div>
@@ -141,9 +140,8 @@
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('');
                         inputCreate()">Vortex</button> -->
             </div>
-
-
         </div> <!-- end col 1 -->
+
 
         <div id="col2" class="col-sm-5">
 
@@ -511,9 +509,8 @@
                 <!-- End Store Form -->
 
             </div>
-
-
         </div> <!-- end col 2 -->
+
 
         <div id="col3" class="col-sm-4">
 
