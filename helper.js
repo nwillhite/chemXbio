@@ -83,9 +83,9 @@ function updateList() {
 
 function update() {
     formInput();
-    operationInput('inputSplit');
-    operationInput('inputSave');
-    operationInput('inputDetect');
-    operationInput('inputStore');
-    operationInput('inputHeat');
+    var tempOpList = ['inputSplit', 'inputSave', 'inputDetect', 'inputStore', 'inputHeat'];
+
+    for (var i = 0; i < tempOpList.length; i++) {
+        operationInput(i);
+    }
 }
