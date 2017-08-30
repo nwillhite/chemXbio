@@ -12,10 +12,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- chemXbio javascript files -->
-    <script src = "js/structure.js"></script>
-    <script src = "js/operationInput.js"></script>
-    <script src = "js/operationCreate.js"></script>
-    <script src = "js/helper.js"></script>
+    <script src="js/structure.js"></script>
+    <script src="js/operationInput.js"></script>
+    <script src="js/operationCreate.js"></script>
+    <script src="js/helper.js"></script>
+    <script src="js/jQuery.js"></script>
 
     <!-- hardcoded links to bootstrap -->
     <link rel="stylesheet" type="text/css" href="./bootstrap-3.3.7-dist/css/bootstrap.min.css">
@@ -77,7 +78,7 @@
 
             <div id="operationsMenu" style="display: none">
 
-                <h3 onclick="showDivBlock('substanceMenu')">Substance Menu</h3>
+                <h3 id="substanceHeading" onclick="toggle_visibility('substanceMenu')">Substance Menu</h3>
                 <!-- <button type="button" class="btn btn-primary btn-lg btn-block" onclick="showhidetoggle('substanceMenu');
                         update()">Substance Menu</button> -->
                 <div id="substanceMenu" class="opMenu" style="display: none">
@@ -85,36 +86,37 @@
                             update()">Add Substances</button>
                     <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('substanceremoval');
                             update()">Remove Substances</button>
-                    <h4 onclick="showhidetoggle('substanceMenu'); hideDiv('substanceadd');
+                    <h4 id="substanceClose" onclick="toggle_visibility('substanceMenu'); hideDiv('substanceadd');
                         hideDiv('substanceremoval')">close</h4>
                 </div>
 
-                <h3 onclick="showhidetoggle('heatOperations')">Heat Operations</h3>
+                <h3 id="heatHeading" onclick="toggle_visibility('heatOperations')">Heat Operations</h3>
                 <div id="heatOperations" class="opMenu" style="display: none">
                     <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('heat_form');
                             operationInput('inputHeat')">Heat</button>
                     <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('incubate_form');
                             operationInput('inputIncubate');">Incubate</button>
-                    <h4 onclick="showhidetoggle('heatOperations'); hideDiv('heat_form');
+                    <h4 id="heatClose" onclick="toggle_visibility('heatOperations'); hideDiv('heat_form');
                         hideDiv('incubate_form')">close</h4>
                 </div>
 
 
-                <h3 onclick="showhidetoggle('mixOperations')">Mix Operations</h3>
+                <h3 id="mixHeading" onclick="toggle_visibility('mixOperations')">Mix Operations</h3>
                 <div id="mixOperations" class="opMenu" style="display: none">
                     <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('mixtureform');
                             mixInputCreate(); update();">Mix</button>
-                    <h4 onclick="showhidetoggle('mixOperations'); hideDiv('mixtureform')">close</h4>
+                    <h4 id="mixClose" onclick="toggle_visibility('mixOperations'); hideDiv('mixtureform')">close</h4>
                 </div>
 
-                <h3 onclick="showhidetoggle('outputOperations')">Output Operations</h3>
+                <h3 id="outputHeading" onclick="toggle_visibility('outputOperations')">Output Operations</h3>
                 <div id="outputOperations" class="opMenu" style="display: none">
                     <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('save_form');
                             update()">Save</button>
-                    <h4 onclick="showhidetoggle('outputOperations'); hideDiv('save_form')">close</h4>
+                    <h4 id="outputClose" onclick="toggle_visibility('outputOperations');
+                        hideDiv('save_form')">close</h4>
                 </div>
 
-                <h3 onclick="showhidetoggle('otherOperations')">Other Operations</h3>
+                <h3 id="otherHeading" onclick="toggle_visibility('otherOperations')">Other Operations</h3>
                 <div id="otherOperations" class="opMenu" style="display: none">
                     <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('detect_form');
                             update()">Detect</button>
@@ -122,7 +124,7 @@
                             update()">Split</button>
                     <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('store_form');
                             update()">Store</button>
-                    <h4 onclick="showhidetoggle('otherOperations'); hideDiv('detect_form');
+                    <h4 id="otherClose" onclick="toggle_visibility('otherOperations'); hideDiv('detect_form');
                         hideDiv('split_form'); hideDiv('store_form')">close</h4>
                 </div>
 
