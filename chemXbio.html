@@ -7,16 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- style sheets -->
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- chemXbio javascript files -->
-    <script src = "structure.js"></script>
-    <script src = "operationInput.js"></script>
-    <script src = "operationCreate.js"></script>
-    <script src = "helper.js"></script>
-    <script src = "Operation.js"></script>
+    <script src = "js/structure.js"></script>
+    <script src = "js/operationInput.js"></script>
+    <script src = "js/operationCreate.js"></script>
+    <script src = "js/helper.js"></script>
 
     <!-- hardcoded links to bootstrap -->
     <link rel="stylesheet" type="text/css" href="./bootstrap-3.3.7-dist/css/bootstrap.min.css">
@@ -78,10 +77,10 @@
 
             <div id="operationsMenu" style="display: none">
 
-                <h3 onclick="showhidetoggle('substanceMenu')">Substance Menu</h3>
+                <h3 onclick="showDivBlock('substanceMenu')">Substance Menu</h3>
                 <!-- <button type="button" class="btn btn-primary btn-lg btn-block" onclick="showhidetoggle('substanceMenu');
                         update()">Substance Menu</button> -->
-                <div id="substanceMenu" style="display: none">
+                <div id="substanceMenu" class="opMenu" style="display: none">
                     <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('substanceadd');
                             update()">Add Substances</button>
                     <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('substanceremoval');
@@ -91,7 +90,7 @@
                 </div>
 
                 <h3 onclick="showhidetoggle('heatOperations')">Heat Operations</h3>
-                <div id="heatOperations" style="display: none">
+                <div id="heatOperations" class="opMenu" style="display: none">
                     <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('heat_form');
                             operationInput('inputHeat')">Heat</button>
                     <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('incubate_form');
@@ -102,21 +101,21 @@
 
 
                 <h3 onclick="showhidetoggle('mixOperations')">Mix Operations</h3>
-                <div id="mixOperations" style="display: none">
+                <div id="mixOperations" class="opMenu" style="display: none">
                     <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('mixtureform');
                             mixInputCreate(); update();">Mix</button>
                     <h4 onclick="showhidetoggle('mixOperations'); hideDiv('mixtureform')">close</h4>
                 </div>
 
                 <h3 onclick="showhidetoggle('outputOperations')">Output Operations</h3>
-                <div id="outputOperations" style="display: none">
+                <div id="outputOperations" class="opMenu" style="display: none">
                     <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('save_form');
                             update()">Save</button>
                     <h4 onclick="showhidetoggle('outputOperations'); hideDiv('save_form')">close</h4>
                 </div>
 
                 <h3 onclick="showhidetoggle('otherOperations')">Other Operations</h3>
-                <div id="otherOperations" style="display: none">
+                <div id="otherOperations" class="opMenu" style="display: none">
                     <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('detect_form');
                             update()">Detect</button>
                     <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('split_form');

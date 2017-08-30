@@ -22,6 +22,9 @@ function hideDiv(id) {
     document.getElementById(id).style.display = 'none';
 }
 
+function showDivBlock(id) {
+    document.getElementById(id).style.display = 'block';
+}
 
 function showhidetoggle(id) {
     var tmp = document.getElementById(id);
