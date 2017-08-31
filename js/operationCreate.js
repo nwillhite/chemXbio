@@ -38,6 +38,7 @@ function createExperiment() {
         showDiv('finishbutton');
         hideDiv('newButton');
         resetForm('startForm');
+        showhidetoggle('operationsMenu');
     }
 }
 
