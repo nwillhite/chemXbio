@@ -4,31 +4,44 @@
 
  **************************************************************************************/
 
-/*
-$(document).ready(function(){
-    $('.heading').click(function(){
-        var id = $(this).attr("id");
-        $(".opMenu").slideUp('slow');
-        $("#" + id).show();
-    });
-});
-*/
-
 
 function toggle_visibility(id) {
     // hide all divs with class opMenu
-    $('.opMenu').slideUp(500);
+    $('.opMenu').slideUp(1000);
+
+    // closes forms upon leaving forms menu type
+    var arr = $('#forms > div').map(function(){
+        return this.id;
+    }).get();
+
+    for (var i = 0; i < arr.length; i++) {
+        hideDiv(arr[i]);
+    }
 
     // show the desired div
     if ($('#' + id).is(":hidden")) {
-        $('#' + id).slideDown(1000);
+        $('#' + id).delay(100).slideDown(1000);
     }
     else {
-        $('#' + id).slideUp(1000);
+        $('#' + id).delay(100).slideUp(1000);
+    }
+}
+
+function toggle_form(id) {
+    // hide all divs with class form
+    $('.form').slideUp(1000);
+
+    // show the desired div
+    if ($('#' + id).is(":hidden")) {
+        $('#' + id).delay(100).slideDown(1000);
+    }
+    else {
+        $('#' + id).delay(100).slideUp(1000);
     }
 }
 
 /*
+
 //substanceMenu open
 $(document).ready(function(){
     $("#substanceHeading").click(function(){
