@@ -34,11 +34,11 @@ function createExperiment() {
         }
 
         toJson(experimentHolder);
-        showhidetoggle('startExperiment');
+        $('#startExperiment').slideUp(1000);
         showDiv('finishbutton');
         hideDiv('newButton');
         resetForm('startForm');
-        showhidetoggle('operationsMenu');
+        $('#operationsMenu').delay(1000).slideDown(1000);
     }
 }
 
