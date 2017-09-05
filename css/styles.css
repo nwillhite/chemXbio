@@ -120,9 +120,8 @@ img {
     word-break: normal;
     word-wrap: break-word;
     background-color: transparent;
-    border: 1px solid #ccc;
+    border: 0px solid #ccc;
     border-radius: 4px;
-
 }
 /*
 * — End Columns Style —
