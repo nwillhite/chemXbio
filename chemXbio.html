@@ -114,7 +114,7 @@
                 <h3 id="outputHeading" onclick="toggle_visibility('outputOperations')">Output Operations</h3>
                 <div id="outputOperations" class="opMenu" style="display: none">
                     <button type="button" class="btn btn-primary btn-block" onclick="toggle_form('save_form');
-                            update()">Save</button>
+                            operationInput('inputSave')">Save</button>
                     <h4 id="outputClose" onclick="toggle_visibility('outputOperations');
                         hideDiv('save_form')">close</h4>
                 </div>
@@ -122,11 +122,11 @@
                 <h3 id="otherHeading" onclick="toggle_visibility('otherOperations')">Other Operations</h3>
                 <div id="otherOperations" class="opMenu" style="display: none">
                     <button type="button" class="btn btn-primary btn-block" onclick="toggle_form('detect_form');
-                            update()">Detect</button>
+                            operationInput('inputDetect')">Detect</button>
                     <button type="button" class="btn btn-primary btn-block" onclick="toggle_form('split_form');
-                            update()">Split</button>
+                            operationInput('inputSplit')">Split</button>
                     <button type="button" class="btn btn-primary btn-block" onclick="toggle_form('store_form');
-                            update()">Store</button>
+                            operationInput('inputStore')">Store</button>
                     <h4 id="otherClose" onclick="toggle_visibility('otherOperations'); hideDiv('detect_form');
                         hideDiv('split_form'); hideDiv('store_form')">close</h4>
                 </div>
@@ -204,7 +204,6 @@
                                 <!-- ADD Output INPUTS FOR SELECTION HERE -->
                                 <script>
                                     //operationDetectInput();
-                                    operationInput('inputDetect');
                                 </script>
                             </select><br><br>
 
@@ -404,7 +403,6 @@
                                 <!-- ADD Output INPUTS FOR SELECTION HERE -->
                                 <script>
                                     //operationOutputInput();
-                                    operationInput('inputSave');
                                 </script>
                             </select>
                         </div>
@@ -430,7 +428,6 @@
                                 <!-- ADD Split INPUTS FOR SELECTION HERE -->
                                 <script>
                                     //operationSplitInput();
-                                    operationInput('inputSplit');
                                 </script>
                             </select><br><br>
 
@@ -485,7 +482,6 @@
                                 <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
                                 <script>
                                     //operationStoreInput();
-                                    operationInput('inputStore');
                                 </script>
                             </select><br><br>
                             <label for="storeTemp">Enter Temp:</label>
