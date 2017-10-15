@@ -254,8 +254,12 @@ function createIncubate() {
 function createMixture() {
     var operation = JSON.parse(JSON.stringify(operationStructure));
 
-    if (document.getElementById('mixName').value === '') {
-        alert("You input an invalid Operation name");
+    if (document.getElementById('mixName').value === '' || document.getElementById('mixOutputName').value === '') {
+
+        if (document.getElementById('mixName').value === '')
+            alert("You input an invalid Operation name");
+        else if (document.getElementById('mixOutputName').value === '')
+            alert("You need to have a named output");
     }
     else {
         operation.OPERATION.NAME = document.getElementById('mixName').value;
