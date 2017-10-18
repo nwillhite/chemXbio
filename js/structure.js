@@ -22,6 +22,7 @@ var substances = [];
 // holds instances of inputList
 var inputs = [];
 
+var outputs = [];
 
 // helper function to clear experiment until a better way can be found
 function resetExperiment() {
@@ -81,6 +82,13 @@ var inputList = {
     ID: "",
     NAME: "",
     OUTPUT: []
+};
+
+var outputList = {
+    createID: "",
+    Name: "",
+    status: "",
+    consumedID: ""
 };
 
 
