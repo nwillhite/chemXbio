@@ -7,22 +7,24 @@
 // holder for the BenchTop
 var benchtop = [];
 
-// holder for all experiment operations
+// holder for the Experiment
 var experimentHolder = [];
 
-//holder for all user defined substances
+//holder for all variableStructure for user defined substances, used for JSON output
 var substancelist = [];
 
-//holder for all operations
+//holder for all operations instances created by the user
 var operationList = [];
 
 // holds defined substance to help populate selection for drop downs
 var substances = [];
 
-// holds instances of inputList
+// holder for substances instances used as input for operations, holds inputList structures
 var inputs = [];
 
-var outputs = [];
+// holder for outputs instances of operations
+// used for tracking output usage as inputs, holds outputList structures
+var outputHolder = [];
 
 // helper function to clear experiment until a better way can be found
 function resetExperiment() {
@@ -47,7 +49,7 @@ function finish() {
     addExperiment();
     toJson(benchtop);
 
-    document.getElementById('substanceDisplay').innerHTML = "";
+    document.getElementById('activeSubstanceDisplay').innerHTML = "";
     document.body.scrollTop = 0;
     hideDiv('operationsMenu');
     hideDiv('forms');
@@ -66,7 +68,6 @@ function finish() {
     operationList.length = 0;
     substances.length = 0;
     inputs.length = 0;
-    outputs.length = 0;
 }
 
 
