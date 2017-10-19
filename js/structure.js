@@ -87,7 +87,7 @@ var inputList = {
 
 var outputList = {
     createID: "",
-    Name: "",
+    NAME: "",
     status: "",
     consumedID: ""
 };
