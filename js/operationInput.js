@@ -288,9 +288,13 @@ function removeSubstance() {
 // helper function to removeSubstance function
 function getAllIndexes(arr, val) {
     var indexes = [], i;
-    for(i = 0; i < arr.length; i++)
+
+    for(i = 0; i < arr.length; i++) {
+
         if (arr[i].ID === val)
             indexes.push(i);
+    }
+
     return indexes;
 }
 
@@ -465,6 +469,16 @@ function mixInputCreate() {
                 inputs.appendChild(opt);
             }
 
+            for (var m = 0; m < outputHolder.length; m++) {
+
+                if (outputHolder[m].status !== 'consumed') {
+                    var opt = document.createElement('option');
+                    opt.innerHTML = opt.value = outputHolder[m].NAME;
+                    inputs.appendChild(opt);
+                }
+            }
+
+            /*
             // adds the output of operations to input drop down list
             for (n = 0; n < opLength; n++) {
 
@@ -497,6 +511,7 @@ function mixInputCreate() {
                     }
                 }
             } // end drop down creation of defined substances
+            */
 
             // creates the volume input entries
             container.appendChild((document.createTextNode(" Volume: ")));

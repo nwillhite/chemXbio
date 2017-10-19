@@ -278,6 +278,16 @@ function createMixture() {
 
             inputVariable(operation, tmpName, tmpVol, tmpUnit);
 
+            for (var j = 0; j < outputHolder.length; j++)
+            {
+                console.log(outputHolder[j]);
+                if (outputHolder[j].NAME === tmpName) {
+
+                    outputHolder[j].status = 'consumed';
+                    outputHolder[j].consumedID = id;
+                }
+            }
+
             // used for removing of substance and operation that uses input
             var input = JSON.parse(JSON.stringify(inputList));
             input.ID = id;
@@ -300,10 +310,10 @@ function createMixture() {
         // used for tracking outputs of operation
         var output = JSON.parse(JSON.stringify(outputList));
         output.createID = id;
-        output.Name = document.getElementById('mixOutputName').value;
+        output.NAME = document.getElementById('mixOutputName').value;
         output.status = 'usable';
         outputHolder.push(output);
-        
+
         if (document.getElementById('mixRepeat').value === 'true') {
 
             var repeatOp = JSON.parse(JSON.stringify(operationStructure));
