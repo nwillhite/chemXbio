@@ -297,7 +297,13 @@ function createMixture() {
         operationOutput(operation, 'substance',
             document.getElementById('mixOutputName').value);
 
-
+        // used for tracking outputs of operation
+        var output = JSON.parse(JSON.stringify(outputList));
+        output.createID = id;
+        output.Name = document.getElementById('mixOutputName').value;
+        output.status = 'usable';
+        outputHolder.push(output);
+        
         if (document.getElementById('mixRepeat').value === 'true') {
 
             var repeatOp = JSON.parse(JSON.stringify(operationStructure));
