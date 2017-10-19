@@ -105,6 +105,16 @@ function createDetect() {
         input.NAME = tmpName;
         inputs.push(input);
 
+        for (var i = 0; i < outputHolder.length; i++)
+        {
+            console.log(outputHolder[i]);
+            if (outputHolder[i].NAME === tmpName) {
+
+                outputHolder[i].status = 'consumed';
+                outputHolder[i].consumedID = id;
+            }
+        }
+
         operationOutput(operation, 'sensor', document.getElementById('detectOutputName').value);
 
         if (document.getElementById('detectRepeat').value === 'true') {
@@ -158,6 +168,16 @@ function createHeat() {
         input.ID = id;
         input.NAME = tmpName;
         inputs.push(input);
+
+        for (var i = 0; i < outputHolder.length; i++)
+        {
+            console.log(outputHolder[i]);
+            if (outputHolder[i].NAME === tmpName) {
+
+                outputHolder[i].status = 'consumed';
+                outputHolder[i].consumedID = id;
+            }
+        }
 
         inputTemperature(operation, document.getElementById('heatTemp').value,
             document.getElementById('heatTempSign').value);
@@ -215,6 +235,16 @@ function createIncubate() {
         input.ID = id;
         input.NAME = tmpName;
         inputs.push(input);
+
+        for (var i = 0; i < outputHolder.length; i++)
+        {
+            console.log(outputHolder[i]);
+            if (outputHolder[i].NAME === tmpName) {
+
+                outputHolder[i].status = 'consumed';
+                outputHolder[i].consumedID = id;
+            }
+        }
 
         inputTemperature(operation, document.getElementById('incubateTemp').value,
             document.getElementById('incubateTempSign').value);
@@ -367,6 +397,15 @@ function createSave() {
         input.NAME = tmpName;
         inputs.push(input);
 
+        for (var i = 0; i < outputHolder.length; i++)
+        {
+            if (outputHolder[i].NAME === tmpName) {
+
+                outputHolder[i].status = 'consumed';
+                outputHolder[i].consumedID = id;
+            }
+        }
+
         operationList.push(operation);
         addOperation();
 
@@ -401,6 +440,15 @@ function createSplit() {
         input.NAME = tmpName;
         inputs.push(input);
 
+        for (var i = 0; i < outputHolder.length; i++)
+        {
+            if (outputHolder[i].NAME === tmpName) {
+
+                outputHolder[i].status = 'consumed';
+                outputHolder[i].consumedID = id;
+            }
+        }
+
         for (i = 0; i < num; i++) {
 
             var varOutput = JSON.parse(JSON.stringify(variableStructure));
@@ -413,6 +461,14 @@ function createSplit() {
             operation.OPERATION.OUTPUTS.push(varOutput);
 
             console.log(operation.OPERATION.OUTPUTS);
+
+
+            // used for tracking outputs of operation
+            var output = JSON.parse(JSON.stringify(outputList));
+            output.createID = id;
+            output.NAME = document.getElementById('splitOut' + i).value;
+            output.status = 'usable';
+            outputHolder.push(output);
 
             //var tmpName = document.getElementById("splitOut" + i).value;
             //outputs.push(tmpName);
@@ -471,6 +527,16 @@ function createStore() {
         input.ID = id;
         input.NAME = tmpName;
         inputs.push(input);
+
+        for (var i = 0; i < outputHolder.length; i++)
+        {
+            console.log(outputHolder[i]);
+            if (outputHolder[i].NAME === tmpName) {
+
+                outputHolder[i].status = 'consumed';
+                outputHolder[i].consumedID = id;
+            }
+        }
 
         inputTemperature(operation, document.getElementById('storeTemp').value,
             document.getElementById('storeTempSign').value);
