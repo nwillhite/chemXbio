@@ -72,10 +72,10 @@ function updateList() {
     substanceRemove();
 
     if (substances.length != 0) {
-        document.getElementById('substanceDisplay').innerHTML = "Active substances : " + substances;
+        document.getElementById('activeSubstanceDisplay').innerHTML = "Active substances : " + substances;
     }
     else {
-        document.getElementById('substanceDisplay').innerHTML = '';
+        document.getElementById('activeSubstanceDisplay').innerHTML = '';
     }
 
     //document.getElementById('substanceDisplay').innerHTML = JSON.stringify(substances, null, 2);
