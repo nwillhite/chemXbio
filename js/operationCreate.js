@@ -344,6 +344,10 @@ function createMixture() {
         output.status = 'usable';
         outputHolder.push(output);
 
+        operationList.push(operation);
+        addOperation();
+
+        /*
         if (document.getElementById('mixRepeat').value === 'true') {
 
             var repeatOp = JSON.parse(JSON.stringify(operationStructure));
@@ -365,6 +369,7 @@ function createMixture() {
             operationList.push(operation);
             addOperation();
         }
+        */
 
         resetForm('mixForm');
         mixInputCreate();
