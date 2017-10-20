@@ -161,7 +161,7 @@ img {
     border: 1px solid #ccc;
 }
 
-#heat_form, #incubate_form, #mixtureform, #split_form, #store_form {
+#heat_form, #incubate_form, #mixtureform, #split_form, #store_form, #detect_form {
     padding: 30px;
     margin: 25px 50px;
     border: 1px solid #ccc;

@@ -145,7 +145,6 @@ function operationInput(id) {
             container.removeChild(container.lastChild);
         }
 
-        var tmp = operationList.length;
         var sublength = substancelist.length;
 
         var option = document.createElement('option');
@@ -155,6 +154,7 @@ function operationInput(id) {
         option.setAttribute('style', 'display: none');
         container.appendChild(option);
 
+        /*
         // creates the input entries based on number selected with # of inputs
         // adds the output of operations to input drop down list
         for (i = 0; i < tmp; i++) {
@@ -195,8 +195,34 @@ function operationInput(id) {
                     }
                 }
             }
+        } */
+
+        /*
+        for (i = 0; i < sublength; i ++) {
+            var option = document.createElement('option');
+            option.innerHTML = substancelist[i].VARIABLE_DECLARATION.NAME;
+            option.value = substancelist[i].VARIABLE_DECLARATION.NAME;
+            option.className = 'substance';
+            container.appendChild(option);
         }
+
+        var option = document.createElement('option');
+        option.setAttribute('disabled', 'disabled');
+        option.innerHTML = option.value = '----';
+        container.appendChild(option);
+
+        for (i = 0; i < outputHolder.length; i++) {
+
+            if (outputHolder[i].status !== 'consumed') {
+                var option = document.createElement('option');
+                option.innerHTML = option.value = outputHolder[i].NAME;
+                container.appendChild(option);
+            }
+        }
+        */
+
     }
+
 
     for (i = 0; i < sublength; i ++) {
         var option = document.createElement('option');
@@ -204,6 +230,15 @@ function operationInput(id) {
         option.value = substancelist[i].VARIABLE_DECLARATION.NAME;
         option.className = 'substance';
         container.appendChild(option);
+    }
+
+    for (i = 0; i < outputHolder.length; i++) {
+
+        if (outputHolder[i].status !== 'consumed') {
+            var option = document.createElement('option');
+            option.innerHTML = option.value = outputHolder[i].NAME;
+            container.appendChild(option);
+        }
     }
 }
 
@@ -288,9 +323,13 @@ function removeSubstance() {
 // helper function to removeSubstance function
 function getAllIndexes(arr, val) {
     var indexes = [], i;
-    for(i = 0; i < arr.length; i++)
+
+    for(i = 0; i < arr.length; i++) {
+
         if (arr[i].ID === val)
             indexes.push(i);
+    }
+
     return indexes;
 }
 
@@ -465,6 +504,16 @@ function mixInputCreate() {
                 inputs.appendChild(opt);
             }
 
+            for (var m = 0; m < outputHolder.length; m++) {
+
+                if (outputHolder[m].status !== 'consumed') {
+                    var opt = document.createElement('option');
+                    opt.innerHTML = opt.value = outputHolder[m].NAME;
+                    inputs.appendChild(opt);
+                }
+            }
+
+            /*
             // adds the output of operations to input drop down list
             for (n = 0; n < opLength; n++) {
 
@@ -497,6 +546,7 @@ function mixInputCreate() {
                     }
                 }
             } // end drop down creation of defined substances
+            */
 
             // creates the volume input entries
             container.appendChild((document.createTextNode(" Volume: ")));

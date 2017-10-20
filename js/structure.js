@@ -7,55 +7,50 @@
 // holder for the BenchTop
 var benchtop = [];
 
-// holder for all experiment operations
+// holder for the Experiment
 var experimentHolder = [];
 
-//holder for all user defined substances
+//holder for all variableStructure for user defined substances, used for JSON output
 var substancelist = [];
 
-//holder for all operations
+//holder for all operations instances created by the user
 var operationList = [];
 
 // holds defined substance to help populate selection for drop downs
 var substances = [];
 
-// holds instances of inputList
+// holder for substances instances used as input for operations, holds inputList structures
 var inputs = [];
 
+// holder for outputs instances of operations
+// used for tracking output usage as inputs, holds outputList structures
+var outputHolder = [];
 
 // helper function to clear experiment until a better way can be found
 function resetExperiment() {
-    //experimentHolder.length = 0;
-    //experimentStructure.EXPERIMENT.NAME = "";
-    //experimentStructure.EXPERIMENT.INPUTS.length = 0;
-    //experimentStructure.EXPERIMENT.INSTRUCTIONS.length = 0;
-    //substancelist.length = 0;
-    //operationList.length = 0;
-    //substances.length = 0;
-    //outputs.length = 0;
-    //hideDiv('startExperiment');
-    //hideDiv('operationsMenu');
-    //hideDiv('forms');
-    //document.getElementById('whereToPrint').innerHTML = "";
-    //document.getElementById('substanceDisplay').innerHTML = "";
     document.body.scrollTop = 0;
     location.reload();
 }
 
 function finish() {
+    // add experiment to benchtop and prints out the benchtop JSON
     addExperiment();
     toJson(benchtop);
 
-    document.getElementById('substanceDisplay').innerHTML = "";
+    document.getElementById('activeSubstanceDisplay').innerHTML = "";
     document.body.scrollTop = 0;
-    hideDiv('operationsMenu');
-    hideDiv('forms');
     hideDiv('finishbutton');
     showDiv('newButton');
 
-    //document.getElementById('whereToPrint').innerHTML = "";
-    //download(JSON.stringify(benchtop, null, 2), 'output.JSON', 'text/plain');
+    // used for operation menu
+    hideDiv('operationsMenu');
+    toggle_visibility();
 
+    // used to hide open forms and reset any that might have had info in at time of hitting finish
+    toggle_form();
+    $('form').trigger("reset");
+
+    // resets all holders of experiment components
     benchtop.length = 0;
     experimentHolder.length = 0;
     experimentStructure.EXPERIMENT.NAME = "";
@@ -65,7 +60,7 @@ function finish() {
     operationList.length = 0;
     substances.length = 0;
     inputs.length = 0;
-    outputs.length = 0;
+    outputHolder.length = 0;
 }
 
 
@@ -81,6 +76,13 @@ var inputList = {
     ID: "",
     NAME: "",
     OUTPUT: []
+};
+
+var outputList = {
+    createID: "",
+    NAME: "",
+    status: "",
+    consumedID: ""
 };
 
 
