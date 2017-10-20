@@ -71,7 +71,7 @@
                         <h3>Name Experiment</h3>
                         <div class="form-group">
                             <label for="experimentName">Name:</label>
-                            <input type="text" id="experimentName" placeholder="Enter Name" value="">
+                            <input type="text" id="experimentName" placeholder="Enter Name" value="" autofocus>
                         </div>
                         <button type="button" class="btn btn-primary"
                                 onclick="createExperiment(); update()">Start</button>
@@ -143,6 +143,13 @@
                         inputCreate()">Tap</button>
                 <button type="button" class="btn btn-primary btn-block" onclick="showhidetoggle('');
                         inputCreate()">Vortex</button> -->
+
+                <script>
+                    $('form').mouseover(function(){
+                        $('input:visible:enabled:first').focus();
+                    });
+                </script>
+
             </div>
         </div> <!-- end col 1 -->
 
@@ -152,7 +159,7 @@
             <div id="forms">
 
                 <!-- begin substanceadd form -->
-                <div id='substanceadd' class="col-sm-offset-3 form" style="display: none">
+                <div id='substanceadd' class="col-sm-offset-3 form" style="display: none" onmouseover="focusMe('substanceName')">
                     <form id='subAddForm' onsubmit="return false">
                         <h3>Add Substance</h3>
                         <div class="form-group">
@@ -192,23 +199,20 @@
                 <!-- end substanceremoval form -->
 
                 <!-- Begin Detect Form -->
-                <div id="detect_form" class="col-sm-offset-3 form" style="display: none">
-                    <form id="detectForm" method="post">
+                <div id="detect_form" class="col-sm-offset-3 form" style="display: none" onmouseover="focusMe('nameDetect')">
+                    <form id="detectForm" onsubmit="return false">
                         <h3>Detect</h3>
                         <div class="form-group">
                             <label for="nameDetect">Name:</label>
-                            <input type="text" id="nameDetect" value='' autofocus><br><br>
+                            <input type="text" id="nameDetect" placeholder="Enter Name" value=''><br><br>
 
                             <label for="inputDetect">Select Inputs:</label>
                             <select id="inputDetect">
                                 <!-- ADD Output INPUTS FOR SELECTION HERE -->
-                                <script>
-                                    //operationDetectInput();
-                                </script>
                             </select><br><br>
 
                             <label for="detectOutputName">Output Name:</label>
-                            <input type="text" id="detectOutputName" value=''><br>
+                            <input type="text" id="detectOutputName" value='' placeholder="Enter Output Name"><br>
 
                             <label for="detectRepeat">Repeat:</label>
                             <select id="detectRepeat">
@@ -230,23 +234,20 @@
                 <!-- End Detect Form -->
 
                 <!-- Begin heat form -->
-                <div id="heat_form" class="col-sm-offset-3 form" style="display: none">
+                <div id="heat_form" class="col-sm-offset-3 form" style="display: none" onmouseover="focusMe('nameHeat')">
                     <form id="heatForm">
                         <h3>Heat</h3>
                         <div class="form-group">
                             <label for="nameHeat">Name:</label>
-                            <input type="text" id="nameHeat" autofocus><br><br>
+                            <input type="text" id="nameHeat" placeholder="Enter Name"><br><br>
 
                             <label for="inputHeat">Select Inputs:</label>
                             <select id="inputHeat">
                                 <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
-                                <script>
-                                    //operationHeatInput('inputHeat');
-                                </script>
                             </select><br><br>
 
                             <label for="heatTemp">Enter Temp:</label>
-                            <input type="text" id="heatTemp">
+                            <input type="text" id="heatTemp" placeholder="Enter Temp">
                             <select id="heatTempSign">
                                 <script>
                                     formTemperature('heatTempSign');
@@ -254,7 +255,7 @@
                             </select><br>
 
                             <label for="heatTime">Enter Time:</label>
-                            <input type="text" id="heatTime">
+                            <input type="text" id="heatTime" placeholder="Enter Time">
                             <select id="heatDuration">
                                 <script>
                                     formTime('heatDuration');
@@ -282,23 +283,20 @@
                 <!-- End heat form -->
 
                 <!-- Begin heat form -->
-                <div id="incubate_form" class="col-sm-offset-3 form" style="display: none">
+                <div id="incubate_form" class="col-sm-offset-3 form" style="display: none" onmouseover="focusMe('nameIncubate')">
                     <form id="incubateForm">
                         <h3>Incubate</h3>
                         <div class="form-group">
                             <label for="nameIncubate">Name:</label>
-                            <input type="text" id="nameIncubate" autofocus><br><br>
+                            <input type="text" id="nameIncubate" placeholder="Enter Name"><br><br>
 
                             <label for="inputIncubate">Select Inputs:</label>
                             <select id="inputIncubate">
                                 <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
-                                <script>
-                                    //operationHeatInput('inputIncubate');
-                                </script>
                             </select><br><br>
 
                             <label for="incubateTemp">Enter Temp:</label>
-                            <input type="text" id="incubateTemp">
+                            <input type="text" id="incubateTemp" placeholder="Enter Temp">
                             <select id="incubateTempSign">
                                 <script>
                                     formTemperature('incubateTempSign');
@@ -306,7 +304,7 @@
                             </select><br>
 
                             <label for="incubateTime">Enter Time:</label>
-                            <input type="text" id="incubateTime">
+                            <input type="text" id="incubateTime" placeholder="Enter Time">
                             <select id="incubateDuration">
                                 <script>
                                     formTime('incubateDuration');
@@ -334,12 +332,12 @@
                 <!-- End heat form -->
 
                 <!-- begin mixture form -->
-                <div id="mixtureform" class="col-sm-offset-3 form" style="display: none">
+                <div id="mixtureform" class="col-sm-offset-3 form" style="display: none" onmouseover="focusMe('mixName')">
                     <form id="mixForm">
                         <h3>MIX</h3>
                         <div class="form-group">
                             <label for="mixName">Name:</label>
-                            <input type="text" id="mixName" value='' autofocus><br><br>
+                            <input type="text" id="mixName" value='' placeholder="Enter Name"><br><br>
                             <label for="mixInputAmount">How many inputs for mixture?</label>
                             <select id="mixInputAmount" onchange="mixInputCreate()">
                                 <script>
@@ -353,7 +351,7 @@
                             </div>
 
                             <label for="mixTemp">Enter Temp:</label>
-                            <input type="text" id="mixTemp">
+                            <input type="text" id="mixTemp" placeholder="Enter Temp">
                             <select id="mixTempSign">
                                 <script>
                                     formTemperature('mixTempSign');
@@ -361,7 +359,7 @@
                             </select><br>
 
                             <label for="mixTime">Enter Time:</label>
-                            <input type="text" id="mixTime">
+                            <input type="text" id="mixTime" placeholder="Enter Time">
                             <select id="mixDuration">
                                 <script>
                                     formTime('mixDuration');
@@ -369,8 +367,9 @@
                             </select><br>
 
                             <label for="mixOutputname">Output Name:</label>
-                            <input type="text" id="mixOutputName" value=''><br>
+                            <input type="text" id="mixOutputName" value='' placeholder="Enter Output Name"><br>
 
+                            <!--
                             <label for="mixRepeat">Repeat:</label>
                             <select id="mixRepeat">
                                 <option value="false">No</option>
@@ -378,7 +377,7 @@
                             </select>
                             <label for="mixRepeatNum">for:</label>
                             <input type="text" id="mixRepeatNum">
-                            <label for="mixRepeatNum"> times</label>
+                            <label for="mixRepeatNum"> times</label>  -->
                             <br>
                         </div>
 
@@ -392,18 +391,15 @@
                 <!-- end mixture form -->
 
                 <!-- Begin Output Form -->
-                <div id="save_form" class="col-sm-offset-3 form" style="display: none">
+                <div id="save_form" class="col-sm-offset-3 form" style="display: none" onmouseover="focusMe('nameSave')">
                     <form id="saveForm" method="post">
                         <h3>Save</h3>
                         <div class="form-group">
                             <label for="nameOutput">Name:</label>
-                            <input type="text" id="nameSave" autofocus><br><br>
+                            <input type="text" id="nameSave" placeholder="Enter Name"><br><br>
                             <label for="inputSave">Select Inputs:</label>
                             <select id="inputSave">
                                 <!-- ADD Output INPUTS FOR SELECTION HERE -->
-                                <script>
-                                    //operationOutputInput();
-                                </script>
                             </select>
                         </div>
 
@@ -416,19 +412,16 @@
                 <!-- End Output Form -->
 
                 <!-- Begin Split Form -->
-                <div id="split_form" class="col-sm-offset-3 form" style="display: none">
+                <div id="split_form" class="col-sm-offset-3 form" style="display: none" onmouseover="focusMe('nameSplit')">
                     <form id="splitForm">
                         <h3>Split</h3>
                         <div class="form-group">
                             <label for="nameSplit">Name:</label>
-                            <input type="text" id="nameSplit" value='' autofocus><br><br>
+                            <input type="text" id="nameSplit" value='' placeholder="Enter Name"><br><br>
 
                             <label for="inputSplit">Select Input:</label>
                             <select id="inputSplit">
                                 <!-- ADD Split INPUTS FOR SELECTION HERE -->
-                                <script>
-                                    //operationSplitInput();
-                                </script>
                             </select><br><br>
 
                             <label for="splitTime">Enter Time:</label>
@@ -471,28 +464,25 @@
                 <!-- End Split Form -->
 
                 <!-- Begin Store Form -->
-                <div id="store_form" class="col-sm-offset-3 form" style="display: none">
+                <div id="store_form" class="col-sm-offset-3 form" style="display: none" onmouseover="focusMe('nameStore')">
                     <form id="storeForm" method="post">
                         <div class="form-group">
                             <h3>Store</h3>
                             <label for="nameStore">Name:</label>
-                            <input type="text" id="nameStore" autofocus><br><br>
+                            <input type="text" id="nameStore" placeholder="Enter Name"><br><br>
                             <label for="inputStore">Select Inputs:</label>
                             <select id="inputStore">
                                 <!-- ADD HEAT INPUTS FOR SELECTION HERE -->
-                                <script>
-                                    //operationStoreInput();
-                                </script>
                             </select><br><br>
                             <label for="storeTemp">Enter Temp:</label>
-                            <input type="text" id="storeTemp">
+                            <input type="text" id="storeTemp" placeholder="Enter Temp">
                             <select id="storeTempSign">
                                 <script>
                                     formTemperature('storeTempSign');
                                 </script>
                             </select><br>
                             <label for="storeTime">Enter Time:</label>
-                            <input type="text" id="storeTime">
+                            <input type="text" id="storeTime" placeholder="Enter Time">
                             <select id="storeDuration">
                                 <script>
                                     formTime('storeDuration');
