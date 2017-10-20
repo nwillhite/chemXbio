@@ -50,6 +50,11 @@ function createID() {
     return Math.floor((Math.random() * 1000000000) + 1);
 }
 
+function focusMe(formId) {
+    document.getElementById(formId).focus();
+
+}
+
 
 function resetForm(formId) {
     document.getElementById(formId).reset();
